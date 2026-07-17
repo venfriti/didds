@@ -564,7 +564,7 @@ img.lazy {
 }
 
 body {
-  background-color: var(--diids-bg) !important;
+  background-color: var(--diids-surface) !important;
   color: var(--diids-ink);
 }
 
