@@ -1,0 +1,157 @@
+/* ==========================================================================
+   DIIDS Storefront Theme — Shopify-direction, built for Bagisto
+   --------------------------------------------------------------------------
+   HOW TO APPLY:
+   1. Publish Bagisto's default theme assets so you have a local copy to edit:
+        php artisan vendor:publish --tag=bagisto-shop-assets
+      (or copy the compiled theme CSS location your installed version uses —
+      check devdocs.bagisto.com for your version's exact publish tag/path)
+   2. Load this file AFTER Bagisto's default stylesheet, either by adding a
+      <link> to it in your theme's layout head, or appending its contents to
+      the end of the default theme.css so these rules win on specificity.
+   3. The selectors below use Bagisto's common class names. Open your running
+      store in DevTools, inspect the header/nav/product-card/button markup,
+      and adjust any selector here that doesn't match what you actually see.
+      Treat this file as a strong starting point, not a guaranteed 1:1 fit —
+      Bagisto's exact class names can shift slightly between versions.
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --diids-bg:        #EDE8E0;
+  --diids-surface:   #FAF8F5;
+  --diids-ink:       #201D1A;
+  --diids-navy:      #1F2A44;
+  --diids-navy-hover: #16203C;
+  --diids-blush:     #C98B7A;
+  --diids-border:    #D9D2C7;
+
+  /* Type */
+  --diids-font-display: 'Fraunces', Georgia, serif;
+  --diids-font-body:    'Inter', -apple-system, sans-serif;
+  --diids-font-mono:    'IBM Plex Mono', monospace;
+}
+
+/* Import fonts — swap for self-hosted files in production to avoid a
+   render-blocking request to Google Fonts on every page load */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+body {
+  background: var(--diids-bg);
+  color: var(--diids-ink);
+  font-family: var(--diids-font-body);
+}
+
+/* ---- Header / nav ---------------------------------------------------- */
+header, .header, .shop-header {
+  background: var(--diids-bg);
+  border-bottom: 1px solid var(--diids-border);
+}
+
+.logo, header .logo {
+  font-family: var(--diids-font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--diids-ink);
+}
+
+/* ---- Buttons ----------------------------------------------------------
+   Bagisto commonly uses a `.btn` base class with modifiers like
+   `.btn-primary` / `.btn-lg`. Confirm against your rendered markup. */
+.btn, .btn-primary, button[type="submit"] {
+  background: var(--diids-navy);
+  color: var(--diids-surface);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--diids-font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 0.9rem 1.8rem;
+  transition: background 150ms ease;
+}
+.btn:hover, .btn-primary:hover {
+  background: #16203c;
+}
+
+/* ---- Product grid / cards --------------------------------------------- */
+.product-grid, .products-grid, .product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.product-card, .product-item {
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+.product-card img, .product-item img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  transition: opacity 200ms ease;
+}
+
+/* Hover-swap: requires a second image element layered on top in the
+   product card markup, or a small JS swap on mouseenter if your version's
+   card doesn't already support it out of the box. */
+.product-card:hover img.secondary {
+  opacity: 1;
+}
+
+.product-card .name, .product-item .product-name {
+  font-family: var(--diids-font-display);
+  font-size: 1.05rem;
+  margin-top: 0.9rem;
+}
+
+.product-card .price, .product-item .price {
+  font-family: var(--diids-font-mono);
+  font-size: 0.85rem;
+  color: var(--diids-ink);
+  opacity: 0.75;
+}
+
+/* ---- Signature element: variant "care tag" selector --------------------
+   Apply this class to the color/size swatch wrapper on the product detail
+   page in place of the default swatch/pill styling. */
+.diids-variant-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px dashed var(--diids-border);
+  border-radius: 2px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--diids-font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--diids-surface);
+}
+
+.diids-variant-tag.selected {
+  border-style: solid;
+  border-color: var(--diids-navy);
+  color: var(--diids-navy);
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 768px) {
+  .product-grid, .products-grid, .product-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ---- Accessibility: visible focus states -------------------------------- */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--diids-navy);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
