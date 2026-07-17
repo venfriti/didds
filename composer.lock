@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8b509f04c82c5c51df0891e3ae7ec7d",
+    "content-hash": "855c42bcd91be10eb4803d7cb0b32846",
     "packages": [
         {
             "name": "apimatic/core",
@@ -7467,6 +7467,63 @@
             "time": "2026-06-08T08:12:20+00:00"
         },
         {
+            "name": "resend/resend-php",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resend/resend-php.git",
+                "reference": "303dd78648e36e7a5bfadb262e874898e279b66f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resend/resend-php/zipball/303dd78648e36e7a5bfadb262e874898e279b66f",
+                "reference": "303dd78648e36e7a5bfadb262e874898e279b66f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "mockery/mockery": "^1.6",
+                "pestphp/pest": "^1.0|^2.0|^3.0|^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Resend.php"
+                ],
+                "psr-4": {
+                    "Resend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resend/resend-php/contributors"
+                }
+            ],
+            "description": "Resend PHP library.",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resend/resend-php/issues",
+                "source": "https://github.com/resend/resend-php/tree/v1.5.1"
+            },
+            "time": "2026-07-08T21:34:52+00:00"
+        },
+        {
             "name": "rmccue/requests",
             "version": "v2.0.18",
             "source": {
@@ -11563,6 +11620,54 @@
                 }
             ],
             "time": "2026-04-26T05:33:54+00:00"
+        },
+        {
+            "name": "wontonee/paystack",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wontonee/paystack-bagisto.git",
+                "reference": "cebd306416794008ba933d0c285ea3ea55a3f634"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wontonee/paystack-bagisto/zipball/cebd306416794008ba933d0c285ea3ea55a3f634",
+                "reference": "cebd306416794008ba933d0c285ea3ea55a3f634",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1|^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": [],
+                    "providers": [
+                        "Wontonee\\Paystack\\Providers\\PaystackServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wontonee\\Paystack\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Wontonee",
+                    "email": "dev@wontonee.com"
+                }
+            ],
+            "description": "Paystack Payment Gateway for Bagisto - Accept payments across Africa with Cards, Bank Transfer, Mobile Money & USSD",
+            "support": {
+                "issues": "https://github.com/wontonee/paystack-bagisto/issues",
+                "source": "https://github.com/wontonee/paystack-bagisto/tree/1.0.1"
+            },
+            "time": "2025-10-09T07:01:18+00:00"
         }
     ],
     "packages-dev": [

@@ -134,10 +134,10 @@
                                         />
                                     </label>
 
-                                    <!-- Text Swatch Options -->
-                                    <label 
-                                        class="group relative flex h-fit min-w-fit cursor-pointer items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-3 font-medium uppercase text-gray-900 hover:bg-gray-50 max-sm:h-fit max-sm:w-fit max-sm:px-3.5 max-sm:py-2"
-                                        :class="{'border-transparent !bg-navyBlue text-white' : option.id == attribute.selectedValue }"
+                                    <!-- Text Swatch Options (DIIDS care-tag style) -->
+                                    <label
+                                        class="diids-variant-tag"
+                                        :class="{'selected' : option.id == attribute.selectedValue }"
                                         :title="option.label"
                                         v-if="attribute.swatch_type == 'text'"
                                     >
@@ -163,14 +163,8 @@
                                             />
                                         </v-field>
 
-                                        <span class="text-lg max-sm:text-sm">
+                                        <span>
                                             @{{ option.label }}
-                                        </span>
-
-                                        <span
-                                            class="pointer-events-none absolute -inset-px rounded-full"
-                                            role="presentation"
-                                        >
                                         </span>
                                     </label>
                                 </template>

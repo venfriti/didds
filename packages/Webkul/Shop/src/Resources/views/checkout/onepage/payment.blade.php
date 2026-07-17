@@ -1,5 +1,10 @@
 {!! view_render_event('bagisto.shop.checkout.onepage.payment_methods.before') !!}
 
+<div class="diids-hygiene-notice mb-5 rounded-lg border border-dashed p-4 text-sm" style="border-color: var(--diids-border); background: var(--diids-surface); color: var(--diids-ink);">
+    <strong>Please note:</strong> for health and hygiene reasons, opened underwear items cannot be returned or refunded. Damaged, defective, or incorrect items are always eligible for exchange or refund &mdash;
+    <a href="{{ route('shop.cms.page', 'return-policy') }}" class="underline" target="_blank" rel="noopener">see our full return policy</a>.
+</div>
+
 <v-payment-methods
     :methods="paymentMethods"
     @payment-method-selected="setSelectedPaymentMethod"

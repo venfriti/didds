@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -525,4 +527,73 @@ img.lazy {
     .skip-to-main-content-link:focus {
         @apply ltr:left-1/2 rtl:right-1/2 ltr:translate-x-1/2 rtl:translate-x-[-50%] opacity-100;
     }
+}
+
+/* ==========================================================================
+   DIIDS theme overrides
+   --------------------------------------------------------------------------
+   The bulk of the DIIDS palette/type direction is applied via Tailwind
+   theme extension in tailwind.config.js (navyBlue/poppins/dmserif tokens
+   remapped to DIIDS values) — that's what actually reaches the utility
+   classes already used throughout this package's Blade templates
+   (bg-navyBlue, font-poppins, font-dmserif, etc.). This block only holds
+   what Tailwind's token remap can't express: CSS custom properties for the
+   signature .diids-variant-tag element (see products/view/types/
+   configurable.blade.php) and a body background override.
+
+   diids-theme.css at the repo root is the original design-brief reference;
+   this is not a straight append of it — several of its selectors (.header,
+   .btn, .product-grid, etc.) don't exist in this Bagisto version's
+   Tailwind-utility-only markup, so those were dropped in favor of the
+   config-level remap above. Not the source of truth for a future
+   `composer update` on Bagisto core — re-check after any core upgrade.
+   ========================================================================== */
+
+:root {
+  --diids-bg:        #EDE8E0;
+  --diids-surface:   #FAF8F5;
+  --diids-ink:       #201D1A;
+  --diids-navy:      #1F2A44;
+  --diids-navy-hover: #16203C;
+  --diids-blush:     #C98B7A;
+  --diids-border:    #D9D2C7;
+
+  --diids-font-display: 'Fraunces', Georgia, serif;
+  --diids-font-body:    'Inter', -apple-system, sans-serif;
+  --diids-font-mono:    'IBM Plex Mono', monospace;
+}
+
+body {
+  background-color: var(--diids-bg) !important;
+  color: var(--diids-ink);
+}
+
+/* Signature element: variant "care tag" selector — applied to the
+   color/size swatch wrapper on the PDP in place of the default
+   swatch/pill styling. This is the one deliberate, brand-specific UI
+   choice in the design direction; don't dilute it back into a generic
+   pill for convenience. */
+.diids-variant-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px dashed var(--diids-border);
+  border-radius: 2px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--diids-font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--diids-surface);
+  cursor: pointer;
+}
+
+.diids-variant-tag.selected {
+  border-style: solid;
+  border-color: var(--diids-navy);
+  color: var(--diids-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }

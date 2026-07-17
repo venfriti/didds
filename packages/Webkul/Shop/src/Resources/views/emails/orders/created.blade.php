@@ -292,4 +292,9 @@
             </span>
         </div>
     </div>
+
+    <div style="margin-top: 30px; padding: 16px; border: 1px dashed #CBD5E1; font-size: 14px; color: #5E5E5E; line-height: 22px;">
+        <strong>Please note:</strong> for health and hygiene reasons, opened underwear items cannot be returned or refunded. If any item in this order arrives damaged, defective, or incorrect, contact us and we'll arrange an exchange, replacement, or refund at no cost to you.
+        <a href="{{ route('shop.cms.page', 'return-policy') }}" style="color: #2969FF;">View our full return policy</a>.
+    </div>
 @endcomponent

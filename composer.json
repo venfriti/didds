@@ -44,11 +44,13 @@
         "prettus/l5-repository": "^2.6",
         "pusher/pusher-php-server": "^7.0",
         "razorpay/razorpay": "^2.9",
+        "resend/resend-php": "^1.5",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-sitemap": "^7.3",
         "stevebauman/purify": "^6.3",
-        "stripe/stripe-php": "^17.3"
+        "stripe/stripe-php": "^17.3",
+        "wontonee/paystack": "^1.0"
     },
     "require-dev": {
         "bagisto/laravel-datafaker": "2.3.*",
