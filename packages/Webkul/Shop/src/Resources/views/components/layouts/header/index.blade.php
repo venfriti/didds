@@ -1,15 +1,15 @@
 {!! view_render_event('bagisto.shop.layout.header.before') !!}
 
 @if(core()->getCurrentChannel()->locales()->count() > 1 || core()->getCurrentChannel()->currencies()->count() > 1 )
-    <div class="max-lg:hidden">
+    <div class="max-1180:hidden">
         <x-shop::layouts.header.desktop.top />
     </div>
 @endif
 
-<header class="shadow-gray sticky top-0 z-10 bg-white shadow-sm max-lg:shadow-none">
+<header class="shadow-gray sticky top-0 z-10 bg-white shadow-sm max-1180:shadow-none">
     <v-header-switcher>
         <!-- Desktop Header Shimmer -->
-        <div class="flex flex-wrap max-lg:hidden">
+        <div class="flex flex-wrap max-1180:hidden">
             <div class="flex min-h-[78px] w-full justify-between border border-b border-l-0 border-r-0 border-t-0 px-[60px] max-1180:px-8">
                 <!-- Left Navigation Section -->
                 <div class="flex items-center gap-x-10 max-[1180px]:gap-x-5">
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Mobile Header Shimmer -->
-        <div class="flex flex-wrap gap-4 px-4 pb-4 pt-6 shadow-sm lg:hidden">
+        <div class="flex flex-wrap gap-4 px-4 pb-4 pt-6 shadow-sm 1180:hidden">
             <div class="flex w-full items-center justify-between">
                 <!-- Left Navigation -->
                 <div class="flex items-center gap-x-1.5">
@@ -157,12 +157,12 @@
 
             data() {
                 return {
-                    isDesktop: window.innerWidth >= 1024
+                    isDesktop: window.innerWidth >= 1180
                 }
             },
 
             mounted() {
-                this.media = window.matchMedia('(min-width: 1024px)');
+                this.media = window.matchMedia('(min-width: 1180px)');
 
                 this.media.addEventListener('change', this.handleMedia);
             },
