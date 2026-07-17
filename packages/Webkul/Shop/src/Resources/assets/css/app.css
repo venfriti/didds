@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -433,11 +433,11 @@ img.lazy {
     }
 
     .primary-button {
-        @apply flex gap-x-1.5 items-center place-content-center font-medium rounded-xl text-white bg-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:opacity-[0.9];
+        @apply flex gap-x-1.5 items-center place-content-center font-semibold rounded-full text-white bg-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:opacity-[0.85];
     }
 
     .secondary-button {
-        @apply flex gap-x-1.5 items-center place-content-center font-medium rounded-xl bg-white text-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:bg-[#050e3a0d];
+        @apply flex gap-x-1.5 items-center place-content-center font-semibold rounded-full bg-transparent text-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:bg-[#1414140d];
     }
 
     .shimmer {
@@ -558,8 +558,8 @@ img.lazy {
   --diids-blush:     #C98B7A;
   --diids-border:    #D9D2C7;
 
-  --diids-font-display: 'Fraunces', Georgia, serif;
-  --diids-font-body:    'Inter', -apple-system, sans-serif;
+  --diids-font-display: 'Manrope', -apple-system, sans-serif;
+  --diids-font-body:    'Manrope', -apple-system, sans-serif;
   --diids-font-mono:    'IBM Plex Mono', monospace;
 }
 

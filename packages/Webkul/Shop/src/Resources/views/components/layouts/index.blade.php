@@ -68,12 +68,12 @@
 
         <link
             rel="preload" as="style"
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         />
 
         <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         />
 
         @stack('styles')
@@ -109,6 +109,21 @@
 
             <!-- Confirm Modal Blade Component -->
             <x-shop::modal.confirm />
+
+            <!-- Promo Strip -->
+            @if ($hasHeader)
+                <div class="flex items-center justify-center gap-10 overflow-hidden bg-navyBlue px-4 py-2.5 text-diidsSurface">
+                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:text-[10px]">
+                        Free shipping on all orders
+                    </p>
+                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:hidden">
+                        No returns on opened items &mdash; hygiene policy
+                    </p>
+                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:hidden">
+                        24/7 customer support
+                    </p>
+                </div>
+            @endif
 
             <!-- Page Header Blade Component -->
             @if ($hasHeader)

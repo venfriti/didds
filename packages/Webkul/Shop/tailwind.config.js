@@ -29,22 +29,22 @@ module.exports = {
 
         extend: {
             colors: {
-                navyBlue: "#1F2A44",
+                navyBlue: "#141414",
                 lightOrange: "#F6F2EB",
                 darkGreen: '#40994A',
                 darkBlue: '#0044F2',
                 darkPink: '#F85156',
 
-                diidsBg: "#EDE8E0",
-                diidsSurface: "#FAF8F5",
-                diidsInk: "#201D1A",
+                diidsBg: "#E9E9E7",
+                diidsSurface: "#F5F5F3",
+                diidsInk: "#141414",
                 diidsBlush: "#C98B7A",
-                diidsBorder: "#D9D2C7",
+                diidsBorder: "#D6D6D3",
             },
 
             fontFamily: {
-                poppins: ["Inter", "-apple-system", "sans-serif"],
-                dmserif: ["Fraunces", "Georgia", "serif"],
+                poppins: ["Manrope", "-apple-system", "sans-serif"],
+                dmserif: ["Manrope", "-apple-system", "sans-serif"],
                 mono: ["IBM Plex Mono", "monospace"],
             },
         }

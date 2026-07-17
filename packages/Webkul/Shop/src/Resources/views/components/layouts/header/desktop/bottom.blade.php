@@ -1,28 +1,12 @@
 {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.before') !!}
 
-<div class="flex min-h-[78px] w-full justify-between border border-b border-l-0 border-r-0 border-t-0 px-[60px] max-1180:px-8">
+<div class="grid min-h-[78px] w-full grid-cols-[1fr_auto_1fr] items-center border border-b border-l-0 border-r-0 border-t-0 px-[60px] max-1180:px-8">
     <!--
         This section will provide categories for the first, second, and third levels. If
         additional levels are required, users can customize them according to their needs.
     -->
     <!-- Left Nagivation Section -->
     <div class="flex items-center gap-x-10 max-[1180px]:gap-x-5">
-        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.before') !!}
-
-        <a
-            href="{{ route('shop.home.index') }}"
-            aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.bagisto')"
-        >
-            <img
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                width="131"
-                height="29"
-                alt="{{ config('app.name') }}"
-            >
-        </a>
-
-        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
-
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before') !!}
 
         <v-desktop-category>
@@ -47,8 +31,27 @@
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.after') !!}
     </div>
 
+    <!-- Centered Logo -->
+    <div class="flex items-center justify-self-center">
+        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.before') !!}
+
+        <a
+            href="{{ route('shop.home.index') }}"
+            aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.bagisto')"
+        >
+            <img
+                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                width="131"
+                height="29"
+                alt="{{ config('app.name') }}"
+            >
+        </a>
+
+        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
+    </div>
+
     <!-- Right Nagivation Section -->
-    <div class="flex items-center gap-x-9 max-[1100px]:gap-x-6 max-lg:gap-x-8">
+    <div class="flex items-center justify-end gap-x-9 max-[1100px]:gap-x-6 max-lg:gap-x-8">
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.search_bar.before') !!}
 
@@ -76,7 +79,7 @@
                     name="query"
                     value="{{ request('query') }}"
                     toolparamdescription="{{ trans('shop::app.components.layouts.webmcp.search-products-query') }}"
-                    class="block w-full py-3 text-xs font-medium text-gray-900 transition-all border border-transparent rounded-lg bg-zinc-100 px-11 hover:border-gray-400 focus:border-gray-400"
+                    class="block w-full py-3 text-xs font-medium text-diidsInk transition-all border border-diidsBorder rounded-full bg-diidsSurface px-11 hover:border-navyBlue focus:border-navyBlue"
                     minlength="{{ core()->getConfigData('catalog.products.search.min_query_length') }}"
                     maxlength="{{ core()->getConfigData('catalog.products.search.max_query_length') }}"
                     placeholder="@lang('shop::app.components.layouts.header.desktop.bottom.search-text')"
@@ -420,15 +423,15 @@
             >
                 <x-slot:toggle></x-slot>
 
-                <x-slot:header class="border-b border-gray-200">
+                <x-slot:header class="border-b border-diidsBorder bg-diidsSurface">
                     <div class="flex items-center justify-between w-full">
-                        <p class="text-xl font-medium">
+                        <p class="font-mono text-xs uppercase tracking-[0.1em] text-diidsInk">
                             @lang('shop::app.components.layouts.header.desktop.bottom.categories')
                         </p>
                     </div>
                 </x-slot>
 
-                <x-slot:content class="!px-0">
+                <x-slot:content class="!bg-diidsSurface !px-0">
                     <!-- Wrapper with transition effects -->
                     <div class="relative h-full overflow-hidden">
                         <!-- Sliding container -->
@@ -447,10 +450,10 @@
                                         :key="category.id"
                                         :class="{'mb-2': category.children && category.children.length}"
                                     >
-                                        <div class="flex items-center justify-between px-6 py-2 transition-colors duration-200 cursor-pointer hover:bg-gray-100">
+                                        <div class="flex items-center justify-between px-6 py-2.5 transition-colors duration-200 cursor-pointer hover:bg-diidsBg">
                                             <a
                                                 :href="category.url"
-                                                class="text-base font-medium text-black"
+                                                class="text-base font-semibold text-diidsInk"
                                             >
                                                 @{{ category.name }}
                                             </a>
@@ -463,12 +466,12 @@
                                                 :key="secondLevelCategory.id"
                                             >
                                                 <div
-                                                    class="flex items-center justify-between px-6 py-2 transition-colors duration-200 cursor-pointer hover:bg-gray-100"
+                                                    class="flex items-center justify-between px-6 py-2.5 transition-colors duration-200 cursor-pointer hover:bg-diidsBg"
                                                     @click="showThirdLevel(secondLevelCategory, category, $event)"
                                                 >
                                                     <a
                                                         :href="secondLevelCategory.url"
-                                                        class="text-sm font-normal"
+                                                        class="text-sm font-normal text-diidsInk/80"
                                                     >
                                                         @{{ secondLevelCategory.name }}
                                                     </a>
