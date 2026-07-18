@@ -161,7 +161,9 @@
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
 
         <!-- WebMCP Tool Registration For AI Agents -->
-        <x-shop::layouts.webmcp />
+        <div class="hidden" aria-hidden="true">
+            <x-shop::layouts.webmcp />
+        </div>
 
         @stack('scripts')
 

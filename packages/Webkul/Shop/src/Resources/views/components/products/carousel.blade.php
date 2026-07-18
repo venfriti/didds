@@ -15,21 +15,21 @@
             class="container mt-20 max-lg:px-8 max-md:mt-8 max-sm:mt-7 max-sm:!px-4"
             v-if="! isLoading && products.length"
         >
-            <div class="flex justify-between">
+            <div class="flex items-baseline justify-between">
                 <h2 class="font-dmserif text-3xl max-md:text-2xl max-sm:text-xl">
                     @{{ title }}
                 </h2>
 
-                <div class="flex items-center justify-between gap-8">
+                <div class="flex items-center gap-8">
                     <a
                         :href="navigationLink"
-                        class="hidden max-lg:flex"
+                        class="group flex items-center no-underline decoration-1 underline-offset-4 transition-transform duration-200 hover:scale-105 focus-visible:scale-105 focus-visible:underline focus-visible:outline-none"
                         v-if="navigationLink"
                     >
-                        <p class="items-center text-xl max-md:text-base max-sm:text-sm">
+                        <p class="items-center font-mono text-xs uppercase tracking-[0.08em] text-diidsInk max-sm:text-[11px]">
                             @lang('shop::app.components.products.carousel.view-all')
 
-                            <span class="icon-arrow-right text-2xl max-md:text-lg max-sm:text-sm"></span>
+                            <span class="icon-arrow-right text-sm"></span>
                         </p>
                     </a>
 
@@ -66,15 +66,6 @@
                     v-for="product in products"
                 />
             </div>
-
-            <a
-                :href="navigationLink"
-                class="secondary-button mx-auto mt-5 block w-max rounded-2xl px-11 py-3 text-center text-base max-lg:mt-0 max-lg:hidden max-lg:py-3.5 max-md:rounded-lg"
-                :aria-label="title"
-                v-if="navigationLink"
-            >
-                @lang('shop::app.components.products.carousel.view-all')
-            </a>
         </div>
 
         <!-- Product Card Listing -->

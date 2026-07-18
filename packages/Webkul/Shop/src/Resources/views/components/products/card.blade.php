@@ -14,16 +14,17 @@
             class="group w-full"
             v-if="mode != 'list'"
         >
-            <div class="relative max-h-[380px] min-h-[280px] max-w-[291px] overflow-hidden rounded-md bg-diidsSurface max-md:max-h-60 max-md:max-w-full max-md:rounded-lg max-sm:max-h-[200px] max-sm:max-w-full">
+            <div class="relative aspect-[3/4] w-full max-w-[291px] overflow-hidden rounded-md bg-diidsSurface max-md:max-w-full max-md:rounded-lg">
                 {!! view_render_event('bagisto.shop.components.products.card.image.before') !!}
 
                 <!-- Product Image -->
                 <a
                     :href="'{{ route('shop.product_or_category.index', ':slug') }}'.replace(':slug', product.url_key)"
                     :aria-label="product.name"
+                    class="absolute inset-0"
                 >
                     <x-shop::media.images.lazy
-                        class="after:content-[' '] relative bg-diidsSurface transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105"
+                        class="relative block h-full w-full bg-diidsSurface object-cover transition-all duration-300 group-hover:scale-105"
                         ::src="product.base_image.medium_image_url"
                         ::srcset="`
                             ${product.base_image.small_image_url} 150w,
@@ -33,7 +34,7 @@
                         ::key="product.id"
                         ::index="product.id"
                         width="291"
-                        height="300"
+                        height="388"
                         ::alt="product.name"
                     />
                 </a>
