@@ -15,7 +15,7 @@
 
     <div class="mx-4 flex-auto max-md:mx-6 max-sm:mx-4">
         <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-medium">
+            <h2 class="font-dmserif text-2xl text-diidsInk">
                 @lang('shop::app.rma.customer-rma-index.heading')
             </h2>
 
@@ -62,12 +62,12 @@
     
                     <template v-else>
                         <template v-for="record in available.records">
-                            <div class="mb-4 w-full rounded-lg border p-4 transition-all last:mb-0 hover:bg-gray-50">
+                            <div class="mb-4 w-full rounded-lg border p-4 transition-all last:mb-0 hover:bg-diidsSurface">
                                 <div class="block space-y-3">
                                     <!-- Row 1 -->
                                     <div class="flex items-start justify-between">
                                         <div class="flex flex-col">
-                                            <span class="text-xs text-gray-500">
+                                            <span class="text-xs text-diidsInk/60">
                                                 @lang('shop::app.customers.account.rma.index.datagrid.id')
                                             </span>
                                             
@@ -77,7 +77,7 @@
                                         </div>
 
                                         <div class="flex flex-col gap-1 text-right">
-                                            <span class="text-xs text-gray-500">
+                                            <span class="text-xs text-diidsInk/60">
                                                 @lang('shop::app.customers.account.rma.index.datagrid.order-ref')
                                             </span>
                                             
@@ -90,7 +90,7 @@
                                     <!-- Row 2 -->
                                     <div class="flex items-start justify-between">
                                         <div class="flex flex-col gap-1">
-                                            <span class="text-xs text-gray-500">
+                                            <span class="text-xs text-diidsInk/60">
                                                 @lang('shop::app.customers.account.rma.index.datagrid.rma-status')
                                             </span>
                                             
@@ -100,7 +100,7 @@
                                         </div>
 
                                         <div class="flex flex-col gap-1 text-right">
-                                            <span class="text-xs text-gray-500">
+                                            <span class="text-xs text-diidsInk/60">
                                                 @lang('shop::app.customers.account.rma.index.datagrid.quantity')
                                             </span>
 
@@ -113,7 +113,7 @@
                                     <!-- Row 3 -->
                                     <div class="flex items-center justify-between border-t pt-2">
                                         <div class="mt-1 flex flex-col gap-2">
-                                            <span class="text-xs text-gray-500">
+                                            <span class="text-xs text-diidsInk/60">
                                                 @lang('shop::app.customers.account.rma.index.datagrid.create')
                                             </span>
                                             

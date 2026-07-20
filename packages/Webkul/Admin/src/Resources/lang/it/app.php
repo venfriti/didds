@@ -6,7 +6,7 @@ return [
             'email' => 'Indirizzo Email',
             'forget-password-link' => 'Password Dimenticata?',
             'password' => 'Password',
-            'powered-by-description' => 'Powered by :bagisto, un progetto open-source di :webkul.',
+            'powered-by-description' => 'Powered by :bagisto.',
             'submit-btn' => 'Accedi',
             'title' => 'Accedi',
         ],
@@ -16,7 +16,7 @@ return [
                 'email' => 'Email Registrata',
                 'email-not-exist' => 'Email Non Esistente',
                 'page-title' => 'Password Dimenticata',
-                'powered-by-description' => 'Powered by :bagisto, un progetto open-source di :webkul.',
+                'powered-by-description' => 'Powered by :bagisto.',
                 'reset-link-sent' => 'Link per il ripristino della password inviato',
                 'sign-in-link' => 'Torna al Login?',
                 'submit-btn' => 'Ripristina',
@@ -29,7 +29,7 @@ return [
             'confirm-password' => 'Conferma Password',
             'email' => 'Email Registrata',
             'password' => 'Password',
-            'powered-by-description' => 'Realizzato con :bagisto, un progetto open-source di :webkul.',
+            'powered-by-description' => 'Powered by :bagisto.',
             'submit-btn' => 'Reimposta Password',
             'title' => 'Reimposta Password',
         ],
@@ -5339,7 +5339,7 @@ return [
             ],
 
             'powered-by' => [
-                'description' => 'Powered by :bagisto, un progetto open-source di :webkul.',
+                'description' => 'Powered by :bagisto.',
             ],
         ],
 

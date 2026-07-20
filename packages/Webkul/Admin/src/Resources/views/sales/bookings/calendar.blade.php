@@ -6,7 +6,7 @@
         id="v-calendar-template"
     >
         <div class="mt-6">
-            <div class="calendar-container rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+            <div class="calendar-container rounded-xl border border-diidsBorder bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900">
                 <vue-cal
                     hide-view-selector
                     :watchRealTime="true"
@@ -20,12 +20,12 @@
                 >
                     <!-- Left Arrow -->
                     <template #arrow-prev="">
-                        <span class="icon-sort-left flex h-8 w-8 items-center justify-center rounded-full text-xl text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"></span>
+                        <span class="icon-sort-left flex h-8 w-8 items-center justify-center rounded-full text-xl text-diidsInk/60 transition-colors duration-200 hover:bg-diidsSurface hover:text-diidsInk dark:text-diidsInk/40 dark:hover:bg-gray-800 dark:hover:text-gray-100"></span>
                     </template>
 
                     <!-- Right Arrow -->
                     <template #arrow-next="">
-                        <span class="icon-sort-right flex h-8 w-8 items-center justify-center rounded-full text-xl text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"></span>
+                        <span class="icon-sort-right flex h-8 w-8 items-center justify-center rounded-full text-xl text-diidsInk/60 transition-colors duration-200 hover:bg-diidsSurface hover:text-diidsInk dark:text-diidsInk/40 dark:hover:bg-gray-800 dark:hover:text-gray-100"></span>
                     </template>
 
                     <!-- No Events Content -->
@@ -40,19 +40,19 @@
                             :class="[
                                 event.status === 'pending' ? 'border-amber-500 bg-amber-50/90 hover:bg-amber-100 dark:border-amber-400 dark:bg-amber-500/15 dark:hover:bg-amber-500/25' :
                                 event.status === 'completed' ? 'border-emerald-500 bg-emerald-50/90 hover:bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25' :
-                                event.status === 'closed' ? 'border-blue-500 bg-blue-50/90 hover:bg-blue-100 dark:border-blue-400 dark:bg-blue-500/15 dark:hover:bg-blue-500/25' :
+                                event.status === 'closed' ? 'border-navyBlue bg-diidsSurface/90 hover:bg-blue-100 dark:border-blue-400 dark:bg-navyBlue/15 dark:hover:bg-navyBlue/25' :
                                 event.status === 'canceled' ? 'border-rose-500 bg-rose-50/90 hover:bg-rose-100 dark:border-rose-400 dark:bg-rose-500/15 dark:hover:bg-rose-500/25' :
                                 'border-emerald-500 bg-emerald-50/90 hover:bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25',
                                 event.time_difference ? 'p-2' : 'px-2 py-1'
                             ]"
                         >
-                            <div class="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-100">
+                            <div class="flex items-center gap-1 font-semibold text-diidsInk/80 dark:text-gray-100">
                                 <span
                                     class="inline-block h-1.5 w-1.5 rounded-full"
                                     :class="[
                                         event.status === 'pending' ? 'bg-amber-500' :
                                         event.status === 'completed' ? 'bg-emerald-500' :
-                                        event.status === 'closed' ? 'bg-blue-500' :
+                                        event.status === 'closed' ? 'bg-navyBlue' :
                                         event.status === 'canceled' ? 'bg-rose-500' :
                                         'bg-emerald-500',
                                     ]"
@@ -65,14 +65,14 @@
 
                             <div
                                 v-if="event.time_difference"
-                                class="mt-1 truncate text-[11px] font-medium text-gray-600 dark:text-gray-300"
+                                class="mt-1 truncate text-[11px] font-medium text-diidsInk/70 dark:text-gray-300"
                                 v-text="event.full_name"
                             >
                             </div>
 
                             <div
                                 v-if="event.time_difference && event.product_name"
-                                class="truncate text-[10px] text-gray-500 dark:text-gray-400"
+                                class="truncate text-[10px] text-diidsInk/60 dark:text-diidsInk/40"
                                 v-text="event.product_name"
                             >
                             </div>
@@ -86,7 +86,7 @@
                 <x-slot:header>
                     <div class="flex w-full items-center justify-between gap-3">
                         <div class="flex items-center gap-3">
-                            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
+                            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-diidsSurface text-navyBlue dark:bg-navyBlue/20 dark:text-blue-400">
                                 <span class="icon-calendar text-2xl"></span>
                             </span>
 
@@ -95,7 +95,7 @@
                                     @lang('admin::app.sales.booking.calendar.booking-details')
                                 </div>
 
-                                <div class="text-xs text-gray-500 dark:text-gray-400">
+                                <div class="text-xs text-diidsInk/60 dark:text-diidsInk/40">
                                     #@{{ event.order_id }}
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                             :class="[
                                 event.status === 'pending' ? 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300' :
                                 event.status === 'completed' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300' :
-                                event.status === 'closed' ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300' :
+                                event.status === 'closed' ? 'bg-blue-100 text-blue-700 dark:bg-navyBlue/20 dark:text-blue-300' :
                                 event.status === 'canceled' ? 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300' :
                                 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
                             ]"
@@ -116,7 +116,7 @@
                                 :class="[
                                     event.status === 'pending' ? 'bg-amber-500' :
                                     event.status === 'completed' ? 'bg-emerald-500' :
-                                    event.status === 'closed' ? 'bg-blue-500' :
+                                    event.status === 'closed' ? 'bg-navyBlue' :
                                     event.status === 'canceled' ? 'bg-rose-500' :
                                     'bg-emerald-500',
                                 ]"
@@ -138,10 +138,10 @@
                 <x-slot:content>
                     <div class="grid gap-5 text-sm font-normal">
                         <!-- Booking info -->
-                        <div class="grid grid-cols-[120px_auto] gap-x-3 gap-y-2.5 rounded-lg border border-gray-100 bg-gray-50/60 p-4 dark:border-gray-700 dark:bg-gray-800/60">
+                        <div class="grid grid-cols-[120px_auto] gap-x-3 gap-y-2.5 rounded-lg border border-gray-100 bg-diidsSurface/60 p-4 dark:border-gray-700 dark:bg-gray-800/60">
                             <!-- Booking Date -->
                             <div
-                                class="text-gray-500 dark:text-gray-400"
+                                class="text-diidsInk/60 dark:text-diidsInk/40"
                                 v-text="'@lang('admin::app.sales.booking.calendar.booking-date')'"
                             >
                             </div>
@@ -154,7 +154,7 @@
 
                             <!-- Product -->
                             <div
-                                class="text-gray-500 dark:text-gray-400"
+                                class="text-diidsInk/60 dark:text-diidsInk/40"
                                 v-text="'@lang('admin::app.sales.booking.calendar.product')'"
                             >
                             </div>
@@ -171,7 +171,7 @@
                                 v-for="attribute in event.attributes"
                             >
                                 <div
-                                    class="text-gray-500 dark:text-gray-400"
+                                    class="text-diidsInk/60 dark:text-diidsInk/40"
                                     v-text="attribute.attribute_name"
                                 >
                                 </div>
@@ -185,7 +185,7 @@
 
                             <!-- Order Id -->
                             <div
-                                class="text-gray-500 dark:text-gray-400"
+                                class="text-diidsInk/60 dark:text-diidsInk/40"
                                 v-text="'@lang('admin::app.sales.booking.calendar.order-id')'"
                             >
                             </div>
@@ -196,35 +196,35 @@
                         </div>
 
                         <!-- Customer info -->
-                        <div class="grid gap-3 rounded-lg border border-gray-100 bg-gray-50/60 p-4 text-gray-700 dark:border-gray-700 dark:bg-gray-800/60 dark:text-gray-200">
-                            <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <div class="grid gap-3 rounded-lg border border-gray-100 bg-diidsSurface/60 p-4 text-diidsInk/80 dark:border-gray-700 dark:bg-gray-800/60 dark:text-gray-200">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-diidsInk/60 dark:text-diidsInk/40">
                                 Customer
                             </p>
 
                             <!-- Customer Name -->
                             <div class="flex items-center gap-2.5">
-                                <span class="icon-customer-2 text-xl text-gray-400 dark:text-gray-500"></span>
+                                <span class="icon-customer-2 text-xl text-diidsInk/40 dark:text-diidsInk/60"></span>
 
                                 <span class="font-medium" v-text="event.full_name"></span>
                             </div>
 
                             <!-- Customer Email -->
                             <div class="flex items-center gap-2.5">
-                                <span class="icon-mail text-xl text-gray-400 dark:text-gray-500"></span>
+                                <span class="icon-mail text-xl text-diidsInk/40 dark:text-diidsInk/60"></span>
 
                                 <span v-text="event.email"></span>
                             </div>
 
                             <!-- Customer Phone Number -->
                             <div class="flex items-center gap-2.5">
-                                <span class="icon-phone text-xl text-gray-400 dark:text-gray-500"></span>
+                                <span class="icon-phone text-xl text-diidsInk/40 dark:text-diidsInk/60"></span>
 
                                 <span v-text="event.contact"></span>
                             </div>
 
                             <!-- Customer Address -->
                             <div class="flex items-start gap-2.5">
-                                <span class="icon-location mt-0.5 text-xl text-gray-400 dark:text-gray-500"></span>
+                                <span class="icon-location mt-0.5 text-xl text-diidsInk/40 dark:text-diidsInk/60"></span>
 
                                 <span class="leading-relaxed">
                                     <template v-if="event.address">

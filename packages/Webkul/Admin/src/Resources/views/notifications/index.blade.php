@@ -26,11 +26,11 @@
             <template v-else>
                 <div class="mb-5 flex items-center justify-between gap-4 max-sm:flex-wrap">
                     <div class="grid gap-1.5">
-                        <p class="pt-1.5 text-xl font-bold leading-6 text-gray-800 dark:text-white">
+                        <p class="pt-1.5 text-xl font-bold leading-6 text-diidsInk dark:text-white">
                             @lang('admin::app.notifications.title')
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.notifications.description-text')
                         </p>
                     </div>
@@ -40,12 +40,12 @@
                     <div>
                         <div class="journal-scroll flex overflow-auto border-b dark:border-gray-800">
                             <div
-                                class="flex cursor-pointer items-center gap-1 border-b-2 px-4 py-4 hover:bg-gray-100 dark:hover:bg-gray-950"
-                                :class="{'border-blue-600 dark:border-blue-600': status == data.status}"
+                                class="flex cursor-pointer items-center gap-1 border-b-2 px-4 py-4 hover:bg-diidsSurface dark:hover:bg-gray-950"
+                                :class="{'border-navyBlue dark:border-navyBlue': status == data.status}"
                                 v-for="data in orderType"
                                 @click="status=data.status; getNotification()"
                             >
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ data.message }}
                                 </p>
 
@@ -61,7 +61,7 @@
                         >
                             <a
                                 :href="'{{ route('admin.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
-                                class="flex h-14 items-start gap-1.5 p-4 hover:bg-gray-50 dark:hover:bg-gray-950"
+                                class="flex h-14 items-start gap-1.5 p-4 hover:bg-diidsSurface dark:hover:bg-gray-950"
                                 v-for="notification in notifications"
                             >
                                 <span
@@ -73,14 +73,14 @@
 
                                 <div class="grid">
                                     <p
-                                        class="text-gray-800 dark:text-white"
+                                        class="text-diidsInk dark:text-white"
                                         :class="notification.read ? 'font-normal' : 'font-semibold'"
                                     >
                                         #@{{ notification.order.id }}
                                         @{{ orderType[notification.order.status].message }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300">
                                         @{{ notification.order.datetime }}
                                     </p>
                                 </div>
@@ -89,7 +89,7 @@
 
                         <!-- For Empty Data -->
                         <div
-                            class="max-h-[calc(100vh-330px)] px-6 py-3 text-gray-600 dark:text-gray-300"
+                            class="max-h-[calc(100vh-330px)] px-6 py-3 text-diidsInk/70 dark:text-gray-300"
                             v-else
                         >
                             @lang('admin::app.notifications.no-record')
@@ -98,37 +98,37 @@
 
                     <!-- Pagination -->
                     <div class="flex items-center gap-x-2 border-t p-4 dark:border-gray-800">
-                        <div class="inline-flex w-full max-w-max appearance-none items-center justify-between gap-x-1 rounded-md border bg-white px-2 py-1.5 text-center leading-6 text-gray-600 marker:shadow focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 max-sm:hidden ltr:ml-2 rtl:mr-2">
+                        <div class="inline-flex w-full max-w-max appearance-none items-center justify-between gap-x-1 rounded-md border bg-white px-2 py-1.5 text-center leading-6 text-diidsInk/70 marker:shadow focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 max-sm:hidden ltr:ml-2 rtl:mr-2">
                             @{{ pagination.per_page }}
                         </div>
 
-                        <span class="whitespace-nowrap text-gray-600 dark:text-gray-300">
+                        <span class="whitespace-nowrap text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.notifications.per-page')
                         </span>
 
-                        <p class="whitespace-nowrap text-gray-600 dark:text-gray-300">
+                        <p class="whitespace-nowrap text-diidsInk/70 dark:text-gray-300">
                             @{{ pagination.current_page }}
                         </p>
 
-                        <span class="whitespace-nowrap text-gray-600 dark:text-gray-300">
+                        <span class="whitespace-nowrap text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.notifications.of')
                         </span>
 
-                        <p class="whitespace-nowrap text-gray-600 dark:text-gray-300">
+                        <p class="whitespace-nowrap text-diidsInk/70 dark:text-gray-300">
                             @{{ pagination.last_page }}
                         </p>
 
                         <!-- Prev & Next Page Button -->
                         <div class="flex items-center gap-1">
                             <a @click="getResults(pagination.prev_page_url)">
-                                <div class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-1 rounded-md border bg-white p-1.5 text-center text-gray-600 transition-all marker:shadow hover:border hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-950 ltr:ml-2 rtl:mr-2">
+                                <div class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-1 rounded-md border bg-white p-1.5 text-center text-diidsInk/70 transition-all marker:shadow hover:border hover:bg-diidsSurface focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-950 ltr:ml-2 rtl:mr-2">
                                     <span class="icon-sort-left rtl:icon-sort-right text-2xl"></span>
                                 </div>
                             </a>
 
                             <a @click="getResults(pagination.next_page_url)">
                                 <div
-                                    class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-1 rounded-md border bg-white p-1.5 text-center text-gray-600 transition-all marker:shadow hover:border hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-950 ltr:ml-2 rtl:mr-2">
+                                    class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-1 rounded-md border bg-white p-1.5 text-center text-diidsInk/70 transition-all marker:shadow hover:border hover:bg-diidsSurface focus:outline-none focus:ring-2 focus:ring-black dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-950 ltr:ml-2 rtl:mr-2">
                                     <span class="icon-sort-right rtl:icon-sort-left text-2xl"></span>
                                 </div>
                             </a>
@@ -176,7 +176,7 @@
                             },
 
                             completed : {
-                                icon: 'icon-done bg-blue-100 text-blue-600 dark:!text-blue-600',
+                                icon: 'icon-done bg-blue-100 text-navyBlue dark:!text-navyBlue',
                                 message: '@lang('admin::app.notifications.order-status-messages.completed')',
                                 status: 'completed'
                             },

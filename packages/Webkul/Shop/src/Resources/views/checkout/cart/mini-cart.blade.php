@@ -54,12 +54,12 @@
                     {!! view_render_event('bagisto.shop.checkout.mini-cart.drawer.header.before') !!}
 
                     <div class="flex items-center justify-between">
-                        <p class="text-2xl font-medium max-md:text-xl max-sm:text-xl">
+                        <p class="font-dmserif text-2xl text-diidsInk max-md:text-xl max-sm:text-xl">
                             @lang('shop::app.checkout.cart.mini-cart.shopping-cart')
                         </p>
                     </div>
 
-                    <p class="text-base max-md:text-zinc-500 max-sm:text-xs">
+                    <p class="text-base max-md:text-diidsInk/60 max-sm:text-xs">
                         {{ core()->getConfigData('sales.checkout.mini_cart.offer_info')}}
                     </p>
 
@@ -72,7 +72,7 @@
 
                     <!-- Cart Item Listing -->
                     <div
-                        class="mt-9 grid gap-12 max-md:mt-2.5 max-md:gap-5"
+                        class="grid gap-12 pt-9 max-md:gap-5 max-md:pt-2.5"
                         v-if="cart?.items?.length"
                     >
                         <div
@@ -122,7 +122,7 @@
                                         <p class="flex flex-col text-lg max-md:font-semibold max-sm:text-sm">
                                             @{{ item.formatted_price_incl_tax }}
 
-                                            <span class="text-xs font-normal text-zinc-500">
+                                            <span class="text-xs font-normal text-diidsInk/60">
                                                 @lang('shop::app.checkout.cart.mini-cart.excl-tax')
 
                                                 <span class="font-medium text-black">@{{ item.formatted_price }}</span>
@@ -169,7 +169,7 @@
                                     >
                                         <template v-for="attribute in item.options">
                                             <div class="max-md:grid max-md:gap-0.5">
-                                                <p class="text-sm font-medium text-zinc-500 max-md:font-normal max-sm:text-xs">
+                                                <p class="text-sm font-medium text-diidsInk/60 max-md:font-normal max-sm:text-xs">
                                                     @{{ attribute.attribute_name + ':' }}
                                                 </p>
 
@@ -177,7 +177,7 @@
                                                     <template v-if="attribute?.attribute_type === 'file'">
                                                         <a
                                                             :href="attribute.file_url"
-                                                            class="text-blue-700"
+                                                            class="text-navyBlue"
                                                             target="_blank"
                                                             :download="attribute.file_name"
                                                         >
@@ -218,7 +218,7 @@
                                 <!-- Cart Item Remove Button -->
                                 <button
                                     type="button"
-                                    class="text-blue-700 max-md:text-sm"
+                                    class="text-navyBlue max-md:text-sm"
                                     @click="removeItem(item.id)"
                                 >
                                     @lang('shop::app.checkout.cart.mini-cart.remove')
@@ -232,7 +232,7 @@
 
                     <!-- Empty Cart Section -->
                     <div
-                        class="mt-32 pb-8 max-md:mt-32"
+                        class="pb-8 pt-32"
                         v-else
                     >
                         <div class="b-0 grid place-items-center gap-y-5 max-md:gap-y-0">
@@ -244,7 +244,7 @@
                             >
 
                             <p
-                                class="text-xl max-md:text-sm"
+                                class="font-dmserif text-xl text-diidsInk max-md:text-base"
                                 role="heading"
                             >
                                 @lang('shop::app.checkout.cart.mini-cart.empty-cart')
@@ -262,13 +262,13 @@
                     class="grid-col-1 grid gap-5 max-md:gap-2.5"
                 >
                     <div
-                        class="my-8 flex items-center justify-between border-b border-zinc-200 px-6 pb-2 max-md:my-0 max-md:border-t max-md:px-5 max-md:py-2"
+                        class="my-8 flex items-center justify-between border-b border-diidsBorder px-6 pb-2 max-md:my-0 max-md:border-t max-md:px-5 max-md:py-2"
                         :class="{'!justify-end': isLoading}"
                     >
                         {!! view_render_event('bagisto.shop.checkout.mini-cart.subtotal.before') !!}
 
                         <template v-if="! isLoading">
-                            <p class="text-sm font-medium text-zinc-500">
+                            <p class="text-sm font-medium text-diidsInk/60">
                                 @lang('shop::app.checkout.cart.mini-cart.subtotal')
                             </p>
 
@@ -282,7 +282,7 @@
                             <p class="flex flex-col text-3xl font-semibold max-md:text-sm max-sm:text-right">
                                 @{{ cart.formatted_sub_total_incl_tax }}
 
-                                <span class="text-sm font-normal text-zinc-500 max-sm:text-xs">
+                                <span class="text-sm font-normal text-diidsInk/60 max-sm:text-xs">
                                     @lang('shop::app.checkout.cart.mini-cart.excl-tax')
 
                                     <span class="font-medium text-black">@{{ cart.formatted_sub_total }}</span>
@@ -334,7 +334,7 @@
 
                         <a
                             href="{{ route('shop.checkout.onepage.index') }}"
-                            class="mx-auto block w-full cursor-pointer rounded-2xl bg-navyBlue px-11 py-4 text-center text-base font-medium text-white max-md:rounded-lg max-md:px-5 max-md:py-2"
+                            class="mx-auto block w-full cursor-pointer !rounded-full bg-navyBlue px-11 py-4 text-center text-base font-medium text-white max-md:px-5 max-md:py-2"
                         >
                             @lang('shop::app.checkout.cart.mini-cart.continue-to-checkout')
                         </a>

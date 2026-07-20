@@ -22,11 +22,11 @@
 			</div>
 
             <div class="absolute left-1/2 top-[74%] mt-10 -translate-x-1/2 -translate-y-1/2 text-center max-868:w-full max-md:top-[60%]">
-                <h1 class="text-3xl font-semibold max-md:text-xl">
+                <h1 class="font-dmserif text-3xl text-diidsInk max-md:text-xl">
                     @lang("shop::app.errors.{$errorCode}.title")
                 </h1>
 
-                <p class="mt-4 text-lg text-zinc-500 max-md:text-sm">
+                <p class="mt-4 text-lg text-diidsInk/60 max-md:text-sm">
                     {{ 
                         $errorCode === 503 && core()->getCurrentChannel()->maintenance_mode_text != ""
                         ? core()->getCurrentChannel()->maintenance_mode_text : trans("shop::app.errors.{$errorCode}.description")

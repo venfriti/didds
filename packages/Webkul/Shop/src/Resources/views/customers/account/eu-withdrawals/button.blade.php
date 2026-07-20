@@ -14,7 +14,7 @@
 @if ($euWithdrawalEnabled)
     @if ($existingWithdrawal)
         <a
-            class="{{ $variant ?? 'secondary-button border-zinc-200 px-5 py-3 font-normal max-md:hidden' }}"
+            class="{{ $variant ?? 'secondary-button border-diidsBorder px-5 py-3 font-normal max-md:hidden' }}"
             href="{{ route('shop.customers.account.eu-withdrawal.show', $existingWithdrawal->uuid) }}"
         >
             @lang('shop::app.eu_withdrawal.button.view_existing')

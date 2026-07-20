@@ -4,7 +4,7 @@
 ])
 
 <v-quantity-changer
-    {{ $attributes->merge(['class' => 'flex items-center border dark:border-gray-300']) }}
+    {{ $attributes->merge(['class' => 'flex items-center border dark:border-diidsBorder']) }}
     name="{{ $name }}"
     value="{{ $value }}"
 >

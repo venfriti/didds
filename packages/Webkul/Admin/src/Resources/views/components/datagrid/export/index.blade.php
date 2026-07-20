@@ -1,6 +1,6 @@
 <v-datagrid-export {{ $attributes }}>
-    <div class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
-        <span class="icon-admin-export text-xl text-gray-600"></span>
+    <div class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
+        <span class="icon-admin-export text-xl text-diidsInk/70"></span>
 
         @lang('admin::app.export.export')
     </div>
@@ -15,8 +15,8 @@
             <x-admin::modal ref="exportModal">
                 <!-- Modal Toggler -->
                 <x-slot:toggle>
-                    <button class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
-                        <span class="icon-admin-export text-xl text-gray-600"></span>
+                    <button class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
+                        <span class="icon-admin-export text-xl text-diidsInk/70"></span>
 
                         @lang('admin::app.export.export')
                     </button>
@@ -24,7 +24,7 @@
 
                 <!-- Modal Header -->
                 <x-slot:header>
-                    <p class="text-lg font-bold text-gray-800 dark:text-white">
+                    <p class="text-lg font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.export.download')
                     </p>
                 </x-slot>

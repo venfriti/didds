@@ -25,14 +25,14 @@
                 <!-- Header -->
                 <div class="flex flex-col items-center gap-2 px-8 pt-8 text-center">
                     <!-- Lock Badge -->
-                    <div class="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-950">
+                    <div class="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-diidsSurface dark:bg-blue-950">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.8"
                             stroke="currentColor"
-                            class="h-7 w-7 text-blue-600 dark:text-blue-400"
+                            class="h-7 w-7 text-navyBlue dark:text-blue-400"
                         >
                             <path
                                 stroke-linecap="round"
@@ -42,11 +42,11 @@
                         </svg>
                     </div>
 
-                    <p class="text-xl font-bold text-gray-800 dark:text-white">
+                    <p class="text-xl font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.users.verify.title')
                     </p>
 
-                    <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-300">
+                    <p class="text-sm leading-relaxed text-diidsInk/60 dark:text-gray-300">
                         @lang('admin::app.users.verify.enter-code')
                     </p>
                 </div>
@@ -59,7 +59,7 @@
                 >
                     <div class="px-8 py-6">
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="required !text-xs !font-semibold !uppercase !tracking-wide !text-gray-500 dark:!text-gray-300">
+                            <x-admin::form.control-group.label class="required !text-xs !font-semibold !uppercase !tracking-wide !text-diidsInk/60 dark:!text-gray-300">
                                 @lang('admin::app.users.verify.code-label')
                             </x-admin::form.control-group.label>
 
@@ -102,20 +102,12 @@
 
                     <button
                         type="button"
-                        class="text-sm font-medium text-gray-500 transition-all hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                        class="text-sm font-medium text-diidsInk/60 transition-all hover:text-navyBlue dark:text-gray-300 dark:hover:text-blue-400"
                         onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
                     >
                         @lang('admin::app.users.verify.back')
                     </button>
                 </div>
-            </div>
-
-            <!-- Powered By -->
-            <div class="text-sm font-normal">
-                @lang('admin::app.users.sessions.powered-by-description', [
-                    'bagisto' => '<a class="text-blue-600 hover:underline" href="https://bagisto.com/en/">Bagisto</a>',
-                    'webkul' => '<a class="text-blue-600 hover:underline" href="https://webkul.com/">Webkul</a>',
-                ])
             </div>
         </div>
     </div>

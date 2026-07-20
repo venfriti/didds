@@ -7,7 +7,7 @@
 
     <v-currencies>
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.currencies.index.title')
             </p>
 
@@ -36,7 +36,7 @@
             id="v-currencies-template"
         >
             <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-                <p class="text-xl font-bold text-gray-800 dark:text-white">
+                <p class="text-xl font-bold text-diidsInk dark:text-white">
                     @lang('admin::app.settings.currencies.index.title')
                 </p>
 
@@ -73,7 +73,7 @@
                     <template v-else>
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
                         >
                             <!-- Currency ID -->
@@ -91,7 +91,7 @@
                                     <a @click="selectedCurrencies=1; editModal(record.actions.find(action => action.index === 'edit')?.url)">
                                         <span
                                             :class="record.actions.find(action => action.index === 'edit')?.icon"
-                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                         >
                                         </span>
                                     </a>
@@ -101,7 +101,7 @@
                                     <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
                                         <span
                                             :class="record.actions.find(action => action.index === 'delete')?.icon"
-                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                         >
                                         </span>
                                     </a>
@@ -126,14 +126,14 @@
                         <!-- Modal Header -->
                         <x-slot:header>
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-if="isEditable"
                             >
                                 @lang('admin::app.settings.currencies.index.edit.title')
                             </p>
 
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-else
                             >
                                 @lang('admin::app.settings.currencies.index.create.title')
@@ -241,7 +241,7 @@
                                     :placeholder="trans('admin::app.settings.currencies.index.create.group-separator')"
                                 />
 
-                                <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                                <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.currencies.index.create.group-separator-note', [
                                         'attribute' => trans('admin::app.settings.currencies.index.create.group-separator')
                                     ])
@@ -266,7 +266,7 @@
                                     :placeholder="trans('admin::app.settings.currencies.index.create.decimal-separator')"
                                 />
 
-                                <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                                <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.currencies.index.create.decimal-separator-note', [
                                         'attribute' => trans('admin::app.settings.currencies.index.create.decimal-separator')
                                     ])

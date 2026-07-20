@@ -23,11 +23,11 @@
                     <div class="flex justify-between gap-5">
                         <!-- Option Title & Option Info -->
                         <div class="flex flex-col gap-2">
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.products.edit.types.simple.customizable-options.title')
                             </p>
 
-                            <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                            <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                                 @lang('admin::app.catalog.products.edit.types.simple.customizable-options.info')
                             </p>
                         </div>
@@ -127,10 +127,10 @@
                                 >
                                     <!-- Option Information -->
                                     <div class="flex gap-2.5">
-                                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-gray-700 dark:text-gray-300"></i>
+                                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-diidsInk/80 dark:text-gray-300"></i>
 
                                         <p
-                                            class="text-base font-semibold text-gray-800 dark:text-white"
+                                            class="text-base font-semibold text-diidsInk dark:text-white"
                                             :class="{'required': element.is_required == 1}"
                                         >
                                             @{{ (index + 1) + '. ' + element.label + ' - ' + types[element.type].title }}
@@ -139,14 +139,14 @@
 
                                     <!-- Option Action Buttons -->
                                     <div class="grid place-content-start gap-1 ltr:text-right rtl:text-left">
-                                        <p class="font-semibold text-gray-800 dark:text-white">
+                                        <p class="font-semibold text-diidsInk dark:text-white">
                                             @{{ $admin.formatPrice(element.price) }}
                                         </p>
 
                                         <div class="flex gap-2">
                                             <!-- Edit Option -->
                                             <p
-                                                class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                                class="cursor-pointer text-navyBlue transition-all hover:underline"
                                                 @click="selectedOption = element; $refs.updateCreateOptionModal.open()"
                                             >
                                                 @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.edit-btn')
@@ -203,11 +203,11 @@
 
                     <!-- Add Information -->
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.empty-title')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.empty-info')
                         </p>
                     </div>
@@ -230,7 +230,7 @@
                         <x-admin::modal ref="updateCreateOptionModal">
                             <!-- Option Form Modal Header -->
                             <x-slot:header>
-                                <p class="text-lg font-bold text-gray-800 dark:text-white">
+                                <p class="text-lg font-bold text-diidsInk dark:text-white">
                                     @lang('admin::app.catalog.products.edit.types.simple.customizable-options.update-create.title')
                                 </p>
                             </x-slot>
@@ -379,10 +379,10 @@
                 <div class="mb-2.5 flex justify-between gap-5 p-4">
                     <!-- Option Information -->
                     <div class="flex gap-2.5">
-                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-gray-700 dark:text-gray-300"></i>
+                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-diidsInk/80 dark:text-gray-300"></i>
 
                         <p
-                            class="text-base font-semibold text-gray-800 dark:text-white"
+                            class="text-base font-semibold text-diidsInk dark:text-white"
                             :class="{'required': option.is_required == 1}"
                         >
                             @{{ title }}
@@ -393,7 +393,7 @@
                     <div class="flex items-center gap-x-5">
                         <!-- Open Add Option Item Modal -->
                         <p
-                            class="cursor-pointer text-blue-600 transition-all hover:underline"
+                            class="cursor-pointer text-navyBlue transition-all hover:underline"
                             @click="$refs.updateCreateOptionItemModal.open()"
                         >
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.add-btn')
@@ -401,7 +401,7 @@
 
                         <!-- Edit Option -->
                         <p
-                            class="cursor-pointer text-blue-600 transition-all hover:underline"
+                            class="cursor-pointer text-navyBlue transition-all hover:underline"
                             @click="updateOption"
                         >
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.edit-btn')
@@ -461,12 +461,12 @@
                                 <div class="flex gap-2.5">
                                     <!-- Option Item Drag Icon -->
                                     <div>
-                                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-gray-700 dark:text-gray-300"></i>
+                                        <i class="icon-drag cursor-grab text-xl transition-all hover:text-diidsInk/80 dark:text-gray-300"></i>
                                     </div>
 
                                     <!-- Option Item Details -->
                                     <div class="grid place-content-start gap-1.5">
-                                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                                             @{{ element.label }}
                                         </p>
                                     </div>
@@ -475,14 +475,14 @@
                                 <!-- Option Item Actions -->
                                 <div class="grid place-content-start gap-1 ltr:text-right rtl:text-left">
                                     <!-- Option Item Price -->
-                                    <p class="font-semibold text-gray-800 dark:text-white">
+                                    <p class="font-semibold text-diidsInk dark:text-white">
                                         @{{ $admin.formatPrice(element.price) }}
                                     </p>
 
                                     <div class="flex gap-2">
                                         <!-- Edit Option Item -->
                                         <p
-                                            class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                            class="cursor-pointer text-navyBlue transition-all hover:underline"
                                             @click="selectedOptionItem = element; $refs.updateCreateOptionItemModal.open()"
                                         >
                                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.edit-btn')
@@ -515,11 +515,11 @@
 
                     <!-- Add Information -->
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.empty-title')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.empty-info')
                         </p>
                     </div>
@@ -544,7 +544,7 @@
                     <x-admin::modal ref="updateCreateOptionItemModal">
                         <!-- Option Item Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.products.edit.types.simple.customizable-options.option.items.update-create.title')
                             </p>
                         </x-slot>

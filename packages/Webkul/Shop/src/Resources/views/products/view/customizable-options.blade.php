@@ -57,7 +57,7 @@
                 type="text/x-template"
                 id="v-product-customizable-option-item-template"
             >
-                <div class="mt-8 border-b border-zinc-200 pb-4 max-sm:mt-4 max-sm:pb-0">
+                <div class="mt-8 border-b border-diidsBorder pb-4 max-sm:mt-4 max-sm:pb-0">
                     <x-shop::form.control-group>
                         <!-- Text Field -->
                         <template v-if="option.type == 'text'">
@@ -131,7 +131,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-zinc-500 max-sm:text-sm"
+                                        class="cursor-pointer text-diidsInk/60 max-sm:text-sm"
                                         :for="'customizable_options[' + option.id + '][' + index + ']'"
                                     >
                                         @{{ item.label }}
@@ -172,7 +172,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-zinc-500 max-sm:text-sm"
+                                        class="cursor-pointer text-diidsInk/60 max-sm:text-sm"
                                         :for="'customizable_options[' + option.id + '][' + index + ']'"
                                     >
                                         @lang('shop::app.products.view.type.simple.customizable-options.none')
@@ -196,7 +196,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-zinc-500 max-sm:text-sm"
+                                        class="cursor-pointer text-diidsInk/60 max-sm:text-sm"
                                         :for="'customizable_options[' + option.id + '][' + index + ']'"
                                     >
                                         @{{ item.label }}

@@ -25,7 +25,7 @@
                 <span class="icon-arrow-left rtl:icon-arrow-right text-2xl"></span>
             </a>
 
-            <h2 class="text-2xl font-medium ltr:ml-2.5 rtl:mr-2.5 max-sm:text-base md:ltr:ml-0 md:rtl:mr-0">
+            <h2 class="font-dmserif text-2xl text-diidsInk ltr:ml-2.5 rtl:mr-2.5 max-sm:text-base md:ltr:ml-0 md:rtl:mr-0">
                 @lang('shop::app.customers.account.orders.title')
             </h2>
         </div>
@@ -66,7 +66,7 @@
     
                     <template v-else>
                         <template v-for="record in available.records">
-                            <div class="w-full p-4 border rounded-md transition-all hover:bg-gray-50 [&>*]:border-0 mb-4 last:mb-0">
+                            <div class="w-full p-4 border rounded-md transition-all hover:bg-diidsSurface [&>*]:border-0 mb-4 last:mb-0">
                                 <a :href="record.actions[0].url">
                                     <div class="flex justify-between">
                                         <div class="text-sm font-semibold">

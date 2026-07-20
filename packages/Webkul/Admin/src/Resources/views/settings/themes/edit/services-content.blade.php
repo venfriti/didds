@@ -12,11 +12,11 @@
             <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                 <div class="flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.services-content.services')
                         </p>
                         
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.settings.themes.edit.services-content.service-info')
                         </p>
                     </div>
@@ -80,30 +80,30 @@
                     >
                         <div class="flex gap-2.5">
                             <div class="grid place-content-start gap-1.5">
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     <div> 
                                         @lang('admin::app.settings.themes.edit.services-content.title'): 
 
-                                        <span class="text-gray-600 transition-all dark:text-gray-300">
+                                        <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                             @{{ service_details.title }}
                                         </span>
                                     </div>
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     <div> 
                                         @lang('admin::app.settings.themes.edit.services-content.description'): 
 
-                                        <span class="text-gray-600 transition-all dark:text-gray-300">
+                                        <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                             @{{ service_details.description }}
                                         </span>
                                     </div>
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.themes.edit.services-content.service-icon'): 
 
-                                    <span class="text-gray-600 transition-all dark:text-gray-300">
+                                    <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                         @{{ service_details.service_icon }}
                                     </span>
                                 </p>
@@ -114,7 +114,7 @@
                         <div class="grid place-content-start gap-1 text-right">
                             <div class="flex items-center gap-x-5">
                                 <p 
-                                    class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                    class="cursor-pointer text-navyBlue transition-all hover:underline"
                                     @click="edit(service_details)"
                                 > 
                                     @lang('admin::app.settings.themes.edit.edit')
@@ -143,11 +143,11 @@
                     >
 
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.services-content.add-btn')
                         </p>
                         
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.services-content.service-info')
                         </p>
                     </div>
@@ -166,7 +166,7 @@
                     <x-admin::modal ref="addServiceModal">
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 <template v-if="! isUpdating">
                                     @lang('admin::app.settings.themes.edit.services-content.add-btn')
                                 </template>

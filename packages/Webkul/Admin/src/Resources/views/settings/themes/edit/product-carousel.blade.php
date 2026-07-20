@@ -25,11 +25,11 @@
             <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                 <div class="mb-2.5 flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.product-carousel')
                         </p>
 
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.settings.themes.edit.product-carousel-description')
                         </p>
                     </div>
@@ -45,7 +45,7 @@
                         type="text"
                         name="{{ $currentLocale->code }}[options][title]"
                         value="{{ $theme->translate($currentLocale->code)->options['title'] ?? '' }}"
-                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                         :class="[errors['{{ $currentLocale->code }}[options][title]'] ? 'border border-red-600 hover:border-red-600' : '']"
                         rules="required"
                         label="@lang('admin::app.settings.themes.edit.filter-title')"
@@ -72,7 +72,7 @@
                         <select
                             name="{{ $currentLocale->code }}[options][filters][sort]"
                             v-bind="field"
-                            class="custom-select flex min-h-[39px] w-full rounded-md border bg-white px-3 py-1.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                            class="custom-select flex min-h-[39px] w-full rounded-md border bg-white px-3 py-1.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                             :class="[errors['{{ $currentLocale->code }}[options][filters][sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
                         >
                             <option value="" selected disabled>
@@ -108,7 +108,7 @@
                         <select
                             name="options[filters][limit]"
                             v-bind="field"
-                            class="custom-select flex min-h-[39px] w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                            class="custom-select flex min-h-[39px] w-full rounded-md border border-diidsBorder bg-white px-3 py-1.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                             :class="[errors['options[filters][limit]'] ? 'border border-red-600 hover:border-red-600' : '']"
                         >
                             <option value="" selected disabled>@lang('admin::app.settings.themes.edit.select')</option>
@@ -126,7 +126,7 @@
 
                 <div class="flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.filters')
                         </p>
                     </div>
@@ -162,11 +162,11 @@
                     >
                         <div class="flex gap-2.5">
                             <div class="grid place-content-start gap-1.5">
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.settings.themes.edit.key')".replace(':key', filter.key) }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.settings.themes.edit.value')".replace(':value', filter.value) }}
                                 </p>
                             </div>
@@ -195,11 +195,11 @@
                     >
 
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.product-carousel')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.product-carousel-description')
                         </p>
                     </div>
@@ -215,7 +215,7 @@
                     <x-admin::modal ref="productFilterModal">
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.themes.edit.create-filter')
                             </p>
                         </x-slot>

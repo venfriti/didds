@@ -12,7 +12,7 @@
         <!-- Tickets Component -->
         <div class="flex items-center justify-between gap-5 py-2">
             <div class="flex flex-col gap-2">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.catalog.products.edit.types.booking.event.title')
                 </p>
             </div>
@@ -110,10 +110,10 @@
                                 </span>
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 <!-- Valid From -->
                                 <span
-                                    class="text-sm text-gray-600 dark:text-gray-300"
+                                    class="text-sm text-diidsInk/70 dark:text-gray-300"
                                     v-if="element.special_price_from"
                                 >
                                     @lang('admin::app.catalog.products.edit.types.booking.event.special-price-from') - @{{ element.special_price_from }},
@@ -121,7 +121,7 @@
 
                                 <!-- Valid Until -->
                                 <span
-                                    class="text-sm text-gray-600 dark:text-gray-300"
+                                    class="text-sm text-diidsInk/70 dark:text-gray-300"
                                     v-if="element.special_price_to"
                                 >
                                     @lang('admin::app.catalog.products.edit.types.booking.event.special-price-to') - @{{ element.special_price_to }}
@@ -129,7 +129,7 @@
                             </p>
 
                             <!-- Description -->
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.catalog.products.edit.types.booking.event.description') - @{{ element.description }}
                             </p>
                         </div>
@@ -137,7 +137,7 @@
                         <!-- Actions -->
                         <div class="flex place-content-start gap-x-5 text-right">
                             <p
-                                class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                class="cursor-pointer text-navyBlue transition-all hover:underline"
                                 @click="ticketItem=element;toggle()"
                             >
                                 @lang('admin::app.catalog.products.edit.types.booking.event.edit')

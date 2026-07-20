@@ -1,10 +1,10 @@
 <!-- Header -->
-<h1 class="text-2xl font-medium max-md:py-4 max-md:text-base">
+<h1 class="font-dmserif text-2xl text-diidsInk max-md:py-4 max-md:text-base">
     @lang('shop::app.checkout.onepage.summary.cart-summary')
 </h1>
 
 <!-- Cart Items -->
-<div class="mt-10 grid border-b border-zinc-200 max-md:mt-3 max-sm:mt-0">
+<div class="mt-10 grid border-b border-diidsBorder max-md:mt-3 max-sm:mt-0">
     <div
         class="flex gap-x-4 pb-5 max-md:gap-x-3 max-md:pb-4"
         v-for="item in cart.items"
@@ -81,7 +81,7 @@
                     @{{ cart.formatted_sub_total_incl_tax }}
                 </p>
 
-                <p class="text-xs italic text-gray-500 dark:text-gray-400">
+                <p class="text-xs italic text-diidsInk/60 dark:text-diidsInk/40">
                     @lang('shop::app.checkout.onepage.summary.excl-tax') @{{ cart.formatted_sub_total }}
                 </p>
             </div>
@@ -148,21 +148,21 @@
                 v-show="cart.show_discount_breakdown"
             >
                 <div class="flex justify-between gap-1 text-right">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                    <p class="text-sm text-diidsInk/60 dark:text-diidsInk/40">
                         @lang('shop::app.checkout.onepage.summary.items-discount')
                     </p>
 
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <p class="text-sm font-medium text-diidsInk/60 dark:text-diidsInk/40">
                         - @{{ cart.formatted_items_discount_amount }}
                     </p>
                 </div>
 
                 <div class="flex justify-between gap-1 text-right">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                    <p class="text-sm text-diidsInk/60 dark:text-diidsInk/40">
                         @lang('shop::app.checkout.onepage.summary.shipping-discount')
                     </p>
 
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <p class="text-sm font-medium text-diidsInk/60 dark:text-diidsInk/40">
                         - @{{ cart.formatted_shipping_discount_amount }}
                     </p>
                 </div>
@@ -205,7 +205,7 @@
                     + @{{ cart.formatted_shipping_amount_incl_tax }}
                 </p>
 
-                <p class="text-xs italic text-gray-500 dark:text-gray-400">
+                <p class="text-xs italic text-diidsInk/60 dark:text-diidsInk/40">
                     @lang('shop::app.checkout.onepage.summary.excl-tax') @{{ cart.formatted_shipping_amount }}
                 </p>
             </div>
@@ -264,7 +264,7 @@
                     <template v-if="displayTax.subtotal === 'including_tax' || displayTax.subtotal === 'both'">
                         @{{ cart.formatted_tax_total }}
 
-                        <span class="text-xs italic font-normal text-gray-500 dark:text-gray-400">
+                        <span class="text-xs italic font-normal text-diidsInk/60 dark:text-diidsInk/40">
                             (@lang('shop::app.checkout.onepage.summary.included'))
                         </span>
                     </template>
@@ -286,7 +286,7 @@
                     class="flex flex-col gap-1"
                     v-for="taxLine in cart.applied_taxes_breakdown"
                 >
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
+                    <p class="text-sm font-medium text-diidsInk/70 dark:text-gray-300">
                         @{{ taxLine.rate }}
                     </p>
 
@@ -294,11 +294,11 @@
                         class="flex items-center justify-between gap-2 pl-3"
                         v-for="product in taxLine.items"
                     >
-                        <p class="truncate text-xs text-gray-400 dark:text-gray-500">
+                        <p class="truncate text-xs text-diidsInk/40 dark:text-diidsInk/60">
                             @{{ product.name }}
                         </p>
 
-                        <p class="shrink-0 whitespace-nowrap text-xs text-gray-400 dark:text-gray-500">
+                        <p class="shrink-0 whitespace-nowrap text-xs text-diidsInk/40 dark:text-diidsInk/60">
                             <template v-if="displayTax.subtotal === 'including_tax' || displayTax.subtotal === 'both'">@{{ product.tax_amount }}</template>
 
                             <template v-else>+ @{{ product.tax_amount }}</template>
@@ -322,7 +322,7 @@
                 <template v-if="displayTax.subtotal === 'including_tax' || displayTax.subtotal === 'both'">
                     @{{ cart.formatted_tax_total }}
 
-                    <span class="text-xs italic font-normal text-gray-500 dark:text-gray-400">
+                    <span class="text-xs italic font-normal text-diidsInk/60 dark:text-diidsInk/40">
                         (@lang('shop::app.checkout.onepage.summary.included'))
                     </span>
                 </template>

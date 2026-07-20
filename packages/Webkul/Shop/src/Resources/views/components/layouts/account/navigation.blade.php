@@ -4,7 +4,7 @@
 
 <div class="panel-side journal-scroll grid max-h-[1320px] min-w-[342px] max-w-[380px] grid-cols-[1fr] gap-8 overflow-y-auto overflow-x-hidden max-xl:min-w-[270px] max-md:max-w-full max-md:gap-5">
     <!-- Account Profile Hero Section -->
-    <div class="grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border border-zinc-200 px-5 py-[25px] max-md:py-2.5">
+    <div class="grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border border-diidsBorder bg-white px-5 py-[25px] max-md:py-2.5">
         <div class="">
             <img
                 src="{{ $customer->image_url ??  bagisto_asset('images/user-placeholder.png') }}"
@@ -13,15 +13,15 @@
             >
         </div>
 
-        <div 
+        <div
             class="flex flex-col justify-between"
             v-pre
         >
-            <p class="text-2xl break-all font-mediums max-md:text-xl"> 
+            <p class="font-dmserif break-all text-2xl text-diidsInk max-md:text-xl">
                 Hello! {{ $customer->first_name }}
             </p>
 
-            <p class="no-underline max-md:text-md: text-zinc-500">
+            <p class="no-underline max-md:text-md: text-diidsInk/60">
                 {{ $customer->email }}
             </p>
         </div>
@@ -32,18 +32,18 @@
         <div>
             <!-- Account Navigation Toggler -->
             <div class="select-none pb-5 max-md:pb-1.5">
-                <p class="text-xl font-medium max-md:text-lg">
+                <p class="font-mono text-xs uppercase tracking-[0.08em] text-diidsInk/60 max-md:text-[11px]">
                     {{ $menuItem->getName() }}
                 </p>
             </div>
 
             <!-- Account Navigation Content -->
             @if ($menuItem->haveChildren())
-                <div class="grid rounded-md border border-b border-l-[1px] border-r border-t-0 border-zinc-200 max-md:border-none">
+                <div class="grid rounded-md border border-b border-l-[1px] border-r border-t-0 border-diidsBorder max-md:border-none">
                     @foreach ($menuItem->getChildren() as $subMenuItem)
                         <a href="{{ $subMenuItem->getUrl() }}">
-                            <div class="flex justify-between px-6 py-5 border-t border-zinc-200 hover:bg-zinc-100 cursor-pointer max-md:p-4 max-md:border-0 max-md:py-3 max-md:px-0 {{ $subMenuItem->isActive() ? 'bg-zinc-100' : '' }}">
-                                <p class="flex items-center text-lg font-medium gap-x-4 max-sm:text-base">
+                            <div class="flex justify-between px-6 py-5 border-t border-diidsBorder hover:bg-diidsSurface cursor-pointer max-md:p-4 max-md:border-0 max-md:py-3 max-md:px-0 {{ $subMenuItem->isActive() ? 'bg-diidsSurface' : '' }}">
+                                <p class="flex items-center text-sm font-medium text-diidsInk gap-x-4 max-sm:text-sm">
                                     <span class="{{ $subMenuItem->getIcon() }} text-2xl"></span>
 
                                     {{ $subMenuItem->getName() }}

@@ -7,14 +7,14 @@
         <!-- Panel -->
         <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
             <!-- Panel Header -->
-            <p class="mb-4 flex justify-between text-base font-semibold text-gray-800 dark:text-white">
+            <p class="mb-4 flex justify-between text-base font-semibold text-diidsInk dark:text-white">
                 @lang('admin::app.catalog.products.edit.channels.title')
             </p>
 
             {!! view_render_event('bagisto.admin.catalog.product.edit.form.channels.controls.before', ['product' => $product]) !!}
 
             <!-- Panel Content -->
-            <div class="text-sm text-gray-600 dark:text-gray-300">
+            <div class="text-sm text-diidsInk/70 dark:text-gray-300">
                 @php $selectedChannelsId = old('channels') ?? $product->channels->pluck('id')->toArray() @endphp
                 
                 @foreach (core()->getAllChannels() as $channel)
@@ -31,7 +31,7 @@
                         />
 
                         <label
-                            class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                            class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                             for="channels_{{ $channel->id }}"
                             v-pre
                         >

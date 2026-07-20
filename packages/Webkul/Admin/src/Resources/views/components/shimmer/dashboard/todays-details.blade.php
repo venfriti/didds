@@ -38,7 +38,7 @@
     </div>
 
     @for ($i = 1; $i <= 5; $i++)
-        <div class="border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950">
+        <div class="border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950">
             <div class="flex flex-wrap gap-4">
                 <div class="flex min-w-[180px] flex-1 gap-2.5">
                     <div class="flex flex-col gap-1.5">

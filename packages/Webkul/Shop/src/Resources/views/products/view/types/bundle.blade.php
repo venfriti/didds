@@ -38,7 +38,7 @@
 
                         <template v-for="product in option.products">
                             <div
-                                class="text-zinc-500"
+                                class="text-diidsInk/60"
                                 :key="product.id"
                                 v-if="product.is_default"
                             >
@@ -54,7 +54,7 @@
             type="text/x-template"
             id="v-product-bundle-option-item-template"
         >
-            <div class="mt-8 border-b border-zinc-200 pb-4 max-sm:mt-4 max-sm:pb-0">
+            <div class="mt-8 border-b border-diidsBorder pb-4 max-sm:mt-4 max-sm:pb-0">
                 <x-shop::form.control-group>
                     <!-- Dropdown Options Container -->
                     <x-shop::form.control-group.label
@@ -91,7 +91,7 @@
                                 >
                                     <span class="text-black">+</span>
 
-                                    <span class="text-zinc-500 line-through max-sm:text-sm">
+                                    <span class="text-diidsInk/60 line-through max-sm:text-sm">
                                         (@{{ product.price.regular.formatted_price }})
                                     </span>
 
@@ -127,7 +127,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-zinc-500 max-sm:text-sm"
+                                    class="cursor-pointer text-diidsInk/60 max-sm:text-sm"
                                     :for="'bundle_options[' + option.id + '][' + index + ']'"
                                 >
                                     @lang('shop::app.products.view.type.bundle.none')
@@ -151,7 +151,7 @@
                                 />
 
                                 <label
-                                    class="flex cursor-pointer gap-2 text-zinc-500 max-sm:text-sm"
+                                    class="flex cursor-pointer gap-2 text-diidsInk/60 max-sm:text-sm"
                                     :for="'bundle_options[' + option.id + '][' + index + ']'"
                                 >
                                     @{{ product.name }}
@@ -162,7 +162,7 @@
                                     >
                                         <span class="text-black">+</span>
 
-                                        <span class="text-zinc-500 line-through max-sm:text-sm">
+                                        <span class="text-diidsInk/60 line-through max-sm:text-sm">
                                             @{{ product.price.regular.formatted_price }}
                                         </span>
     
@@ -208,7 +208,7 @@
                                 >
                                     <span class="text-black">+</span>
 
-                                    <span class="text-zinc-500 line-through max-sm:text-sm">
+                                    <span class="text-diidsInk/60 line-through max-sm:text-sm">
                                         (@{{ product.price.regular.formatted_price }})
                                     </span>
 
@@ -244,7 +244,7 @@
                                 />
 
                                 <label
-                                    class="flex cursor-pointer gap-2 text-zinc-500 max-sm:text-sm"
+                                    class="flex cursor-pointer gap-2 text-diidsInk/60 max-sm:text-sm"
                                     :for="'bundle_options[' + option.id + '][' + index + ']'"
                                 >
                                     @{{ product.name }}
@@ -255,7 +255,7 @@
                                     >
                                         <span class="text-black">+</span>
 
-                                        <span class="text-zinc-500 line-through max-sm:text-sm">
+                                        <span class="text-diidsInk/60 line-through max-sm:text-sm">
                                             (@{{ product.price.regular.formatted_price }})
                                         </span>
 
@@ -280,7 +280,7 @@
                     <x-shop::quantity-changer
                         ::name="'bundle_option_qty[' + option?.id + ']'"
                         ::value="productQty"
-                        class="mt-5 w-max gap-x-4 rounded-xl !border-zinc-200 px-4 py-1.5 max-sm:my-4"
+                        class="mt-5 w-max gap-x-4 rounded-xl !border-diidsBorder px-4 py-1.5 max-sm:my-4"
                         @change="qtyUpdated($event)"
                     />
                 </template>

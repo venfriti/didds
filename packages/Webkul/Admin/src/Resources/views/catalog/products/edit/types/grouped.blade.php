@@ -13,11 +13,11 @@
             <!-- Panel Header -->
             <div class="mb-2.5 flex justify-between gap-5 p-4">
                 <div class="flex flex-col gap-2">
-                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.products.edit.types.grouped.title')
                     </p>
 
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                    <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                         @lang('admin::app.catalog.products.edit.types.grouped.info')
                     </p>
                 </div>
@@ -51,17 +51,17 @@
                             <!-- Information -->
                             <div class="flex gap-2.5">
                                 <!-- Drag Icon -->
-                                <i class="icon-drag cursor-grab text-xl text-gray-600 transition-all dark:text-gray-300"></i>
+                                <i class="icon-drag cursor-grab text-xl text-diidsInk/70 transition-all dark:text-gray-300"></i>
 
                                 <!-- Image -->
                                 <div
                                     class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                                    :class="{'overflow-hidden rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! element.associated_product.images.length}"
+                                    :class="{'overflow-hidden rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! element.associated_product.images.length}"
                                 >
                                     <template v-if="! element.associated_product.images.length">
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                             @lang('admin::app.catalog.products.edit.types.grouped.image-placeholder')
                                         </p>
                                     </template>
@@ -73,11 +73,11 @@
 
                                 <!-- Details -->
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ element.associated_product.name }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.catalog.products.edit.types.grouped.sku')".replace(':sku', element.associated_product.sku) }}
                                     </p>
                                 </div>
@@ -85,7 +85,7 @@
 
                             <!-- Actions -->
                             <div class="grid place-content-start gap-1 ltr:text-right rtl:text-left">
-                                <p class="font-semibold text-gray-800 dark:text-white">
+                                <p class="font-semibold text-diidsInk dark:text-white">
                                     @{{ $admin.formatPrice(element.associated_product.price) }}
                                 </p>
 
@@ -111,7 +111,7 @@
                                         type="text"
                                         :name="'links[' + (element.id ? element.id : 'link_' + element.associated_product.id) + '][qty]'"
                                         v-model="element.qty"
-                                        class="min-h-[39px] w-[86px] rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                                        class="min-h-[39px] w-[86px] rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                                         :class="[errors['links[' + (element.id ? element.id : 'link_' + element.associated_product.id) + '][qty]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                         rules="required|numeric|min_value:1"
                                         label="@lang('admin::app.catalog.products.edit.types.grouped.default-qty')"
@@ -153,11 +153,11 @@
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.grouped.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.grouped.empty-info')
                     </p>
                 </div>

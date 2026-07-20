@@ -13,7 +13,7 @@
         {!! view_render_event('bagisto.admin.cms.pages.create.create_form_controls.before') !!}
 
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.cms.create.title')
             </p>
 
@@ -22,7 +22,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.cms.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.account.edit.back-btn')
                 </a>
@@ -46,7 +46,7 @@
 
                 <!--Content -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.cms.create.description')
                     </p>
 
@@ -77,7 +77,7 @@
 
                 <!-- SEO Input Fields -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.cms.create.seo')
                     </p>
 
@@ -174,7 +174,7 @@
 
                 <x-admin::accordion>
                     <x-slot:header>
-                        <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.cms.create.general')
                         </p>
                     </x-slot>
@@ -217,7 +217,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="channels_{{ $channel->id }}"
                                     v-pre
                                 >

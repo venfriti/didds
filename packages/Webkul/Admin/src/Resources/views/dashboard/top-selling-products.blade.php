@@ -18,11 +18,11 @@
         <template v-else>
             <div class="border-b dark:border-gray-800">
                 <div class="flex items-center justify-between p-4">
-                    <p class="text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.dashboard.index.top-selling-products')
                     </p>
 
-                    <p class="text-xs font-semibold text-gray-400">
+                    <p class="text-xs font-semibold text-diidsInk/40">
                         @{{ report.date_range }}
                     </p>
                 </div>
@@ -34,7 +34,7 @@
                 >
                     <a
                         :href="'{{ route('admin.catalog.products.edit', ':id') }}'.replace(':id', item.id)"
-                        class="flex gap-2.5 border-b p-4 transition-all last:border-b-0 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+                        class="flex gap-2.5 border-b p-4 transition-all last:border-b-0 hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950"
                         v-for="item in report.statistics"
                     >
                         <!-- Product Item -->
@@ -46,11 +46,11 @@
 
                         <div
                             v-else
-                            class="relative h-[65px] max-h-[65px] w-full max-w-[65px] overflow-hidden rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
+                            class="relative h-[65px] max-h-[65px] w-full max-w-[65px] overflow-hidden rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
                         >
                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
                             
-                            <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                            <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                 @lang('admin::app.dashboard.index.product-image')
                             </p>
                         </div>
@@ -58,17 +58,17 @@
                         <!-- Product Details -->
                         <div class="flex w-full flex-col gap-1.5">
                             <p
-                                class="text-gray-600 dark:text-gray-300"
+                                class="text-diidsInk/70 dark:text-gray-300"
                                 v-text="item.name"
                             >
                             </p>
 
                             <div class="flex justify-between">
-                                <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @{{ item.formatted_price }}
                                 </p>
 
-                                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ item.formatted_revenue }}
                                 </p>
                             </div>
@@ -90,11 +90,11 @@
 
                         <!-- Add Variants Information -->
                         <div class="flex flex-col items-center">
-                            <p class="text-base font-semibold text-gray-400">
+                            <p class="text-base font-semibold text-diidsInk/40">
                                 @lang('admin::app.dashboard.index.add-product')
                             </p>
 
-                            <p class="text-gray-400">
+                            <p class="text-diidsInk/40">
                                 @lang('admin::app.dashboard.index.product-info')
                             </p>
                         </div>

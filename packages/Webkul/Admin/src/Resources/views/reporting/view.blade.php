@@ -18,7 +18,7 @@
                 <div class="mb-5 flex items-center justify-between gap-4 max-sm:flex-wrap">
                     <!-- Title -->
                     <div class="grid gap-1.5">
-                        <p class="text-xl font-bold leading-6 text-gray-800 dark:text-white">
+                        <p class="text-xl font-bold leading-6 text-diidsInk dark:text-white">
                             @lang('admin::app.reporting.' . $entity . '.index.' . request()->query('type'))
                         </p>
                     </div>
@@ -29,19 +29,19 @@
                         <div>
                             <a v-if="entity === 'customers'"
                                 href="{{ route('admin.reporting.customers.index') }}"
-                                class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+                                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
                                 @lang('admin::app.reporting.view.back-btn')
                             </a>
                             
                             <a v-else-if="entity === 'products'"
                                 href="{{ route('admin.reporting.products.index') }}"
-                                class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+                                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
                                 @lang('admin::app.reporting.view.back-btn')
                             </a>
                             
                             <a v-else
                                 href="{{ route('admin.reporting.sales.index') }}"
-                                class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+                                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
                                 @lang('admin::app.reporting.view.back-btn')
                             </a>
                         </div>
@@ -49,8 +49,8 @@
                         <!-- Export Button -->
                         <x-admin::dropdown position="bottom-right">
                             <x-slot:toggle>
-                                <div class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
-                                    <span class="icon-export text-xl text-gray-600"></span>
+                                <div class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
+                                    <span class="icon-export text-xl text-diidsInk/70"></span>
             
                                     @lang('admin::app.export.export')
                                 </div>
@@ -81,7 +81,7 @@
                                 <x-slot:toggle>
                                     <button
                                         type="button"
-                                        class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                                        class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                                     >
                                         <span class="icon-store text-2xl"></span>
 
@@ -94,7 +94,7 @@
                                 <x-slot:menu class="!p-0 shadow-[0_5px_20px_rgba(0,0,0,0.15)] dark:border-gray-800">
                                     <x-admin::dropdown.menu.item
                                         v-for="channel in channels"
-                                        ::class="{'bg-gray-100 dark:bg-gray-950': channel.code == filters.channel}"
+                                        ::class="{'bg-diidsSurface dark:bg-gray-950': channel.code == filters.channel}"
                                         @click="filters.channel = channel.code"
                                     >
                                         @{{ channel.name }}
@@ -117,7 +117,7 @@
                         ]))
                             <div class="relative inline-flex w-full max-w-max">
                                 <select
-                                    class="w-full cursor-pointer appearance-none rounded-md border bg-white px-2.5 py-1.5 pr-8 text-center leading-6 text-gray-600 transition hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                    class="w-full cursor-pointer appearance-none rounded-md border bg-white px-2.5 py-1.5 pr-8 text-center leading-6 text-diidsInk/70 transition hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                     v-model="filters.period"
                                 >
                                     <option value="day">
@@ -133,7 +133,7 @@
                                     </option>
                                 </select>
                                 
-                                <span class="icon-sort-down pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform text-2xl text-gray-600 dark:text-gray-300"></span>
+                                <span class="icon-sort-down pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform text-2xl text-diidsInk/70 dark:text-gray-300"></span>
                             </div>
                         @endif
                     </div>
@@ -142,7 +142,7 @@
                     <div class="flex items-center gap-1.5">
                         <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
                             <input
-                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                 v-model="filters.start"
                                 placeholder="@lang('admin::app.reporting.view.start-date')"
                             />
@@ -150,7 +150,7 @@
 
                         <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
                             <input
-                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                 v-model="filters.end"
                                 placeholder="@lang('admin::app.reporting.view.end-date')"
                             />
@@ -168,7 +168,7 @@
                     <template v-else>
                         <!-- Table Header -->
                         <div
-                            class="row grid grid-cols-4 grid-rows-1 items-center gap-2.5 border-b bg-gray-50 px-4 py-2.5 font-semibold text-gray-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                            class="row grid grid-cols-4 grid-rows-1 items-center gap-2.5 border-b bg-diidsSurface px-4 py-2.5 font-semibold text-diidsInk/70 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                             :style="`grid-template-columns: repeat(${reporting.statistics.columns.length}, minmax(0, 1fr))`"
                         >
                             <div
@@ -176,16 +176,16 @@
                                 v-for="column in reporting.statistics.columns"
                                 @click="toggleSort(column.key)"
                             >
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ column.label }}
                                 </p>
 
                                 <span
                                     class="text-base leading-none"
                                     :class="{
-                                        'icon-sort-up text-blue-600 dark:text-blue-400': sortColumn === column.key && sortDirection === 'asc',
-                                        'icon-sort-down text-blue-600 dark:text-blue-400': sortColumn === column.key && sortDirection === 'desc',
-                                        'icon-sort-up-down text-gray-400': sortColumn !== column.key,
+                                        'icon-sort-up text-navyBlue dark:text-blue-400': sortColumn === column.key && sortDirection === 'asc',
+                                        'icon-sort-down text-navyBlue dark:text-blue-400': sortColumn === column.key && sortDirection === 'desc',
+                                        'icon-sort-up-down text-diidsInk/40': sortColumn !== column.key,
                                     }"
                                 ></span>
                             </div>
@@ -193,7 +193,7 @@
 
                         <!-- Table Body -->
                         <div
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950" style="grid-template-columns: repeat(4, minmax(0, 1fr));"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950" style="grid-template-columns: repeat(4, minmax(0, 1fr));"
                             :style="`grid-template-columns: repeat(${reporting.statistics.columns.length}, minmax(0, 1fr))`"
                             v-if="sortedRecords.length"
                             v-for="record in sortedRecords"
@@ -202,7 +202,7 @@
                                 <a
                                     v-if="column.link && record[column.link]"
                                     :href="record[column.link]"
-                                    class="text-blue-600 transition-all hover:underline dark:text-blue-400"
+                                    class="text-navyBlue transition-all hover:underline dark:text-blue-400"
                                 >
                                     @{{ record[column.key] }}
                                 </a>
@@ -215,7 +215,7 @@
 
                         <div
                             v-else
-                            class="row grid gap-2.5 border-b px-4 py-4 text-center text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid gap-2.5 border-b px-4 py-4 text-center text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                         >
                             <p>@lang('admin::app.reporting.view.not-available')</p>
                         </div>

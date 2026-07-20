@@ -1,6 +1,6 @@
 <!-- Notes Form -->
 <div class="box-shadow rounded bg-white p-4 last:pb-0 dark:bg-gray-900">
-    <p class="p-4 pb-0 text-base font-semibold leading-none text-gray-800 dark:text-white">
+    <p class="p-4 pb-0 text-base font-semibold leading-none text-diidsInk dark:text-white">
         @lang('admin::app.customers.customers.view.notes.add-note')
     </p>
 
@@ -34,9 +34,9 @@
                         class="peer hidden"
                     >
 
-                    <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"></span>
+                    <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"></span>
 
-                    <p class="flex cursor-pointer items-center gap-x-1 font-semibold text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100">
+                    <p class="flex cursor-pointer items-center gap-x-1 font-semibold text-diidsInk/70 hover:text-diidsInk dark:text-gray-300 dark:hover:text-gray-100">
                         @lang('admin::app.customers.customers.view.notes.notify-customer')
                     </p>
                 </label>
@@ -56,16 +56,16 @@
     @foreach ($customer->notes as $note)
         <div class="grid gap-1.5 border-b p-4 last:border-none dark:border-gray-800">
             <p
-                class="break-all text-base leading-6 text-gray-800 dark:text-white"
+                class="break-all text-base leading-6 text-diidsInk dark:text-white"
                 v-pre
             >
                 {{ $note->note }}
             </p>
 
             <!-- Notes List Title and Time -->
-            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+            <p class="flex items-center gap-2 text-diidsInk/70 dark:text-gray-300">
                 @if ($note->customer_notified)
-                    <span class="icon-done h-fit rounded-full bg-blue-100 text-2xl text-blue-600 dark:!text-blue-600"></span>
+                    <span class="icon-done h-fit rounded-full bg-blue-100 text-2xl text-navyBlue dark:!text-navyBlue"></span>
 
                     @lang('admin::app.customers.customers.view.notes.customer-notified', ['date' => core()->formatDate($note->created_at, 'Y-m-d H:i:s a')])
                 @else

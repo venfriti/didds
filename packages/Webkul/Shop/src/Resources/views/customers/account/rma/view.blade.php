@@ -25,14 +25,14 @@
                 <span class="icon-arrow-left rtl:icon-arrow-right text-2xl"></span>
             </a>
 
-            <h2 class="text-2xl font-medium max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
+            <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
                 @lang('shop::app.customers.account.rma.view.id') #{{ $rma->id }}
             </h2>
         </div>
 
         <!-- RMA Information -->
         <div class="mt-8">
-            <h2 class="text-xl font-medium mb-5">
+            <h2 class="font-dmserif text-xl text-diidsInk mb-5">
                 @lang('shop::app.rma.view-customer-rma.heading')
             </h2>
 
@@ -40,7 +40,7 @@
                 <div class="p-6 space-y-4 max-md:p-4">
                     <!-- Request Date -->
                     <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                        <span class="font-medium text-gray-500">
+                        <span class="font-medium text-diidsInk/60">
                             @lang('shop::app.rma.view-customer-rma-content.request-on')
                         </span>
                         
@@ -51,7 +51,7 @@
 
                     <!-- Order ID -->
                     <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                        <span class="font-medium text-gray-500">@lang('shop::app.rma.view-customer-rma.order-id')</span>
+                        <span class="font-medium text-diidsInk/60">@lang('shop::app.rma.view-customer-rma.order-id')</span>
 
                         <a 
                             href="{{ route('shop.customers.account.orders.view', $rma->order_id) }}" 
@@ -65,7 +65,7 @@
                     @if (! empty($rma->additionalFields))
                         @foreach ($rma->additionalFields as $field)
                             <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                                <span class="font-medium text-gray-500">{{ $field->customField->label }} :</span>
+                                <span class="font-medium text-diidsInk/60">{{ $field->customField->label }} :</span>
 
                                 <span class="font-medium text-gray-800">{{ $field->value }}</span>
                             </div>
@@ -75,7 +75,7 @@
                     <!-- Additional Information -->
                     @if (! empty($rma->information))
                         <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                            <span class="font-medium text-gray-500">@lang('shop::app.rma.view-customer-rma.additional-information')</span>
+                            <span class="font-medium text-diidsInk/60">@lang('shop::app.rma.view-customer-rma.additional-information')</span>
 
                             <span class="font-medium text-gray-800">{{ $rma->information }}</span>
                         </div>
@@ -84,7 +84,7 @@
                     <!-- Images -->
                     @if ($rma->images->isNotEmpty())
                         <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                            <span class="font-medium text-gray-500">@lang('shop::app.rma.view-customer-rma.images')</span>
+                            <span class="font-medium text-diidsInk/60">@lang('shop::app.rma.view-customer-rma.images')</span>
 
                             <div class="flex gap-2 flex-wrap">
                                 @foreach ($rma->images as $image)
@@ -101,7 +101,7 @@
 
                     <!-- RMA Status -->
                     <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
-                        <span class="font-medium text-gray-500">
+                        <span class="font-medium text-diidsInk/60">
                             @lang('shop::app.rma.view-customer-rma-content.rma-status')
                         </span>
 
@@ -118,7 +118,7 @@
 
                 <!-- Close / Re-open RMA -->
                 @if (! $isExpired && ($canCloseRma || $canReopenRma))
-                    <div class="border-t bg-gray-50 px-6 py-5 max-md:px-4">
+                    <div class="border-t bg-diidsSurface px-6 py-5 max-md:px-4">
                         <x-shop::form
                             enctype="multipart/form-data"
                             :action="$canCloseRma
@@ -138,7 +138,7 @@
                                         rules="required"
                                     />
 
-                                    <label class="cursor-pointer text-sm font-medium text-gray-600" :for="$checkboxName">
+                                    <label class="cursor-pointer text-sm font-medium text-diidsInk/70" :for="$checkboxName">
                                         {{ $canCloseRma
                                             ? trans('shop::app.rma.view-customer-rma.status-quotes')
                                             : trans('shop::app.rma.customer.create.reopen-request') }}
@@ -159,36 +159,36 @@
 
         <!-- RMA Items -->
         <div class="mt-8">
-            <h2 class="text-xl font-medium mb-5">
+            <h2 class="font-dmserif text-xl text-diidsInk mb-5">
                 @lang('shop::app.rma.view-customer-rma.items-request')
             </h2>
 
             <!-- Desktop Table View -->
             <div class="rounded-xl border shadow-sm overflow-hidden hidden md:block">
                 <table class="w-full table-fixed">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-diidsSurface">
                         <tr>
-                            <th class="w-[36%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[36%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.image') / @lang('shop::app.rma.table-heading.product-name')
                             </th>
 
-                            <th class="w-[16%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[16%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.sku')
                             </th>
 
-                            <th class="w-[11%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[11%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.price')
                             </th>
 
-                            <th class="w-[10%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[10%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.rma-qty')
                             </th>
 
-                            <th class="w-[13%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[13%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.resolution-type')
                             </th>
 
-                            <th class="w-[14%] px-4 py-3 text-left text-sm font-medium text-gray-600">
+                            <th class="w-[14%] px-4 py-3 text-left text-sm font-medium text-diidsInk/70">
                                 @lang('shop::app.rma.table-heading.reason')
                             </th>
                         </tr>
@@ -232,7 +232,7 @@
                                             @if (! empty($attributes))
                                                 <div class="mt-1 space-y-0.5">
                                                     @foreach ($attributes as $attribute)
-                                                        <p class="text-xs text-gray-500">
+                                                        <p class="text-xs text-diidsInk/60">
                                                             {{ $attribute['attribute_name'] }}:
                                                             <span class="font-medium text-gray-700">{{ $attribute['option_label'] }}</span>
                                                         </p>
@@ -243,19 +243,19 @@
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-4 align-top text-sm text-gray-600">
+                                <td class="px-4 py-4 align-top text-sm text-diidsInk/70">
                                     {{ $item->orderItem->product->sku ?? $item->orderItem->sku }}
                                 </td>
                                 
-                                <td class="px-4 py-4 align-top text-sm text-gray-600">
+                                <td class="px-4 py-4 align-top text-sm text-diidsInk/70">
                                     {!! core()->formatPrice($item->orderItem->price, $item->orderItem->order->order_currency_code) !!}
                                 </td>
                                 
-                                <td class="px-4 py-4 align-top text-sm text-gray-600">
+                                <td class="px-4 py-4 align-top text-sm text-diidsInk/70">
                                     {{ $item->quantity }} / {{ $item->orderItem->qty_ordered }}
                                 </td>
                                 
-                                <td class="px-4 py-4 align-top text-sm text-gray-600">
+                                <td class="px-4 py-4 align-top text-sm text-diidsInk/70">
                                     @if ($item->resolution == DefaultRMAResolution::RETURN->value)
                                         @lang('shop::app.customers.account.rma.create.return')
                                     @else
@@ -263,7 +263,7 @@
                                     @endif
                                 </td>
                                 
-                                <td class="px-4 py-4 align-top text-sm text-gray-600">
+                                <td class="px-4 py-4 align-top text-sm text-diidsInk/70">
                                     {{ $item->reason->title }}
                                 </td>
                             </tr>
@@ -310,7 +310,7 @@
                                 @if (! empty($attributes))
                                     <div class="mt-1 space-y-0.5">
                                         @foreach ($attributes as $attribute)
-                                            <p class="text-xs text-gray-500">
+                                            <p class="text-xs text-diidsInk/60">
                                                 {{ $attribute['attribute_name'] }}:
                                                 <span class="font-medium text-gray-700">{{ $attribute['option_label'] }}</span>
                                             </p>
@@ -322,30 +322,30 @@
 
                         <div class="grid grid-cols-2 gap-3 text-sm">
                             <div>
-                                <span class="font-medium text-gray-600">@lang('shop::app.rma.table-heading.sku')</span>
-                                <p class="text-gray-600">{{ $item->orderItem->product->sku ?? $item->orderItem->sku }}</p>
+                                <span class="font-medium text-diidsInk/70">@lang('shop::app.rma.table-heading.sku')</span>
+                                <p class="text-diidsInk/70">{{ $item->orderItem->product->sku ?? $item->orderItem->sku }}</p>
                             </div>
 
                             <div>
-                                <span class="font-medium text-gray-600">@lang('shop::app.rma.table-heading.price')</span>
-                                <p class="text-gray-600">{!! core()->formatPrice($item->orderItem->price, $item->orderItem->order->order_currency_code) !!}</p>
+                                <span class="font-medium text-diidsInk/70">@lang('shop::app.rma.table-heading.price')</span>
+                                <p class="text-diidsInk/70">{!! core()->formatPrice($item->orderItem->price, $item->orderItem->order->order_currency_code) !!}</p>
                             </div>
 
                             <div>
-                                <span class="font-medium text-gray-600">@lang('shop::app.rma.table-heading.rma-qty')</span>
-                                <p class="text-gray-600">{{ $item->quantity }} / {{ $item->orderItem->qty_ordered }}</p>
+                                <span class="font-medium text-diidsInk/70">@lang('shop::app.rma.table-heading.rma-qty')</span>
+                                <p class="text-diidsInk/70">{{ $item->quantity }} / {{ $item->orderItem->qty_ordered }}</p>
                             </div>
 
                             <div>
-                                <span class="font-medium text-gray-600">@lang('shop::app.rma.table-heading.resolution-type')</span>
-                                <p class="text-gray-600">{{ ucwords($item->resolution) }}</p>
+                                <span class="font-medium text-diidsInk/70">@lang('shop::app.rma.table-heading.resolution-type')</span>
+                                <p class="text-diidsInk/70">{{ ucwords($item->resolution) }}</p>
                             </div>
                         </div>
 
                         <div>
-                            <span class="font-medium text-gray-600">@lang('shop::app.rma.table-heading.reason')</span>
+                            <span class="font-medium text-diidsInk/70">@lang('shop::app.rma.table-heading.reason')</span>
 
-                            <p class="text-gray-600">{{ $item->reason->title }}</p>
+                            <p class="text-diidsInk/70">{{ $item->reason->title }}</p>
                         </div>
                     </div>
                 @endif
@@ -365,7 +365,7 @@
             </div>
 
             <div class="relative mt-3 flex flex-col-reverse overflow-hidden rounded-xl border shadow-sm bg-white">
-                <div class="border-t border-zinc-200 bg-white p-4 max-md:p-3">
+                <div class="border-t border-diidsBorder bg-white p-4 max-md:p-3">
                     <x-shop::form
                         v-slot="{ meta, errors, handleSubmit }" 
                         as="div"
@@ -438,7 +438,7 @@
 
                 <!-- View conversations -->
                 <div
-                    class="flex h-80 max-md:h-60 flex-col-reverse overflow-y-auto p-5 max-md:p-3 bg-gray-50"
+                    class="flex h-80 max-md:h-60 flex-col-reverse overflow-y-auto p-5 max-md:p-3 bg-diidsSurface"
                     @wheel="getNewMessage()"
                     :class="!messages.length ? 'justify-center items-center' : ''"
                 >
@@ -451,7 +451,7 @@
                             >
                                 <div
                                     class="max-w-[70%] w-fit rounded-xl p-3.5 text-left shadow-sm"
-                                    :class="message.is_admin == 1 ? 'bg-gray-100' : 'bg-blue-50'"
+                                    :class="message.is_admin == 1 ? 'bg-diidsSurface' : 'bg-blue-50'"
                                 >
                                     <div class="flex items-center gap-2 mb-1">
                                         <span class="font-semibold text-xs text-gray-700">
@@ -464,16 +464,16 @@
                                             </template>
                                         </span>
 
-                                        <span class="text-xs text-gray-400">· @{{ dateFormat(message.created_at) }}</span>
+                                        <span class="text-xs text-diidsInk/40">· @{{ dateFormat(message.created_at) }}</span>
                                     </div>
 
                                     <div class="value text-sm max-sm:text-xs break-words">@{{ message.message }}</div>
 
                                     <div v-if="message.attachment" class="mt-2 flex items-center gap-2">
-                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l7.071-7.071a4 4 0 00-5.657-5.657l-7.071 7.07a6 6 0 108.485 8.486L20.485 13"/></svg>
+                                        <svg class="w-4 h-4 text-diidsInk/60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l7.071-7.071a4 4 0 00-5.657-5.657l-7.071 7.07a6 6 0 108.485 8.486L20.485 13"/></svg>
                                         <a
                                             @click="viewAttachmentModal(message.attachment_path)"
-                                            class="text-xs max-sm:text-xs hover:underline cursor-pointer text-blue-700"
+                                            class="text-xs max-sm:text-xs hover:underline cursor-pointer text-navyBlue"
                                         >
                                             @{{ message.attachment }}
                                         </a>

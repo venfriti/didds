@@ -2,7 +2,7 @@
 
 <v-inventories>
     <!-- Panel Content -->
-    <div class="mb-5 text-sm text-gray-600 dark:text-gray-300">
+    <div class="mb-5 text-sm text-diidsInk/70 dark:text-gray-300">
         <div class="relative mb-2.5 flex items-center">
             <span class="inline-block rounded-full bg-yellow-500 p-1.5 ltr:mr-1.5 rtl:ml-1.5"></span>
 

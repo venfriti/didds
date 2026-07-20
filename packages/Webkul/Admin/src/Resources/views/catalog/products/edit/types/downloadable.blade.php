@@ -15,11 +15,11 @@
             <!-- Panel Header -->
             <div class="mb-2.5 flex justify-between gap-5 p-4">
                 <div class="flex flex-col gap-2">
-                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.title')
                     </p>
 
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                    <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.info')
                     </p>
                 </div>
@@ -138,14 +138,14 @@
                             <!-- Information -->
                             <div class="flex gap-2.5">
                                 <!-- Drag Icon -->
-                                <i class="icon-drag cursor-grab text-xl text-gray-600 transition-all dark:text-gray-300"></i>
+                                <i class="icon-drag cursor-grab text-xl text-diidsInk/70 transition-all dark:text-gray-300"></i>
 
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ element.title }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <template v-if="element.type == 'file'">
                                             <div>
                                                 @lang('admin::app.catalog.products.edit.types.downloadable.links.file')
@@ -153,7 +153,7 @@
                                                 <a
                                                     :href="element.file_url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.file_name }}
                                                 </a>
@@ -167,7 +167,7 @@
                                                 <a
                                                     :href="element.url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.url }}
                                                 </a>
@@ -175,7 +175,7 @@
                                         </template>
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <template v-if="element.sample_type == 'file'">
                                             <div v-if="element.sample_file_url">
                                                 @lang('admin::app.catalog.products.edit.types.downloadable.links.sample-file')
@@ -183,7 +183,7 @@
                                                 <a
                                                     :href="element.sample_file_url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.sample_file_name }}
                                                 </a>
@@ -197,7 +197,7 @@
                                                 <a
                                                     :href="element.sample_url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.sample_url }}
                                                 </a>
@@ -209,7 +209,7 @@
 
                             <!-- Actions -->
                             <div class="grid place-content-start gap-1 text-right">
-                                <p class="font-semibold text-gray-800 dark:text-white">
+                                <p class="font-semibold text-diidsInk dark:text-white">
                                     @{{ $admin.formatPrice(element.price) }}    
                                 </p>
 
@@ -222,7 +222,7 @@
                                     </p>
 
                                     <p
-                                        class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                        class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         @click="selectedLink = element; $refs.updateCreateLinkDrawer.open()"
                                     >
                                         @lang('admin::app.catalog.products.edit.types.downloadable.links.edit-btn')
@@ -247,11 +247,11 @@
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.empty-info')
                     </p>
                 </div>
@@ -397,7 +397,7 @@
 
                                             <input
                                                 type="file"
-                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-gray-600 transition-all hover:border-gray-400 dark:text-gray-300"
+                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:text-gray-300"
                                                 :class="[errors['file'] ? 'border border-red-600 hover:border-red-600' : '']"
                                                 name="file"
                                                 ref="file"
@@ -406,7 +406,7 @@
 
                                             <a
                                                 :href="selectedLink.sample_file_url"
-                                                class="break-all text-sm text-blue-600 transition-all hover:underline"
+                                                class="break-all text-sm text-navyBlue transition-all hover:underline"
                                                 target="_blank"
                                                 v-if="selectedLink.file_url"
                                             >
@@ -486,7 +486,7 @@
                                             <input
                                                 type="file"
                                                 name="sample_file"
-                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-gray-600 transition-all hover:border-gray-400 dark:text-gray-300"
+                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:text-gray-300"
                                                 ref="sample_file"
                                                 @change="uploadFile('sample_file')"
                                             />
@@ -494,7 +494,7 @@
                                             <a
                                                 :href="selectedLink.sample_file_url"
                                                 target="_blank"
-                                                class="break-all text-sm text-blue-600 transition-all hover:underline"
+                                                class="break-all text-sm text-navyBlue transition-all hover:underline"
                                                 v-if="selectedLink.sample_file_url"
                                             >
                                                 @{{ selectedLink.sample_file_name }}
@@ -537,11 +537,11 @@
             <!-- Panel Header -->
             <div class="mb-2.5 flex justify-between gap-5 p-4">
                 <div class="flex flex-col gap-2">
-                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.title')
                     </p>
 
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                    <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.info')
                     </p>
                 </div>
@@ -617,14 +617,14 @@
                             <!-- Information -->
                             <div class="flex gap-2.5">
                                 <!-- Drag Icon -->
-                                <i class="icon-drag cursor-grab text-xl text-gray-600 transition-all dark:text-gray-300"></i>
+                                <i class="icon-drag cursor-grab text-xl text-diidsInk/70 transition-all dark:text-gray-300"></i>
 
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ element.title }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <template v-if="element.type == 'file'">
                                             <div>
                                                 @lang('admin::app.catalog.products.edit.types.downloadable.samples.file')
@@ -632,7 +632,7 @@
                                                 <a
                                                     :href="element.file_url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.file_name }}
                                                 </a>
@@ -646,7 +646,7 @@
                                                 <a
                                                     :href="element.url"
                                                     target="_blank"
-                                                    class="break-all text-blue-600 transition-all hover:underline"
+                                                    class="break-all text-navyBlue transition-all hover:underline"
                                                 >
                                                     @{{ element.url }}
                                                 </a>
@@ -667,7 +667,7 @@
                                     </p>
 
                                     <p
-                                        class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                        class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         @click="selectedSample = element; $refs.updateCreateSampleDrawer.open()"
                                     >
                                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.edit-btn')
@@ -692,11 +692,11 @@
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.empty-info')
                     </p>
                 </div>
@@ -808,7 +808,7 @@
                                             <input
                                                 type="file"
                                                 name="file"
-                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-gray-600 transition-all hover:border-gray-400 dark:text-gray-300"
+                                                class="flex min-h-[39px] w-full rounded-md border px-3 py-1 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:text-gray-300"
                                                 :class="[errors['file'] ? 'border border-red-600 hover:border-red-600' : '']"
                                                 ref="file"
                                                 @change="uploadFile('file')"
@@ -817,7 +817,7 @@
                                             <a
                                                 :href="selectedSample.sample_file_url"
                                                 target="_blank"
-                                                class="break-all text-sm text-blue-600 transition-all hover:underline"
+                                                class="break-all text-sm text-navyBlue transition-all hover:underline"
                                                 v-if="selectedSample.file_url"
                                             >
                                                 @{{ selectedSample.file_name }}

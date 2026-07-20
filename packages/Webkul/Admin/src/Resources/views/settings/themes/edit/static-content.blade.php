@@ -12,11 +12,11 @@
             <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                 <div class="mb-2.5 flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.static-content')
                         </p>
 
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.settings.themes.edit.static-content-description')
                         </p>
                     </div>
@@ -46,14 +46,14 @@
                     </div>
                 </div>
                 
-                <div class="pt-4 text-center text-sm font-medium text-gray-500">
+                <div class="pt-4 text-center text-sm font-medium text-diidsInk/60">
                     <div class="tabs">
                         <div class="mb-4 flex gap-4 border-b-2 pt-2 max-sm:hidden">
                             <!-- HTML Tab Header -->
                             <p @click="switchEditor('v-html-editor-theme', 1)">
                                 <div
-                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-gray-600 transition dark:text-gray-300"
-                                    :class="{'-mb-px border-b-2 border-blue-600': inittialEditor == 'v-html-editor-theme'}"
+                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-diidsInk/70 transition dark:text-gray-300"
+                                    :class="{'-mb-px border-b-2 border-navyBlue': inittialEditor == 'v-html-editor-theme'}"
                                 >
                                     @lang('admin::app.settings.themes.edit.html')
                                 </div>
@@ -62,8 +62,8 @@
                             <!-- CSS Tab Editor -->
                             <p @click="switchEditor('v-css-editor-theme', 0);">
                                 <div
-                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-gray-600 transition dark:text-gray-300"
-                                    :class="{'-mb-px border-b-2 border-blue-600': inittialEditor == 'v-css-editor-theme'}"
+                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-diidsInk/70 transition dark:text-gray-300"
+                                    :class="{'-mb-px border-b-2 border-navyBlue': inittialEditor == 'v-css-editor-theme'}"
                                 >
                                     @lang('admin::app.settings.themes.edit.css')
                                 </div>
@@ -72,8 +72,8 @@
                             <!-- Preview Tab Editor -->
                             <p @click="switchEditor('v-static-content-previewer', 0);">
                                 <div
-                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-gray-600 transition dark:text-gray-300"
-                                    :class="{'-mb-px border-b-2 border-blue-600': inittialEditor == 'v-static-content-previewer'}"
+                                    class="cursor-pointer px-2.5 pb-3.5 text-base font-medium text-diidsInk/70 transition dark:text-gray-300"
+                                    :class="{'-mb-px border-b-2 border-navyBlue': inittialEditor == 'v-static-content-previewer'}"
                                 >
                                     @lang('admin::app.settings.themes.edit.preview')
                                 </div>

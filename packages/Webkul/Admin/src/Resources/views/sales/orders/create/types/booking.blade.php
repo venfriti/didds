@@ -15,7 +15,7 @@
         <div class="p-4">
             <!-- Loading -->
             <template v-if="isLoading">
-                <p class="text-sm text-gray-500 dark:text-gray-300">
+                <p class="text-sm text-diidsInk/60 dark:text-gray-300">
                     @lang('admin::app.sales.orders.create.types.booking.loading')
                 </p>
             </template>
@@ -215,11 +215,11 @@
                         <div
                             v-for="ticket in config.event_tickets"
                             :key="ticket.id"
-                            class="flex items-center justify-between border-b border-gray-200 pb-3 dark:border-gray-700"
+                            class="flex items-center justify-between border-b border-diidsBorder pb-3 dark:border-gray-700"
                         >
                             <div class="grid gap-1">
                                 <p class="font-medium dark:text-white" v-text="ticket.name"></p>
-                                <p class="text-sm text-gray-500 dark:text-gray-300" v-text="ticket.formatted_price_text"></p>
+                                <p class="text-sm text-diidsInk/60 dark:text-gray-300" v-text="ticket.formatted_price_text"></p>
                             </div>
 
                             <x-admin::form.control-group class="!mb-0">

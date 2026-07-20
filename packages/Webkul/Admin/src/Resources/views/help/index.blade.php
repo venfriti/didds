@@ -57,18 +57,18 @@
 
     <!-- Page Header -->
     <div class="grid gap-1.5 mb-8 max-w-3xl">
-        <p class="text-2xl font-bold !leading-snug text-gray-800 dark:text-white">
+        <p class="text-2xl font-bold !leading-snug text-diidsInk dark:text-white">
             @lang('admin::app.help.index.title')
         </p>
 
-        <p class="!leading-relaxed text-gray-600 dark:text-gray-300">
+        <p class="!leading-relaxed text-diidsInk/70 dark:text-gray-300">
             @lang('admin::app.help.index.description')
         </p>
     </div>
 
     <!-- Services -->
     <div class="mb-10">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-400 mb-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-diidsInk/40 dark:text-diidsInk/40 mb-4">
             @lang('admin::app.help.index.services-title')
         </p>
 
@@ -81,7 +81,7 @@
 
     <!-- Resources & Documentation -->
     <div class="mb-10">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-400 mb-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-diidsInk/40 dark:text-diidsInk/40 mb-4">
             @lang('admin::app.help.index.resources-title')
         </p>
 
@@ -116,7 +116,7 @@
             href="https://bagisto.com/en/contacts/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 font-semibold text-blue-700 transition-all hover:bg-blue-50"
+            class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 font-semibold text-blue-700 transition-all hover:bg-diidsSurface"
         >
             @lang('admin::app.help.index.cta-btn')
 

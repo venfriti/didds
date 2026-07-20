@@ -271,9 +271,9 @@
 
                 {!! view_render_event('bagisto.shop.components.products.card.average_ratings.before') !!}
 
-                <p class="text-sm text-zinc-500">
+                <p class="text-sm text-diidsInk/60">
                     <template  v-if="! product.ratings.total">
-                        <p class="text-sm text-zinc-500">
+                        <p class="text-sm text-diidsInk/60">
                             @lang('shop::app.components.products.card.review-description')
                         </p>
                     </template>

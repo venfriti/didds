@@ -7,7 +7,7 @@
 
     <div class="grid">
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold leading-6 text-gray-800 dark:text-white">
+            <p class="text-xl font-bold leading-6 text-diidsInk dark:text-white">
                 @lang('admin::app.sales.shipments.view.title', ['shipment_id' => $shipment->id])
             </p>
 
@@ -15,7 +15,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.sales.shipments.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.account.edit.back-btn')
                 </a>
@@ -29,7 +29,7 @@
         <div class="flex flex-col flex-1 gap-2 max-xl:flex-auto">
             <!-- General -->
             <div class="bg-white rounded box-shadow dark:bg-gray-900">
-                <p class="p-4 mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                <p class="p-4 mb-4 text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.sales.shipments.view.ordered-items') ({{count($shipment->items)}})
                 </p>
 
@@ -45,10 +45,10 @@
                                         src="{{ $item->product->base_image_url }}"
                                     >
                                 @else
-                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                             @lang('admin::app.sales.invoices.view.product-image')
                                         </p>
                                     </div>
@@ -56,7 +56,7 @@
 
                                 <div class="grid place-content-start gap-1.5">
                                     <p
-                                        class="text-base font-semibold text-gray-800 break-all dark:text-white"
+                                        class="text-base font-semibold text-diidsInk break-all dark:text-white"
                                         v-pre
                                     >
                                         {{ $item->name }}
@@ -66,7 +66,7 @@
                                         @if (isset($item->additional['attributes']))
                                             @foreach ($item->additional['attributes'] as $attribute)
                                                 <p
-                                                    class="text-gray-600 dark:text-gray-300"
+                                                    class="text-diidsInk/70 dark:text-gray-300"
                                                     v-pre
                                                 >
                                                     @if (
@@ -79,7 +79,7 @@
 
                                                         <a
                                                             href="{{ Storage::url($attribute['option_label']) }}"
-                                                            class="text-blue-600 hover:underline"
+                                                            class="text-navyBlue hover:underline"
                                                             download="{{ File::basename($attribute['option_label']) }}"
                                                         >
                                                             {{ File::basename($attribute['option_label']) }}
@@ -89,11 +89,11 @@
                                             @endforeach
                                         @endif
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.sales.shipments.view.sku', ['sku' =>  $item->sku ])
                                         </p>
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.sales.shipments.view.qty', ['qty' =>  $item->qty ])
                                         </p>
                                     </div>
@@ -114,7 +114,7 @@
             <!-- component 1 -->
             <x-admin::accordion>
                 <x-slot:header>
-                    <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.sales.shipments.view.customer')
                     </p>
                 </x-slot>
@@ -123,13 +123,13 @@
                     <div class="flex flex-col pb-4">
                         <!-- Customer Full Name -->
                         <p 
-                            class="font-semibold text-gray-800 dark:text-white"
+                            class="font-semibold text-diidsInk dark:text-white"
                             v-text="'{{ $shipment->order->customer_full_name }}'"
                         >
                         </p>
 
                         <!-- Customer Email -->
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.shipments.view.email', ['email' =>  $shipment->order->customer_email ])
                         </p>
                     </div>
@@ -140,7 +140,7 @@
                         <!-- Billing Address -->
                         @if ($order->billing_address)
                             <div class="flex items-center justify-between">
-                                <p class="py-4 text-base font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="py-4 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.sales.shipments.view.billing-address')
                                 </p>
                             </div>
@@ -154,7 +154,7 @@
                             <span class="block w-full mt-4 border-b dark:border-gray-800"></span>
 
                             <div class="flex items-center justify-between">
-                                <p class="py-4 text-base font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="py-4 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.sales.shipments.view.shipping-address')
                                 </p>
                             </div>
@@ -169,7 +169,7 @@
             <!-- component 2 -->
             <x-admin::accordion>
                 <x-slot:header>
-                    <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.sales.shipments.view.order-information')
                     </p>
                 </x-slot>
@@ -177,44 +177,44 @@
                 <x-slot:content>
                     <div class="flex justify-start w-full gap-5">
                         <div class="flex flex-col gap-y-1.5">
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.order-id')
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.order-date')
                            </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.order-status')
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.channel')
                             </p>
                         </div>
 
                         <div class="flex flex-col gap-y-1.5">
                             <!-- Order Id -->
-                            <p class="font-semibold text-blue-600">
+                            <p class="font-semibold text-navyBlue">
                                 <a href="{{ route('admin.sales.orders.view', $order->id) }}">
                                     #{{ $order->increment_id }}
                                 </a>
                             </p>
 
                             <!-- Order Date -->
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 {{ core()->formatDate($order->created_at) }}
                             </p>
 
                             <!-- Order Status -->
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 {{ $order->status_label }}
                             </p>
 
                             <!-- Order Channel -->
                             <p 
-                                class="text-gray-600 dark:text-gray-300"
+                                class="text-diidsInk/70 dark:text-gray-300"
                                 v-pre
                             >
                                 {{ $order->channel_name }}
@@ -227,7 +227,7 @@
             <!-- Component 3 -->
             <x-admin::accordion>
                 <x-slot:header>
-                    <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.sales.shipments.view.payment-and-shipping')
                     </p>
                 </x-slot>
@@ -235,20 +235,20 @@
                 <x-slot:content>
                     <div class="pb-4">
                         <!-- Payment method -->
-                        <p class="font-semibold text-gray-800 dark:text-white">
+                        <p class="font-semibold text-diidsInk dark:text-white">
                             {{ core()->getConfigData('sales.payment_methods.' . $order->payment->method . '.title') }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.shipments.view.payment-method')
                         </p>
 
                         <!-- Currency Code -->
-                        <p class="pt-4 font-semibold text-gray-800 dark:text-white">
+                        <p class="pt-4 font-semibold text-diidsInk dark:text-white">
                             {{ $order->order_currency_code }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.shipments.view.currency')
                         </p>
                     </div>
@@ -259,22 +259,22 @@
                     <div class="pt-4">
                         <!-- Shipping Method -->
                         <p
-                            class="font-semibold text-gray-800 dark:text-white"
+                            class="font-semibold text-diidsInk dark:text-white"
                             v-pre
                         >
                             {{ $order->shipping_title }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.shipments.view.shipping-method')
                         </p>
 
                         <!-- Inventory Source -->
-                        <p class="pt-4 font-semibold text-gray-800 dark:text-white">
+                        <p class="pt-4 font-semibold text-diidsInk dark:text-white">
                             {{ core()->formatBasePrice($order->base_shipping_amount) }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.shipments.view.shipping-price')
                         </p>
 
@@ -283,39 +283,39 @@
                             || $shipment->inventory_source_name
                         )
                             <p
-                                class="pt-4 font-semibold text-gray-800 dark:text-white"
+                                class="pt-4 font-semibold text-diidsInk dark:text-white"
                                 v-pre
                             >
                                 {{ $shipment->inventory_source ? $shipment->inventory_source->name : $shipment->inventory_source_name }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.inventory-source')
                             </p>
                         @endif
 
                         @if ($shipment->carrier_title)
                             <p
-                                class="pt-4 font-semibold text-gray-800 dark:text-white"
+                                class="pt-4 font-semibold text-diidsInk dark:text-white"
                                 v-pre
                             >
                                 {{ $shipment->carrier_title }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.carrier-title')
                             </p>
                         @endif
 
                         @if ($shipment->track_number)
                             <p
-                                class="pt-4 font-semibold text-gray-800 dark:text-white"
+                                class="pt-4 font-semibold text-diidsInk dark:text-white"
                                 v-pre
                             >
                                 {{ $shipment->track_number }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.shipments.view.tracking-number')
                             </p>
                         @endif

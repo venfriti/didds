@@ -12,7 +12,7 @@
         method="PUT"
     >
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.catalog.attributes.edit.title')
             </p>
 
@@ -20,7 +20,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.catalog.attributes.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.catalog.attributes.edit.back-btn')
                 </a>
@@ -58,7 +58,7 @@
 
                     <!-- Label -->
                     <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                        <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.attributes.edit.label')
                         </p>
 
@@ -107,7 +107,7 @@
                         v-if="showSwatch"
                     >
                         <div class="mb-3 flex items-center justify-between">
-                            <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.attributes.edit.options')
                             </p>
 
@@ -166,13 +166,13 @@
 
                                     <label
                                         for="empty_option"
-                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                     >
                                     </label>
 
                                     <label
                                         for="empty_option"
-                                        class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                        class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     >
                                         @lang('admin::app.catalog.attributes.edit.create-empty-option')
                                     </label>
@@ -228,7 +228,7 @@
                                         >
                                             <template #item="{ element, index }">
                                                 <x-admin::table.thead.tr
-                                                    class="hover:bg-gray-50 dark:hover:bg-gray-950"
+                                                    class="hover:bg-diidsSurface dark:hover:bg-gray-950"
                                                     v-show="! element.isDelete"
                                                 >
                                                     <!-- Hidden Input -->
@@ -247,7 +247,7 @@
 
                                                     <!-- Draggable Icon -->
                                                     <x-admin::table.td class="!px-0 text-center">
-                                                        <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-gray-700"></i>
+                                                        <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-diidsInk/80"></i>
 
                                                         <input
                                                             type="hidden"
@@ -277,7 +277,7 @@
                                                         <!-- Swatch Color -->
                                                         <div v-if="swatchType == 'color'">
                                                             <div
-                                                                class="h-[25px] w-[25px] rounded-md border border-gray-200 dark:border-gray-800"
+                                                                class="h-[25px] w-[25px] rounded-md border border-diidsBorder dark:border-gray-800"
                                                                 :style="{ background: element.swatch_value }"
                                                             >
                                                             </div>
@@ -319,13 +319,13 @@
                                                     <!-- Actions Button -->
                                                     <x-admin::table.td class="!px-0">
                                                         <span
-                                                            class="icon-edit cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                                            class="icon-edit cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                                             @click="editOptions(element)"
                                                         >
                                                         </span>
 
                                                         <span
-                                                            class="icon-delete cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-100 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                                            class="icon-delete cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsSurface dark:hover:bg-gray-800 max-sm:place-self-center"
                                                             @click="removeOption(element.id)"
                                                         >
                                                         </span>
@@ -349,11 +349,11 @@
 
                                     <!-- Add Attribute Options Information -->
                                     <div class="flex flex-col items-center gap-1.5">
-                                        <p class="text-base font-semibold text-gray-400">
+                                        <p class="text-base font-semibold text-diidsInk/40">
                                             @lang('admin::app.catalog.attributes.edit.add-attribute-options')
                                         </p>
 
-                                        <p class="text-gray-400">
+                                        <p class="text-diidsInk/40">
                                             @lang('admin::app.catalog.attributes.edit.add-options-info')
                                         </p>
                                     </div>
@@ -378,7 +378,7 @@
                     <!-- General -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.attributes.edit.general')
                             </p>
                         </x-slot>
@@ -502,7 +502,7 @@
                     <!-- Validations -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.attributes.edit.validations')
                             </p>
                         </x-slot>
@@ -552,14 +552,14 @@
                                                 v-bind="field"
                                                 :value="{{ json_encode($attribute->regex) }}"
                                                 :class="[errors['{{ $attribute->regex }}'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                                class="flex min-h-[39px] w-full cursor-not-allowed rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                                class="flex min-h-[39px] w-full cursor-not-allowed rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                                 placeholder="{{ trans('admin::app.catalog.attributes.create.regex') }}"
                                                 disabled
                                             >
                                         </v-field>
 
                                         <!-- Regex Info -->
-                                        <p class="mt-2 text-xs font-medium text-gray-500 dark:text-gray-300">
+                                        <p class="mt-2 text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                                             @lang('admin::app.catalog.attributes.create.regex-info')
                                         </p>
                                     </x-admin::form.control-group>
@@ -583,7 +583,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="is_required"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-required')
@@ -609,7 +609,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="is_unique"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-unique')
@@ -625,7 +625,7 @@
                     <!-- Configurations -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.attributes.edit.configuration')
                             </p>
                         </x-slot>
@@ -647,7 +647,7 @@
                                 />
 
                                 <label
-                                    class="cursor-not-allowed text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-not-allowed text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.value-per-locale')
                                 </label>
@@ -678,7 +678,7 @@
                                     :disabled="(boolean) $valuePerChannel"
                                 />
 
-                                <label class="cursor-not-allowed text-xs font-medium text-gray-600 dark:text-gray-300">
+                                <label class="cursor-not-allowed text-xs font-medium text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.catalog.attributes.edit.value-per-channel')
                                 </label>
 
@@ -713,7 +713,7 @@
                                 />
 
                                 <label
-                                    :class="`${isFilterable ? 'cursor-pointer' : 'cursor-not-allowed'} text-xs font-medium text-gray-600 dark:text-gray-300`"
+                                    :class="`${isFilterable ? 'cursor-pointer' : 'cursor-not-allowed'} text-xs font-medium text-diidsInk/70 dark:text-gray-300`"
                                     for="is_filterable"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-filterable')
@@ -750,7 +750,7 @@
                                 />
 
                                 <label
-                                    :class="`${isConfigurable ? 'cursor-pointer' : 'cursor-not-allowed'} text-xs font-medium text-gray-600 dark:text-gray-300`"
+                                    :class="`${isConfigurable ? 'cursor-pointer' : 'cursor-not-allowed'} text-xs font-medium text-diidsInk/70 dark:text-gray-300`"
                                     for="is_configurable"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-configurable')
@@ -783,7 +783,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="is_visible_on_front"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-visible-on-front')
@@ -816,7 +816,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="is_comparable"
                                 >
                                     @lang('admin::app.catalog.attributes.edit.is-comparable')
@@ -856,7 +856,7 @@
                     >
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.attributes.edit.add-option')
                             </p>
                         </x-slot>

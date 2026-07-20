@@ -38,11 +38,11 @@
                 >
                     <div class="flex min-h-full items-end justify-center p-5 sm:items-center sm:p-0">
                         <div class="box-shadow absolute left-1/2 top-1/2 z-[999] w-full max-w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white dark:bg-gray-900 max-md:w-[90%]">
-                            <div class="flex items-center justify-between gap-2.5 border-b px-4 py-3 text-lg font-bold text-gray-800 dark:border-gray-800 dark:text-white">
+                            <div class="flex items-center justify-between gap-2.5 border-b px-4 py-3 text-lg font-bold text-diidsInk dark:border-gray-800 dark:text-white">
                                 @{{ title }}
                             </div>
 
-                            <div class="px-4 py-3 text-left text-gray-600 dark:text-gray-300">
+                            <div class="px-4 py-3 text-left text-diidsInk/70 dark:text-gray-300">
                                 @{{ message }}
                             </div>
 

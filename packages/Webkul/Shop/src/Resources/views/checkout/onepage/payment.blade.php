@@ -31,12 +31,12 @@
                 {!! view_render_event('bagisto.shop.checkout.onepage.payment_method.accordion.before') !!}
 
                 <!-- Accordion Blade Component -->
-                <x-shop::accordion class="overflow-hidden !border-b-0 max-md:rounded-lg max-md:!border-none max-md:!bg-gray-100">
+                <x-shop::accordion class="overflow-hidden !border-b-0 max-md:rounded-lg max-md:!border-none max-md:!bg-diidsSurface">
                     <!-- Accordion Blade Component Header -->
                     <x-slot:header class="px-0 py-4 max-md:p-3 max-md:text-sm max-md:font-medium max-sm:p-2">
                         
                         <div class="flex items-center justify-between">
-                            <h2 class="text-2xl font-medium max-md:text-base">
+                            <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-base">
                                 @lang('shop::app.checkout.onepage.payment.payment-method')
                             </h2>
                         </div>
@@ -68,7 +68,7 @@
 
                                 <label 
                                     :for="payment.method" 
-                                    class="block w-[190px] cursor-pointer rounded-xl border border-zinc-200 p-5 max-md:flex max-md:w-full max-md:gap-5 max-md:rounded-lg max-sm:gap-4 max-sm:px-4 max-sm:py-2.5"
+                                    class="block w-[190px] cursor-pointer rounded-xl border border-diidsBorder p-5 max-md:flex max-md:w-full max-md:gap-5 max-md:rounded-lg max-sm:gap-4 max-sm:px-4 max-sm:py-2.5"
                                 >
                                     {!! view_render_event('bagisto.shop.checkout.onepage.payment-method.image.before') !!}
 
@@ -94,7 +94,7 @@
 
                                         {!! view_render_event('bagisto.shop.checkout.onepage.payment-method.description.before') !!}
 
-                                        <p class="mt-2.5 text-xs font-medium text-zinc-500 max-md:mt-1 max-sm:mt-0">
+                                        <p class="mt-2.5 text-xs font-medium text-diidsInk/60 max-md:mt-1 max-sm:mt-0">
                                             @{{ payment.description }}
                                         </p> 
 

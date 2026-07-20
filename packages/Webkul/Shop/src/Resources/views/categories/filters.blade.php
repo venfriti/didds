@@ -14,7 +14,7 @@
 
 <!-- Mobile Filters Navigation -->
 <div
-    class="fixed bottom-0 z-10 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0"
+    class="fixed bottom-0 z-10 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-diidsBorder bg-white px-5 ltr:left-0 rtl:right-0"
     v-if="isMobile"
 >
     <!-- Filter Drawer -->
@@ -118,7 +118,7 @@
         <template v-else>
             <div class="panel-side journal-scroll grid max-h-[1320px] min-w-[342px] grid-cols-[1fr] overflow-y-auto overflow-x-hidden max-xl:min-w-[270px] md:max-w-[342px] md:ltr:pr-7 md:rtl:pl-7">
                 <!-- Filters Header Container -->
-                <div class="flex h-[50px] items-center justify-between border-b border-zinc-200 pb-2.5 max-md:hidden">
+                <div class="flex h-[50px] items-center justify-between border-b border-diidsBorder pb-2.5 max-md:hidden">
                     <p class="text-lg font-semibold max-sm:font-medium">
                         @lang('shop::app.categories.filters.filters')
                     </p>
@@ -187,7 +187,7 @@
 
                             <input
                                 type="text"
-                                class="block w-full rounded-xl border border-zinc-200 px-11 py-3.5 text-sm font-medium text-gray-900 max-md:rounded-lg max-md:px-10 max-md:py-3 max-md:font-normal max-sm:text-xs"
+                                class="block w-full rounded-xl border border-diidsBorder px-11 py-3.5 text-sm font-medium text-gray-900 max-md:rounded-lg max-md:px-10 max-md:py-3 max-md:font-normal max-sm:text-xs"
                                 placeholder="@lang('shop::app.categories.filters.search.title')"
                                 v-model="searchQuery"
                                 v-debounce:500="searchOptions"
@@ -195,7 +195,7 @@
                         </div>
 
                         <p
-                            class="mt-1 flex flex-row-reverse text-xs text-gray-600"
+                            class="mt-1 flex flex-row-reverse text-xs text-diidsInk/70"
                             v-text="
                                 '@lang('shop::app.categories.filters.search.results-info', ['currentCount' => 'currentCount', 'totalCount' => 'totalCount'])'
                                     .replace('currentCount', options.length)
@@ -213,7 +213,7 @@
                                 :key="`${filter.id}_${option.id}`"
                                 v-for="(option, optionIndex) in options"
                             >
-                                <div class="flex select-none items-center gap-x-4 rounded hover:bg-gray-100 max-sm:gap-x-1 max-sm:!p-0 ltr:pl-2 rtl:pr-2">
+                                <div class="flex select-none items-center gap-x-4 rounded hover:bg-diidsSurface max-sm:gap-x-1 max-sm:!p-0 ltr:pl-2 rtl:pr-2">
                                     <input
                                         type="checkbox"
                                         :id="`filter_${filter.id}_option_ ${option.id}`"
@@ -296,7 +296,7 @@
                     <div class="flex justify-center pb-3" v-if="meta && meta.current_page < meta.last_page">
                         <button
                             type="button"
-                            class="rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                            class="rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-diidsSurface"
                             @click="loadMoreOptions"
                             :disabled="isLoadingMore"
                         >

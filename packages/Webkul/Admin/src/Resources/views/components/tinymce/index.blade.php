@@ -34,8 +34,8 @@
                 <x-admin::modal ref="magicAIModal">
                     <!-- Modal Header -->
                     <x-slot:header>
-                        <p class="flex items-center gap-2.5 text-lg font-bold text-gray-800 dark:text-white">
-                            <span class="icon-magic text-2xl text-gray-800"></span>
+                        <p class="flex items-center gap-2.5 text-lg font-bold text-diidsInk dark:text-white">
+                            <span class="icon-magic text-2xl text-diidsInk"></span>
 
                             @lang('admin::app.components.tinymce.ai-generation.title')
                         </p>
@@ -99,7 +99,7 @@
                                 </template>
 
                                 <template v-else>
-                                    <span class="icon-magic text-2xl text-blue-600"></span>
+                                    <span class="icon-magic text-2xl text-navyBlue"></span>
 
                                     @lang('admin::app.components.tinymce.ai-generation.generate')
                                 </template>
@@ -119,7 +119,7 @@
                                 v-model="ai.content"
                             />
 
-                            <span class="text-xs text-gray-500">
+                            <span class="text-xs text-diidsInk/60">
                                 @lang('admin::app.components.tinymce.ai-generation.generated-content-info')
                             </span>
                         </x-admin::form.control-group>

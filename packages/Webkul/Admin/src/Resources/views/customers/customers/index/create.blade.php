@@ -12,7 +12,7 @@
                 <x-admin::modal ref="customerCreateModal">
                     <!-- Modal Header -->
                     <x-slot:header>
-                        <p class="text-lg font-bold text-gray-800 dark:text-white">
+                        <p class="text-lg font-bold text-diidsInk dark:text-white">
                             @lang('admin::app.customers.customers.index.create.title')
                         </p>
                     </x-slot>

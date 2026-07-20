@@ -23,7 +23,7 @@
 
             <!-- SEO Meta Description -->
             <p 
-                class="text-gray-600 dark:text-gray-300"
+                class="text-diidsInk/70 dark:text-gray-300"
                 v-text="metaDescription"
             >
             </p>

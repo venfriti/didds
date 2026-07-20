@@ -18,13 +18,13 @@
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-base font-semibold text-gray-600 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-white">
                         @lang('admin::app.reporting.products.index.last-search-terms')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.products.view', ['type' => 'last-search-terms']) }}"
-                        class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                     >
                         @lang('admin::app.reporting.products.index.view-details')
                     </a>
@@ -36,23 +36,23 @@
                         <div class="table-responsive grid w-full overflow-hidden rounded bg-white dark:bg-gray-900">
                             <!-- Table Header -->
                             <div
-                                class="row grid grid-cols-4 grid-rows-1 items-center gap-2.5 border-b bg-gray-50 px-4 py-2.5 font-semibold text-gray-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                                class="row grid grid-cols-4 grid-rows-1 items-center gap-2.5 border-b bg-diidsSurface px-4 py-2.5 font-semibold text-diidsInk/70 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                                 style="grid-template-columns: repeat(3, minmax(0, 1fr));"
                             >
                                 <div class="flex gap-2.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.reporting.products.index.search-term')
                                     </p>
                                 </div>
 
                                 <div class="flex gap-2.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.reporting.products.index.results')
                                     </p>
                                 </div>
 
                                 <div class="flex gap-2.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.reporting.products.index.uses')
                                     </p>
                                 </div>
@@ -60,7 +60,7 @@
 
                             <!-- Table Body -->
                             <div
-                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                                 style="grid-template-columns: repeat(3, minmax(0, 1fr));"
                                 v-for="record in report.statistics"
                             >

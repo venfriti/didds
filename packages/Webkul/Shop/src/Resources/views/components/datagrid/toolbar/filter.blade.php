@@ -36,7 +36,7 @@
                 >
                     <x-slot:toggle>
                         <div
-                            class="flex w-full max-w-[200px] cursor-pointer items-center justify-between gap-4 rounded-lg border border-zinc-200 bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-fit ltr:pl-3 ltr:pr-4 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-4 rtl:pr-3 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
+                            class="flex w-full max-w-[200px] cursor-pointer items-center justify-between gap-4 rounded-lg border border-diidsBorder bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-fit ltr:pl-3 ltr:pr-4 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-4 rtl:pr-3 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
                             :class="{'[&>*]:text-blue-600': filters.columns.length > 0}"
                         >
                             <span class="flex items-center justify-between gap-1.5">
@@ -49,7 +49,7 @@
                         </div>
                     </x-slot>
 
-                    <x-slot:header class="border-b border-zinc-200 !px-4">
+                    <x-slot:header class="border-b border-diidsBorder !px-4">
                         <p class="text-lg font-semibold">
                             @lang('shop::app.components.datagrid.toolbar.filter.apply-filter')
                         </p>
@@ -87,7 +87,7 @@
                                                 <x-slot:toggle>
                                                     <button
                                                         type="button"
-                                                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-zinc-200 bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-full max-md:!py-1.5 ltr:pl-4 ltr:pr-3 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-3 rtl:pr-4 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
+                                                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-diidsBorder bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-full max-md:!py-1.5 ltr:pl-4 ltr:pr-3 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-3 rtl:pr-4 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
                                                     >
                                                         <!-- If Allow Multiple Values -->
                                                         <span
@@ -168,7 +168,7 @@
 
                                         <div class="mt-4 grid grid-cols-2 gap-1.5 max-sm:my-2">
                                             <p
-                                                class="cursor-pointer rounded-md border border-gray-300 px-2 py-1.5 text-center font-medium leading-6 text-gray-600 max-md:text-sm max-sm:font-normal"
+                                                class="cursor-pointer rounded-md border border-gray-300 px-2 py-1.5 text-center font-medium leading-6 text-diidsInk/70 max-md:text-sm max-sm:font-normal"
                                                 v-for="option in column.filterable_options"
                                                 v-text="option.label"
                                                 @click="addFilter(
@@ -184,7 +184,7 @@
                                                     type="date"
                                                     :name="`${column.index}[from]`"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 max-sm:py-1.5"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400 max-sm:py-1.5"
                                                     :placeholder="column.label"
                                                     :ref="`${column.index}[from]`"
                                                     @change="addFilter(
@@ -200,7 +200,7 @@
                                                     type="date"
                                                     :name="`${column.index}[to]`"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 max-sm:py-1.5"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400 max-sm:py-1.5"
                                                     :placeholder="column.label"
                                                     :ref="`${column.index}[from]`"
                                                     @change="addFilter(
@@ -256,7 +256,7 @@
                                                     type="date"
                                                     :name="column.index"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 max-sm:py-1.5"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400 max-sm:py-1.5"
                                                     :placeholder="column.label"
                                                     :ref="column.index"
                                                     @change="addFilter($event, column)"
@@ -307,7 +307,7 @@
 
                                         <div class="my-4 grid grid-cols-2 gap-1.5">
                                             <p
-                                                class="cursor-pointer rounded-md border border-gray-300 px-2 py-1.5 text-center font-medium leading-6 text-gray-600 max-md:text-sm max-sm:font-normal"
+                                                class="cursor-pointer rounded-md border border-gray-300 px-2 py-1.5 text-center font-medium leading-6 text-diidsInk/70 max-md:text-sm max-sm:font-normal"
                                                 v-for="option in column.filterable_options"
                                                 v-text="option.label"
                                                 @click="addFilter(
@@ -323,7 +323,7 @@
                                                     type="datetime-local"
                                                     :name="`${column.index}[from]`"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400"
                                                     :placeholder="column.label"
                                                     :ref="`${column.index}[from]`"
                                                     @change="addFilter(
@@ -339,7 +339,7 @@
                                                     type="datetime-local"
                                                     :name="`${column.index}[to]`"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400"
                                                     :placeholder="column.label"
                                                     :ref="`${column.index}[from]`"
                                                     @change="addFilter(
@@ -395,7 +395,7 @@
                                                     :type="datetime-local"
                                                     :name="column.index"
                                                     value=""
-                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400"
+                                                    class="flex min-h-10 w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400"
                                                     :placeholder="column.label"
                                                     :ref="column.index"
                                                     @change="addFilter($event, column)"
@@ -449,7 +449,7 @@
                                                 <x-slot:toggle>
                                                     <button
                                                         type="button"
-                                                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-zinc-200 bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-full max-md:py-1.5 ltr:pl-4 ltr:pr-3 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-3 rtl:pr-4 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
+                                                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-diidsBorder bg-white py-2 text-sm transition-all hover:border-gray-400 focus:border-gray-400 max-md:w-full max-md:py-1.5 ltr:pl-4 ltr:pr-3 max-md:ltr:pl-2.5 max-md:ltr:pr-2.5 rtl:pl-3 rtl:pr-4 max-md:rtl:pl-2.5 max-md:rtl:pr-2.5"
                                                     >
                                                         <!-- If Allow Multiple Values -->
                                                         <span
@@ -525,7 +525,7 @@
                                         <div class="mb-2 mt-1.5 grid">
                                             <input
                                                 type="text"
-                                                class="w-full rounded-lg border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 max-sm:mb-0"
+                                                class="w-full rounded-lg border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-gray-400 focus:border-gray-400 max-sm:mb-0"
                                                 :name="column.index"
                                                 :placeholder="column.label"
                                                 @keyup.enter="addFilter($event, column)"

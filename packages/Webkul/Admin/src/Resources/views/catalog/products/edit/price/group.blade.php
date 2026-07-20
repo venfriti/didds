@@ -1,5 +1,5 @@
 <!-- Separator -->
-<span class="absolute my-1.5 block w-full border border-gray-200 ltr:left-0 rtl:right-0"></span>
+<span class="absolute my-1.5 block w-full border border-diidsBorder ltr:left-0 rtl:right-0"></span>
 
 <v-product-customer-group-price>
     <x-admin::shimmer.catalog.products.edit.group-price />
@@ -15,12 +15,12 @@
         <div>
             <!-- Header -->
             <div class="mt-1.5 flex items-center justify-between py-4">
-                <p class="py-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                <p class="py-2.5 text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.catalog.products.edit.price.group.title')
                 </p>
 
                 <p
-                    class="cursor-pointer text-blue-600 transition-all hover:underline"
+                    class="cursor-pointer text-navyBlue transition-all hover:underline"
                     @click="resetForm(); $refs.groupPriceCreateModal.open()"
                 >
                     @lang('admin::app.catalog.products.edit.price.group.create-btn')
@@ -60,12 +60,12 @@
                     />
 
                     <div class="flex justify-between">
-                        <p class="font-semibold text-gray-600 dark:text-gray-300">
+                        <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                             @{{ getGroupNameById(item.customer_group_id) }}
                         </p>
 
                         <p
-                            class="cursor-pointer text-blue-600 transition-all hover:underline"
+                            class="cursor-pointer text-navyBlue transition-all hover:underline"
                             @click="selectedPrice = item; $refs.groupPriceCreateModal.open()"
                         >
                             @lang('admin::app.catalog.products.edit.price.group.edit-btn')
@@ -73,14 +73,14 @@
                     </div>
 
                     <p
-                        class="text-gray-600 dark:text-gray-300"
+                        class="text-diidsInk/70 dark:text-gray-300"
                         v-if="item.value_type == 'fixed'"
                     >
                         @{{ "@lang('admin::app.catalog.products.edit.price.group.fixed-group-price-info')".replace(':qty', item.qty).replace(':price', item.value) }}
                     </p>
 
                     <p
-                        class="text-gray-600 dark:text-gray-300"
+                        class="text-diidsInk/70 dark:text-gray-300"
                         v-else
                     >
                         @{{ "@lang('admin::app.catalog.products.edit.price.group.discount-group-price-info')".replace(':qty', item.qty).replace(':price', item.value) }}
@@ -94,15 +94,15 @@
                 >
                     <img
                         src="{{ bagisto_asset('images/icon-discount.svg') }}"
-                        class="h-20 w-20 rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
+                        class="h-20 w-20 rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
                     />
 
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.price.group.add-group-price')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.price.group.empty-info')
                         </p>
                     </div>
@@ -120,14 +120,14 @@
                         <!-- Modal Header -->
                         <x-slot:header>
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-if="! selectedPrice.id"
                             >
                                 @lang('admin::app.catalog.products.edit.price.group.create.create-title')
                             </p>
 
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-else
                             >
                                 @lang('admin::app.catalog.products.edit.price.group.create.update-title')
@@ -229,7 +229,7 @@
                                 <!-- Delete Button -->
                                 <x-admin::button
                                     button-type="button"
-                                    class="cursor-pointer whitespace-nowrap rounded-md border-2 border-transparent px-3 py-1.5 font-semibold text-red-600 transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+                                    class="cursor-pointer whitespace-nowrap rounded-md border-2 border-transparent px-3 py-1.5 font-semibold text-red-600 transition-all hover:bg-diidsSurface dark:hover:bg-gray-950"
                                     :title="trans('admin::app.catalog.products.edit.price.group.create.delete-btn')"
                                     v-if="selectedPrice.id"
                                     @click="remove"

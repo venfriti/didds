@@ -8,7 +8,7 @@
     so styling stays consistent.
 -->
 <span class="relative inline-flex items-center">
-    <span class="peer inline-flex cursor-help text-gray-400 transition-colors hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+    <span class="peer inline-flex cursor-help text-diidsInk/40 transition-colors hover:text-diidsInk/70 dark:text-diidsInk/60 dark:hover:text-gray-300">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4 w-4"

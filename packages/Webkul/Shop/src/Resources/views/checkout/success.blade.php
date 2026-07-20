@@ -27,7 +27,7 @@
 			<p class="text-xl max-md:text-sm">
 				@if (auth()->guard('customer')->user())
 					@lang('shop::app.checkout.success.order-id-info', [
-						'order_id' => '<a class="text-blue-700" href="'.route('shop.customers.account.orders.view', $order->id).'">'.$order->increment_id.'</a>'
+						'order_id' => '<a class="text-navyBlue" href="'.route('shop.customers.account.orders.view', $order->id).'">'.$order->increment_id.'</a>'
 					])
 				@else
 					@lang('shop::app.checkout.success.order-id-info', ['order_id' => $order->increment_id])
@@ -38,7 +38,7 @@
 				@lang('shop::app.checkout.success.thanks')
 			</p>
 
-			<p class="text-xl text-zinc-500 max-md:text-center max-md:text-xs">
+			<p class="text-xl text-diidsInk/60 max-md:text-center max-md:text-xs">
 				@if (! empty($order->checkout_message))
 					{!! nl2br($order->checkout_message) !!}
 				@else

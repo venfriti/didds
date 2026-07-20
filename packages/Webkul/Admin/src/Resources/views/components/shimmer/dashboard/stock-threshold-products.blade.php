@@ -1,6 +1,6 @@
 <div class="box-shadow rounded">
     @for ($i = 1; $i <= 5; $i++)
-        <div class="row grid grid-cols-2 gap-y-6 border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950 max-sm:grid-cols-[1fr_auto]">
+        <div class="row grid grid-cols-2 gap-y-6 border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950 max-sm:grid-cols-[1fr_auto]">
             <div class="flex gap-2.5">
                 <div class="shimmer h-[65px] w-[65px] rounded"></div>
 

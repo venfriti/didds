@@ -58,7 +58,7 @@
                                     class="icon-star-fill cursor-pointer text-2xl"
                                     role="presentation"
                                     v-for="rating in [1,2,3,4,5]"
-                                    :class="appliedRatings >= rating ? 'text-amber-500' : 'text-zinc-500'"
+                                    :class="appliedRatings >= rating ? 'text-amber-500' : 'text-diidsInk/60'"
                                     @click="appliedRatings = rating"
                                 >
                                 </span>
@@ -129,7 +129,7 @@
 
                             <div class="mt-4 flex justify-start gap-4 max-xl:mb-5 max-sm:mb-5 max-sm:flex-wrap max-sm:justify-normal max-sm:gap-x-0">
                                 <button
-                                    class="primary-button w-full max-w-[374px] rounded-2xl px-11 py-4 text-center max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5"
+                                    class="primary-button w-full max-w-[374px] !rounded-full px-11 py-4 text-center max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5"
                                     type='submit'
                                 >
                                     @lang('shop::app.products.view.reviews.submit-review')
@@ -137,7 +137,7 @@
 
                                 <button
                                     type="button"
-                                    class="secondary-button items-center rounded-2xl px-8 py-2.5 max-md:w-full max-md:max-w-full max-md:rounded-lg max-md:py-1.5"
+                                    class="secondary-button items-center !rounded-full px-8 py-2.5 max-md:w-full max-md:max-w-full max-md:rounded-lg max-md:py-1.5"
                                     @click="canReview = false"
                                 >
                                     @lang('shop::app.products.view.reviews.cancel')
@@ -168,18 +168,18 @@
                             <!-- Left Section -->
                             <div class="sticky top-24 flex h-max flex-col gap-6 max-lg:relative max-lg:top-auto max-md:w-full">
 
-                                <div class="flex flex-col items-center gap-2 max-md:mt-3 max-md:gap-0 max-md:border-b max-md:border-zinc-200 max-md:pb-3">
+                                <div class="flex flex-col items-center gap-2 max-md:mt-3 max-md:gap-0 max-md:border-b max-md:border-diidsBorder max-md:pb-3">
                                     <p class="text-5xl max-md:text-3xl">
                                         {{ $avgRatings }}
                                     </p>
 
                                     <div class="flex items-center gap-0.5">
                                         @for ($i = 1; $i <= 5; $i++)
-                                            <span class="icon-star-fill text-3xl {{ $avgRatings >= $i ? 'text-amber-500' : 'text-zinc-500' }}"></span>
+                                            <span class="icon-star-fill text-3xl {{ $avgRatings >= $i ? 'text-amber-500' : 'text-diidsInk/60' }}"></span>
                                         @endfor
                                     </div>
 
-                                    <p class="text-base text-zinc-500 max-sm:text-sm">
+                                    <p class="text-base text-diidsInk/60 max-sm:text-sm">
                                         {{ $reviewHelper->getTotalFeedback($product) }}
 
                                         @lang('shop::app.products.view.reviews.ratings')
@@ -229,7 +229,7 @@
                                 ></v-product-review-item>
 
                                 <button
-                                    class="mx-auto block w-max rounded-2xl border border-navyBlue bg-white px-11 py-3 text-center text-base font-medium text-navyBlue"
+                                    class="mx-auto block w-max !rounded-full border border-navyBlue bg-white px-11 py-3 text-center text-base font-medium text-navyBlue"
                                     v-if="links?.next"
                                     @click="get()"
                                 >
@@ -280,7 +280,7 @@
         type="text/x-template"
         id="v-product-review-item-template"
     >
-        <div class="rounded-xl border border-zinc-200 p-6 max-md:hidden">
+        <div class="rounded-xl border border-diidsBorder p-6 max-md:hidden">
             <div class="flex gap-5">
                 <template v-if="review.profile">
                     <img
@@ -296,7 +296,7 @@
                         class="flex max-h-[100px] min-h-[100px] min-w-[100px] max-w-[100px] items-center justify-center rounded-xl bg-zinc-100"
                         :title="review.name"
                     >
-                        <span class="text-2xl font-semibold text-zinc-500">
+                        <span class="text-2xl font-semibold text-diidsInk/60">
                             @{{ review.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('') }}
                         </span>
                     </div>
@@ -315,7 +315,7 @@
                         <span
                             class="icon-star-fill text-3xl"
                             v-for="rating in [1,2,3,4,5]"
-                            :class="review.rating >= rating ? 'text-amber-500' : 'text-zinc-500'"
+                            :class="review.rating >= rating ? 'text-amber-500' : 'text-diidsInk/60'"
                         ></span>
                     </div>
                 </div>
@@ -403,7 +403,7 @@
 
         <!-- For Mobile View -->
         <div class="md:hidden">
-            <div class="grid gap-1.5 rounded-xl border border-zinc-200 p-4 max-md:mb-0">
+            <div class="grid gap-1.5 rounded-xl border border-diidsBorder p-4 max-md:mb-0">
                 <div class="flex items-center gap-2.5">
                     <img
                         v-if="review.profile"
@@ -418,7 +418,7 @@
                         class="min-h-10 min-w-10 max-w-10 flex max-h-10 items-center justify-center rounded-full bg-zinc-100"
                         :title="review.name"
                     >
-                        <span class="text-xs font-semibold text-zinc-500">
+                        <span class="text-xs font-semibold text-diidsInk/60">
                             @{{ review.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('') }}
                         </span>
                     </div>
@@ -428,7 +428,7 @@
                             @{{ review.name }}
                         </p>
 
-                        <p class="text-xs text-zinc-500">
+                        <p class="text-xs text-diidsInk/60">
                             @{{ review.created_at }}
                         </p>
                     </div>
@@ -436,7 +436,7 @@
 
                 <div class="flex items-center">
                     @for ($i = 1; $i <= 5; $i++)
-                        <span class="icon-star-fill text-xl {{ $avgRatings >= $i ? 'text-amber-500' : 'text-zinc-500' }}"></span>
+                        <span class="icon-star-fill text-xl {{ $avgRatings >= $i ? 'text-amber-500' : 'text-diidsInk/60' }}"></span>
                     @endfor
                 </div>
 
@@ -445,7 +445,7 @@
                         @{{ review.title }}
                     </p>
 
-                    <p class="mt-1.5 text-sm text-zinc-500">
+                    <p class="mt-1.5 text-sm text-diidsInk/60">
                         @{{ review.comment }}
                     </p>
 

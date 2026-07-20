@@ -13,7 +13,7 @@
         {!! view_render_event('bagisto.admin.catalog.categories.create.create_form_controls.before') !!}
 
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.catalog.categories.create.title')
             </p>
 
@@ -21,7 +21,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.catalog.categories.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.catalog.categories.create.back-btn')
                 </a>
@@ -46,7 +46,7 @@
 
                 <!-- General -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.categories.create.general')
                     </p>
 
@@ -75,7 +75,7 @@
                                 type="text"
                                 id="name"
                                 :class="[errors.length ? 'border border-red-600 hover:border-red-600' : '']"
-                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                 name="name"
                                 v-bind="field"
                                 placeholder="{{ trans('admin::app.catalog.categories.create.name') }}"
@@ -88,7 +88,7 @@
 
                     <div>
                         <!-- Parent category -->
-                        <label class="mb-2.5 block text-xs font-medium leading-6 text-gray-800 dark:text-white">
+                        <label class="mb-2.5 block text-xs font-medium leading-6 text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.categories.create.parent-category')
                         </label>
 
@@ -112,7 +112,7 @@
 
                 <!-- Description and images -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.categories.create.description-and-images')
                     </p>
 
@@ -141,11 +141,11 @@
                     <div class="flex pt-5">
                         <!-- Add Logo -->
                         <div class="flex w-2/5 flex-col gap-2">
-                            <p class="font-medium text-gray-800 dark:text-white">
+                            <p class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.categories.create.logo')
                             </p>
 
-                            <p class="text-xs text-gray-500">
+                            <p class="text-xs text-diidsInk/60">
                                 @lang('admin::app.catalog.categories.create.logo-size')
                             </p>
 
@@ -154,11 +154,11 @@
 
                         <!-- Add Banner -->
                         <div class="flex w-3/5 flex-col gap-2">
-                            <p class="font-medium text-gray-800 dark:text-white">
+                            <p class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.categories.create.banner')
                             </p>
 
-                            <p class="text-xs text-gray-500">
+                            <p class="text-xs text-diidsInk/60">
                                 @lang('admin::app.catalog.categories.create.banner-size')
                             </p>
 
@@ -176,7 +176,7 @@
 
                 <!-- SEO Details -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.categories.create.seo-details')
                     </p>
 
@@ -222,7 +222,7 @@
                                     type="text"
                                     id="slug"
                                     :class="[errors.length ? 'border border-red-600 hover:border-red-600' : '']"
-                                    class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                    class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                     name="slug"
                                     v-bind="field"
                                     placeholder="{{ trans('admin::app.catalog.categories.create.slug') }}"
@@ -277,7 +277,7 @@
 
                 <x-admin::accordion>
                     <x-slot:header>
-                        <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.categories.create.settings')
                         </p>
                     </x-slot>
@@ -285,7 +285,7 @@
                     <x-slot:content>
                         <!-- Position -->
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="required text-gray-800 dark:text-white">
+                            <x-admin::form.control-group.label class="required text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.categories.create.position')
                             </x-admin::form.control-group.label>
 
@@ -303,7 +303,7 @@
 
                         <!-- Display Mode  -->
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="required font-medium text-gray-800 dark:text-white">
+                            <x-admin::form.control-group.label class="required font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.categories.create.display-mode')
                             </x-admin::form.control-group.label>
 
@@ -335,7 +335,7 @@
 
                         <!-- Visible in menu -->
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="font-medium text-gray-800 dark:text-white">
+                            <x-admin::form.control-group.label class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.categories.create.visible-in-menu')
                             </x-admin::form.control-group.label>
 
@@ -357,7 +357,7 @@
                 <!-- Filterable Attributes -->
                 <x-admin::accordion>
                     <x-slot:header>
-                        <p class="required p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="required p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.categories.create.filterable-attributes')
                         </p>
                     </x-slot>
@@ -377,7 +377,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="{{ $attribute->name ?? $attribute->admin_name }}"
                                     v-pre
                                 >

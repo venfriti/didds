@@ -87,7 +87,7 @@
                     :is-selected="true"
                 >
                     <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                        <p class="text-lg text-diidsInk/60 max-1180:text-sm">
                             {!! $product->description !!}
                         </p>
                     </div>
@@ -132,7 +132,7 @@
                                             </a>
                                         @else
                                             <div class="grid">
-                                                <p class="text-base text-zinc-500">
+                                                <p class="text-base text-diidsInk/60">
                                                     {{ $customAttributeValue['value'] }}
                                                 </p>
                                             </div>
@@ -164,14 +164,14 @@
             class="max-md:border-none"
             :is-active="true"
         >
-            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+            <x-slot:header class="bg-diidsSurface max-md:!py-3 max-sm:!py-2">
                 <p class="text-base font-medium 1180:hidden">
                     @lang('shop::app.products.view.description')
                 </p>
             </x-slot>
 
             <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                <div class="mb-5 text-lg text-diidsInk/60 max-1180:text-sm max-md:mb-1 max-md:px-4">
                     {!! $product->description !!}
                 </div>
             </x-slot>
@@ -183,7 +183,7 @@
                 class="max-md:border-none"
                 :is-active="false"
             >
-                <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+                <x-slot:header class="bg-diidsSurface max-md:!py-3 max-sm:!py-2">
                     <p class="text-base font-medium 1180:hidden">
                         @lang('shop::app.products.view.additional-information')
                     </p>
@@ -191,7 +191,7 @@
 
                 <x-slot:content class="max-sm:px-0">
                     <div class="container max-1180:px-5">
-                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg text-zinc-500 max-1180:text-sm">
+                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg text-diidsInk/60 max-1180:text-sm">
                             @foreach ($customAttributeValues as $customAttributeValue)
                                 @if (! empty($customAttributeValue['value']))
                                     <div class="grid">
@@ -224,7 +224,7 @@
                                     @else
                                         <div class="grid">
                                             <p
-                                                class="text-base text-zinc-500"
+                                                class="text-base text-diidsInk/60"
                                                 v-pre
                                             >
                                                 {{ $customAttributeValue['value'] ?? '-' }}
@@ -245,7 +245,7 @@
             :is-active="false"
         >
             <x-slot:header
-                class="bg-gray-100 max-md:!py-3 max-sm:!py-2"
+                class="bg-diidsSurface max-md:!py-3 max-sm:!py-2"
                 id="review-accordian-button"
             >
                 <p class="text-base font-medium">
@@ -298,7 +298,7 @@
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex justify-between gap-4">
-                                    <h1 class="break-words text-3xl font-medium max-sm:text-xl" v-pre>
+                                    <h1 class="break-words font-dmserif text-3xl text-diidsInk max-sm:text-xl" v-pre>
                                         {{ $product->name }}
                                     </h1>
 
@@ -347,7 +347,7 @@
                                 </p>
 
                                 @if (\Webkul\Tax\Facades\Tax::isInclusiveTaxProductPrices())
-                                    <span class="text-sm font-normal text-zinc-500 max-sm:text-xs">
+                                    <span class="text-sm font-normal text-diidsInk/60 max-sm:text-xs">
                                         (@lang('shop::app.products.view.tax-inclusive'))
                                     </span>
                                 @endif
@@ -355,7 +355,7 @@
                                 @if (count($product->getTypeInstance()->getCustomerGroupPricingOffers()))
                                     <div class="mt-2.5 grid gap-1.5">
                                         @foreach ($product->getTypeInstance()->getCustomerGroupPricingOffers() as $offer)
-                                            <p class="text-zinc-500 [&>*]:text-black">
+                                            <p class="text-diidsInk/60 [&>*]:text-black">
                                                 {!! $offer !!}
                                             </p>
                                         @endforeach
@@ -366,7 +366,7 @@
 
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
 
-                                <p class="mt-6 text-lg text-zinc-500 max-sm:mt-1.5 max-sm:text-sm">
+                                <p class="mt-6 text-lg text-diidsInk/60 max-sm:mt-1.5 max-sm:text-sm">
                                     {!! $product->short_description !!}
                                 </p>
 
@@ -487,7 +487,7 @@
             <!-- Contact Us Modal -->
             <x-shop::modal ref="contactUsModal">
                 <x-slot:header>
-                <h2 class="text-lg font-semibold max-md:text-base">
+                <h2 class="font-dmserif text-lg text-diidsInk max-md:text-base">
                         @lang('shop::app.products.view.contact-us.title')
                     </h2>
                 </x-slot>
@@ -580,7 +580,7 @@
                         <div class="mt-6 flex justify-end">
                             <button
                                 type="submit"
-                                class="primary-button rounded-2xl px-8 py-3 max-sm:rounded-lg max-sm:px-6 max-sm:py-2"
+                                class="primary-button !rounded-full px-8 py-3 max-sm:rounded-lg max-sm:px-6 max-sm:py-2"
                             >
                                 @lang('shop::app.products.view.contact-us.submit')
                             </button>

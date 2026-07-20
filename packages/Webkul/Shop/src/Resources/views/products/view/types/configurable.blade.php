@@ -26,7 +26,7 @@
                     <!-- Dropdown Options Container -->
                     <template v-if="! attribute.swatch_type || attribute.swatch_type == '' || attribute.swatch_type == 'dropdown'">
                         <!-- Dropdown Label -->
-                        <h2 class="mb-4 text-xl max-sm:mb-1.5 max-sm:text-base max-sm:font-medium">
+                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk max-sm:mb-1.5 max-sm:text-base max-sm:font-medium">
                             @{{ attribute.label }}
                         </h2>
                         
@@ -34,7 +34,7 @@
                         <v-field
                             as="select"
                             :name="'super_attribute[' + attribute.id + ']'"
-                            class="custom-select mb-3 block w-full cursor-pointer rounded-lg border border-zinc-200 bg-white px-5 py-3 text-base text-zinc-500 focus:border-blue-500 focus:ring-blue-500"
+                            class="custom-select mb-3 block w-full cursor-pointer rounded-lg border border-diidsBorder bg-white px-5 py-3 text-base text-diidsInk/60 focus:border-blue-500 focus:ring-blue-500"
                             :class="[errors['super_attribute[' + attribute.id + ']'] ? 'border border-red-500' : '']"
                             :id="'attribute_' + attribute.id"
                             v-model="attribute.selectedValue"
@@ -56,7 +56,7 @@
                     <!-- Swatch Options Container -->
                     <template v-else>
                         <!-- Option Label -->
-                        <h2 class="mb-4 text-xl max-sm:mb-2 max-sm:text-base">
+                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk max-sm:mb-2 max-sm:text-base">
                             @{{ attribute.label }}
                         </h2>
 
@@ -93,7 +93,7 @@
                                         </v-field>
 
                                         <span
-                                            class="h-8 w-8 rounded-full border border-gray-200 max-sm:h-[25px] max-sm:w-[25px]"
+                                            class="h-8 w-8 rounded-full border border-diidsBorder max-sm:h-[25px] max-sm:w-[25px]"
                                             tabindex="0"
                                             :style="{ 'background-color': option.swatch_value }"
                                         ></span>
@@ -101,7 +101,7 @@
 
                                     <!-- Image Swatch Options -->
                                     <label 
-                                        class="group relative flex h-[60px] w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-md border bg-white font-medium uppercase text-gray-900 hover:bg-gray-50 sm:py-6"
+                                        class="group relative flex h-[60px] w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-md border bg-white font-medium uppercase text-gray-900 hover:bg-diidsSurface sm:py-6"
                                         :class="{'border-navyBlue' : option.id == attribute.selectedValue }"
                                         :title="option.label"
                                         v-if="attribute.swatch_type == 'image'"
@@ -171,7 +171,7 @@
                             </template>
 
                             <span
-                                class="text-sm text-gray-600 max-sm:text-xs"
+                                class="text-sm text-diidsInk/70 max-sm:text-xs"
                                 v-if="! attribute.options.length"
                             >
                                 @lang('shop::app.products.view.type.configurable.select-above-options')

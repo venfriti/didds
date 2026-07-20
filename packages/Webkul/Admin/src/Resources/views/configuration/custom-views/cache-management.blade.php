@@ -37,11 +37,11 @@
 
             <!-- Clear Cache Section -->
             <div class="mb-4">
-                <p class="mb-3 text-sm font-semibold text-gray-800 dark:text-white">
+                <p class="mb-3 text-sm font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.configuration.index.cache-management.clear-cache-title')
                 </p>
 
-                <p class="mb-3 text-xs text-gray-600 dark:text-gray-300">
+                <p class="mb-3 text-xs text-diidsInk/70 dark:text-gray-300">
                     @lang('admin::app.configuration.index.cache-management.clear-cache-info')
                 </p>
 
@@ -66,11 +66,11 @@
 
             <!-- Build Cache Section -->
             <div class="mb-4">
-                <p class="mb-3 text-sm font-semibold text-gray-800 dark:text-white">
+                <p class="mb-3 text-sm font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.configuration.index.cache-management.build-cache-title')
                 </p>
 
-                <p class="mb-3 text-xs text-gray-600 dark:text-gray-300">
+                <p class="mb-3 text-xs text-diidsInk/70 dark:text-gray-300">
                     @lang('admin::app.configuration.index.cache-management.build-cache-info')
                 </p>
 
@@ -95,19 +95,19 @@
 
             <!-- Output Console -->
             <div class="overflow-hidden rounded border dark:border-gray-800">
-                <div class="flex items-center justify-between border-b bg-gray-50 px-3 py-2 dark:border-gray-800 dark:bg-gray-900">
-                    <p class="text-xs font-semibold text-gray-800 dark:text-white">
+                <div class="flex items-center justify-between border-b bg-diidsSurface px-3 py-2 dark:border-gray-800 dark:bg-gray-900">
+                    <p class="text-xs font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.configuration.index.cache-management.console-title')
                     </p>
 
                     <div class="flex items-center gap-3">
-                        <span class="text-[11px] text-gray-500 dark:text-gray-400">
+                        <span class="text-[11px] text-diidsInk/60 dark:text-diidsInk/40">
                             @{{ logs.length }} @lang('admin::app.configuration.index.cache-management.console-entries')
                         </span>
 
                         <button
                             type="button"
-                            class="text-[11px] text-gray-500 underline hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                            class="text-[11px] text-diidsInk/60 underline hover:text-diidsInk/80 dark:text-diidsInk/40 dark:hover:text-gray-200"
                             @click="clearConsole"
                             v-if="logs.length"
                         >
@@ -122,7 +122,7 @@
                 >
                     <!-- Empty State -->
                     <div
-                        class="flex h-[90px] items-center justify-center font-mono text-xs text-gray-600"
+                        class="flex h-[90px] items-center justify-center font-mono text-xs text-diidsInk/70"
                         v-if="! logs.length"
                     >
                         @lang('admin::app.configuration.index.cache-management.console-empty')
@@ -136,7 +136,7 @@
                     >
                         <!-- Command Line -->
                         <div class="flex items-center gap-2 font-mono text-xs">
-                            <span class="select-none text-gray-600">@{{ log.time }}</span>
+                            <span class="select-none text-diidsInk/70">@{{ log.time }}</span>
                             <span class="select-none text-green-400">&#10095;</span>
                             <span class="text-white">php artisan @{{ log.command }}</span>
 

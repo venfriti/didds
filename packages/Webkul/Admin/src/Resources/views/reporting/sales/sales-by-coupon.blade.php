@@ -19,13 +19,13 @@
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-base font-semibold text-gray-600 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-white">
                         @lang('admin::app.reporting.sales.index.sales-by-coupon')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.sales.view', ['type' => 'sales-by-coupon']) }}"
-                        class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                     >
                         @lang('admin::app.reporting.sales.index.view-details')
                     </a>
@@ -52,12 +52,12 @@
 
                                     <span
                                         v-else
-                                        class="rounded bg-gray-100 px-2 py-0.5 font-mono text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                                        class="rounded bg-diidsSurface px-2 py-0.5 font-mono text-xs font-semibold text-diidsInk/80 dark:bg-gray-800 dark:text-gray-300"
                                     >
                                         @{{ coupon.coupon_code }}
                                     </span>
 
-                                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                                    <span class="text-xs text-diidsInk/60 dark:text-diidsInk/40">
                                         @{{ coupon.total }} @lang('admin::app.reporting.sales.index.orders')
                                     </span>
                                 </div>
@@ -70,7 +70,7 @@
                                         ></div>
                                     </div>
 
-                                    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                                    <p class="text-sm font-semibold text-diidsInk/70 dark:text-gray-300">
                                         @{{ coupon.formatted_discount_total }}
                                     </p>
                                 </div>

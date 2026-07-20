@@ -24,7 +24,7 @@
         <template v-else>
             <div class="box-shadow rounded bg-white dark:bg-gray-900">
                 <div class="flex items-center justify-between p-4">
-                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.sales.orders.create.recent-order-items.title')
                     </p>
                 </div>
@@ -35,18 +35,18 @@
                     v-if="items.length"
                 >
                     <div
-                        class="row flex gap-2.5 border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
+                        class="row flex gap-2.5 border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
                         v-for="item in items"
                     >
                         <!-- Image -->
                         <div
                             class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                            :class="{'overflow-hidden rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! item.product.images.length}"
+                            :class="{'overflow-hidden rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! item.product.images.length}"
                         >
                             <template v-if="! item.product.images.length">
                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                             
-                                <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                     @lang('admin::app.catalog.products.edit.types.grouped.image-placeholder')
                                 </p>
                             </template>
@@ -59,17 +59,17 @@
                         <!-- Item Information -->
                         <div class="grid gap-1.5">
                             <!-- Item Name -->
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @{{ item.product.name }}
                             </p>
 
                             <!-- Item SKU -->
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @{{ "@lang('admin::app.sales.orders.create.recent-order-items.sku', ['sku' => ':replace'])".replace(':replace', item.product.sku) }}
                             </p>
 
                             <!-- Price -->
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @{{ item.product.formatted_price }}
                             </p>
 
@@ -80,7 +80,7 @@
                             >
                                 <!-- Details Toggler -->
                                 <p
-                                    class="flex cursor-pointer items-center gap-1 text-sm text-gray-800 dark:text-white"
+                                    class="flex cursor-pointer items-center gap-1 text-sm text-diidsInk dark:text-white"
                                     @click="item.option_show = ! item.option_show"
                                 >
                                     @lang('admin::app.sales.orders.create.recent-order-items.see-details')
@@ -96,11 +96,11 @@
                                     v-show="item.option_show"
                                 >
                                     <div v-for="option in item.additional.attributes">
-                                        <p class="text-sm text-gray-600 dark:text-white">
+                                        <p class="text-sm text-diidsInk/70 dark:text-white">
                                             @{{ option.attribute_name + ':' }}
                                         </p>
 
-                                        <p class="text-sm font-medium text-gray-800 dark:text-white">
+                                        <p class="text-sm font-medium text-diidsInk dark:text-white">
                                             @{{ option.option_label }}
                                         </p>
                                     </div>
@@ -111,7 +111,7 @@
                             <div class="mt-2 flex items-center gap-2.5">
                                 <a
                                     :href="'{{ route('admin.sales.orders.view', ':id') }}'.replace(':id', item.order_id)"
-                                    class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                                    class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                                     target="_blank"
                                 >
                                     @lang('admin::app.sales.orders.create.recent-order-items.view')
@@ -137,11 +137,11 @@
                     <img src="{{ bagisto_asset('images/icon-add-product.svg') }}" class="h-20 w-20 dark:mix-blend-exclusion dark:invert">
                     
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.sales.orders.create.recent-order-items.empty-title')
                         </p>
     
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.sales.orders.create.recent-order-items.empty-description')
                         </p>
                     </div>

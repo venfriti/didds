@@ -551,12 +551,12 @@ img.lazy {
 
 :root {
   --diids-bg:        #EDE8E0;
-  --diids-surface:   #FAF8F5;
-  --diids-ink:       #201D1A;
+  --diids-surface:   #F5F5F3;
+  --diids-ink:       #141414;
   --diids-navy:      #1F2A44;
   --diids-navy-hover: #16203C;
   --diids-blush:     #C98B7A;
-  --diids-border:    #D9D2C7;
+  --diids-border:    #D6D6D3;
 
   --diids-font-display: 'Manrope', -apple-system, sans-serif;
   --diids-font-body:    'Manrope', -apple-system, sans-serif;
@@ -592,6 +592,66 @@ body {
   border-style: solid;
   border-color: var(--diids-navy);
   color: var(--diids-navy);
+}
+
+/* CMS page content (About Us, policy pages, etc.) — the html_content
+   column stores plain h2/h3/p/ul/ol/a markup with no wrapping component
+   styles it inherits by default, so it needs its own readable rhythm. */
+.static-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  color: var(--diids-ink);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.static-container h2 {
+  font-family: var(--diids-font-display);
+  font-size: 1.875rem;
+  line-height: 1.25;
+  margin-bottom: 1.75rem;
+}
+
+.static-container h3 {
+  font-family: var(--diids-font-display);
+  font-size: 1.125rem;
+  line-height: 1.4;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.static-container p {
+  margin-bottom: 1.1rem;
+}
+
+.static-container ul,
+.static-container ol {
+  margin: 0 0 1.1rem 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.static-container ul {
+  list-style: disc;
+}
+
+.static-container ol {
+  list-style: decimal;
+}
+
+.static-container a {
+  color: var(--diids-navy);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+}
+
+.static-container a:hover {
+  color: var(--diids-navy-hover);
+}
+
+.static-container strong {
+  font-weight: 600;
 }
 
 @media (prefers-reduced-motion: reduce) {

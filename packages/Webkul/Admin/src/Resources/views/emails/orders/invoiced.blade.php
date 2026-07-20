@@ -131,7 +131,7 @@
 
                                             <a
                                                 href="{{ Storage::url($attribute['option_label']) }}"
-                                                class="text-blue-600 hover:underline"
+                                                class="text-navyBlue hover:underline"
                                                 download="{{ File::basename($attribute['option_label']) }}"
                                             >
                                                 {{ File::basename($attribute['option_label']) }}

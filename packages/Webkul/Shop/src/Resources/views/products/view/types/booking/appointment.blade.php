@@ -77,7 +77,7 @@
                 </p>
 
                 <!-- Slot Duration -->
-                <p class="grid gap-y-2.5 text-sm text-gray-600">
+                <p class="grid gap-y-2.5 text-sm text-diidsInk/70">
                     <template v-if="day.slots && day.slots?.length">
                         <div v-for="slot in day.slots">
                             @{{ slot.from }} - @{{ slot.to }}

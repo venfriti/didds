@@ -32,16 +32,16 @@
                 v-slot="{ errors }"
             >
                 <div
-                    class="flex min-h-[42px] w-full cursor-pointer flex-wrap items-center gap-1.5 rounded-md border bg-white px-2 py-1.5 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                    class="flex min-h-[42px] w-full cursor-pointer flex-wrap items-center gap-1.5 rounded-md border bg-white px-2 py-1.5 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                     :class="[
                         errors.length ? 'border !border-red-600 hover:!border-red-600' : '',
-                        isOpen ? 'border-gray-400 dark:border-gray-400' : '',
+                        isOpen ? 'border-diidsBorder dark:border-diidsBorder' : '',
                     ]"
                     :name="name"
                     @click="toggleDropdown"
                 >
                     <span
-                        class="inline-flex max-w-full items-center gap-1 rounded bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600 dark:bg-gray-800 dark:text-gray-300"
+                        class="inline-flex max-w-full items-center gap-1 rounded bg-diidsSurface px-2 py-1 text-xs font-semibold text-diidsInk/70 dark:bg-gray-800 dark:text-gray-300"
                         v-for="option in selectedOptions"
                         :key="option.id"
                     >
@@ -55,14 +55,14 @@
                     </span>
 
                     <span
-                        class="px-1 text-gray-400 dark:text-gray-500"
+                        class="px-1 text-diidsInk/40 dark:text-diidsInk/60"
                         v-if="! selectedOptions.length"
                     >
                         @{{ placeholder }}
                     </span>
 
                     <span
-                        class="icon-arrow-down flex items-center text-2xl text-gray-500 transition-transform ltr:ml-auto rtl:mr-auto dark:text-gray-400"
+                        class="icon-arrow-down flex items-center text-2xl text-diidsInk/60 transition-transform ltr:ml-auto rtl:mr-auto dark:text-diidsInk/40"
                         :class="{ 'rotate-180': isOpen }"
                     ></span>
                 </div>
@@ -76,22 +76,22 @@
                             <input
                                 type="text"
                                 ref="searchInput"
-                                class="block w-full rounded-md border bg-white py-1.5 text-sm leading-6 text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400 ltr:pl-3 ltr:pr-9 rtl:pl-9 rtl:pr-3"
+                                class="block w-full rounded-md border bg-white py-1.5 text-sm leading-6 text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder ltr:pl-3 ltr:pr-9 rtl:pl-9 rtl:pr-3"
                                 :placeholder="searchPlaceholder"
                                 v-model="search"
                                 @keydown.delete="removeLastOnBackspace"
                             />
 
-                            <span class="icon-search pointer-events-none absolute top-1.5 flex items-center text-2xl text-gray-400 ltr:right-2 rtl:left-2"></span>
+                            <span class="icon-search pointer-events-none absolute top-1.5 flex items-center text-2xl text-diidsInk/40 ltr:right-2 rtl:left-2"></span>
                         </div>
                     </div>
 
                     <div class="max-h-60 overflow-y-auto py-1">
                         <div
-                            class="flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm transition-all hover:bg-gray-100 dark:hover:bg-gray-800"
+                            class="flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm transition-all hover:bg-diidsSurface dark:hover:bg-gray-800"
                             :class="isSelected(option.id)
-                                ? 'font-semibold text-blue-600 dark:text-blue-500'
-                                : 'text-gray-600 dark:text-gray-300'"
+                                ? 'font-semibold text-navyBlue dark:text-navyBlue'
+                                : 'text-diidsInk/70 dark:text-gray-300'"
                             v-for="option in filteredOptions"
                             :key="option.id"
                             @click="toggle(option.id)"
@@ -99,13 +99,13 @@
                             <span class="truncate">@{{ option.label }}</span>
 
                             <span
-                                class="icon-checked shrink-0 text-xl text-blue-600 dark:text-blue-500"
+                                class="icon-checked shrink-0 text-xl text-navyBlue dark:text-navyBlue"
                                 v-show="isSelected(option.id)"
                             ></span>
                         </div>
 
                         <p
-                            class="px-3 py-2.5 text-sm text-gray-400 dark:text-gray-500"
+                            class="px-3 py-2.5 text-sm text-diidsInk/40 dark:text-diidsInk/60"
                             v-if="! filteredOptions.length"
                         >
                             @lang('admin::app.components.datagrid.filters.dropdown.searchable.no-results')

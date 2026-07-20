@@ -39,7 +39,7 @@
                         </p>
 
                         <!-- Service Description -->
-                        <p class="mt-2.5 max-w-[217px] text-sm font-medium text-zinc-500 max-md:mt-0 max-md:text-base max-sm:text-xs">
+                        <p class="mt-2.5 max-w-[217px] text-sm font-medium text-diidsInk/60 max-md:mt-0 max-md:text-base max-sm:text-xs">
                             {{ $service['description'] }}
                         </p>
                     </div>

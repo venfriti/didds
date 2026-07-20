@@ -18,7 +18,7 @@
             id="review-step-container"
         >
             <div class="flex items-center border-b p-4 dark:border-gray-800">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.sales.orders.create.cart.summary.title')
                 </p>
             </div>
@@ -31,11 +31,11 @@
 
                     <template v-if="displayTax.subtotal == 'including_tax'">
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.sub-total')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_sub_total_incl_tax }}
                             </p>
                         </div>
@@ -43,21 +43,21 @@
 
                     <template v-else-if="displayTax.subtotal == 'both'">
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.sub-total-excl-tax')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_sub_total }}
                             </p>
                         </div>
                         
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.sub-total-incl-tax')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_sub_total_incl_tax }}
                             </p>
                         </div>
@@ -65,11 +65,11 @@
 
                     <template v-else>
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.sub-total')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_sub_total }}
                             </p>
                         </div>
@@ -86,11 +86,11 @@
                         v-for="(amount, index) in cart.tax_amounts"
                         v-if="parseFloat(cart.tax_total)"
                     >
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.orders.create.cart.summary.tax') (@{{ index }})
                         </p>
 
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @{{ amount }}
                         </p>
                     </div>
@@ -102,11 +102,11 @@
 
                     <template v-if="displayTax.shipping == 'including_tax'">
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.shipping-amount')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_shipping_amount_incl_tax }}
                             </p>
                         </div>
@@ -114,21 +114,21 @@
 
                     <template v-else-if="displayTax.shipping == 'both'">
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.shipping-amount-excl-tax')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_shipping_amount }}
                             </p>
                         </div>
                         
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.shipping-amount-incl-tax')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_shipping_amount_incl_tax }}
                             </p>
                         </div>
@@ -136,11 +136,11 @@
 
                     <template v-else>
                         <div class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.summary.shipping-amount')
                             </p>
 
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @{{ cart.formatted_shipping_amount }}
                             </p>
                         </div>
@@ -157,11 +157,11 @@
                         class="row grid grid-cols-2 grid-rows-1 justify-between gap-4 text-right"
                         v-if="parseFloat(cart.discount_amount)"
                     >
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.orders.create.cart.summary.discount-amount')
                         </p>
 
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @{{ cart.formatted_discount_amount }}
                         </p>
                     </div>
@@ -173,7 +173,7 @@
                     {!! view_render_event('bagisto.admin.sales.order.create.left_component.summary.coupon.before') !!}
 
                     <div class="row grid grid-cols-2 grid-rows-1 justify-items-end gap-4 text-right">
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.orders.create.cart.summary.apply-coupon')
                         </p>
 
@@ -190,9 +190,9 @@
                         </template>
 
                         <template v-else>
-                            <p class="text-base font-medium text-gray-600">
+                            <p class="text-base font-medium text-diidsInk/70">
                                 <span
-                                    class="cursor-pointer text-blue-600"
+                                    class="cursor-pointer text-navyBlue"
                                     @click="$refs.couponModel.open()"
                                 >
                                     @lang('admin::app.sales.orders.create.cart.summary.apply-coupon')

@@ -14,7 +14,7 @@
                 method="PUT"
             >
                 <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-                    <p class="text-xl font-bold text-gray-800 dark:text-white">
+                    <p class="text-xl font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.account.edit.title')
                     </p>
 
@@ -22,7 +22,7 @@
                         <!-- Back Button -->
                         <a
                             href="{{ route('admin.dashboard.index') }}"
-                            class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                            class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                         >
                             @lang('admin::app.account.edit.back-btn')
                         </a>
@@ -45,7 +45,7 @@
                     <div class="flex flex-1 flex-col gap-2">
                         <!-- General -->
                         <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                            <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.account.edit.general')
                             </p>
 
@@ -57,7 +57,7 @@
                                 />
                             </x-admin::form.control-group>
 
-                            <p class="mb-4 text-xs text-gray-600 dark:text-gray-300">
+                            <p class="mb-4 text-xs text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.account.edit.upload-image-info')
                             </p>
 
@@ -103,7 +103,7 @@
                     <div class="flex w-[360px] max-w-full flex-col gap-2 max-md:w-full">
                         <x-admin::accordion>
                             <x-slot:header>
-                                <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                     @lang('admin::app.account.edit.change-password')
                                 </p>
                             </x-slot>
@@ -167,7 +167,7 @@
                         <div class="flex w-[360px] max-w-full flex-col gap-2 max-md:w-full">
                             <x-admin::accordion>
                                 <x-slot:header>
-                                    <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                         @lang('admin::app.account.setup.title')
                                     </p>
                                 </x-slot>
@@ -201,7 +201,7 @@
                     @toggle="setupModalClose()"
                 >
                     <x-slot:header>
-                        <p class="text-lg font-bold text-gray-800 dark:text-white">
+                        <p class="text-lg font-bold text-diidsInk dark:text-white">
                             @lang('admin::app.account.setup.title')
                         </p>
                     </x-slot>
@@ -213,7 +213,7 @@
                                 class="flex flex-col items-center"
                                 v-if="isLoading"
                             >
-                                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-navyBlue"></div>
                             </div>
 
                             <!-- Backup Codes State -->
@@ -221,17 +221,17 @@
                                 class="w-full"
                                 v-else-if="showBackupCodes"
                             >
-                                <p class="text-center text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="text-center text-base font-semibold text-diidsInk dark:text-white">
                                     @lang('admin::app.account.setup.backup-codes-title')
                                 </p>
 
-                                <p class="mt-1 text-center text-sm text-gray-600 dark:text-gray-300">
+                                <p class="mt-1 text-center text-sm text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.account.setup.backup-codes-subtitle')
                                 </p>
 
-                                <div class="mt-4 grid grid-cols-2 gap-2 rounded-md border bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-950">
+                                <div class="mt-4 grid grid-cols-2 gap-2 rounded-md border bg-diidsSurface p-4 dark:border-gray-800 dark:bg-gray-950">
                                     <p
-                                        class="text-center font-mono text-sm font-semibold tracking-widest text-gray-800 dark:text-gray-100"
+                                        class="text-center font-mono text-sm font-semibold tracking-widest text-diidsInk dark:text-gray-100"
                                         v-for="code in backupCodes"
                                         :key="code"
                                     >
@@ -261,7 +261,7 @@
                                 class="w-full"
                                 v-else
                             >
-                                <p class="text-center text-sm text-gray-600 dark:text-gray-300">
+                                <p class="text-center text-sm text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.account.setup.scan-qr')
                                 </p>
 

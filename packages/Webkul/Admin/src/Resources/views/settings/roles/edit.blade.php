@@ -15,7 +15,7 @@
         {!! view_render_event('bagisto.admin.settings.roles.edit.edit_form_controls.before', ['role' => $role]) !!}
 
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.roles.edit.title')
             </p>
 
@@ -23,7 +23,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.settings.roles.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.settings.roles.edit.back-btn')
                 </a>
@@ -47,7 +47,7 @@
 
                 <!-- Access Control Input Fields -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.settings.roles.edit.access-control')
                     </p>
 
@@ -57,7 +57,7 @@
                         <div class="mb-4">
                             <div class="shimmer mb-1.5 h-4 w-24"></div>
 
-                            <div class="custom-select h-11 w-full rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"></div>
+                            <div class="custom-select h-11 w-full rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"></div>
                         </div>
 
                         <!-- Roles Checkbox -->
@@ -77,7 +77,7 @@
                 <x-admin::accordion>
                     <x-slot:header>
                         <div class="flex items-center justify-between">
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.roles.edit.general')
                             </p>
                         </div>

@@ -28,7 +28,7 @@
         @endif
 
         <div class="mt-8 flex items-center justify-between max-md:mt-5">
-            <h2 class="break-all text-2xl font-medium max-sm:text-base">
+            <h2 class="break-all font-dmserif text-2xl text-diidsInk max-sm:text-base">
                 <span v-text="'{{ preg_replace('/[,\\"\\\']+/', '', $title) }}'" ></span>
             </h2>
         </div>
@@ -54,7 +54,7 @@
                 >
 
                 <p
-                    class="mt-1 text-sm text-gray-600"
+                    class="mt-1 text-sm text-diidsInk/70"
                     v-pre
                 >
                     {{ trans('shop::app.search.suggest') }}
@@ -179,7 +179,7 @@
 
                         <!-- Load More Button -->
                         <button
-                            class="secondary-button mx-auto mt-[60px] block w-max rounded-2xl px-11 py-3 text-center text-base max-md:rounded-lg max-md:text-sm max-sm:mt-7 max-sm:px-7 max-sm:py-2"
+                            class="secondary-button mx-auto mt-[60px] block w-max !rounded-full px-11 py-3 text-center text-base max-md:rounded-lg max-md:text-sm max-sm:mt-7 max-sm:px-7 max-sm:py-2"
                             @click="loadMoreProducts"
                             v-if="links.next"
                         >

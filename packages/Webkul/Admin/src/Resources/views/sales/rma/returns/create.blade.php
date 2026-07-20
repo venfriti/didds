@@ -10,14 +10,14 @@
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
         <!-- Heading -->
-        <h1 class="text-xl font-bold text-gray-800 dark:text-white">
+        <h1 class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.sales.rma.create-rma.create-title')
         </h1>
 
         <div class="flex items-center gap-x-2.5">
             <a
                 href="{{ route('admin.sales.rma.requests.index') }}"
-                class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
             >
                 @lang('admin::app.settings.channels.edit.back-btn')
             </a>
@@ -46,19 +46,19 @@
                         performAction
                     }">
                         <template v-if="! isLoading">
-                            <div class="row grid grid-cols-[0.5fr_1fr_1fr_0.5fr_1fr_1fr_0.1fr] grid-rows-1 min-h-[47px] items-center gap-2.5 border-b bg-gray-50 px-4 py-2.5 font-semibold text-gray-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
+                            <div class="row grid grid-cols-[0.5fr_1fr_1fr_0.5fr_1fr_1fr_0.1fr] grid-rows-1 min-h-[47px] items-center gap-2.5 border-b bg-diidsSurface px-4 py-2.5 font-semibold text-diidsInk/70 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                                 <div
                                     class="flex gap-2.5 items-center select-none"
                                     v-for="(columnGroup, index) in [['increment_id'], ['customer_name'], ['status'], ['grand_total'], ['method_title'], ['created_at']]"
                                 >
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <span class="[&>*]:after:content-['_/_']">
                                             <template v-for="column in columnGroup">
                                                 <span
                                                     class="after:content-['/'] last:after:content-['']"
                                                     :class="{
-                                                        'text-gray-800 dark:text-white font-medium': applied.sort.column == column,
-                                                        'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
+                                                        'text-diidsInk dark:text-white font-medium': applied.sort.column == column,
+                                                        'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                                     }"
                                                     @click="
                                                     available.columns.find(columnTemp => columnTemp.index === column)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === column)): {}
@@ -70,14 +70,14 @@
                                         </span>
 
                                         <i
-                                            class="ltr:ml-1.5 rtl:mr-1.5 text-base text-gray-800 dark:text-white align-text-bottom"
+                                            class="ltr:ml-1.5 rtl:mr-1.5 text-base text-diidsInk dark:text-white align-text-bottom"
                                             :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                             v-if="columnGroup.includes(applied.sort.column)"
                                         ></i>
                                     </p>
                                 </div>
 
-                                <p class="flex justify-end text-gray-600 cursor-pointer">
+                                <p class="flex justify-end text-diidsInk/70 cursor-pointer">
                                     @lang('admin::app.settings.data-transfer.imports.edit.action')
                                 </p>
                             </div>
@@ -100,13 +100,13 @@
                     }">
                         <template v-if="! isLoading">
                             <div
-                                class="row grid grid-cols-[0.5fr_1fr_1fr_0.5fr_1fr_1fr_0.1fr] grid-rows-1 px-4 py-2.5 border-b dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
+                                class="row grid grid-cols-[0.5fr_1fr_1fr_0.5fr_1fr_1fr_0.1fr] grid-rows-1 px-4 py-2.5 border-b dark:border-gray-800 transition-all hover:bg-diidsSurface dark:hover:bg-gray-950"
                                 v-for="record in available.records"
                             >
                                 <!-- Name, SKU, Attribute Family Columns -->
                                 <div class="flex gap-2.5">
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-html="record.increment_id"
                                     >
                                     </p>
@@ -114,7 +114,7 @@
 
                                 <!-- Image, Price, Id, Stock Columns -->
                                 <div class="flex gap-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ record.customer_name }}
                                     </p>
                                 </div>
@@ -125,7 +125,7 @@
 
                                 <div class="flex gap-1.5">
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-html="record.grand_total"
                                     >
                                     </p>
@@ -133,7 +133,7 @@
 
                                 <div class="flex gap-1.5">
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-html="record.method_title"
                                     >
                                     </p>
@@ -141,7 +141,7 @@
 
                                 <div class="flex gap-1.5">
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-html="record.created_at"
                                     >
                                     </p>
@@ -182,7 +182,7 @@
                             </x-slot>
 
                             <!-- Modal Content -->
-                            <x-slot:content class="bg-gray-50 dark:bg-gray-950">
+                            <x-slot:content class="bg-diidsSurface dark:bg-gray-950">
                                 <div
                                     class="journal-scroll flex flex-col gap-3 overflow-auto ltr:pr-1.5 rtl:pl-1.5 dark:text-gray-300"
                                     style="min-height: 420px; max-height: 60vh;"
@@ -283,7 +283,7 @@
                                         <a
                                             :href="'{{ route('shop.product_or_category.index', ':slug') }}'.replace(':slug', product.url_key)"
                                             target='_blank'
-                                            class="text-base font-semibold text-blue-600 hover:underline dark:text-blue-400"
+                                            class="text-base font-semibold text-navyBlue hover:underline dark:text-blue-400"
                                         >
                                             @{{ product.name }}
 
@@ -688,7 +688,7 @@
                                             />
 
                                             <label
-                                                class="text-xs text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                                class="text-xs text-diidsInk/70 dark:text-gray-300 font-medium cursor-pointer"
                                                 for="{{ $option->name }}"
                                             >
                                                 {{$option->name}}
@@ -717,7 +717,7 @@
                                                 />
 
                                                 <label
-                                                    class="text-xs text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                                    class="text-xs text-diidsInk/70 dark:text-gray-300 font-medium cursor-pointer"
                                                     for="{{ $attribute->id }}_{{ $key }}"
                                                 >
                                                     {{ $option->name }}
@@ -754,7 +754,7 @@
 
                     <!-- Images -->
                     <x-admin::form.control-group class="mt-4">
-                        <x-admin::form.control-group.label class="text-sm flex text-gray-700 dark:text-gray-300">
+                        <x-admin::form.control-group.label class="text-sm flex text-diidsInk/80 dark:text-gray-300">
                             @lang('admin::app.catalog.products.edit.images.title')
                         </x-admin::form.control-group.label>
 
@@ -771,7 +771,7 @@
                                 <!-- Image -->
                                 <img
                                     :src="image"
-                                    class="w-full h-full object-cover rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+                                    class="w-full h-full object-cover rounded-lg border border-diidsBorder dark:border-gray-700 shadow-sm"
                                 />
 
                                 <!-- Remove button -->
@@ -786,7 +786,7 @@
                         </div>
 
                         <!-- Upload box -->
-                        <label class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                        <label class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-diidsBorder dark:border-gray-700 rounded-lg cursor-pointer bg-diidsSurface dark:bg-gray-900 hover:bg-diidsSurface dark:hover:bg-gray-800 text-diidsInk/70 dark:text-gray-300 transition">
                             <span class="gap-2 flex items-center">
                                 <span class="icon-image text-xl"></span>
 

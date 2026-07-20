@@ -1,12 +1,29 @@
 {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.before') !!}
 
-<div class="grid min-h-[78px] w-full grid-cols-[1fr_auto_1fr] items-center border border-b border-l-0 border-r-0 border-t-0 px-[60px] max-1180:px-8">
+<div class="flex min-h-[78px] w-full items-center justify-between gap-x-10 border border-b border-l-0 border-r-0 border-t-0 px-[60px] max-1180:px-8">
     <!--
         This section will provide categories for the first, second, and third levels. If
         additional levels are required, users can customize them according to their needs.
     -->
     <!-- Left Nagivation Section -->
-    <div class="flex items-center gap-x-10 max-[1180px]:gap-x-5">
+    <div class="flex items-center gap-x-2 max-[1180px]:gap-x-1">
+        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.before') !!}
+
+        <a
+            href="{{ route('shop.home.index') }}"
+            aria-label="{{ config('app.name') }}"
+            class="flex items-center"
+        >
+            <img
+                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                width="131"
+                height="29"
+                alt="{{ config('app.name') }}"
+            >
+        </a>
+
+        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
+
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before') !!}
 
         <v-desktop-category>
@@ -29,25 +46,6 @@
         </v-desktop-category>
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.after') !!}
-    </div>
-
-    <!-- Centered Logo -->
-    <div class="flex items-center justify-self-center">
-        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.before') !!}
-
-        <a
-            href="{{ route('shop.home.index') }}"
-            aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.bagisto')"
-        >
-            <img
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                width="131"
-                height="29"
-                alt="{{ config('app.name') }}"
-            >
-        </a>
-
-        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
     </div>
 
     <!-- Right Nagivation Section -->
@@ -159,7 +157,7 @@
                             </p>
                         </div>
 
-                        <p class="w-full mt-3 border border-zinc-200"></p>
+                        <p class="w-full border-t border-diidsBorder pt-3"></p>
 
                         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.customers_action.before') !!}
 
@@ -168,14 +166,14 @@
 
                             <a
                                 href="{{ route('shop.customer.session.create') }}"
-                                class="block m-0 mx-auto text-base text-center primary-button w-max rounded-2xl px-7 max-md:rounded-lg ltr:ml-0 rtl:mr-0"
+                                class="block m-0 mx-auto text-base text-center primary-button w-max !rounded-full px-7 max-md:rounded-lg ltr:ml-0 rtl:mr-0"
                             >
                                 @lang('shop::app.components.layouts.header.desktop.bottom.sign-in')
                             </a>
 
                             <a
                                 href="{{ route('shop.customers.register.index') }}"
-                                class="block m-0 mx-auto text-base text-center border-2 secondary-button w-max rounded-2xl px-7 max-md:rounded-lg max-md:py-3 ltr:ml-0 rtl:mr-0"
+                                class="block m-0 mx-auto text-base text-center border-2 secondary-button w-max !rounded-full px-7 max-md:rounded-lg max-md:py-3 ltr:ml-0 rtl:mr-0"
                             >
                                 @lang('shop::app.components.layouts.header.desktop.bottom.sign-up')
                             </a>
@@ -200,30 +198,30 @@
                 @auth('customer')
                     <x-slot:content class="!p-0">
                         <div class="grid gap-2.5 p-5 pb-0">
-                            <p class="text-xl font-dmserif" v-pre>
-                                @lang('shop::app.components.layouts.header.desktop.bottom.welcome')’
+                            <p class="font-dmserif text-xl text-diidsInk" v-pre>
+                                @lang('shop::app.components.layouts.header.desktop.bottom.welcome')
                                 {{ auth()->guard('customer')->user()->first_name }}
                             </p>
 
-                            <p class="text-sm">
+                            <p class="text-sm text-diidsInk/60">
                                 @lang('shop::app.components.layouts.header.desktop.bottom.dropdown-text')
                             </p>
                         </div>
 
-                        <p class="w-full mt-3 border border-zinc-200"></p>
+                        <p class="w-full border-t border-diidsBorder pt-3"></p>
 
-                        <div class="mt-2.5 grid gap-1 pb-2.5">
+                        <div class="grid gap-1 pb-2.5 pt-2.5">
                             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.profile_dropdown.links.before') !!}
 
                             <a
-                                class="px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+                                class="px-5 py-2.5 text-sm text-diidsInk transition-colors cursor-pointer hover:bg-diidsSurface"
                                 href="{{ route('shop.customers.account.profile.index') }}"
                             >
                                 @lang('shop::app.components.layouts.header.desktop.bottom.profile')
                             </a>
 
                             <a
-                                class="px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+                                class="px-5 py-2.5 text-sm text-diidsInk transition-colors cursor-pointer hover:bg-diidsSurface"
                                 href="{{ route('shop.customers.account.orders.index') }}"
                             >
                                 @lang('shop::app.components.layouts.header.desktop.bottom.orders')
@@ -231,7 +229,7 @@
 
                             @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                                 <a
-                                    class="px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+                                    class="px-5 py-2.5 text-sm text-diidsInk transition-colors cursor-pointer hover:bg-diidsSurface"
                                     href="{{ route('shop.customers.account.wishlist.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.desktop.bottom.wishlist')
@@ -247,7 +245,7 @@
                                 />
 
                                 <a
-                                    class="px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+                                    class="px-5 py-2.5 text-sm text-diidsInk transition-colors cursor-pointer hover:bg-diidsSurface"
                                     href="{{ route('shop.customer.session.destroy') }}"
                                     onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
                                 >
@@ -331,7 +329,7 @@
                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                 >
                                     <li
-                                        class="text-sm font-medium text-zinc-500"
+                                        class="text-sm font-medium text-diidsInk/60"
                                         v-for="thirdLevelCategory in secondLevelCategory.children"
                                     >
                                         <a :href="thirdLevelCategory.url">
@@ -350,18 +348,6 @@
         <div v-else>
             <!-- Categories Navigation -->
             <div class="flex items-center">
-                <!-- "All" button for opening the category drawer -->
-                <div
-                    class="flex h-[77px] cursor-pointer items-center border-b-4 border-transparent hover:border-b-4 hover:border-navyBlue"
-                    @click="toggleCategoryDrawer"
-                >
-                    <span class="flex items-center gap-1 px-5 uppercase">
-                        <span class="text-xl icon-hamburger"></span>
-
-                        @lang('shop::app.components.layouts.header.desktop.bottom.all')
-                    </span>
-                </div>
-
                 <!-- Show only first 4 categories in main navigation -->
                 <div
                     class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-navyBlue"
@@ -370,7 +356,7 @@
                     <span>
                         <a
                             :href="category.url"
-                            class="inline-block px-5 uppercase"
+                            class="inline-block px-3 uppercase"
                         >
                             @{{ category.name }}
                         </a>
@@ -398,7 +384,7 @@
                                         v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                     >
                                         <li
-                                            class="text-sm font-medium text-zinc-500"
+                                            class="text-sm font-medium text-diidsInk/60"
                                             v-for="thirdLevelCategory in secondLevelCategory.children"
                                         >
                                             <a :href="thirdLevelCategory.url">
@@ -410,6 +396,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- "All" button for opening the category drawer -->
+                <div
+                    class="flex h-[77px] cursor-pointer items-center border-b-4 border-transparent hover:border-b-4 hover:border-navyBlue"
+                    @click="toggleCategoryDrawer"
+                >
+                    <span class="flex items-center gap-1 px-3 uppercase">
+                        <span class="text-xl icon-hamburger"></span>
+
+                        @lang('shop::app.components.layouts.header.desktop.bottom.all')
+                    </span>
                 </div>
             </div>
 
@@ -492,7 +490,7 @@
                                 class="flex-shrink-0 w-full h-full"
                                 v-if="currentViewLevel === 'third'"
                             >
-                                <div class="px-6 py-4 border-b border-gray-200">
+                                <div class="px-6 py-4 border-b border-diidsBorder">
                                     <button
                                         @click="goBackToMainView"
                                         class="flex items-center justify-center gap-2 focus:outline-none"
@@ -515,7 +513,7 @@
                                     >
                                         <a
                                             :href="thirdLevelCategory.url"
-                                            class="block px-6 py-2 text-sm transition-colors duration-200 hover:bg-gray-100"
+                                            class="block px-6 py-2 text-sm transition-colors duration-200 hover:bg-diidsSurface"
                                         >
                                             @{{ thirdLevelCategory.name }}
                                         </a>

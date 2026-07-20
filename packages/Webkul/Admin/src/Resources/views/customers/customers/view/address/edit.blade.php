@@ -13,7 +13,7 @@
             <!-- Address Edit Button -->
             @if (bouncer()->hasPermission('customers.addresses.edit'))
                 <p
-                    class="cursor-pointer text-blue-600 transition-all hover:underline"
+                    class="cursor-pointer text-navyBlue transition-all hover:underline"
                     @click="$refs.customerAddressModal.toggle()"
                 >
                     @lang('admin::app.customers.customers.view.address.edit.edit-btn')
@@ -39,7 +39,7 @@
                     >
                         <!-- Modal Header -->
                         <x-slot:header class="py-5">
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.customers.customers.view.address.edit.title')
                             </p>
                         </x-slot>
@@ -320,7 +320,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="default_address"
                                 >
                                     @lang('admin::app.customers.customers.view.address.edit.default-address')

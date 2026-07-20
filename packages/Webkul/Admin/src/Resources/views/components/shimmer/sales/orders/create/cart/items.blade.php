@@ -11,7 +11,7 @@
 
     <div class="flex flex-col">
         @for ($i = 1; $i <= 3; $i++)
-            <div class="row grid border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950">
+            <div class="row grid border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950">
                 <div class="flex justify-between gap-2.5">
                     <div class="flex gap-2.5">
                         <!-- Product Image -->

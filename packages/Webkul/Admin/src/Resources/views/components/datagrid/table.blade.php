@@ -33,7 +33,7 @@
 
                     <template v-else>
                         <div
-                            class="row grid min-h-[47px] items-center gap-2.5 border-b bg-gray-50 px-4 py-2.5 font-semibold text-gray-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                            class="row grid min-h-[47px] items-center gap-2.5 border-b bg-diidsSurface px-4 py-2.5 font-semibold text-diidsInk/70 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                             :style="`grid-template-columns: repeat(${gridsCount}, minmax(150px, 1fr))`"
                         >
                             <!-- Mass Actions -->
@@ -51,8 +51,8 @@
                                     <span
                                         class="icon-uncheckbox cursor-pointer rounded-md text-2xl"
                                         :class="[
-                                            applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-blue-600 ' : (
-                                                applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
+                                            applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-navyBlue ' : (
+                                                applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-navyBlue' : ''
                                             ),
                                         ]"
                                     >
@@ -64,14 +64,14 @@
                             <template v-for="column in available.columns">
                                 <p
                                     class="flex items-center gap-1.5 break-words"
-                                    :class="{'cursor-pointer select-none hover:text-gray-800 dark:hover:text-white': column.sortable}"
+                                    :class="{'cursor-pointer select-none hover:text-diidsInk dark:hover:text-white': column.sortable}"
                                     @click="sort(column)"
                                     v-if="column.visibility"
                                 >
                                     @{{ column.label }}
 
                                     <i
-                                        class="align-text-bottom text-base text-gray-600 dark:text-gray-300"
+                                        class="align-text-bottom text-base text-diidsInk/70 dark:text-gray-300"
                                         :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                         v-if="column.index == applied.sort.column"
                                     ></i>
@@ -105,7 +105,7 @@
                     <template v-else>
                         <template v-if="available.records.length">
                             <div
-                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                                 v-for="record in available.records"
                                 :style="`grid-template-columns: repeat(${gridsCount}, minmax(150px, 1fr))`"
                             >
@@ -121,7 +121,7 @@
                                             v-model="applied.massActions.indices"
                                         >
 
-                                        <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600">
+                                        <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue">
                                         </span>
                                     </label>
                                 </p>
@@ -142,7 +142,7 @@
                                     v-if="available.actions.length"
                                 >
                                     <span
-                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                         :class="action.icon"
                                         v-text="! action.icon ? action.title : ''"
                                         v-for="action in record.actions"
@@ -154,7 +154,7 @@
                         </template>
 
                         <template v-else>
-                            <div class="row grid min-h-[260px] place-content-center justify-items-center gap-3 border-b px-4 py-8 text-center text-gray-600 dark:border-gray-800 dark:text-gray-300">
+                            <div class="row grid min-h-[260px] place-content-center justify-items-center gap-3 border-b px-4 py-8 text-center text-diidsInk/70 dark:border-gray-800 dark:text-gray-300">
                                 <img
                                     class="h-[120px] w-[120px] select-none p-2 dark:mix-blend-exclusion dark:invert"
                                     src="{{ bagisto_asset('images/empty-placeholders/default.svg') }}"
@@ -162,11 +162,11 @@
                                     aria-hidden="true"
                                 />
 
-                                <p class="text-base font-semibold text-gray-500 dark:text-gray-300">
+                                <p class="text-base font-semibold text-diidsInk/60 dark:text-gray-300">
                                     @lang('admin::app.components.datagrid.table.no-records-available')
                                 </p>
 
-                                <p class="max-w-sm text-sm text-gray-400 dark:text-gray-400">
+                                <p class="max-w-sm text-sm text-diidsInk/40 dark:text-diidsInk/40">
                                     @lang('admin::app.components.datagrid.table.no-records-hint')
                                 </p>
                             </div>

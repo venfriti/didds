@@ -6,11 +6,11 @@
 
     <div class="flex flex-col items-center gap-1.5">
 
-        <p class="text-base font-semibold text-gray-400">
+        <p class="text-base font-semibold text-diidsInk/40">
             @lang('admin::app.reporting.empty.title')
         </p>
         
-        <p class="text-gray-400">
+        <p class="text-diidsInk/40">
             @lang('admin::app.reporting.empty.info')
         </p>
     </div>

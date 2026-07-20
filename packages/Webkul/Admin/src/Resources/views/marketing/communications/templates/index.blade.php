@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex justify-between gap-4 max-sm:flex-wrap">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.marketing.communications.templates.index.title')
         </p>
 

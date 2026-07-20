@@ -28,15 +28,15 @@
                 <!-- Upload Video Button -->
 
                 <label
-                    class="grid h-[120px] max-h-[120px] w-full max-w-[210px] cursor-pointer items-center justify-items-center rounded border border-dashed transition-all hover:border-gray-400 dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
-                    :class="[errors['videos.files[0]'] ? 'border border-red-500' : 'border-gray-300']"
+                    class="grid h-[120px] max-h-[120px] w-full max-w-[210px] cursor-pointer items-center justify-items-center rounded border border-dashed transition-all hover:border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert"
+                    :class="[errors['videos.files[0]'] ? 'border border-red-500' : 'border-diidsBorder']"
                     :for="$.uid + '_videoInput'"
                     v-if="allowMultiple || videos.length == 0"
                 >
                     <div class="flex flex-col items-center">
                         <span class="icon-image text-2xl"></span>
 
-                        <p class="grid text-center text-sm font-semibold text-gray-600 dark:text-gray-300">
+                        <p class="grid text-center text-sm font-semibold text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.components.media.videos.add-video-btn')
                             
                             <span class="text-xs">
@@ -84,7 +84,7 @@
         type="text/x-template"
         id="v-media-video-item-template"
     >
-        <div class="group relative grid h-[120px] max-h-[120px] min-w-[210px] max-w-[210px] justify-items-center overflow-hidden rounded border border-dashed border-gray-300 transition-all hover:border-gray-400 dark:border-gray-800">
+        <div class="group relative grid h-[120px] max-h-[120px] min-w-[210px] max-w-[210px] justify-items-center overflow-hidden rounded border border-dashed border-diidsBorder transition-all hover:border-diidsBorder dark:border-gray-800">
             <!-- Video Preview -->
             <video
                 class="h-[120px] w-[210px] object-cover"
@@ -96,26 +96,26 @@
 
             <div class="invisible absolute bottom-0 top-0 flex w-full flex-col justify-between bg-white p-3 opacity-80 transition-all group-hover:visible dark:bg-gray-900">
                 <!-- Video Name -->
-                <p class="break-all text-xs font-semibold text-gray-600 dark:text-gray-300"></p>
+                <p class="break-all text-xs font-semibold text-diidsInk/70 dark:text-gray-300"></p>
 
                 <!-- Actions -->
                 <div class="flex justify-between">
                     <!-- Remove Button -->
                     <span
-                        class="icon-delete cursor-pointer rounded-md p-1.5 text-2xl hover:bg-gray-200 dark:hover:bg-gray-800"
+                        class="icon-delete cursor-pointer rounded-md p-1.5 text-2xl hover:bg-diidsBorder dark:hover:bg-gray-800"
                         @click="remove"
                     ></span>
 
                     <!-- Play Pause Button -->
                     <span
-                        class="cursor-pointer rounded-md p-1.5 text-2xl hover:bg-gray-200 dark:hover:bg-gray-800"
+                        class="cursor-pointer rounded-md p-1.5 text-2xl hover:bg-diidsBorder dark:hover:bg-gray-800"
                         :class="[isPlaying ? 'icon-pause': 'icon-play']"
                         @click="playPause"
                     ></span>
 
                     <!-- Edit Button -->
                     <label
-                        class="icon-edit cursor-pointer rounded-md p-1.5 text-2xl hover:bg-gray-200 dark:hover:bg-gray-800"
+                        class="icon-edit cursor-pointer rounded-md p-1.5 text-2xl hover:bg-diidsBorder dark:hover:bg-gray-800"
                         :for="$.uid + '_videoInput_' + index"
                     ></label>
 

@@ -83,7 +83,7 @@
             </div>
 
             <!-- Event Price Breakdown -->
-            <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-sm">
+            <div class="rounded-lg border border-diidsBorder bg-zinc-50 p-4 text-sm">
                 <p class="mb-3 font-semibold">
                     @lang('shop::app.products.view.type.booking.event.summary-title')
                 </p>
@@ -142,7 +142,7 @@
                         </span>
                     </div>
 
-                    <div class="mt-3 flex items-center justify-between border-t border-zinc-200 pt-3">
+                    <div class="mt-3 flex items-center justify-between border-t border-diidsBorder pt-3">
                         <span class="font-semibold">
                             @lang('shop::app.products.view.type.booking.event.total')
                         </span>
@@ -156,7 +156,7 @@
                 </template>
 
                 <template v-else>
-                    <p class="text-xs text-zinc-500">
+                    <p class="text-xs text-diidsInk/60">
                         @lang('shop::app.products.view.type.booking.event.select-tickets-hint')
                     </p>
                 </template>

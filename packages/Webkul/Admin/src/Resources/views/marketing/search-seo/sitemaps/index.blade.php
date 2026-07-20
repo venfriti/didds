@@ -8,7 +8,7 @@
     <!-- Create Sitemap Vue Component -->
     <v-create-sitemaps>
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.marketing.search-seo.sitemaps.index.title')
             </p>
 
@@ -32,7 +32,7 @@
             id="v-create-sitemaps-template"
         >
             <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-                <p class="text-xl font-bold text-gray-800 dark:text-white">
+                <p class="text-xl font-bold text-diidsInk dark:text-white">
                     @lang('admin::app.marketing.search-seo.sitemaps.index.title')
                 </p>
 
@@ -68,7 +68,7 @@
                     <template v-else>
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 break-all border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 break-all border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
                         >
                             <!-- ID -->
@@ -90,7 +90,7 @@
                                     :key="url"
                                     :href="url"
                                     target="_blank"
-                                    class="text-blue-600 hover:underline dark:text-blue-300"
+                                    class="text-navyBlue hover:underline dark:text-blue-300"
                                 >
                                     @{{ url }}
                                 </a>
@@ -102,7 +102,7 @@
                                     <a @click="selectedSitemap=1; editModal(record.actions.find(action => action.index === 'edit')?.url)">
                                         <span
                                             :class="record.actions.find(action => action.index === 'edit')?.icon"
-                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-100 dark:hover:bg-gray-950 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsSurface dark:hover:bg-gray-950 max-sm:place-self-center"
                                         >
                                         </span>
                                     </a>
@@ -112,7 +112,7 @@
                                     <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
                                         <span
                                             :class="record.actions.find(action => action.index === 'delete')?.icon"
-                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-100 dark:hover:bg-gray-950 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsSurface dark:hover:bg-gray-950 max-sm:place-self-center"
                                         >
                                         </span>
                                     </a>
@@ -141,7 +141,7 @@
                         <x-slot:header>
                             <!-- Edit Modal title -->
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-if="selectedSitemap"
                             >
                                 @lang('admin::app.marketing.search-seo.sitemaps.index.edit.title')
@@ -149,7 +149,7 @@
 
                             <!-- Create Modal title -->
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-else
                             >
                                 @lang('admin::app.marketing.search-seo.sitemaps.index.create.title')
@@ -182,7 +182,7 @@
 
                                 <x-admin::form.control-group.error control-name="file_name" />
 
-                                <p class="mt-2 text-xs font-medium text-gray-600 ltr:ml-1 rtl:mr-1 dark:text-gray-300">
+                                <p class="mt-2 text-xs font-medium text-diidsInk/70 ltr:ml-1 rtl:mr-1 dark:text-gray-300">
                                     @lang('admin::app.marketing.search-seo.sitemaps.index.create.file-name-info')
                                 </p>
 
@@ -205,7 +205,7 @@
 
                                 <x-admin::form.control-group.error control-name="path" />
 
-                                <p class="mt-2 text-xs font-medium text-gray-600 ltr:ml-1 rtl:mr-1 dark:text-gray-300">
+                                <p class="mt-2 text-xs font-medium text-diidsInk/70 ltr:ml-1 rtl:mr-1 dark:text-gray-300">
                                     @lang('admin::app.marketing.search-seo.sitemaps.index.create.path-info')
                                 </p>
                             </x-admin::form.control-group>
@@ -229,7 +229,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                        class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                         for="channels_{{ $channel->id }}"
                                         v-pre
                                     >

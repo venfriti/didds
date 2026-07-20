@@ -93,7 +93,7 @@
                 >
                 </p>
 
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-diidsInk/70">
                     <template v-if="day.slots && day.slots?.length">
                         <div v-for="slot in day.slots">
                             @{{ slot.from }} - @{{ slot.to }}

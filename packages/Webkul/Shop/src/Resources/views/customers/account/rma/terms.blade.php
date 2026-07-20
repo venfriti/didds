@@ -33,7 +33,7 @@
                     </span>
 
                     <span class="block">
-                        <span class="text-zinc-500 max-md:text-xs">
+                        <span class="text-diidsInk/60 max-md:text-xs">
                             @lang('shop::app.customers.account.rma.terms.terms')
                         </span>
                         
@@ -60,7 +60,7 @@
         <x-shop::modal ref="agreementModel">
             <!-- Modal Header -->
             <x-slot:header>
-                <h2 class="text-lg font-semibold max-md:text-base">
+                <h2 class="font-dmserif text-lg text-diidsInk max-md:text-base">
                     @lang('installer::app.seeders.cms.pages.terms-conditions.title')
                 </h2>
             </x-slot>
@@ -68,7 +68,7 @@
             <!-- Modal Content -->
             <x-slot:content>
                 <div 
-                    class="overflow-y-auto rounded border border-gray-200 bg-gray-50 p-4" 
+                    class="overflow-y-auto rounded border border-diidsBorder bg-diidsSurface p-4" 
                     style="min-height: 400px; max-height: 500px;"
                 >
                     <div class="prose prose-sm max-w-none text-gray-700">

@@ -17,11 +17,11 @@
             >
                 <div class="mb-2.5 flex justify-between gap-5 p-4">
                     <div class="flex flex-col gap-2">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @{{ type.title }}
                         </p>
 
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @{{ type.info }}
                         </p>
                     </div>
@@ -58,12 +58,12 @@
                             <!-- Image -->
                             <div
                                 class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                                :class="{'border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! product.images.length}"
+                                :class="{'border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! product.images.length}"
                             >
                                 <template v-if="! product.images.length">
                                     <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                                 
-                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                         @lang('admin::app.catalog.products.edit.links.image-placeholder')
                                     </p>
                                 </template>
@@ -75,11 +75,11 @@
 
                             <!-- Details -->
                             <div class="grid place-content-start gap-1.5">
-                                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ product.name }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.catalog.products.edit.links.sku')".replace(':sku', product.sku) }}
                                 </p>
                             </div>
@@ -87,7 +87,7 @@
 
                         <!-- Actions -->
                         <div class="grid place-content-start gap-1 text-right">
-                            <p class="font-semibold text-gray-800 dark:text-white">
+                            <p class="font-semibold text-diidsInk dark:text-white">
                                 @{{ $admin.formatPrice(product.price) }}
                             </p>
 
@@ -114,11 +114,11 @@
 
                     <!-- Add Variants Information -->
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.catalog.products.edit.links.empty-title')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @{{ type.empty_info }}
                         </p>
                     </div>

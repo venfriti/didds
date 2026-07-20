@@ -7,7 +7,7 @@
 
     <x-admin::form :action="route('admin.settings.taxes.rates.store')">
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.taxes.rates.create.title')
             </p>
 
@@ -15,7 +15,7 @@
             <div class="flex items-center gap-x-2.5">
                 <a
                     href="{{ route('admin.settings.taxes.rates.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.settings.taxes.rates.create.back-btn')
                 </a>
@@ -51,7 +51,7 @@
                 <!-- Left Component -->
                 <div class="flex flex-1 flex-col gap-2 max-xl:flex-auto">
                     <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                        <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.taxes.rates.create.general')
                         </p>
 
@@ -176,7 +176,7 @@
                 <div class="flex w-[360px] max-w-full flex-col gap-2 max-md:w-full">
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.taxes.rates.create.settings')
                             </p>
                         </x-slot>

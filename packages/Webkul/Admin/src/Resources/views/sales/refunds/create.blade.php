@@ -1,6 +1,6 @@
 <!-- Refund Vue Component -->
 <v-create-refund>
-    <div class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+    <div class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
         <span class="icon-cancel text-2xl"></span>
 
         @lang('admin::app.sales.orders.view.refund')
@@ -14,7 +14,7 @@
     >
         <div>
             <div
-                class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 @click="$refs.refund.open()"
             >
                 <span
@@ -47,7 +47,7 @@
 
                                     @if (bouncer()->hasPermission('sales.refunds.create'))
                                         <div
-                                            class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800"
+                                            class="transparent-button hover:bg-diidsBorder dark:hover:bg-gray-800"
                                             @click="updateTotals"
                                         >
                                             @lang('admin::app.sales.refunds.create.update-totals-btn')
@@ -92,10 +92,10 @@
                                                         src="{{ $item->product->base_image_url }}"
                                                     >
                                                 @else
-                                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                                             @lang('admin::app.sales.invoices.view.product-image')
                                                         </p>
                                                     </div>
@@ -104,14 +104,14 @@
                                                 <div class="grid place-content-start gap-1.5">
                                                     <!-- Item Additional Attributes -->
                                                     <p 
-                                                        class="break-all text-base font-semibold text-gray-800 dark:text-white"
+                                                        class="break-all text-base font-semibold text-diidsInk dark:text-white"
                                                         v-pre
                                                     >
                                                         {{ $item->name }}
                                                     </p>
 
                                                     <div class="flex flex-col place-items-start gap-1.5">
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.amount-per-unit', [
                                                                 'amount' => core()->formatBasePrice($item->base_price),
                                                                 'qty'    => $item->qty_ordered,
@@ -122,7 +122,7 @@
                                                         @if (isset($item->additional['attributes']))
                                                             @foreach ($item->additional['attributes'] as $attribute)
                                                                 <p
-                                                                    class="text-gray-600 dark:text-gray-300"
+                                                                    class="text-diidsInk/70 dark:text-gray-300"
                                                                     v-pre
                                                                 >
                                                                     @if (
@@ -135,7 +135,7 @@
 
                                                                         <a
                                                                             href="{{ Storage::url($attribute['option_label']) }}"
-                                                                            class="text-blue-600 hover:underline"
+                                                                            class="text-navyBlue hover:underline"
                                                                             download="{{ File::basename($attribute['option_label']) }}"
                                                                         >
                                                                             {{ File::basename($attribute['option_label']) }}
@@ -146,12 +146,12 @@
                                                         @endif
 
                                                         <!-- Item SKU -->
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.sku', ['sku' => $item->getTypeInstance()->getOrderedItem($item)->sku])
                                                         </p>
 
                                                         <!-- Item Status -->
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             {{ $item->qty_ordered ? trans('admin::app.sales.refunds.create.item-ordered', ['qty_ordered' => $item->qty_ordered]) : '' }}
 
                                                             {{ $item->qty_invoiced ? trans('admin::app.sales.refunds.create.item-invoice', ['qty_invoiced' => $item->qty_invoiced]) : '' }}
@@ -193,49 +193,49 @@
                                                 <!-- Item Order Summary -->
                                                 <div class="item flex w-full justify-end gap-5">
                                                     <div class="flex flex-col gap-y-1.5">
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.price')
                                                         </p>
 
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.subtotal')
                                                         </p>
 
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.tax-amount')
                                                         </p>
 
                                                         @if ($order->base_discount_amount > 0)
-                                                            <p class="text-gray-600 dark:text-gray-300">
+                                                            <p class="text-diidsInk/70 dark:text-gray-300">
                                                                 @lang('admin::app.sales.refunds.create.discount-amount')
                                                             </p>
                                                         @endif
 
-                                                        <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                                        <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.refunds.create.grand-total')
                                                         </p>
                                                     </div>
 
                                                     <div class="flex flex-col gap-y-1.5">
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             {{ core()->formatBasePrice($item->base_price) }}
                                                         </p>
 
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             {{ core()->formatBasePrice($item->base_total) }}
                                                         </p>
 
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             {{ core()->formatBasePrice($item->base_tax_amount) }}
                                                         </p>
 
                                                         @if ($order->base_discount_amount > 0)
-                                                            <p class="text-gray-600 dark:text-gray-300">
+                                                            <p class="text-diidsInk/70 dark:text-gray-300">
                                                                 {{ core()->formatBasePrice($item->base_discount_amount) }}
                                                             </p>
                                                         @endif
 
-                                                        <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                                        <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                                             {{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}
                                                         </p>
                                                     </div>
@@ -308,37 +308,37 @@
                             <!-- Order Summary -->
                             <div class="flex w-full justify-end gap-5">
                                 <div class="flex flex-col gap-y-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.refunds.create.subtotal')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.refunds.create.discount-amount')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.refunds.create.tax-amount')
                                     </p>
 
-                                    <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                    <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.refunds.create.grand-total')
                                     </p>
                                 </div>
 
                                 <div class="flex flex-col gap-y-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ totals.subtotal.formatted_price }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ totals.discount.formatted_price }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ totals.tax.formatted_price }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ totals.grand_total.formatted_price }}
                                     </p>
                                 </div>

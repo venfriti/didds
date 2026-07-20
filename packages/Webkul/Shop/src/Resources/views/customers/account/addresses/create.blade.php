@@ -25,7 +25,7 @@
                 <span class="icon-arrow-left rtl:icon-arrow-right text-2xl"></span>
             </a>
 
-            <h2 class="text-2xl font-medium max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
+            <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
                 @lang('shop::app.customers.account.addresses.create.add-address')
             </h2>
         </div>
@@ -315,7 +315,7 @@
                     {!! view_render_event('bagisto.shop.customers.account.addresses.create_form_controls.phone.after') !!}
 
                     <!-- Set As Default -->
-                    <div class="text-md mb-4 flex select-none items-center gap-x-1.5 text-zinc-500">
+                    <div class="text-md mb-4 flex select-none items-center gap-x-1.5 text-diidsInk/60">
                         <input
                             type="checkbox"
                             name="default_address"
@@ -340,7 +340,7 @@
 
                     <button
                         type="submit"
-                        class="primary-button m-0 block rounded-2xl px-11 py-3 text-center text-base max-md:w-full max-md:max-w-full max-md:rounded-lg max-md:py-2 max-sm:py-1.5"
+                        class="primary-button m-0 block !rounded-full px-11 py-3 text-center text-base max-md:w-full max-md:max-w-full max-md:rounded-lg max-md:py-2 max-sm:py-1.5"
                     >
                         @lang('shop::app.customers.account.addresses.create.save')
                     </button>

@@ -21,7 +21,7 @@
     >
         <div class="box-shadow rounded bg-white dark:bg-gray-900">
             <div class="flex justify-between p-4">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.sales.orders.create.cart.items.title')
                 </p>
 
@@ -34,7 +34,7 @@
                     </template>
 
                     <template v-else>
-                        <p class="flex flex-col gap-1 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="flex flex-col gap-1 text-base font-semibold text-diidsInk dark:text-white">
                             <template v-if="displayTax.subtotal == 'including_tax'">
                                 @{{ "@lang('admin::app.sales.orders.create.cart.items.sub-total', ['sub_total' => 'replace'])".replace('replace', cart.formatted_sub_total_incl_tax) }}
                             </template>
@@ -70,7 +70,7 @@
                 v-if="cart.items.length"
             >
                 <div
-                    class="row grid gap-4 border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
+                    class="row grid gap-4 border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
                     v-for="item in cart.items"
                 >
                     <!-- Item Information -->
@@ -79,7 +79,7 @@
                             <!-- Image -->
                             <div
                                 class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                                :class="{'overflow-hidden rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! item.product.images.length}"
+                                :class="{'overflow-hidden rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! item.product.images.length}"
                             >
                                 <template v-if="! item.product.images.length">
                                     <img
@@ -87,7 +87,7 @@
                                         src="{{ bagisto_asset('images/product-placeholders/front.svg') }}"
                                     >
 
-                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                         @lang('admin::app.catalog.products.edit.types.grouped.image-placeholder')
                                     </p>
                                 </template>
@@ -102,16 +102,16 @@
 
                             <div class="flex flex-col gap-1.5">
                                 <!-- Item Name -->
-                                <p class="whitespace-nowrap text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="whitespace-nowrap text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ item.name }}
                                 </p>
 
                                 <!-- Item SKU -->
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.sales.orders.create.cart.items.sku', ['sku' => ':replace'])".replace(':replace', item.sku) }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.sales.orders.create.cart.items.amount-per-unit', ['amount' => ':replaceAmount', 'qty' => ':replaceQty'])".replace(':replaceAmount', item.formatted_price).replace(':replaceQty', item.quantity) }}
                                 </p>
 
@@ -122,7 +122,7 @@
                                 >
                                     <!-- Details Toggler -->
                                     <p
-                                        class="flex cursor-pointer items-center gap-1 text-sm text-gray-800 dark:text-white"
+                                        class="flex cursor-pointer items-center gap-1 text-sm text-diidsInk dark:text-white"
                                         @click="item.option_show = ! item.option_show"
                                     >
                                         @lang('admin::app.sales.orders.create.cart.items.see-details')
@@ -138,11 +138,11 @@
                                         v-show="item.option_show"
                                     >
                                         <div v-for="option in item.options">
-                                            <p class="text-sm text-gray-600 dark:text-white">
+                                            <p class="text-sm text-diidsInk/70 dark:text-white">
                                                 @{{ option.attribute_name + ':' }}
                                             </p>
 
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white">
+                                            <p class="text-sm font-medium text-diidsInk dark:text-white">
                                                 @{{ option.option_label }}
                                             </p>
                                         </div>
@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="flex flex-col gap-2">
-                            <p class="flex flex-col gap-1 text-right text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="flex flex-col gap-1 text-right text-base font-semibold text-diidsInk dark:text-white">
                                 <template v-if="displayTax.subtotal == 'including_tax'">
                                     @{{ item.formatted_total_incl_tax }}
                                 </template>
@@ -203,11 +203,11 @@
                 <img src="{{ bagisto_asset('images/icon-add-product.svg') }}" class="h-20 w-20 dark:mix-blend-exclusion dark:invert">
                 
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.sales.orders.create.cart.items.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.sales.orders.create.cart.items.empty-description')
                     </p>
                 </div>
@@ -228,7 +228,7 @@
                         <div class="relative w-full">
                             <input
                                 type="text"
-                                class="block w-full rounded-lg border bg-white py-1.5 leading-6 text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 ltr:pl-3 ltr:pr-10 rtl:pl-10 rtl:pr-3"
+                                class="block w-full rounded-lg border bg-white py-1.5 leading-6 text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 ltr:pl-3 ltr:pr-10 rtl:pl-10 rtl:pr-3"
                                 placeholder="Search by name"
                                 v-model.lazy="searchTerm"
                                 v-debounce="500"
@@ -263,7 +263,7 @@
                                 <!-- Image -->
                                 <div
                                     class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                                    :class="{'border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! product.images.length}"
+                                    :class="{'border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! product.images.length}"
                                 >
                                     <template v-if="! product.images.length">
                                         <img
@@ -271,7 +271,7 @@
                                             src="{{ bagisto_asset('images/product-placeholders/front.svg') }}"
                                         >
                                     
-                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                             @lang('admin::app.sales.orders.create.cart.items.search.product-image')
                                         </p>
                                     </template>
@@ -286,11 +286,11 @@
 
                                 <!-- Details -->
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="break-all text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="break-all text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ product.name }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.sales.orders.create.cart.items.search.sku')".replace(':sku', product.sku) }}
                                     </p>
 
@@ -310,7 +310,7 @@
                             >
                                 <form @submit="handleSubmit($event, addToCart)">
                                     <div class="grid place-content-start gap-2 text-right">
-                                        <p class="font-semibold text-gray-800 dark:text-white">
+                                        <p class="font-semibold text-diidsInk dark:text-white">
                                             @{{ product.formatted_price }}
                                         </p>
 
@@ -339,7 +339,7 @@
                                         </x-admin::form.control-group>
 
                                         <button
-                                            class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                                            class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                                             :disabled="! product.is_saleable"
                                         >
                                             @lang('admin::app.sales.orders.create.cart.items.search.add-to-cart')
@@ -363,11 +363,11 @@
 
                         <!-- Add Variants Information -->
                         <div class="flex flex-col items-center gap-1.5">
-                            <p class="text-base font-semibold text-gray-400">
+                            <p class="text-base font-semibold text-diidsInk/40">
                                 @lang('admin::app.sales.orders.create.cart.items.search.empty-title')
                             </p>
 
-                            <p class="text-gray-400">
+                            <p class="text-diidsInk/40">
                                 @lang('admin::app.sales.orders.create.cart.items.search.empty-info')
                             </p>
                         </div>

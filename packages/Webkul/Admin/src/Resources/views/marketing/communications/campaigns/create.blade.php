@@ -11,7 +11,7 @@
         {!! view_render_event('bagisto.admin.marketing.communications.campaigns.create.create_form_controls.before') !!}
 
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.marketing.communications.campaigns.create.title')
             </p>
 
@@ -19,7 +19,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.marketing.communications.campaigns.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.marketing.communications.campaigns.create.back-btn')
                 </a>
@@ -42,7 +42,7 @@
 
                 <!-- General Section -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.marketing.communications.campaigns.create.general')
                     </p>
 
@@ -162,7 +162,7 @@
                 <!-- Setting -->
                 <x-admin::accordion>
                     <x-slot:header>
-                        <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.marketing.communications.campaigns.create.setting')
                         </p>
                     </x-slot>

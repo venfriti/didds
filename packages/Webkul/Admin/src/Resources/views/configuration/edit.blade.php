@@ -21,7 +21,7 @@
         <!-- Save Inventory -->
         <div class="mt-3.5 flex items-center justify-between gap-4 max-sm:flex-wrap">
             <p 
-                class="text-xl font-bold text-gray-800 dark:text-white"
+                class="text-xl font-bold text-diidsInk dark:text-white"
                 v-pre
             >
                 {{ $name }}
@@ -32,7 +32,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.configuration.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.configuration.index.back-btn')
                 </a>
@@ -54,7 +54,7 @@
                     <x-slot:toggle>
                         <button
                             type="button"
-                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                            class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                         >
                             <span class="icon-store text-2xl"></span>
 
@@ -75,7 +75,7 @@
                         @foreach ($channels as $channel)
                             <a
                                 href="?{{ Arr::query(['channel' => $channel->code, 'locale' => $channel->default_locale?->code ?? $currentLocale->code]) }}"
-                                class="flex cursor-pointer gap-2.5 px-5 py-2 text-base hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
+                                class="flex cursor-pointer gap-2.5 px-5 py-2 text-base hover:bg-diidsSurface dark:text-white dark:hover:bg-gray-950"
                                 v-pre
                             >
                                 {{ $channel->name }}
@@ -90,7 +90,7 @@
                     <x-slot:toggle>
                         <button
                             type="button"
-                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                            class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                         >
                             <span class="icon-language text-2xl"></span>
 
@@ -111,7 +111,7 @@
                         @foreach ($currentChannel->locales->sortBy('name') as $locale)
                             <a
                                 href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
-                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-diidsSurface dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-diidsSurface dark:bg-gray-950' : ''}}"
                                 v-pre
                             >
                                 {{ $locale->name }}
@@ -125,11 +125,11 @@
         <div class="mt-6 grid grid-cols-[1fr_2fr] gap-10 max-xl:flex-wrap">
             @foreach ($activeConfiguration->getChildren() as $child)
                 <div class="grid content-start gap-2.5">
-                    <p class="text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         {{ $child->getName() }}
                     </p>
 
-                    <p class="leading-[140%] text-gray-600 dark:text-gray-300">
+                    <p class="leading-[140%] text-diidsInk/70 dark:text-gray-300">
                         {!! $child->getInfo() !!}
                     </p>
                 </div>

@@ -18,7 +18,7 @@
         {!! view_render_event('bagisto.admin.cms.pages.edit.create_form_controls.before', ['page' => $page]) !!}
 
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.cms.edit.title')
             </p>
 
@@ -26,7 +26,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.cms.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.cms.edit.back-btn')
                 </a>
@@ -63,7 +63,7 @@
                     <x-slot:toggle>
                         <button
                             type="button"
-                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                            class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                         >
                             <span class="icon-language text-2xl"></span>
 
@@ -84,7 +84,7 @@
                         @foreach (core()->getAllLocales() as $locale)
                             <a
                                 href="?{{ Arr::query(['locale' => $locale->code]) }}"
-                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-diidsSurface dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-diidsSurface dark:bg-gray-950' : ''}}"
                                 v-pre
                             >
                                 {{ $locale->name }}
@@ -104,7 +104,7 @@
 
                 <!--Content -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.cms.edit.description')
                     </p>
 
@@ -134,7 +134,7 @@
 
                 <!-- SEO Input Fields -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.cms.edit.seo')
                     </p>
 
@@ -188,7 +188,7 @@
 
                         <x-admin::form.control-group.control
                             type="textarea"
-                            class="text-gray-600 dark:text-gray-300"
+                            class="text-diidsInk/70 dark:text-gray-300"
                             id="meta_keywords"
                             name="{{ $currentLocale->code }}[meta_keywords]"
                             :value="old($currentLocale->code)['meta_keywords'] ?? ($page->translate($currentLocale->code)['meta_keywords'] ?? '')"
@@ -206,7 +206,7 @@
 
                         <x-admin::form.control-group.control
                             type="textarea"
-                            class="text-gray-600 dark:text-gray-300"
+                            class="text-diidsInk/70 dark:text-gray-300"
                             id="meta_description"
                             name="{{ $currentLocale->code }}[meta_description]"
                             :value="old($currentLocale->code)['meta_description'] ?? ($page->translate($currentLocale->code)['meta_description'] ?? '')"
@@ -231,7 +231,7 @@
                 <x-admin::accordion>
                     <x-slot:header>
                         <div class="flex items-center justify-between">
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.cms.create.general')
                             </p>
                         </div>
@@ -275,7 +275,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="channels_{{ $channel->id }}"
                                     v-pre
                                 >

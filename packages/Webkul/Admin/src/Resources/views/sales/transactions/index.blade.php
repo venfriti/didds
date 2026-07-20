@@ -5,7 +5,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.sales.transactions.index.title')
         </p>
 
@@ -53,7 +53,7 @@
                     <template v-else>
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
                         >
                             <!-- ID -->
@@ -111,7 +111,7 @@
                                         @click="view(record.actions.find(action => action.title === '@lang('admin::app.sales.transactions.index.datagrid.view')')?.url)"
                                     >
                                         <span
-                                            class="icon-sort-right rtl:icon-sort-left cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
+                                            class="icon-sort-right rtl:icon-sort-left cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
                                             role="button"
                                             tabindex="0"
                                         >
@@ -141,79 +141,79 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex w-full justify-between p-2">
                                 <div class="flex flex-col gap-y-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.transaction-id')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.order-id')
                                     </p>
 
                                     <p
                                         v-if="data.invoice_id"
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                     >
                                         @lang('admin::app.sales.transactions.index.view.invoice-id')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.payment-method')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.status')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.created-at')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.transactions.index.view.amount')
                                     </p>
                                 </div>
 
                                 <div class="flex flex-col gap-y-1.5">
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.transaction_id"
                                     >
                                     </p>
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.order_id"
                                     >
                                     </p>
 
                                     <p
                                         v-if="data.invoice_id"
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.invoice_id"
                                     >
                                     </p>
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.payment_title"
                                     >
                                     </p>
 
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-html="data.status"
                                     >
                                     </p>
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.created_at ?? 'N/A'"
                                     >
                                     </p>
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-text="data.amount"
                                     >
                                     </p>
@@ -247,7 +247,7 @@
                         <x-admin::modal ref="transactionModel">
                             <!-- Modal Header -->
                             <x-slot:header>
-                                <p class="text-lg font-bold text-gray-800 dark:text-white">
+                                <p class="text-lg font-bold text-diidsInk dark:text-white">
                                     @lang('admin::app.sales.transactions.index.create.create-transaction')
                                 </p>
                             </x-slot>

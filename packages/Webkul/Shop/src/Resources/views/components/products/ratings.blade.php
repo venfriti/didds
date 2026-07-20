@@ -5,7 +5,7 @@
 ])
 
 <v-product-ratings
-    {{ $attributes->merge(['class' => 'flex w-max items-center rounded-md border border-zinc-200 px-4 py-2']) }}
+    {{ $attributes->merge(['class' => 'flex w-max items-center rounded-md border border-diidsBorder px-4 py-2']) }}
     average="{{ $average }}"
     total="{{ $total }}"
 >
@@ -64,7 +64,7 @@
                         'text-emerald-400': this.average >= 3 && this.average < 4,
                         'text-amber-500': this.average >= 2 && this.average < 3,
                         'text-red-500': this.average >= 1 && this.average < 2,
-                        'text-gray-400': this.average <= 0,
+                        'text-diidsInk/40': this.average <= 0,
                     };
                 },
 

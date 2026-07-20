@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.customers.customers.index.title')
         </p>
 
@@ -84,8 +84,8 @@
                                 <span
                                     class="icon-uncheckbox cursor-pointer rounded-md text-2xl"
                                     :class="[
-                                        applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-blue-600' : (
-                                            applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
+                                        applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-navyBlue' : (
+                                            applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-navyBlue' : ''
                                         ),
                                     ]"
                                 >
@@ -93,14 +93,14 @@
                             </label>
                         @endif
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
                                 <template v-for="column in columnGroup">
                                     <span
                                         class="after:content-['/'] last:after:content-['']"
                                         :class="{
-                                            'font-medium text-gray-800 dark:text-white': applied.sort.column == column,
-                                            'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
+                                            'font-medium text-diidsInk dark:text-white': applied.sort.column == column,
+                                            'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                         }"
                                         @click="
                                             available.columns.find(columnTemp => columnTemp.index === column)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === column)): {}
@@ -112,7 +112,7 @@
                             </span>
 
                             <i
-                                class="align-text-bottom text-base text-gray-800 dark:text-white ltr:ml-1.5 rtl:mr-1.5"
+                                class="align-text-bottom text-base text-diidsInk dark:text-white ltr:ml-1.5 rtl:mr-1.5"
                                 :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                 v-if="columnGroup.includes(applied.sort.column)"
                             ></i>
@@ -136,7 +136,7 @@
 
             <template v-else>
                 <div
-                    class="row grid grid-cols-1 gap-2 md:grid-cols-[minmax(150px,_2fr)_1fr_1fr] md:gap-0 border-b px-4 py-2.5 transition-all hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950 min-w-full"
+                    class="row grid grid-cols-1 gap-2 md:grid-cols-[minmax(150px,_2fr)_1fr_1fr] md:gap-0 border-b px-4 py-2.5 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950 min-w-full"
                     v-for="record in available.records"
                 >
                     <div class="flex gap-2.5">
@@ -152,22 +152,22 @@
                             >
 
                             <label
-                                class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                 :for="`mass_action_select_record_${record.customer_id}`"
                             >
                             </label>
                         @endif
 
                         <div class="flex flex-col gap-1.5">
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @{{ record.full_name }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @{{ record.email }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @{{ record.phone ?? 'N/A' }}
                             </p>
                         </div>
@@ -193,48 +193,48 @@
                             </span>
                         </div>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @{{ record.gender ?? 'N/A' }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @{{ record.group ?? 'N/A' }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.customers.customers.index.datagrid.channel') - @{{ record.channel_id ? record.channel_id : 'N/A' }}
                         </p>
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             @{{ "@lang('admin::app.customers.customers.index.datagrid.id-value')".replace(':id', record.customer_id) }}
                         </p>
                     </div>
 
                     <div class="flex items-center justify-between gap-x-4 ps-8 md:ps-0">
                         <div class="flex flex-col gap-1.5">
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @{{ $admin.formatPrice(record.revenue) }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @{{ "@lang('admin::app.customers.customers.index.datagrid.order')".replace(':order', record.order_count) }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 @{{ "@lang('admin::app.customers.customers.index.datagrid.address')".replace(':address', record.address_count) }}
                             </p>
                         </div>
 
                         <div class="flex items-center">
                             <a
-                                class="icon-login cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
+                                class="icon-login cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
                                 :href="'{{ route('admin.customers.customers.login_as_customer', ':id') }}'.replace(':id', record.customer_id)"
                                 target="_blank"
                             >
                             </a>
 
                             <a
-                                class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
+                                class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
                                 :href="'{{ route('admin.customers.customers.view', ':id') }}'.replace(':id', record.customer_id)"
                             >
                             </a>

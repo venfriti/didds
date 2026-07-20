@@ -13,14 +13,14 @@
 
         <!-- Page Header -->
         <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.catalog.families.edit.title')
             </p>
 
             <div class="flex items-center gap-x-2.5">
                 <a
                     href="{{ route('admin.catalog.families.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.catalog.families.edit.back-btn')
                 </a>
@@ -56,7 +56,7 @@
                 <x-admin::accordion>
                     <!-- Panel Header -->
                     <x-slot:header>
-                        <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.families.edit.general')
                         </p>
                     </x-slot>
@@ -64,7 +64,7 @@
                     <!-- Panel Content -->
                     <x-slot:content>
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white">
+                            <x-admin::form.control-group.label class="!text-diidsInk dark:!text-white">
                                 @lang('admin::app.catalog.families.edit.code')
                             </x-admin::form.control-group.label>
 
@@ -89,7 +89,7 @@
 
                         <!-- Name -->
                         <x-admin::form.control-group class="!mb-0">
-                            <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white">
+                            <x-admin::form.control-group.label class="!text-diidsInk dark:!text-white">
                                 @lang('admin::app.catalog.families.edit.name')
                             </x-admin::form.control-group.label>
 
@@ -125,11 +125,11 @@
                 <div class="mb-2.5 flex flex-wrap justify-between gap-2.5 p-4">
                     <!-- Panel Header -->
                     <div class="flex flex-col gap-2">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.catalog.families.edit.groups')
                         </p>
 
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.catalog.families.edit.groups-info')
                         </p>
                     </div>
@@ -160,7 +160,7 @@
                     <div v-for="(groups, column) in columnGroups">
                         <!-- Attributes Groups Header -->
                         <div class="mb-4 flex flex-col">
-                            <p class="font-semibold leading-6 text-gray-600 dark:text-gray-300">
+                            <p class="font-semibold leading-6 text-diidsInk/70 dark:text-gray-300">
                                 @{{
                                     column == 1
                                     ? "@lang('admin::app.catalog.families.edit.main-column')"
@@ -168,14 +168,14 @@
                                 }}
                             </p>
                             
-                            <p class="text-xs font-medium text-gray-800 dark:text-white">
+                            <p class="text-xs font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.families.edit.edit-group-info')
                             </p>
                         </div>
 
                         <!-- Draggable Attribute Groups -->
                         <draggable
-                            class="h-[calc(100vh-285px)] overflow-auto border-gray-200 pb-4 ltr:border-r rtl:border-l"
+                            class="h-[calc(100vh-285px)] overflow-auto border-diidsBorder pb-4 ltr:border-r rtl:border-l"
                             ghost-class="draggable-ghost"
                             handle=".icon-drag"
                             v-bind="{animation: 200}"
@@ -189,25 +189,25 @@
                                     <div class="group flex items-center">
                                         <!-- Toggle -->
                                         <i
-                                            class="icon-sort-down cursor-pointer rounded-md text-xl transition-all hover:bg-gray-100 group-hover:text-gray-800 dark:hover:bg-gray-950 dark:group-hover:text-white"
+                                            class="icon-sort-down cursor-pointer rounded-md text-xl transition-all hover:bg-diidsSurface group-hover:text-diidsInk dark:hover:bg-gray-950 dark:group-hover:text-white"
                                             @click="element.hide = ! element.hide"
                                         ></i>
 
                                         <!-- Group Name -->
                                         <div
-                                            class="group_node group flex max-w-max gap-1.5 rounded py-1.5 text-gray-600 transition-all dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5"
-                                            :class="{'bg-blue-600 text-white group-hover:[&>*]:text-white': selectedGroup.id == element.id}"
+                                            class="group_node group flex max-w-max gap-1.5 rounded py-1.5 text-diidsInk/70 transition-all dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5"
+                                            :class="{'bg-navyBlue text-white group-hover:[&>*]:text-white': selectedGroup.id == element.id}"
                                             @click.stop="groupSelected(element)"
                                         >
-                                            <i class="icon-drag cursor-grab text-xl text-inherit transition-all group-hover:text-gray-800 dark:group-hover:text-white"></i>
+                                            <i class="icon-drag cursor-grab text-xl text-inherit transition-all group-hover:text-diidsInk dark:group-hover:text-white"></i>
 
                                             <i
-                                                class="text-xl text-inherit transition-all group-hover:text-gray-800 dark:group-hover:text-white"
+                                                class="text-xl text-inherit transition-all group-hover:text-diidsInk dark:group-hover:text-white"
                                                 :class="[element.is_user_defined ? 'icon-folder' : 'icon-folder-block']"
                                             ></i>
 
                                             <span
-                                                class="font-regular text-sm text-inherit transition-all group-hover:text-gray-800 dark:group-hover:text-white"
+                                                class="font-regular text-sm text-inherit transition-all group-hover:text-diidsInk dark:group-hover:text-white"
                                                 v-show="editableGroup.id != element.id"
                                             >
                                                 @{{ element.name }}
@@ -222,7 +222,7 @@
                                             <input
                                                 type="text"
                                                 :name="'attribute_groups[' + element.id + '][name]'"
-                                                class="group_node text-sm !text-gray-600 dark:text-gray-300"
+                                                class="group_node text-sm !text-diidsInk/70 dark:text-gray-300"
                                                 v-model="element.name"
                                                 v-show="editableGroup.id == element.id"
                                             />
@@ -255,29 +255,29 @@
                                         v-show="! element.hide"
                                     >
                                         <template #item="{ element, index }">
-                                            <div class="group flex max-w-max gap-1.5 rounded py-1.5 text-gray-600 dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5">
-                                                <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-gray-800 dark:group-hover:text-white"></i>
+                                            <div class="group flex max-w-max gap-1.5 rounded py-1.5 text-diidsInk/70 dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5">
+                                                <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-diidsInk dark:group-hover:text-white"></i>
 
                                                 <i
-                                                    class="text-xl transition-all group-hover:text-gray-800 dark:group-hover:text-white"
+                                                    class="text-xl transition-all group-hover:text-diidsInk dark:group-hover:text-white"
                                                     :class="[parseInt(element.is_user_defined) ? 'icon-attribute' : 'icon-attribute-block']"
                                                 ></i>
                                                 
-                                                <span class="font-regular text-sm transition-all group-hover:text-gray-800 dark:group-hover:text-white max-xl:text-xs">
+                                                <span class="font-regular text-sm transition-all group-hover:text-diidsInk dark:group-hover:text-white max-xl:text-xs">
                                                     @{{ element.admin_name }}
                                                 </span>
 
                                                 <input
                                                     type="hidden"
                                                     :name="'attribute_groups[' + element.group_id + '][custom_attributes][' + index + '][id]'"
-                                                    class="text-sm text-gray-600 dark:text-gray-300"
+                                                    class="text-sm text-diidsInk/70 dark:text-gray-300"
                                                     v-model="element.id"
                                                 />
 
                                                 <input
                                                     type="hidden"
                                                     :name="'attribute_groups[' + element.group_id + '][custom_attributes][' + index + '][position]'"
-                                                    class="text-sm text-gray-600 dark:text-gray-300"
+                                                    class="text-sm text-diidsInk/70 dark:text-gray-300"
                                                     :value="index + 1"
                                                 />
                                             </div>
@@ -292,11 +292,11 @@
                     <div class="">
                         <!-- Unassigned Attributes Header -->
                         <div class="mb-4 flex flex-col">
-                            <p class="font-semibold leading-6 text-gray-600 dark:text-gray-300">
+                            <p class="font-semibold leading-6 text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.catalog.families.edit.unassigned-attributes')
                             </p>
 
-                            <p class="text-xs font-medium text-gray-800 dark:text-white">
+                            <p class="text-xs font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.families.edit.unassigned-attributes-info')
                             </p>
                         </div>
@@ -313,12 +313,12 @@
                             group="attributes"
                         >
                             <template #item="{ element }">
-                                <div class="group flex max-w-max gap-1.5 rounded py-1.5 text-gray-600 dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5">
-                                    <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-gray-800 dark:group-hover:text-white"></i>
+                                <div class="group flex max-w-max gap-1.5 rounded py-1.5 text-diidsInk/70 dark:text-gray-300 ltr:pr-1.5 rtl:pl-1.5">
+                                    <i class="icon-drag cursor-grab text-xl transition-all group-hover:text-diidsInk dark:group-hover:text-white"></i>
 
-                                    <i class="icon-attribute text-xl transition-all group-hover:text-gray-800 dark:group-hover:text-white"></i>
+                                    <i class="icon-attribute text-xl transition-all group-hover:text-diidsInk dark:group-hover:text-white"></i>
 
-                                    <span class="font-regular text-sm transition-all group-hover:text-gray-800 dark:group-hover:text-white max-xl:text-xs">
+                                    <span class="font-regular text-sm transition-all group-hover:text-diidsInk dark:group-hover:text-white max-xl:text-xs">
                                         @{{ element.admin_name }}
                                     </span>
                                 </div>
@@ -335,7 +335,7 @@
                         <x-admin::modal ref="addGroupModal">
                             <!-- Modal Header -->
                             <x-slot:header>
-                                <p class="text-lg font-bold text-gray-800 dark:text-white">
+                                <p class="text-lg font-bold text-diidsInk dark:text-white">
                                     @lang('admin::app.catalog.families.edit.add-group-title')
                                 </p>
                             </x-slot>

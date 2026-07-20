@@ -29,11 +29,11 @@
 
                         <!-- Sales Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_sales.formatted_total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.total-sales')
                             </p>
 
@@ -65,11 +65,11 @@
 
                         <!-- Orders Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_orders.current }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.total-orders')
                             </p>
 
@@ -101,11 +101,11 @@
 
                         <!-- Customers Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_customers.current }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.total-customers')
                             </p>
 
@@ -137,11 +137,11 @@
 
                         <!-- Sales Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.avg_sales.formatted_total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.average-sale')
                             </p>
 
@@ -173,11 +173,11 @@
                         </div>
 
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_unpaid_invoices.formatted_total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.total-unpaid-invoices')
                             </p>
                         </div>

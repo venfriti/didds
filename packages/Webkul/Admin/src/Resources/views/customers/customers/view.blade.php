@@ -29,7 +29,7 @@
                         <template v-else>
                             <h1
                                 v-if="customer"
-                                class="text-xl font-bold leading-6 text-gray-800 dark:text-white"
+                                class="text-xl font-bold leading-6 text-diidsInk dark:text-white"
                                 v-text="`${customer.first_name} ${customer.last_name}`"
                             ></h1>
 
@@ -59,7 +59,7 @@
                     <!-- Back Button -->
                     <a
                         href="{{ route('admin.customers.customers.index') }}"
-                        class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                        class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                     >
                         @lang('admin::app.customers.customers.view.back-btn')
                     </a>
@@ -73,7 +73,7 @@
                 <!-- Create Order button -->
                 @if (bouncer()->hasPermission('sales.orders.create'))
                     <div
-                        class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-gray-600 transition-all hover:rounded-md hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800"
+                        class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-diidsInk/70 transition-all hover:rounded-md hover:bg-diidsBorder dark:text-gray-300 dark:hover:bg-gray-800"
                         @click="$emitter.emit('open-confirm-modal', {
                             message: '@lang('admin::app.customers.customers.view.order-create-confirmation')',
 
@@ -98,7 +98,7 @@
                 @endif
 
                 <a
-                    class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-gray-600 transition-all hover:rounded-md hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800"
+                    class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-diidsInk/70 transition-all hover:rounded-md hover:bg-diidsBorder dark:text-gray-300 dark:hover:bg-gray-800"
                     href="{{ route('admin.customers.customers.login_as_customer', $customer->id) }}"
                     target="_blank"
                 >
@@ -110,7 +110,7 @@
                 <!-- Account Delete button -->
                 @if (bouncer()->hasPermission('customers.customers.delete'))
                     <div
-                        class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-gray-600 transition-all hover:rounded-md hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800"
+                        class="inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-diidsInk/70 transition-all hover:rounded-md hover:bg-diidsBorder dark:text-gray-300 dark:hover:bg-gray-800"
                         @click="$emitter.emit('open-confirm-modal', {
                             message: '@lang('admin::app.customers.customers.view.account-delete-confirmation')',
 
@@ -182,7 +182,7 @@
                         <x-admin::accordion>
                             <x-slot:header>
                                 <div class="flex w-full">
-                                    <p class="w-full p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="w-full p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                         @lang('admin::app.customers.customers.view.customer')
                                     </p>
 
@@ -194,28 +194,28 @@
                             <x-slot:content>
                                 <div class="grid gap-y-2.5">
                                     <p
-                                        class="break-all font-semibold text-gray-800 dark:text-white"
+                                        class="break-all font-semibold text-diidsInk dark:text-white"
                                         v-text="`${customer.first_name} ${customer.last_name}`"
                                     >
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.customers.customers.view.email')".replace(':email', customer.email ?? 'N/A') }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.customers.customers.view.phone')".replace(':phone', customer.phone ?? 'N/A') }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.customers.customers.view.gender')".replace(':gender', customer.gender ?? 'N/A') }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.customers.customers.view.date-of-birth')".replace(':dob', customer.date_of_birth ?? 'N/A') }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ "@lang('admin::app.customers.customers.view.group')".replace(':group_code', customer.group?.name ?? 'N/A') }}
                                     </p>
                                 </div>
@@ -235,7 +235,7 @@
                             <x-slot:header>
                                 <div class="flex w-full">
                                     <!-- Address Title -->
-                                    <p class="w-full p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="w-full p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ "@lang('admin::app.customers.customers.view.address.count')".replace(':count', customer.addresses.length) }}
                                     </p>
 
@@ -257,7 +257,7 @@
                                             @lang('admin::app.customers.customers.view.default-address')
                                         </p>
 
-                                        <p class="break-all font-semibold text-gray-800 dark:text-white">
+                                        <p class="break-all font-semibold text-diidsInk dark:text-white">
                                             @{{ `${address.first_name} ${address.last_name}` }}
 
                                             <template v-if="address.company_name">
@@ -265,7 +265,7 @@
                                             </template>
                                         </p>
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             <template v-if="address.address">
                                                 @{{ address.address.split('\n').join(', ') }},
                                             </template>
@@ -276,12 +276,12 @@
                                             @{{ address.postcode }}
                                         </p>
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @{{ '@lang('admin::app.customers.customers.view.phone')'.replace(':phone', address.phone ?? 'N/A') }}
                                         </p>
 
                                         <!-- E-mail -->
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @{{ '@lang('admin::app.customers.customers.view.email')'.replace(':email', address.email ?? 'N/A') }}
                                         </p>
 
@@ -303,7 +303,7 @@
                                             <template v-if="! address.default_address">
                                                 <x-admin::button
                                                     button-type="button"
-                                                    class="flex cursor-pointer justify-center text-sm text-blue-600 transition-all hover:underline"
+                                                    class="flex cursor-pointer justify-center text-sm text-navyBlue transition-all hover:underline"
                                                     :title="trans('admin::app.customers.customers.view.set-as-default')"
                                                     ::loading="isUpdating[index]"
                                                     ::disabled="isUpdating[index]"
@@ -328,11 +328,11 @@
                                         />
 
                                         <div class="flex flex-col gap-1.5">
-                                            <p class="text-base font-semibold text-gray-400">
+                                            <p class="text-base font-semibold text-diidsInk/40">
                                                 @lang('admin::app.customers.customers.view.empty-title')
                                             </p>
 
-                                            <p class="text-gray-400">
+                                            <p class="text-diidsInk/40">
                                                 @lang('admin::app.customers.customers.view.empty-description')
                                             </p>
                                         </div>

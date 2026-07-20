@@ -23,7 +23,7 @@
             <div class="grid">
                 <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
                     <div class="flex items-center gap-2.5">
-                        <p class="text-xl font-bold leading-6 text-gray-800 dark:text-white">
+                        <p class="text-xl font-bold leading-6 text-diidsInk dark:text-white">
                             @lang('admin::app.sales.rma.all-rma.index.datagrid.id') {{ '#'. $rma->id }}
                         </p>
                     </div>
@@ -33,7 +33,7 @@
                         <!-- Back Button -->
                         <a
                             href="{{ route('admin.sales.rma.requests.index') }}"
-                            class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                            class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                         >
                             @lang('admin::app.customers.customers.view.back-btn')
                         </a>
@@ -48,7 +48,7 @@
                     <!-- RMA Details -->
                     <div class="box-shadow rounded bg-white dark:bg-gray-900">
                         <div class="flex justify-between p-4">
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.sales.rma.all-rma.view.title')
                             </p>
                         </div>
@@ -58,32 +58,32 @@
                                 <div class="flex gap-2.5 w-full">
                                     <div class="flex w-full justify-start gap-5">
                                         <div class="flex flex-col gap-y-1.5">
-                                            <p class="text-gray-600 dark:text-gray-300">
+                                            <p class="text-diidsInk/70 dark:text-gray-300">
                                                 @lang('admin::app.sales.rma.all-rma.view.request-on')
                                             </p>
 
                                             @if ($rma->package_condition)
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.configuration.index.sales.rma.package-condition'):
                                                 </p>
                                             @endif
 
                                             @if (! empty($rma->additionalFields))
                                                 @foreach ($rma->additionalFields as $key => $additionalField)
-                                                    <p class="text-gray-600 dark:text-gray-300">
+                                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                                         {{ $additionalField?->customField?->label }} :
                                                     </p>
                                                 @endforeach
                                             @endif
 
                                             @if ($rma?->information)
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.all-rma.view.additional-information') :
                                                 </p>
                                             @endif
 
                                             @if ($rma->images->isNotEmpty())
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.all-rma.view.images')
                                                 </p>
                                             @endif
@@ -92,26 +92,26 @@
 
                                     <div class="flex w-full justify-start gap-5">
                                         <div class="flex flex-col gap-y-1.5">
-                                            <p class="text-gray-600 dark:text-gray-300">
+                                            <p class="text-diidsInk/70 dark:text-gray-300">
                                                 {{ \Carbon\Carbon::parse($rma->created_at)->format('F j, Y, h:i:s A') }}
                                             </p>
 
                                             @if ($rma->package_condition)
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     {{ ucwords($rma->package_condition) }}
                                                 </p>
                                             @endif
 
                                             @if (! empty($rma->additionalFields))
                                                 @foreach ($rma->additionalFields as $key => $additionalField)
-                                                    <p class="text-gray-600 dark:text-gray-300">
+                                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                                         {{ $additionalField?->value }}
                                                     </p>
                                                 @endforeach
                                             @endif
 
                                             @if ($rma?->information)
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     {{ $rma?->information }}
                                                 </p>
                                             @endif
@@ -136,7 +136,7 @@
                     <!-- RMA items -->
                     <div class="box-shadow rounded bg-white dark:bg-gray-900">
                         <div class="flex justify-between p-4 !pb-0">
-                            <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                                @lang('admin::app.sales.rma.all-rma.view.order-details')
                             </p>
                         </div>
@@ -150,17 +150,17 @@
                                             src="{{ $rmaItem?->product->base_image_url }}"
                                         />
                                     @else
-                                        <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                        <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                            <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                            <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                                 @lang('admin::app.sales.invoices.view.product-image')
                                             </p>
                                         </div>
                                     @endif
                                 </div>
 
-                                <p class="py-4 break-words text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="py-4 break-words text-base font-semibold text-diidsInk dark:text-white">
                                     {{ $rmaItem->product?->name ?? $rmaItem->orderItem?->name }}
                                 </p>
                             </div>
@@ -170,19 +170,19 @@
                                     <div class="flex gap-2.5 w-full">
                                         <div class="flex w-full justify-start gap-5">
                                             <div class="flex flex-col gap-y-1.5">
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.all-rma.view.price')
                                                 </p>
                                                 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.create-rma.quantity'):
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.all-rma.view.resolution-type')
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @lang('admin::app.sales.rma.create-rma.reason'):
                                                 </p>
                                             </div>
@@ -190,15 +190,15 @@
 
                                         <div class="flex w-full justify-start gap-5">
                                             <div class="flex flex-col gap-y-1.5">
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     {{ core()->formatBasePrice($rmaItem->orderItem->base_price) }}
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     {!! $rmaItem->quantity !!}
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @if ($rmaItem['resolution'] == DefaultRMAResolution::RETURN->value)
                                                         @lang('admin::app.configuration.index.sales.rma.return')
                                                     @else
@@ -206,7 +206,7 @@
                                                     @endif
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     {!! wordwrap(e($rmaItem->reason->title), 50, "<br>\n") !!}
                                                 </p>
                                             </div>
@@ -229,11 +229,11 @@
                                 <!-- Order Actions (order-linked) -->
                                 <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-300 px-4 py-4 dark:border-gray-800">
                                     <div class="flex flex-col gap-0.5">
-                                        <p class="text-sm font-semibold text-gray-800 dark:text-white">
+                                        <p class="text-sm font-semibold text-diidsInk dark:text-white">
                                             @lang('admin::app.sales.rma.all-rma.view.order-actions')
                                         </p>
 
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                                        <p class="text-xs text-diidsInk/60 dark:text-diidsInk/40">
                                             @lang('admin::app.sales.rma.all-rma.view.item-action-note')
                                         </p>
                                     </div>
@@ -261,7 +261,7 @@
                                     <!-- Refund Item Modal -->
                                     <x-admin::modal ref="refundItemModal">
                                         <x-slot:header>
-                                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                                 @lang('admin::app.sales.rma.all-rma.view.refund-item')
                                             </p>
                                         </x-slot>
@@ -305,13 +305,13 @@
                     <!-- Conversation -->
                     <div class="box-shadow rounded bg-white dark:bg-gray-900">
                         <div class="flex justify-between p-4">
-                            <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                                @lang('admin::app.sales.rma.all-rma.view.conversations')
                             </p>
                         </div>
 
                         <div class="flex flex-col-reverse">
-                            <div class="border-t border-gray-200 p-4 dark:border-gray-800">
+                            <div class="border-t border-diidsBorder p-4 dark:border-gray-800">
                                 <x-admin::form
                                     v-slot="{ meta, errors, handleSubmit }"
                                     as="div"
@@ -364,7 +364,7 @@
                                             <button
                                                 type="button"
                                                 id="newFileInput"
-                                                class="transparent-button text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                                                class="transparent-button text-sm hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                                             >
                                                 + @lang('admin::app.sales.rma.all-rma.view.add-attachments')
 
@@ -409,7 +409,7 @@
 
                             <!-- Messages List -->
                             <div
-                                class="flex flex-col-reverse overflow-y-auto p-5 bg-gray-50 dark:bg-gray-950"
+                                class="flex flex-col-reverse overflow-y-auto p-5 bg-diidsSurface dark:bg-gray-950"
                                 style="height: 320px;"
                                 @wheel="getNewMessage()"
                                 :class="!messages.length ? 'justify-center items-center' : ''"
@@ -430,7 +430,7 @@
                                             >
                                                 <!-- Avatar -->
                                                 <div class="flex-shrink-0">
-                                                    <div v-if="message.is_admin == 1" class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
+                                                    <div v-if="message.is_admin == 1" class="w-8 h-8 rounded-full bg-navyBlue flex items-center justify-center text-white font-bold">
                                                         <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 2c-2.21 0-6 1.119-6 3.333V19h12v-2.667C18 14.119 14.21 13 12 13z'/></svg>
                                                     </div>
 
@@ -443,12 +443,12 @@
                                                 <div
                                                     :class="[
                                                         'rounded-xl p-3.5 text-left shadow-sm',
-                                                        message.is_admin == 1 ? 'bg-blue-50 dark:bg-blue-900/40' : 'bg-white dark:bg-gray-800'
+                                                        message.is_admin == 1 ? 'bg-diidsSurface dark:bg-blue-900/40' : 'bg-white dark:bg-gray-800'
                                                     ]"
                                                     style="word-break: break-word; min-width: 160px;"
                                                 >
                                                     <div class="flex items-center gap-2 mb-1">
-                                                        <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                                        <span class="text-xs font-semibold text-diidsInk/60 dark:text-diidsInk/40">
                                                             @lang('admin::app.sales.rma.all-rma.view.by')
 
                                                             <span v-if="message.is_admin == 1">
@@ -466,7 +466,7 @@
                                                     </div>
 
                                                     <div
-                                                        class="value text-sm font-medium text-gray-800 dark:text-gray-200"
+                                                        class="value text-sm font-medium text-diidsInk dark:text-gray-200"
                                                         style="margin-top:2px; word-break: break-word;"
                                                     >@{{ message.message }}</div>
 
@@ -504,7 +504,7 @@
                     <!-- Statuses -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.rma.all-rma.view.status')
                             </p>
                         </x-slot:header>
@@ -512,12 +512,12 @@
                         <x-slot:content>
                             <div class="flex w-full justify-start gap-5">
                                 <div class="flex flex-col gap-2.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.rma.all-rma.view.rma-status')
                                     </p>
 
                                     @if (in_array($rma->rma_status_id, [7, 8]))
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.sales.rma.all-rma.view.close-rma')
                                         </p>
                                     @endif
@@ -525,7 +525,7 @@
 
                                 <div class="flex flex-col gap-2.5">
                                     <!-- RMA Status -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <span
                                             class="label-active py-1 text-xs"
                                             style="background: {{ $rma->status->color }};"
@@ -535,13 +535,13 @@
                                     </p>
 
                                     @if ($rma->rma_status_id == DefaultRMAStatusEnum::DECLINED->value)
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.sales.rma.all-rma.view.declined-admin')
                                         </p>
                                     @endif
 
                                     @if ($rma->rma_status_id == DefaultRMAStatusEnum::ITEM_CANCELED->value)
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.sales.rma.all-rma.view.solved-by-admin')
                                         </p>
                                     @endif
@@ -563,7 +563,7 @@
                                             <form @submit="handleSubmit($event, updateRMStatus)">
                                                 <x-admin::accordion>
                                                     <x-slot:header>
-                                                        <p class="p-3 text-base font-semibold text-gray-600 dark:text-gray-300 required">
+                                                        <p class="p-3 text-base font-semibold text-diidsInk/70 dark:text-gray-300 required">
                                                             @lang('admin::app.sales.rma.all-rma.view.change-status')
                                                         </p>
                                                     </x-slot:header>
@@ -616,7 +616,7 @@
                     @if ($canReopenRma)
                         <x-admin::accordion>
                             <x-slot:header>
-                                <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.sales.rma.all-rma.view.status-reopen')
                                 </p>
                             </x-slot>
@@ -642,7 +642,7 @@
                                                     />
 
                                                     <label
-                                                        class="text-sm text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                                        class="text-sm text-diidsInk/70 dark:text-gray-300 font-medium cursor-pointer"
                                                         for="close_rma"
                                                     >
                                                         @lang('admin::app.sales.rma.all-rma.view.status-reopen')
@@ -667,7 +667,7 @@
                     <!-- Order Information -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.rma.all-rma.view.order-details')
                             </p>
                         </x-slot>
@@ -675,19 +675,19 @@
                         <x-slot:content>
                             <div class="flex w-full justify-start gap-5">
                                 <div class="flex flex-col gap-y-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.rma.all-rma.view.order-id')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                        @lang('admin::app.sales.rma.all-rma.view.order-total')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.rma.all-rma.view.order-date')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                          @lang('admin::app.sales.orders.view.payment-method') :
                                     </p>
                                 </div>
@@ -695,29 +695,29 @@
                                 <div class="flex flex-col gap-y-1.5">
 
                                     <!-- Order id -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <a
                                             href="{{ route('admin.sales.orders.view', $rma->order_id) }}"
                                             target="_blank"
-                                            class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                            class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         >
                                             {{ '#'. $rma->order_id }}
                                         </a>
                                     </p>
 
                                     <!-- Order grand total -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         {{ core()->formatBasePrice($rma->order->base_grand_total) }}
                                     </p>
 
 
                                     <!-- Order create date -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         {{ \Carbon\Carbon::parse($rma->order->created_at)->format('F j, Y, h:i:s A') }}
                                     </p>
 
                                      <!-- payment method -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         {{ $rma->order->payment->method_title }}
                                     </p>
                                 </div>
@@ -728,7 +728,7 @@
                     <!-- Customer Information -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                  @lang('admin::app.sales.rma.all-rma.view.customer-details')
                             </p>
                         </x-slot>
@@ -736,18 +736,18 @@
                         <x-slot:content>
                             <div class="flex w-full justify-start gap-5">
                                 <div class="flex flex-col gap-y-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.rma.all-rma.view.customer')
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                        @lang('admin::app.sales.rma.all-rma.view.customer-email')
                                     </p>
                                 </div>
 
                                 <div class="flex flex-col gap-y-1.5">
                                     <!-- Customer Info -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @if (empty($rma->order->customer_id))
                                             <div class="text-sm dark:text-gray-300">
                                                 {{ $rma->order->customer_first_name }} {{ $rma->order->customer_last_name }}  (@lang('admin::app.sales.rma.all-rma.index.datagrid.guest'))
@@ -762,7 +762,7 @@
                                     </p>
 
                                     <!-- Customer Email -->
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                          {{ $rma->order->customer_email }}
                                     </p>
                                 </div>
@@ -776,7 +776,7 @@
             <x-admin::modal ref="attachmentModal">
                 <!-- Modal Header -->
                 <x-slot:header>
-                    <p class="text-lg font-bold text-gray-800 dark:text-white">
+                    <p class="text-lg font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.sales.rma.all-rma.view.attachment')
                     </p>
                 </x-slot>
@@ -1095,7 +1095,7 @@
 
                         removeButton.classList.add('removeFile');
 
-                        removeButton.classList.add('text-blue-600');
+                        removeButton.classList.add('text-navyBlue');
 
                         removeButton.textContent = "@lang('admin::app.catalog.products.edit.remove')";
 

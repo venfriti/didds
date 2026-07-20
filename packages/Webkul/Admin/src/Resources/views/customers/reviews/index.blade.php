@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="py-3 text-xl font-bold text-gray-800 dark:text-white">
+        <p class="py-3 text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.customers.reviews.index.title')
         </p>
     </div>
@@ -68,8 +68,8 @@
                                         <span
                                             class="icon-uncheckbox cursor-pointer rounded-md text-2xl"
                                             :class="[
-                                                applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-blue-600' : (
-                                                    applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
+                                                applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-navyBlue' : (
+                                                    applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-navyBlue' : ''
                                                 ),
                                             ]"
                                         >
@@ -78,14 +78,14 @@
                                 @endif
 
                                 <!-- Product Name, Review Status -->
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     <span class="[&>*]:after:content-['_/_']">
                                         <template v-for="column in columnGroup">
                                             <span
                                                 class="after:content-['/'] last:after:content-['']"
                                                 :class="{
-                                                    'font-medium text-gray-800 dark:text-white': applied.sort.column == column,
-                                                    'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
+                                                    'font-medium text-diidsInk dark:text-white': applied.sort.column == column,
+                                                    'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                                 }"
                                                 @click="
                                                     available.columns.find(columnTemp => columnTemp.index === column)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === column)): {}
@@ -97,7 +97,7 @@
                                     </span>
 
                                     <i
-                                        class="align-text-bottom text-base text-gray-800 dark:text-white ltr:ml-1.5 rtl:mr-1.5"
+                                        class="align-text-bottom text-base text-diidsInk dark:text-white ltr:ml-1.5 rtl:mr-1.5"
                                         :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                         v-if="columnGroup.includes(applied.sort.column)"
                                     ></i>
@@ -121,7 +121,7 @@
 
                     <template v-else>
                         <div
-                            class="row grid grid-cols-1 gap-2 md:grid-cols-[2fr_1fr_minmax(150px,_4fr)_0.5fr] md:gap-0 border-b px-4 py-2.5 transition-all hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950 min-w-full"
+                            class="row grid grid-cols-1 gap-2 md:grid-cols-[2fr_1fr_minmax(150px,_4fr)_0.5fr] md:gap-0 border-b px-4 py-2.5 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950 min-w-full"
                             v-for="record in available.records"
                         >
                             <!-- Name, Product, Description -->
@@ -138,17 +138,17 @@
                                     >
 
                                     <label
-                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                         :for="`mass_action_select_record_${record.product_review_id}`"
                                     ></label>
                                 @endif
 
                                 <div class="flex flex-col gap-1.5">
-                                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ record.customer_full_name }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ record.product_name }}
                                     </p>
 
@@ -165,12 +165,12 @@
                                     />
                                 </div>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ record.created_at }}
                                 </p>
 
                                 <p
-                                    class="text-gray-600 dark:text-gray-300"
+                                    class="text-diidsInk/70 dark:text-gray-300"
                                 >
                                     @{{ "@lang('admin::app.customers.reviews.index.datagrid.review-id')".replace(':review_id', record.product_review_id) }}
                                 </p>
@@ -178,11 +178,11 @@
 
                             <!-- Title, Description -->
                             <div class="flex flex-col gap-1.5 ps-8 md:ps-0">
-                                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ record.title }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ record.comment }}
                                 </p>
                             </div>
@@ -192,7 +192,7 @@
                                 <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
                                     <span
                                         :class="record.actions.find(action => action.index === 'delete')?.icon"
-                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
+                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"
                                     >
                                     </span>
                                 </a>
@@ -202,7 +202,7 @@
                                     v-if="record.actions.find(action => action.index === 'edit')"
                                     @click="edit(record.actions.find(action => action.index === 'edit')?.url)"
                                 >
-                                    <span class="icon-sort-right rtl:icon-sort-left cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
+                                    <span class="icon-sort-right rtl:icon-sort-left cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
                                 </a>
                             </div>
                         </div>
@@ -242,41 +242,41 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="">
                                             <!-- Customer Name -->
-                                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                                 @lang('admin::app.customers.reviews.index.edit.customer')
                                             </p>
 
-                                            <p class="font-semibold text-gray-800 dark:text-white">
+                                            <p class="font-semibold text-diidsInk dark:text-white">
                                                 @{{ review.name !== '' ? review.name : 'N/A' }}
                                             </p>
                                         </div>
 
                                         <div class="">
-                                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                                 @lang('admin::app.customers.reviews.index.edit.product')
                                             </p>
 
-                                            <p class="font-semibold text-gray-800 dark:text-white">
+                                            <p class="font-semibold text-diidsInk dark:text-white">
                                                 @{{ review.product.name }}
                                             </p>
                                         </div>
 
                                         <div class="">
-                                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                                 @lang('admin::app.customers.reviews.index.edit.id')
                                             </p>
 
-                                            <p class="font-semibold text-gray-800 dark:text-white">
+                                            <p class="font-semibold text-diidsInk dark:text-white">
                                                 @{{ review.id }}
                                             </p>
                                         </div>
 
                                         <div class="">
-                                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                                 @lang('admin::app.customers.reviews.index.edit.date')
                                             </p>
 
-                                            <p class="font-semibold text-gray-800 dark:text-white">
+                                            <p class="font-semibold text-diidsInk dark:text-white">
                                                 @{{ review.date }}
                                             </p>
                                         </div>
@@ -319,7 +319,7 @@
                                     </div>
 
                                     <div class="w-full">
-                                        <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                        <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.customers.reviews.index.edit.rating')
                                         </p>
 
@@ -332,21 +332,21 @@
                                     </div>
 
                                     <div class="w-full">
-                                        <p class="block text-xs font-medium leading-6 text-gray-800 dark:text-white">
+                                        <p class="block text-xs font-medium leading-6 text-diidsInk dark:text-white">
                                             @lang('admin::app.customers.reviews.index.edit.review-title')
                                         </p>
 
-                                        <p class="font-semibold text-gray-800 dark:text-white">
+                                        <p class="font-semibold text-diidsInk dark:text-white">
                                             @{{ review.title }}
                                         </p>
                                     </div>
 
                                     <div class="w-full">
-                                        <p class="block text-xs font-semibold leading-6 text-gray-600 dark:text-gray-300">
+                                        <p class="block text-xs font-semibold leading-6 text-diidsInk/70 dark:text-gray-300">
                                             @lang('admin::app.customers.reviews.index.edit.review-comment')
                                         </p>
 
-                                        <p class="text-gray-800 dark:text-white">
+                                        <p class="text-diidsInk dark:text-white">
                                             @{{ review.comment }}
                                         </p>
                                     </div>

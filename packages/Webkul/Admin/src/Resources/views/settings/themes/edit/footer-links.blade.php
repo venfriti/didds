@@ -14,11 +14,11 @@
                 <!-- Add Links-->
                 <div class="mb-2.5 flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.footer-link')
                         </p>
 
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.settings.themes.edit.footer-link-description')
                         </p>
                     </div>
@@ -70,39 +70,39 @@
                         <div class="flex cursor-pointer justify-between gap-2.5 py-5">
                             <div class="flex gap-2.5">
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.settings.themes.edit.column'): 
 
-                                        <span class="text-gray-600 transition-all dark:text-gray-300">
+                                        <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                             @{{ link.column }}
                                         </span>
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.settings.themes.edit.url'):
 
                                         <a
                                             :href="link.url"
                                             target="_blank"
-                                            class="text-blue-600 transition-all hover:underline"
+                                            class="text-navyBlue transition-all hover:underline"
                                         >
                                             @{{ link.url }}
                                         </a>
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.settings.themes.edit.filter-title'):
 
-                                        <span class="text-gray-600 transition-all dark:text-gray-300">
+                                        <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                             @{{ link.title }}
                                         </span>
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.settings.themes.edit.sort-order'):
 
                                         <span
-                                            class="text-gray-600 transition-all dark:text-gray-300"
+                                            class="text-diidsInk/70 transition-all dark:text-gray-300"
                                             v-text="link.sort_order"
                                         >
                                         </span>
@@ -114,7 +114,7 @@
                             <div class="grid place-content-start gap-1 text-right">
                                 <div class="flex items-center gap-x-5">
                                     <p 
-                                        class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                        class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         @click="edit(link, key)"
                                     > 
                                         @lang('admin::app.settings.themes.edit.edit')
@@ -143,11 +143,11 @@
                     >
     
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.footer-link')
                         </p>
 
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.footer-link-description')
                         </p>
                     </div>
@@ -164,7 +164,7 @@
                     <x-admin::modal ref="addLinksModal">
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.themes.edit.footer-link-form-title')
                             </p>
                         </x-slot>

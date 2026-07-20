@@ -30,7 +30,7 @@
                     <span class="icon-arrow-left rtl:icon-arrow-right text-2xl"></span>
                 </a>
 
-                <h2 class="text-2xl font-medium max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
+                <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
                     @lang('shop::app.rma.customer.create.heading')
                 </h2>
             </div>
@@ -73,14 +73,14 @@
 
                             <template v-else>
                                 <div
-                                    class="row grid items-center gap-2.5 border-b border-zinc-200 bg-zinc-100 px-6 py-4 text-sm font-medium text-black max-md:p-4"
+                                    class="row grid items-center gap-2.5 border-b border-diidsBorder bg-zinc-100 px-6 py-4 text-sm font-medium text-black max-md:p-4"
                                     style="grid-template-columns: repeat(6, minmax(0, 1fr));"
                                 >
                                     <div
                                         class="flex gap-2.5 items-center select-none"
                                         v-for="(columnGroup, index) in [['increment_id'], ['status'], ['grand_total'], ['method_title'], ['created_at']]"
                                     >
-                                        <p class="text-gray-600">
+                                        <p class="text-diidsInk/70">
                                             <span class="[&>*]:after:content-['_/_']">
                                                 <template v-for="column in columnGroup">
                                                     <span
@@ -106,7 +106,7 @@
                                         </p>
                                     </div>
 
-                                    <p class="flex justify-end text-gray-600 cursor-pointer">
+                                    <p class="flex justify-end text-diidsInk/70 cursor-pointer">
                                         @lang('shop::app.customers.account.rma.create.action')
                                     </p>
                                 </div>
@@ -127,7 +127,7 @@
 
                             <template v-else>
                                 <div
-                                    class="row grid px-4 py-2.5 border-b transition-all hover:bg-gray-50"
+                                    class="row grid px-4 py-2.5 border-b transition-all hover:bg-diidsSurface"
                                     style="grid-template-columns: repeat(6, minmax(0, 1fr));"
                                     v-for="record in available.records"
                                 >
@@ -148,13 +148,13 @@
                                         </p>
 
                                         <p
-                                            class="text-gray-600 "
+                                            class="text-diidsInk/70 "
                                             v-html="record.method_title"
                                         >
                                         </p>
 
                                         <p
-                                            class="text-gray-600"
+                                            class="text-diidsInk/70"
                                             v-html="record.created_at"
                                         >
                                         </p>
@@ -190,14 +190,14 @@
 
                             <template v-else>
                                 <div
-                                    class="row grid items-center gap-2.5 border-b border-zinc-200 bg-zinc-100 px-6 py-4 text-sm font-medium text-black max-md:p-4"
+                                    class="row grid items-center gap-2.5 border-b border-diidsBorder bg-zinc-100 px-6 py-4 text-sm font-medium text-black max-md:p-4"
                                     style="grid-template-columns: repeat(2, minmax(0, 1fr));"
                                 >
                                     <div
                                         class="flex gap-2.5 items-center select-none"
                                         v-for="(columnGroup, index) in [['increment_id', 'created_at', 'grand_total'], ['method_title', 'status']]"
                                     >
-                                        <p class="text-gray-600">
+                                        <p class="text-diidsInk/70">
                                             <span class="[&>*]:after:content-['_/_']">
                                                 <template v-for="column in columnGroup">
                                                     <span
@@ -240,26 +240,26 @@
 
                             <template v-else>
                                 <div
-                                    class="row grid px-4 py-2.5 border-b transition-all hover:bg-gray-50"
+                                    class="row grid px-4 py-2.5 border-b transition-all hover:bg-diidsSurface"
                                     style="grid-template-columns: repeat(2, minmax(0, 1fr));"
                                     v-for="record in available.records"
                                 >
                                     <div class="flex gap-x-4 justify-between items-center">
                                         <div class="flex flex-col gap-1.5">
                                             <p
-                                                class="text-gray-600"
+                                                class="text-diidsInk/70"
                                                 v-html="record.increment_id ?? 'N/A'"
                                             >
                                             </p>
 
                                             <p
-                                                class="text-gray-600"
+                                                class="text-diidsInk/70"
                                                 v-html="record.created_at"
                                             >
                                             </p>
 
                                             <p
-                                                class="text-gray-600"
+                                                class="text-diidsInk/70"
                                                 v-html="record.grand_total"
                                             >
                                             </p>
@@ -270,7 +270,7 @@
                                         <div class="flex flex-col gap-1.5">
 
                                         <p
-                                            class="text-gray-600 "
+                                            class="text-diidsInk/70 "
                                             v-html="record.method_title"
                                         >
                                         </p>
@@ -307,13 +307,13 @@
                         >
                             <!-- Modal Header -->
                             <x-slot:header>
-                                <h2 class="text-lg font-semibold text-gray-800 max-md:text-base">
+                                <h2 class="font-dmserif text-lg text-diidsInk max-md:text-base">
                                     @lang('shop::app.rma.customer.create.heading')
                                 </h2>
                             </x-slot>
 
                             <!-- Modal Content -->
-                            <x-slot:content class="bg-gray-50 p-5 max-sm:p-3">
+                            <x-slot:content class="bg-diidsSurface p-5 max-sm:p-3">
                                 <div class="journal-scroll flex flex-col gap-3 overflow-auto ltr:pr-1.5 rtl:pl-1.5" style="min-height: 420px; max-height: 60vh;">
                                     <v-order-items-list :key="refreshComponent" :order-id="isSelect"></v-order-items-list>
                                 </div>
@@ -353,7 +353,7 @@
                 />
 
                 <div v-for="product in products">
-                    <div class="mb-3 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm transition-all hover:border-zinc-300">
+                    <div class="mb-3 rounded-lg border border-diidsBorder bg-white p-4 shadow-sm transition-all hover:border-zinc-300">
                         <div class="flex gap-4">
                             <!-- Checkbox -->
                             <p>
@@ -385,7 +385,7 @@
                             <p>
                                 <template v-if="product.base_image">
                                     <img
-                                        class="h-20 w-20 shrink-0 rounded-lg border border-zinc-200 object-cover"
+                                        class="h-20 w-20 shrink-0 rounded-lg border border-diidsBorder object-cover"
                                         :src="`${baseImageUrl}${product.base_image}`"
                                         :alt="`${product.base_image}`"
                                     />
@@ -393,7 +393,7 @@
 
                                 <template v-else>
                                     <img
-                                        class="h-20 w-20 shrink-0 rounded-lg border border-zinc-200 object-cover"
+                                        class="h-20 w-20 shrink-0 rounded-lg border border-diidsBorder object-cover"
                                         src="{{ bagisto_asset('images/medium-product-placeholder.webp') }}"
                                         alt="medium-product-placeholder.webp"
                                     >
@@ -421,7 +421,7 @@
 
                                 <p
                                     v-for="(attribute) in product.attributes" v-if="product.attributes"
-                                    class="flex gap-1.5 text-sm text-gray-500 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800"
+                                    class="flex gap-1.5 text-sm text-diidsInk/60 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800"
                                     >
                                     <span>
                                         @{{ attribute.attribute_name }}:
@@ -430,7 +430,7 @@
                                     <span>@{{ attribute.option_label }}</span>
                                 </p>
 
-                                <p class="flex gap-1.5 text-sm text-gray-500 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
+                                <p class="flex gap-1.5 text-sm text-diidsInk/60 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
                                     <span>
                                         @lang('shop::app.customers.account.rma.create.sku'):
                                     </span>
@@ -438,7 +438,7 @@
                                     <span>@{{ product.sku }}</span>
                                 </p>
 
-                                <p class="flex gap-1.5 text-sm text-gray-500 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
+                                <p class="flex gap-1.5 text-sm text-diidsInk/60 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
                                     <span>
                                         @lang('shop::app.customers.account.rma.create.price'):
                                     </span>
@@ -446,7 +446,7 @@
                                     <span>@{{ formatPrice(product.price) }}</span>
                                 </p>
 
-                                <p class="flex gap-1.5 text-sm text-gray-500 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
+                                <p class="flex gap-1.5 text-sm text-diidsInk/60 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800">
                                     <span>
                                         @lang('shop::app.customers.account.rma.create.current-order-quantity'):
                                     </span>
@@ -458,7 +458,7 @@
 
                                 <p
                                     v-if="resolutionType[getProductId(product)] == 'return'"
-                                    class="flex gap-1.5 text-sm text-gray-500 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800"
+                                    class="flex gap-1.5 text-sm text-diidsInk/60 [&>span:last-child]:font-medium [&>span:last-child]:text-gray-800"
                                 >
                                     <span>
                                         @lang('shop::app.rma.customer.create.return-window'):

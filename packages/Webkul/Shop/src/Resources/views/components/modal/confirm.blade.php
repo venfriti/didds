@@ -49,7 +49,7 @@
                                         @{{ title }}
                                     </div>
 
-                                    <div class="pb-5 pt-1.5 text-left text-sm text-gray-500">
+                                    <div class="pb-5 pt-1.5 text-left text-sm text-diidsInk/60">
                                         @{{ message }}
                                     </div>
 

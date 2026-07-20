@@ -25,7 +25,7 @@
                 <!-- Forget Password Form -->
                 <x-admin::form :action="route('admin.forget_password.store')">
                     <div class="p-4">
-                        <p class="text-xl font-bold text-gray-800 dark:text-white">
+                        <p class="text-xl font-bold text-diidsInk dark:text-white">
                             @lang('admin::app.users.forget-password.create.title')
                         </p>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="flex items-center justify-between p-4">
                         <!-- Back to Sign In link -->
                         <a 
-                            class="cursor-pointer text-xs font-semibold leading-6 text-blue-600"
+                            class="cursor-pointer text-xs font-semibold leading-6 text-navyBlue"
                             href="{{ route('admin.session.create') }}"
                         >
                             @lang('admin::app.users.forget-password.create.sign-in-link')
@@ -63,19 +63,11 @@
 
                         <!-- Form Submit Button -->
                         <button 
-                            class="cursor-pointer rounded-md border border-blue-700 bg-blue-600 px-3.5 py-1.5 font-semibold text-gray-50">
+                            class="cursor-pointer rounded-md border border-blue-700 bg-navyBlue px-3.5 py-1.5 font-semibold text-gray-50">
                             @lang('admin::app.users.forget-password.create.submit-btn')
                         </button>
                     </div>
                 </x-admin::form>
-            </div>
-
-            <!-- Powered By -->
-            <div class="text-sm font-normal">
-                @lang('admin::app.users.forget-password.create.powered-by-description', [
-                    'bagisto' => '<a class="text-blue-600 hover:underline" href="https://bagisto.com/en/">Bagisto</a>',
-                    'webkul' => '<a class="text-blue-600 hover:underline" href="https://webkul.com/">Webkul</a>',
-                ])
             </div>
         </div>
     </div>

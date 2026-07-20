@@ -13,7 +13,7 @@
         {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.create_form_controls.before') !!}
 
         <div class="mt-3 flex items-center justify-between gap-4 max-sm:flex-wrap">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.marketing.promotions.cart-rules.create.title')
             </p>
 
@@ -21,7 +21,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.marketing.promotions.cart_rules.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.account.edit.back-btn')
                 </a>
@@ -63,7 +63,7 @@
 
                     <!-- General -->
                     <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                        <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.marketing.promotions.cart-rules.create.general')
                         </p>
 
@@ -94,7 +94,7 @@
 
                             <x-admin::form.control-group.control
                                 type="textarea"
-                                class="text-gray-600 dark:text-gray-300"
+                                class="text-diidsInk/70 dark:text-gray-300"
                                 id="description"
                                 name="description"
                                 :value="old('description')"
@@ -161,7 +161,7 @@
 
                                 <p
                                     v-if="parseInt(useAutoGeneration)"
-                                    class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300"
+                                    class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300"
                                 >
                                     @lang('admin::app.marketing.promotions.cart-rules.create.auto-generate-info')
                                 </p>
@@ -221,7 +221,7 @@
 
                             <x-admin::form.control-group.error control-name="usage_per_customer" />
 
-                            <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                            <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.marketing.promotions.cart-rules.create.uses-per-customer-control-info')
                             </p>
                         </x-admin::form.control-group>
@@ -234,7 +234,7 @@
                     <!-- Conditions -->
                     <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                         <div class="mb-8 flex items-center justify-between gap-4">
-                            <p class="text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.marketing.promotions.cart-rules.create.conditions')
                             </p>
 
@@ -291,7 +291,7 @@
                     <!-- Action -->
                     <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                         <div class="grid gap-1.5">
-                            <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.marketing.promotions.cart-rules.create.actions')
                             </p>
 
@@ -341,7 +341,7 @@
 
                                 <x-admin::form.control-group.error control-name="action_type" />
 
-                                <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                                <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                     <span v-if="actionType === 'by_percent'">@lang('admin::app.marketing.promotions.cart-rules.create.action-type-info-by-percent')</span>
                                     <span v-else-if="actionType === 'by_fixed'">@lang('admin::app.marketing.promotions.cart-rules.create.action-type-info-by-fixed')</span>
                                     <span v-else-if="actionType === 'cart_fixed'">@lang('admin::app.marketing.promotions.cart-rules.create.action-type-info-cart-fixed')</span>
@@ -413,7 +413,7 @@
 
                                     <x-admin::form.control-group.error control-name="discount_quantity" />
 
-                                    <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                                    <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.marketing.promotions.cart-rules.create.maximum-discounted-quantity-info')
                                     </p>
                                 </x-admin::form.control-group>
@@ -440,7 +440,7 @@
 
                                     <x-admin::form.control-group.error control-name="discount_quantity" />
 
-                                    <p class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300">
+                                    <p class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.marketing.promotions.cart-rules.create.maximum-eligible-quantity-info')
                                     </p>
                                 </x-admin::form.control-group>
@@ -481,7 +481,7 @@
 
                                     <p
                                         v-if="actionType === 'cart_fixed' || actionType === 'buy_x_get_y'"
-                                        class="mt-1 block text-xs italic leading-5 text-gray-600 dark:text-gray-300"
+                                        class="mt-1 block text-xs italic leading-5 text-diidsInk/70 dark:text-gray-300"
                                     >
                                         @lang('admin::app.marketing.promotions.cart-rules.create.apply-to-shipping-disabled-info')
                                     </p>
@@ -569,7 +569,7 @@
                     <!-- Settings -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.marketing.promotions.cart-rules.create.settings')
                             </p>
                         </x-slot>
@@ -613,7 +613,7 @@
                                         />
 
                                         <label
-                                            class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                            class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                             for="{{ 'channel_' . '_' . $channel->id }}"
                                             v-pre
                                         >
@@ -645,7 +645,7 @@
                                         />
 
                                         <label
-                                            class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                            class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                             for="{{ 'customer_group_' . '_' . $customerGroup->id }}"
                                             v-pre
                                         >
@@ -683,7 +683,7 @@
                     <!-- Marketing Time -->
                     <x-admin::accordion>
                         <x-slot:header>
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.marketing.promotions.cart-rules.create.marketing-time')
                             </p>
                         </x-slot>
@@ -779,7 +779,7 @@
                     <select
                         :name="['conditions[' + index + '][attribute]']"
                         :id="['conditions[' + index + '][attribute]']"
-                        class="custom-select min:w-1/3 flex h-10 w-1/3 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 max-sm:max-w-full max-sm:flex-auto"
+                        class="custom-select min:w-1/3 flex h-10 w-1/3 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder max-sm:max-w-full max-sm:flex-auto"
                         v-model="condition.attribute"
                     >
                         <option value="">@lang('admin::app.marketing.promotions.cart-rules.create.choose-condition-to-add')</option>
@@ -799,7 +799,7 @@
 
                     <select
                         :name="['conditions[' + index + '][operator]']"
-                        class="custom-select inline-flex h-10 w-full max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 max-sm:max-w-full max-sm:flex-auto"
+                        class="custom-select inline-flex h-10 w-full max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder max-sm:max-w-full max-sm:flex-auto"
                         v-model="condition.operator"
                         v-if="matchedAttribute"
                     >
@@ -858,7 +858,7 @@
                                         type="text"
                                         v-bind="field"
                                         :class="{ 'border border-red-500': errorMessage }"
-                                        class="min:w-1/3 flex h-10 w-[289px] rounded-md border px-3 py-2.5 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                        class="min:w-1/3 flex h-10 w-[289px] rounded-md border px-3 py-2.5 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                     />
                                 </v-field>
 
@@ -878,7 +878,7 @@
                                     <input
                                         type="date"
                                         :name="['conditions[' + index + '][value]']"
-                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                         v-model="condition.value"
                                     />
                                 </x-admin::flat-picker.date>
@@ -892,7 +892,7 @@
                                     <input
                                         type="datetime"
                                         :name="['conditions[' + index + '][value]']"
-                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                         v-model="condition.value"
                                     />
                                 </x-admin::flat-picker.date>
@@ -901,7 +901,7 @@
                             <div v-if="matchedAttribute.type == 'boolean'">
                                 <select
                                     :name="['conditions[' + index + '][value]']"
-                                    class="custom-select inline-flex h-10 w-[196px] max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                    class="custom-select inline-flex h-10 w-[196px] max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                     v-model="condition.value"
                                 >
                                     <option value="1">
@@ -917,7 +917,7 @@
                             <div v-if="matchedAttribute.type == 'select' || matchedAttribute.type == 'radio'">
                                 <select
                                     :name="['conditions[' + index + '][value]']"
-                                    class="custom-select inline-flex h-10 w-full min-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400"
+                                    class="custom-select inline-flex h-10 w-full min-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder"
                                     v-if="matchedAttribute.key != 'catalog|state'"
                                     v-model="condition.value"
                                 >
@@ -931,7 +931,7 @@
 
                                 <select
                                     :name="['conditions[' + index + '][value]']"
-                                    class="custom-select inline-flex h-10 w-full max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 max-sm:max-w-full max-sm:flex-auto"
+                                    class="custom-select inline-flex h-10 w-full max-w-[196px] items-center justify-between gap-x-1 rounded-md border bg-white px-3 py-2.5 text-sm font-normal text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder max-sm:max-w-full max-sm:flex-auto"
                                     v-model="condition.value"
                                     v-else
                                 >
@@ -952,7 +952,7 @@
                             <div v-if="matchedAttribute.type == 'multiselect' || matchedAttribute.type == 'checkbox'">
                                 <select
                                     :name="['conditions[' + index + '][value][]']"
-                                    class="inline-flex h-10 w-[196px] max-w-[196px] items-center justify-between gap-x-1 rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                    class="inline-flex h-10 w-[196px] max-w-[196px] items-center justify-between gap-x-1 rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                     v-model="condition.value"
                                     multiple
                                 >
@@ -969,7 +969,7 @@
                 </div>
 
                 <span
-                    class="icon-delete max-w-9 max-h-9 cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-100 dark:hover:bg-gray-950 max-sm:place-self-center"
+                    class="icon-delete max-w-9 max-h-9 cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsSurface dark:hover:bg-gray-950 max-sm:place-self-center"
                     @click="removeCondition"
                 >
                 </span>

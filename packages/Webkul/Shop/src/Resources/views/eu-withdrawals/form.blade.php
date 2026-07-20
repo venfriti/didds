@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="container mt-10 mx-auto max-w-3xl px-5 max-md:mt-6 max-md:px-4">
-        <h1 class="text-2xl font-medium max-md:text-xl">
+        <h1 class="font-dmserif text-2xl text-diidsInk max-md:text-xl">
             @lang('shop::app.eu_withdrawal.form.heading')
         </h1>
 
@@ -34,8 +34,8 @@
 
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {{-- Order Summary --}}
-                <aside class="rounded-xl border border-zinc-200 bg-white p-5">
-                    <p class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <aside class="rounded-xl border border-diidsBorder bg-white p-5">
+                    <p class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                         @lang('shop::app.eu_withdrawal.form.order_summary')
                     </p>
 
@@ -64,19 +64,19 @@
                 </aside>
 
                 {{-- Reason Input --}}
-                <div class="rounded-xl border border-zinc-200 bg-white p-5 md:col-span-2">
+                <div class="rounded-xl border border-diidsBorder bg-white p-5 md:col-span-2">
                     <label
                         for="reason_text"
                         class="block text-base font-medium text-zinc-900"
                     >
                         @lang('shop::app.eu_withdrawal.form.reason_label')
 
-                        <span class="ml-1 text-xs font-normal text-zinc-500">
+                        <span class="ml-1 text-xs font-normal text-diidsInk/60">
                             @lang('shop::app.eu_withdrawal.form.reason_optional')
                         </span>
                     </label>
 
-                    <p class="mt-1 text-xs text-zinc-500">
+                    <p class="mt-1 text-xs text-diidsInk/60">
                         @lang('shop::app.eu_withdrawal.form.reason_help')
                     </p>
 
@@ -85,7 +85,7 @@
                         name="reason_text"
                         rows="6"
                         maxlength="5000"
-                        class="mt-3 block w-full rounded-lg border border-zinc-200 px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
+                        class="mt-3 block w-full rounded-lg border border-diidsBorder px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
                         placeholder="@lang('shop::app.eu_withdrawal.form.reason_placeholder')"
                     >{{ old('reason_text') }}</textarea>
 
@@ -99,7 +99,7 @@
             <div class="mt-6 flex items-center justify-end gap-3">
                 <a
                     href="{{ route('shop.home.index') }}"
-                    class="secondary-button border-zinc-200 px-5 py-3 font-normal"
+                    class="secondary-button border-diidsBorder px-5 py-3 font-normal"
                 >
                     @lang('shop::app.eu_withdrawal.form.cancel')
                 </a>

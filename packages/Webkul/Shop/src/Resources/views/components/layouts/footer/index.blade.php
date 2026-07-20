@@ -140,7 +140,7 @@
                 <div>
                     <x-shop::form
                         :action="route('shop.subscription.store')"
-                        class="mt-2 rounded"
+                        class="pt-2 rounded"
                         toolname="subscribe_to_newsletter"
                         tooldescription="{{ trans('shop::app.components.layouts.webmcp.subscribe-newsletter') }}"
                         toolautosubmit
@@ -169,7 +169,7 @@
                         </div>
                     </x-shop::form>
 
-                    <label class="mt-4 flex cursor-pointer items-start gap-2.5 text-xs text-diidsSurface/70">
+                    <label class="flex cursor-pointer items-start gap-2.5 pt-4 text-xs text-diidsSurface/70">
                         <input type="checkbox" class="mt-0.5 h-3.5 w-3.5 rounded-sm border-diidsSurface/40 bg-transparent">
                         I agree to receiving marketing emails and special deals
                     </label>

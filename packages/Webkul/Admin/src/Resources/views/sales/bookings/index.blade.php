@@ -13,11 +13,11 @@
         >
             <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
                 <div class="flex flex-col">
-                    <p class="py-3 text-xl font-bold text-gray-800 dark:text-white">
+                    <p class="py-3 text-xl font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.sales.booking.index.title')
                     </p>
 
-                    <p class="-mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    <p class="-mt-1 text-sm text-diidsInk/60 dark:text-diidsInk/40">
                         @lang('admin::app.sales.booking.index.title') overview
                     </p>
                 </div>
@@ -30,13 +30,13 @@
                     />
 
                     <!-- View Switcher -->
-                    <div class="inline-flex rounded-lg border border-gray-200 bg-white p-1 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                    <div class="inline-flex rounded-lg border border-diidsBorder bg-white p-1 shadow-sm dark:border-gray-700 dark:bg-gray-900">
                         <!-- Calendar Icon -->
                         <button
                             class="icon-calendar flex h-8 w-9 items-center justify-center rounded-md text-xl transition-all duration-200"
                             :class="viewType === 'calendar'
-                                ? 'bg-blue-600 text-white shadow-sm'
-                                : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200'"
+                                ? 'bg-navyBlue text-white shadow-sm'
+                                : 'text-diidsInk/60 hover:bg-diidsSurface hover:text-diidsInk/80 dark:text-diidsInk/40 dark:hover:bg-gray-800 dark:hover:text-gray-200'"
                             @click="viewType = 'calendar'"
                         ></button>
 
@@ -44,8 +44,8 @@
                         <button
                             class="icon-list flex h-8 w-9 items-center justify-center rounded-md text-xl transition-all duration-200"
                             :class="viewType === 'table'
-                                ? 'bg-blue-600 text-white shadow-sm'
-                                : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200'"
+                                ? 'bg-navyBlue text-white shadow-sm'
+                                : 'text-diidsInk/60 hover:bg-diidsSurface hover:text-diidsInk/80 dark:text-diidsInk/40 dark:hover:bg-gray-800 dark:hover:text-gray-200'"
                             @click="viewType = 'table'"
                         ></button>
                     </div>

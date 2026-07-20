@@ -1,11 +1,11 @@
 {!! view_render_event('bagisto.shop.checkout.onepage.address.before') !!}
 
 <!-- Accordion Blade Component -->
-<x-shop::accordion class="mb-7 mt-8 overflow-hidden rounded-xl !border-b-0 max-md:mb-0 max-md:mt-0 max-md:rounded-lg max-md:!border-none max-md:!bg-gray-100">
+<x-shop::accordion class="mb-7 mt-8 overflow-hidden rounded-xl !border-b-0 max-md:mb-0 max-md:mt-0 max-md:rounded-lg max-md:!border-none max-md:!bg-diidsSurface">
     <!-- Accordion Header Component Slot -->
     <x-slot:header class="!p-0 max-md:!mb-0 max-md:rounded-t-md max-md:!p-3 max-md:text-sm max-md:font-medium max-sm:!p-2">
         <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-medium max-md:text-base">
+            <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-base">
                 @lang('shop::app.checkout.onepage.address.title')
             </h2>
         </div>

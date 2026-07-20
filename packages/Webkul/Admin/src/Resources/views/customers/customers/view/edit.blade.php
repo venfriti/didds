@@ -2,7 +2,7 @@
     :customer="customer"
     @update-customer="updateCustomer"
 >
-    <div class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-blue-600 transition-all hover:underline"></div>
+    <div class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-navyBlue transition-all hover:underline"></div>
 </v-customer-edit>
 
 @pushOnce('scripts')
@@ -13,7 +13,7 @@
         <!-- Customer Edit Button -->
         @if (bouncer()->hasPermission('customers.customers.edit'))
             <div 
-                class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-blue-600 transition-all hover:underline"
+                class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-navyBlue transition-all hover:underline"
                 @click="$refs.customerEditModal.toggle()"
             >
                 @lang('admin::app.customers.customers.view.edit.edit-btn')
@@ -34,7 +34,7 @@
                 <x-admin::modal ref="customerEditModal">
                     <!-- Modal Header -->
                     <x-slot:header>
-                        <p class="text-lg font-bold text-gray-800 dark:text-white">
+                        <p class="text-lg font-bold text-diidsInk dark:text-white">
                             @lang('admin::app.customers.customers.view.edit.title')
                         </p>    
                     </x-slot>

@@ -12,7 +12,7 @@
                     <li class="mb-2">
                         <a 
                             href="{{ route('shop.downloadable.download_sample', ['type' => 'sample', 'id' => $sample->id]) }}" 
-                            class="text-blue-700"
+                            class="text-navyBlue"
                             target="_blank"
                             v-pre
                         >
@@ -65,7 +65,7 @@
                         <a 
                             href="{{ route('shop.downloadable.download_sample', ['type' => 'link', 'id' => $link->id]) }}"
                             target="_blank"
-                            class="text-blue-700 max-sm:text-sm"
+                            class="text-navyBlue max-sm:text-sm"
                         >
                             @lang('shop::app.products.view.type.downloadable.sample')
                         </a>

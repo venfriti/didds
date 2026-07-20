@@ -29,11 +29,11 @@
 
                         <!-- Sales Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_sales.formatted_total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.today-sales')
                             </p>
 
@@ -65,11 +65,11 @@
 
                         <!-- Orders Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_orders.current }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.today-orders')
                             </p>
 
@@ -101,11 +101,11 @@
 
                         <!-- Customers Stats -->
                         <div class="grid place-content-start gap-1">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.total_customers.current }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.dashboard.index.today-customers')
                             </p>
 
@@ -130,18 +130,18 @@
                 <!-- Today Orders Details -->
                 <div 
                     v-for="order in report.statistics.orders"
-                    class="border-b bg-white p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
+                    class="border-b bg-white p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-950"
                 >
                     <div class="flex flex-wrap gap-4">
                         <!-- Total Sales -->
                         <div class="flex min-w-[180px] flex-1 gap-2.5">
                             <div class="flex flex-col gap-1.5">
                                 <!-- Order Id -->
-                                <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                     @{{ "@lang('admin::app.dashboard.index.order-id', ['id' => ':replace'])".replace(':replace', order.increment_id) }}
                                 </p>
     
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ order.created_at}}
                                 </p>
     
@@ -154,17 +154,17 @@
 
                         <div class="flex min-w-[180px] flex-1 gap-2.5">
                             <div class="flex flex-col gap-1.5">
-                                <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                     @{{ order.formatted_base_grand_total }}
                                 </p>
         
                                 <!-- Payment Mode -->
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ order.payment_method }}
                                 </p>
         
                                 <!-- Channel Name -->
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ order.channel_name }}
                                 </p>
                             </div>
@@ -173,16 +173,16 @@
                         <div class="flex min-w-[200px] flex-1 gap-2.5">
                             <div class="flex flex-col gap-1.5">
                             <!-- Customer Details -->
-                                <p class="text-base text-gray-800 dark:text-white">
+                                <p class="text-base text-diidsInk dark:text-white">
                                     @{{ order.customer_name }}
                                 </p>
         
-                                <p class="max-w-[180px] break-words text-gray-600 dark:text-gray-300">
+                                <p class="max-w-[180px] break-words text-diidsInk/70 dark:text-gray-300">
                                     @{{ order.customer_email }}
                                 </p>
         
                                 <!-- Order Address -->
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ order.billing_address }}
                                 </p>
                             </div>
@@ -200,7 +200,7 @@
 
                              <!-- View More Icon -->
                              <a :href="'{{ route('admin.sales.orders.view', ':replace') }}'.replace(':replace', order.id)">
-                                <span class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
+                                <span class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-2xl hover:rounded-md hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
                             </a>
                         </div>
                     </div>

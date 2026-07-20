@@ -5,7 +5,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.settings.roles.index.title')
         </p>
         

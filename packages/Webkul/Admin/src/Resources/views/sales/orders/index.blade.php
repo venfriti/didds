@@ -5,7 +5,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="py-3 text-xl font-bold text-gray-800 dark:text-white">
+        <p class="py-3 text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.sales.orders.index.title')
         </p>
 
@@ -49,14 +49,14 @@
                         class="flex select-none items-center gap-2.5"
                         v-for="(columnGroup, index) in [['increment_id', 'created_at', 'status'], ['base_grand_total', 'method', 'channel_id'], ['full_name', 'customer_email', 'location'], ['items']]"
                     >
-                        <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                        <p class="text-diidsInk/70 dark:text-gray-300 text-sm sm:text-base">
                             <span class="[&>*]:after:content-['_/_']">
                                 <template v-for="column in columnGroup">
                                     <span
                                         class="after:content-['/'] last:after:content-['']"
                                         :class="{
-                                            'font-medium text-gray-800 dark:text-white': applied.sort.column == column,
-                                            'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
+                                            'font-medium text-diidsInk dark:text-white': applied.sort.column == column,
+                                            'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                         }"
                                         @click="
                                             available.columns.find(columnTemp => columnTemp.index === column)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === column)) : {}
@@ -68,7 +68,7 @@
                             </span>
 
                             <i
-                                class="align-text-bottom text-base text-gray-800 dark:text-white ltr:ml-1.5 rtl:mr-1.5"
+                                class="align-text-bottom text-base text-diidsInk dark:text-white ltr:ml-1.5 rtl:mr-1.5"
                                 :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                 v-if="columnGroup.includes(applied.sort.column)"
                             >
@@ -94,16 +94,16 @@
             <template v-else>
                 <!-- Order Rows -->
                 <div
-                    class="row grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-4 border-b px-2 sm:px-4 py-2.5 transition-all hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+                    class="row grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-4 border-b px-2 sm:px-4 py-2.5 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950"
                     v-for="record in available.records"
                 >
                     <!-- Order Id, Created, Status Section -->
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-sm sm:text-base font-semibold text-diidsInk dark:text-white">
                             @{{ "@lang('admin::app.sales.orders.index.datagrid.id')".replace(':id', record.increment_id) }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-xs sm:text-sm text-diidsInk/70 dark:text-gray-300">
                             @{{ record.created_at }}
                         </p>
                         
@@ -112,30 +112,30 @@
 
                     <!-- Total Amount, Pay Via, Channel -->
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-sm sm:text-base font-semibold text-diidsInk dark:text-white">
                             @{{ $admin.formatPrice(record.base_grand_total) }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-xs sm:text-sm text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.sales.orders.index.datagrid.pay-by', ['method' => ''])@{{ record.method }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-xs sm:text-sm text-diidsInk/70 dark:text-gray-300">
                             @{{ record.channel_name }}
                         </p>
                     </div>
 
                     <!-- Customer, Email, Location Section -->
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm sm:text-base text-gray-800 dark:text-white">
+                        <p class="text-sm sm:text-base text-diidsInk dark:text-white">
                             @{{ record.full_name }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-xs sm:text-sm text-diidsInk/70 dark:text-gray-300">
                             @{{ record.customer_email }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-xs sm:text-sm text-diidsInk/70 dark:text-gray-300">
                             @{{ record.location }}
                         </p>
                     </div>
@@ -149,7 +149,7 @@
                         </div>
 
                         <a :href="'{{ route('admin.sales.orders.view', ':id') }}'.replace(':id', record.id)">
-                            <span class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-xl sm:text-2xl hover:rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
+                            <span class="icon-sort-right rtl:icon-sort-left cursor-pointer p-1.5 text-xl sm:text-2xl hover:rounded-md hover:bg-diidsBorder dark:hover:bg-gray-800 ltr:ml-1 rtl:mr-1"></span>
                         </a>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
                             <div class="relative w-full">
                                 <input
                                     type="text"
-                                    class="block w-full rounded-lg border bg-white py-1.5 leading-6 text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 ltr:pl-3 ltr:pr-10 rtl:pl-10 rtl:pr-3"
+                                    class="block w-full rounded-lg border bg-white py-1.5 leading-6 text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 ltr:pl-3 ltr:pr-10 rtl:pl-10 rtl:pr-3"
                                     placeholder="@lang('admin::app.sales.orders.index.search-customer.search-by')"
                                     v-model.lazy="searchTerm"
                                     v-debounce="500"
@@ -207,15 +207,15 @@
                             v-if="searchedCustomers.length"
                         >
                             <div
-                                class="grid cursor-pointer place-content-start gap-1.5 border-b border-slate-300 p-4 last:border-b-0 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-gray-950"
+                                class="grid cursor-pointer place-content-start gap-1.5 border-b border-slate-300 p-4 last:border-b-0 hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950"
                                 v-for="customer in searchedCustomers"
                                 @click="createCart(customer)"
                             >
-                                <p class="text-base font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @{{ customer.first_name + ' ' + customer.last_name }}
                                 </p>
 
-                                <p class="text-gray-500">
+                                <p class="text-diidsInk/60">
                                     @{{ customer.email }}
                                 </p>
                             </div>
@@ -234,11 +234,11 @@
 
                             <!-- Add Variants Information -->
                             <div class="flex flex-col items-center gap-1.5">
-                                <p class="text-base font-semibold text-gray-400">
+                                <p class="text-base font-semibold text-diidsInk/40">
                                     @lang('admin::app.sales.orders.index.search-customer.empty-title')
                                 </p>
 
-                                <p class="text-gray-400">
+                                <p class="text-diidsInk/40">
                                     @lang('admin::app.sales.orders.index.search-customer.empty-info')
                                 </p>
 

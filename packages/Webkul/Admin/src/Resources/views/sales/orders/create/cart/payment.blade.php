@@ -21,7 +21,7 @@
             id="payment-step-container"
         >
             <div class="flex items-center border-b p-4 dark:border-gray-800">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.sales.orders.create.cart.payment.title')
                 </p>
             </div>
@@ -37,7 +37,7 @@
                     {!! view_render_event('bagisto.admin.sales.order.create.cart.payment.before') !!}
 
                     <label
-                        class="flex cursor-pointer items-center gap-2 border-b p-4 transition-all hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+                        class="flex cursor-pointer items-center gap-2 border-b p-4 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950"
                         v-for="payment in methods"
                         :for="payment.method"
                     >
@@ -50,7 +50,7 @@
                             @change="store(payment)"
                         />
 
-                        <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                        <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                             @{{ payment.method_title }}
                         </p>
                     </label>

@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.marketing.communications.subscribers.index.title')
         </p>
     </div>
@@ -39,7 +39,7 @@
                         <template v-else>
                             <div
                                 v-for="record in available.records"
-                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                                class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                                 :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
                         >
                             <!-- Id -->
@@ -57,7 +57,7 @@
                                         <a @click="editModal(record.actions.find(action => action.index === 'edit')?.url)">
                                             <span
                                                 :class="record.actions.find(action => action.index === 'edit')?.icon"
-                                                class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                                class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                             >
                                             </span>
                                         </a>
@@ -67,7 +67,7 @@
                                         <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
                                             <span
                                                 :class="record.actions.find(action => action.index === 'delete')?.icon"
-                                                class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                                class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                             >
                                             </span>
                                         </a>
@@ -91,7 +91,7 @@
                         <x-admin::modal ref="groupCreateModal">
                             <!-- Modal Header -->
                             <x-slot:header>
-                                <p class="text-lg font-bold text-gray-800 dark:text-white">
+                                <p class="text-lg font-bold text-diidsInk dark:text-white">
                                     @lang('admin::app.marketing.communications.subscribers.index.edit.title')
                                 </p>
                             </x-slot>

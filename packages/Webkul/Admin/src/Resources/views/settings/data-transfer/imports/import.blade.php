@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.settings.data-transfer.imports.import.title')
         </p>
 
@@ -12,7 +12,7 @@
             <!-- Back Button -->
             <a
                 href="{{ route('admin.settings.data_transfer.imports.index') }}"
-                class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
             >
                 @lang('admin::app.settings.data-transfer.imports.import.back-btn')
             </a>
@@ -58,16 +58,16 @@
 
                 <!-- Validation In Process -->
                 <div
-                    class="flex w-full place-content-between items-center rounded-sm border border-blue-200 bg-blue-50 p-3 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+                    class="flex w-full place-content-between items-center rounded-sm border border-blue-200 bg-diidsSurface p-3 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                     v-if="importResource.state == 'validating'"
                 >
                     <p class="flex items-center gap-2">
-                        <i class="icon-information rounded-full bg-blue-200 text-2xl text-blue-600 dark:!text-blue-600"></i>
+                        <i class="icon-information rounded-full bg-blue-200 text-2xl text-navyBlue dark:!text-navyBlue"></i>
 
                         @lang('admin::app.settings.data-transfer.imports.import.validating-info')
 
                         <!-- Spinner -->
-                        <svg class="ml-2 h-5 w-5 animate-spin text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none"  aria-hidden="true" viewBox="0 0 24 24">
+                        <svg class="ml-2 h-5 w-5 animate-spin text-navyBlue" xmlns="http://www.w3.org/2000/svg" fill="none"  aria-hidden="true" viewBox="0 0 24 24">
                             <circle
                                 class="opacity-25"
                                 cx="12"
@@ -120,7 +120,7 @@
                                 :class="isValid ? 'bg-green-200 text-green-600 dark:!text-green-600' : 'bg-red-200 text-red-600 dark:!text-red-600'"
                             ></i>
 
-                            <span class="font-medium text-gray-800 dark:text-white">
+                            <span class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-rows-processed')
                             </span>
 
@@ -133,7 +133,7 @@
                                 :class="isValid ? 'bg-green-200 text-green-600 dark:!text-green-600' : 'bg-red-200 text-red-600 dark:!text-red-600'"
                             ></i>
 
-                            <span class="font-medium text-gray-800 dark:text-white">
+                            <span class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-invalid-rows')
                             </span>
 
@@ -146,7 +146,7 @@
                                 :class="isValid ? 'bg-green-200 text-green-600 dark:!text-green-600' : 'bg-red-200 text-red-600 dark:!text-red-600'"
                             ></i>
 
-                            <span class="font-medium text-gray-800 dark:text-white">
+                            <span class="font-medium text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-errors')
                             </span>
 
@@ -210,7 +210,7 @@
                     </div>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.progress')
                         </span>
 
@@ -218,7 +218,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.total-batches')
                         </span>
 
@@ -226,7 +226,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.completed-batches')
                         </span>
 
@@ -234,7 +234,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.total-created')
                         </span>
 
@@ -242,7 +242,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.total-updated')
                         </span>
 
@@ -250,7 +250,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800 dark:text-white">
+                        <span class="font-medium text-diidsInk dark:text-white">
                             @lang('admin::app.settings.data-transfer.imports.import.total-deleted')
                         </span>
 
@@ -277,7 +277,7 @@
                     </div>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.progress')
                         </span>
 
@@ -285,7 +285,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.total-batches')
                         </span>
 
@@ -293,7 +293,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.completed-batches')
                         </span>
 
@@ -321,7 +321,7 @@
                     </div>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.progress')
                         </span>
 
@@ -329,7 +329,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.total-batches')
                         </span>
 
@@ -337,7 +337,7 @@
                     </p>
 
                     <p class="flex items-center gap-2">
-                        <span class="font-medium text-gray-800">
+                        <span class="font-medium text-diidsInk">
                             @lang('admin::app.settings.data-transfer.imports.import.completed-batches')
                         </span>
 
@@ -364,7 +364,7 @@
                         <p class="flex items-center gap-2">
                             <i class="icon-information rounded-full bg-green-200 text-2xl text-green-600 dark:!text-green-600"></i>
 
-                            <span class="font-medium text-gray-800">
+                            <span class="font-medium text-diidsInk">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-created')
                             </span>
 
@@ -374,7 +374,7 @@
                         <p class="flex items-center gap-2">
                             <i class="icon-information rounded-full bg-green-200 text-2xl text-green-600 dark:!text-green-600"></i>
 
-                            <span class="font-medium text-gray-800">
+                            <span class="font-medium text-diidsInk">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-updated')
                             </span>
 
@@ -384,7 +384,7 @@
                         <p class="flex items-center gap-2">
                             <i class="icon-information rounded-full bg-green-200 text-2xl text-green-600 dark:!text-green-600"></i>
 
-                            <span class="font-medium text-gray-800">
+                            <span class="font-medium text-diidsInk">
                                 @lang('admin::app.settings.data-transfer.imports.import.total-deleted')
                             </span>
 

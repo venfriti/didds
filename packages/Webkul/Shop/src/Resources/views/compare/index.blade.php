@@ -13,7 +13,7 @@
 
     <!-- Breadcrumb -->
     @if ((core()->getConfigData('general.general.breadcrumbs.shop')))
-        <div class="mt-5 flex justify-center max-lg:hidden">
+        <div class="flex justify-center pt-5 max-lg:hidden">
             {!! view_render_event('bagisto.shop.customers.account.compare.breadcrumbs.before') !!}
 
             <div class="flex items-center gap-x-2.5">
@@ -25,7 +25,7 @@
     @endif
 
     <!-- Compare Component -->
-    <div class="container mt-8 px-[60px] max-lg:px-8 max-md:mt-7 max-md:px-0">
+    <div class="container px-[60px] pb-16 pt-8 max-lg:px-8 max-md:px-0 max-md:pt-7">
         <v-compare>
             <!-- Shimmer Effect -->
             <x-shop::shimmer.compare :attributeCount="count($comparableAttributes)" />
@@ -45,7 +45,7 @@
 
                         {!! view_render_event('bagisto.shop.customers.account.compare.title.before') !!}
 
-                        <h1 class="text-2xl font-medium max-sm:text-base">
+                        <h1 class="font-dmserif text-2xl text-diidsInk max-sm:text-lg">
                             @lang('shop::app.compare.title')
                         </h1>
 
@@ -54,7 +54,7 @@
                         {!! view_render_event('bagisto.shop.customers.account.compare.remove_all.before') !!}
 
                         <div
-                            class="secondary-button flex items-center gap-x-2.5 whitespace-nowrap border-zinc-200 px-5 py-3 font-normal max-md:rounded-lg max-md:px-3 max-md:text-xs max-sm:py-1.5"
+                            class="secondary-button flex items-center gap-x-2.5 whitespace-nowrap !rounded-full border-diidsBorder px-5 py-3 font-normal max-md:px-3 max-md:text-xs max-sm:py-1.5"
                             v-if="items.length"
                             @click="removeAll"
                         >
@@ -67,36 +67,36 @@
                     </div>
 
                     <div
-                        class="journal-scroll mt-16 grid overflow-auto max-md:mt-7"
+                        class="journal-scroll grid w-max max-w-full overflow-auto pt-16 max-md:pt-7"
                         v-if="items.length"
                     >
                         <template v-for="attribute in comparableAttributes">
                             <!-- Product Card -->
                             <div
-                                class="flex max-w-full items-center border-b border-zinc-200"
+                                class="flex max-w-full items-start border-b border-diidsBorder"
                                 v-if="attribute.code == 'product'"
                             >
                                 {!! view_render_event('bagisto.shop.customers.account.compare.attribute_name.before') !!}
 
-                                <div class="min-w-[304px] max-w-full max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-gray-200 max-sm:min-w-[110px]">
-                                    <p class="text-sm font-medium max-md:pl-4">
+                                <div class="min-w-[304px] max-w-full pt-5 max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-diidsSurface max-md:pt-0 max-sm:min-w-[110px]">
+                                    <p class="font-mono text-xs uppercase tracking-[0.06em] text-diidsInk/60 max-md:pl-4">
                                         @{{ attribute.name ?? attribute.admin_name }}
                                     </p>
                                 </div>
 
                                 {!! view_render_event('bagisto.shop.customers.account.compare.attribute_name.after') !!}
 
-                                <div class="flex gap-3 border-zinc-200 max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
+                                <div class="flex gap-3 border-diidsBorder max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
                                     <div
-                                        class="relative w-[311px] max-w-[311px] px-5 max-md:w-60 max-md:px-2.5 max-sm:w-[190px]"
+                                        class="relative w-[311px] max-w-[311px] px-5 py-5 max-md:w-60 max-md:px-2.5 max-sm:w-[190px]"
                                         v-for="product in items"
                                     >
                                         <span
-                                            class="icon-cancel absolute top-5 z-[1] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md border border-zinc-200 bg-white text-2xl max-md:top-10 max-md:h-6 max-md:w-6 max-md:rounded-full max-md:text-sm ltr:right-10 max-md:ltr:right-4 rtl:left-10 max-md:rtl:left-4"
+                                            class="icon-cancel absolute top-8 z-[1] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md border border-diidsBorder bg-white text-2xl max-md:top-10 max-md:h-6 max-md:w-6 max-md:rounded-full max-md:text-sm ltr:right-8 max-md:ltr:right-4 rtl:left-8 max-md:rtl:left-4"
                                             @click="remove(product.id)"
                                         ></span>
 
-                                        <x-shop::products.card class="[&_span.icon-compare]:hidden" />
+                                        <x-shop::products.card class="mx-auto [&_span.icon-compare]:hidden" />
                                     </div>
                                 </div>
                             </div>
@@ -105,16 +105,16 @@
 
                             <!-- Comparable Attributes -->
                             <div
-                                class="flex max-w-full items-center border-b border-zinc-200"
+                                class="flex max-w-full items-center border-b border-diidsBorder"
                                 v-else
                             >
-                                <div class="min-w-[304px] max-w-full max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-gray-200 max-sm:min-w-[110px]">
-                                    <p class="text-sm font-medium max-md:pl-4">
+                                <div class="min-w-[304px] max-w-full max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-diidsSurface max-sm:min-w-[110px]">
+                                    <p class="font-mono text-xs uppercase tracking-[0.06em] text-diidsInk/60 max-md:pl-4">
                                         @{{ attribute.name ?? attribute.admin_name }}
                                     </p>
                                 </div>
 
-                                <div class="flex gap-3 border-zinc-200 max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
+                                <div class="flex gap-3 border-diidsBorder max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
                                     <div
                                         class="w-[311px] max-w-[311px] p-5 max-md:w-60 max-md:px-2.5 max-sm:w-[190px]"
                                         v-for="(product, index) in items"
@@ -145,7 +145,7 @@
                         />
 
                         <p
-                            class="text-xl max-sm:text-sm"
+                            class="font-dmserif text-xl text-diidsInk max-sm:text-base"
                             role="heading"
                         >
                             @lang('shop::app.compare.empty-text')

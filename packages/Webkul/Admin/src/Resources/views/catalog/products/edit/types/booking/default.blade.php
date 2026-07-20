@@ -98,11 +98,11 @@
         <!-- Slots Component -->
         <div class="flex items-center justify-between gap-5 py-2">
             <div class="flex flex-col gap-2">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.catalog.products.edit.types.booking.default.slot-title')
                 </p>
 
-                <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                     @lang('admin::app.catalog.products.edit.types.booking.default.description-info')
                  </p>
             </div>
@@ -247,14 +247,14 @@
                             </template>
 
                             <template v-else>
-                                <p class="text-gray-500">
+                                <p class="text-diidsInk/60">
                                     @lang('admin::app.catalog.products.edit.types.booking.default.unavailable')
                                 </p>
                             </template>
                         </div>
 
                         <p
-                            class="text-right text-blue-600 transition-all cursor-pointer place-content-start hover:underline"
+                            class="text-right text-navyBlue transition-all cursor-pointer place-content-start hover:underline"
                             v-if="! slots['many'][dayIndex]?.length"
                             @click="currentIndex=dayIndex;toggle()"
                         >
@@ -287,7 +287,7 @@
                     <x-slot:header>
                         <div class="flex items-center justify-between">
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-text="slots['many'][currentIndex]?.length 
                                     ? '@lang('admin::app.catalog.products.edit.types.booking.default.modal.slot.edit-title')'
                                     : '@lang('admin::app.catalog.products.edit.types.booking.default.modal.slot.add-title')'"

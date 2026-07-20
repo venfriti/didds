@@ -18,13 +18,13 @@
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-base font-semibold text-gray-600 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-white">
                         @lang('admin::app.reporting.sales.index.refunds')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.sales.view', ['type' => 'refunds']) }}"
-                        class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                     >
                         @lang('admin::app.reporting.sales.index.view-details')
                     </a>
@@ -33,7 +33,7 @@
                 <!-- Content -->
                 <div class="grid gap-4">
                     <div class="flex justify-between gap-4">
-                        <p class="text-3xl font-bold leading-9 text-gray-600 dark:text-gray-300">
+                        <p class="text-3xl font-bold leading-9 text-diidsInk/70 dark:text-gray-300">
                             @{{ report.statistics.refunds.formatted_total }}
                         </p>
                         
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <p class="text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.reporting.sales.index.refunds-over-time')
                     </p>
 

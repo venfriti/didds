@@ -5,7 +5,7 @@
 
     <v-users>
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.users.index.title')
             </p>
 
@@ -31,7 +31,7 @@
             id="v-users-template"
         >
             <div class="flex items-center justify-between">
-                <p class="text-xl font-bold text-gray-800 dark:text-white">
+                <p class="text-xl font-bold text-diidsInk dark:text-white">
                     @lang('admin::app.settings.users.index.title')
                 </p>
 
@@ -65,20 +65,20 @@
                     performAction
                 }">
                     <div 
-                        class="row grid grid-rows-1 gap-2.5 items-center px-4 py-2.5 border-b dark:border-gray-800 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 font-semibold"
+                        class="row grid grid-rows-1 gap-2.5 items-center px-4 py-2.5 border-b dark:border-gray-800 text-diidsInk/70 dark:text-gray-300 bg-diidsSurface dark:bg-gray-900 font-semibold"
                         style="grid-template-columns: repeat({{ $hasPermission ? '6' : '5' }}, minmax(150px, 1fr));"
                     >
                         <div
                             class="flex cursor-pointer gap-2.5"
                             v-for="(columnGroup, index) in ['user_id', 'user_name', 'status', 'email', 'role_name']"
                         >
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-diidsInk/70 dark:text-gray-300">
                                 <span class="[&>*]:after:content-['_/_']">
                                     <span
                                         class="after:content-['/'] last:after:content-['']"
                                         :class="{
-                                            'text-gray-800 dark:text-white font-medium': applied.sort.column == columnGroup,
-                                            'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === columnGroup)?.sortable,
+                                            'text-diidsInk dark:text-white font-medium': applied.sort.column == columnGroup,
+                                            'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === columnGroup)?.sortable,
                                         }"
                                         @click="
                                             available.columns.find(columnTemp => columnTemp.index === columnGroup)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === columnGroup)): {}
@@ -90,7 +90,7 @@
 
                                 <!-- Filter Arrow Icon -->
                                 <i
-                                    class="align-text-bottom text-base text-gray-800 dark:text-white ltr:ml-1.5 rtl:mr-1.5"
+                                    class="align-text-bottom text-base text-diidsInk dark:text-white ltr:ml-1.5 rtl:mr-1.5"
                                     :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                     v-if="columnGroup.includes(applied.sort.column)"
                                 ></i>
@@ -121,7 +121,7 @@
                     <template v-else>
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             style="grid-template-columns: repeat({{ $hasPermission ? '6' : '5' }}, minmax(150px, 1fr));"
                         >
                             <!-- ID -->
@@ -145,7 +145,7 @@
                                         class="profile-info-icon"
                                         v-else
                                     >
-                                        <button class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-blue-400 text-sm font-semibold leading-6 text-white transition-all hover:bg-blue-500 focus:bg-blue-500">
+                                        <button class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-blue-400 text-sm font-semibold leading-6 text-white transition-all hover:bg-navyBlue focus:bg-navyBlue">
                                             @{{ record.user_name[0].toUpperCase() }}
                                         </button>
                                     </div>
@@ -170,7 +170,7 @@
                                 <a @click="id=1; editModal(record.actions.find(action => action.index === 'edit')?.url)">
                                     <span
                                         :class="record.actions.find(action => action.index === 'edit')?.icon"
-                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                     >
                                     </span>
                                 </a>
@@ -178,7 +178,7 @@
                                 <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
                                     <span
                                         :class="record.actions.find(action => action.index === 'delete')?.icon"
-                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                     >
                                     </span>
                                 </a>
@@ -203,14 +203,14 @@
                         <!-- Modal Header -->
                         <x-slot:header>
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-if="isUpdating"
                             >
                                 @lang('admin::app.settings.users.index.edit.title')
                             </p>
 
                             <p
-                                class="text-lg font-bold text-gray-800 dark:text-white"
+                                class="text-lg font-bold text-diidsInk dark:text-white"
                                 v-else
                             >
                                 @lang('admin::app.settings.users.index.create.title')
@@ -320,7 +320,7 @@
                                     >
                                         <select
                                             name="role_id"
-                                            class="flex min-h-[39px] w-full rounded-md border bg-white px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
+                                            class="flex min-h-[39px] w-full rounded-md border bg-white px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
                                             :class="[errors['options[sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                             v-model="data.user.role_id"
                                         >
@@ -382,7 +382,7 @@
                                 >
                                 </v-media-images>
 
-                                <p class="required my-3 text-sm text-gray-400">
+                                <p class="required my-3 text-sm text-diidsInk/40">
                                     @lang('admin::app.settings.users.index.create.upload-image-info')
                                 </p>
                             </x-admin::form.control-group>

@@ -18,7 +18,7 @@
         <template v-else>
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
-                <p class="mb-4 text-base font-semibold text-gray-600 dark:text-white">
+                <p class="mb-4 text-base font-semibold text-diidsInk/70 dark:text-white">
                     @lang('admin::app.reporting.sales.index.purchase-funnel')
                 </p>
                 
@@ -27,11 +27,11 @@
                     <!-- Total Added To Cart -->
                     <div class="flex flex-col gap-4">
                         <div class="grid gap-0.5">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.carts.total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.reporting.sales.index.added-to-cart')
                             </p>
                         </div>
@@ -44,7 +44,7 @@
                         </div>
 
                         <p
-                            class="text-gray-600 dark:text-gray-300"
+                            class="text-diidsInk/70 dark:text-gray-300"
                             v-html="'@lang('admin::app.reporting.sales.index.added-to-cart-info')'.replace(':progress', '<span class=\'text-emerald-400 font-semibold\'>' + report.statistics.carts.progress + '%</span>')"
                         ></p>
                     </div>
@@ -52,11 +52,11 @@
                     <!-- Total Purchased -->
                     <div class="flex flex-col gap-4">
                         <div class="grid gap-0.5">
-                            <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
+                            <p class="text-base font-semibold leading-none text-diidsInk dark:text-white">
                                 @{{ report.statistics.orders.total }}
                             </p>
 
-                            <p class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                            <p class="text-xs font-semibold text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.reporting.sales.index.purchased')
                             </p>
                         </div>
@@ -69,7 +69,7 @@
                         </div>
 
                         <p
-                            class="text-gray-600 dark:text-gray-300"
+                            class="text-diidsInk/70 dark:text-gray-300"
                             v-html="'@lang('admin::app.reporting.sales.index.purchased-info')'.replace(':progress', '<span class=\'text-emerald-400 font-semibold\'>' + report.statistics.orders.progress + '%</span>')"
                         ></p>
                     </div>

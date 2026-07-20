@@ -12,11 +12,11 @@
             <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
                 <div class="flex items-center justify-between gap-x-2.5">
                     <div class="flex flex-col gap-1">
-                        <p class="text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.themes.edit.slider')
                         </p>
                         
-                        <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                        <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                             @lang('admin::app.settings.themes.edit.slider-description')
                         </p>
                     </div>
@@ -78,31 +78,31 @@
                     >
                         <div class="flex gap-2.5">
                             <div class="grid place-content-start gap-1.5">
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.themes.edit.image-title'): 
 
-                                    <span class="text-gray-600 transition-all dark:text-gray-300">
+                                    <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                         @{{ image.title }}
                                     </span>
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.themes.edit.link'): 
 
-                                    <span class="text-gray-600 transition-all dark:text-gray-300">
+                                    <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                         @{{ image.link }}
                                     </span>
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @lang('admin::app.settings.themes.edit.image'): 
 
-                                    <span class="text-gray-600 transition-all dark:text-gray-300">
+                                    <span class="text-diidsInk/70 transition-all dark:text-gray-300">
                                         <a
                                             :href="'{{ config('app.url') }}/' + image.image"
                                             :ref="'image_' + index"
                                             target="_blank"
-                                            class="text-blue-600 transition-all hover:underline ltr:ml-2 rtl:mr-2"
+                                            class="text-navyBlue transition-all hover:underline ltr:ml-2 rtl:mr-2"
                                         >
                                             <span :ref="'imageName_' + index">
                                                 @{{ image.image }}
@@ -117,7 +117,7 @@
                         <div class="grid place-content-start gap-1 text-right">
                             <div class="flex items-center gap-x-5">
                                 <p
-                                    class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                    class="cursor-pointer text-navyBlue transition-all hover:underline"
                                     @click="edit(image, index)"
                                 >
                                     @lang('admin::app.settings.themes.edit.edit')
@@ -146,11 +146,11 @@
                     >
 
                     <div class="flex flex-col items-center gap-1.5">
-                        <p class="text-base font-semibold text-gray-400">
+                        <p class="text-base font-semibold text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.slider-add-btn')
                         </p>
                         
-                        <p class="text-gray-400">
+                        <p class="text-diidsInk/40">
                             @lang('admin::app.settings.themes.edit.slider-description')
                         </p>
                     </div>
@@ -166,7 +166,7 @@
                     <x-admin::modal ref="addSliderModal">
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 <template v-if="! isUpdating">
                                     @lang('admin::app.settings.themes.edit.slider-add-btn')
                                 </template>
@@ -232,7 +232,7 @@
                                 <x-admin::form.control-group.error control-name="slider_image" />
                             </x-admin::form.control-group>
 
-                            <p class="text-xs text-gray-600 dark:text-gray-300">
+                            <p class="text-xs text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.settings.themes.edit.image-size')
                             </p>
                         </x-slot>

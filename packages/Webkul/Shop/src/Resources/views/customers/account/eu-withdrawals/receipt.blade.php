@@ -79,7 +79,7 @@
             </span>
 
             <div>
-                <h2 class="text-2xl font-medium max-md:text-xl max-sm:text-base">
+                <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-xl max-sm:text-base">
                     @lang('shop::app.eu_withdrawal.confirmation.heading_'.$withdrawal->status)
                 </h2>
 
@@ -93,7 +93,7 @@
             type="button"
             data-eu-print
             data-eu-print-title="@lang('shop::app.eu_withdrawal.confirmation.page_title')"
-            class="secondary-button border-zinc-200 px-4 py-2 text-sm font-normal max-md:rounded-lg print:hidden"
+            class="secondary-button border-diidsBorder px-4 py-2 text-sm font-normal max-md:rounded-lg print:hidden"
         >
             @lang('shop::app.eu_withdrawal.confirmation.print')
         </button>
@@ -104,25 +104,25 @@
     </p>
 
     {{-- Receipt Card --}}
-    <div class="mt-8 overflow-hidden rounded-xl border border-zinc-200 bg-white">
+    <div class="mt-8 overflow-hidden rounded-xl border border-diidsBorder bg-white">
         <dl class="grid grid-cols-1 divide-y divide-zinc-100 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
             <div class="px-6 py-4">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.received_at')
                 </dt>
 
                 <dd class="mt-1 text-sm font-medium text-zinc-900">
                     {{ $withdrawal->received_at->copy()->setTimezone('UTC')->format('d M Y, H:i') }}
-                    <span class="text-zinc-500">UTC</span>
+                    <span class="text-diidsInk/60">UTC</span>
                 </dd>
             </div>
 
             <div class="px-6 py-4">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.reference')
                 </dt>
 
-                <dd class="mt-1 flex items-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2">
+                <dd class="mt-1 flex items-center gap-2 rounded-lg border border-diidsBorder bg-zinc-50 px-3 py-2">
                     <code class="flex-1 break-all font-mono text-sm font-medium text-zinc-900">
                         {{ $withdrawal->uuid }}
                     </code>
@@ -132,7 +132,7 @@
                         title="@lang('shop::app.eu_withdrawal.confirmation.copy_reference')"
                         data-eu-clipboard="{{ $withdrawal->uuid }}"
                         data-eu-clipboard-message="@lang('shop::app.eu_withdrawal.confirmation.reference_copied')"
-                        class="grid h-7 w-7 flex-shrink-0 place-items-center rounded-md text-zinc-500 transition-all hover:bg-zinc-200 hover:text-zinc-900"
+                        class="grid h-7 w-7 flex-shrink-0 place-items-center rounded-md text-diidsInk/60 transition-all hover:bg-zinc-200 hover:text-zinc-900"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -143,7 +143,7 @@
             </div>
 
             <div class="px-6 py-4 sm:border-t sm:border-zinc-100">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.order')
                 </dt>
 
@@ -162,7 +162,7 @@
             </div>
 
             <div class="px-6 py-4 sm:border-t sm:border-zinc-100">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.email')
                 </dt>
 
@@ -172,7 +172,7 @@
             </div>
 
             <div class="px-6 py-4 sm:border-t sm:border-zinc-100">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.status')
                 </dt>
 
@@ -184,7 +184,7 @@
             </div>
 
             <div class="px-6 py-4 sm:border-t sm:border-zinc-100">
-                <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <dt class="text-xs font-medium uppercase tracking-wide text-diidsInk/60">
                     @lang('shop::app.eu_withdrawal.confirmation.reason')
                 </dt>
 
@@ -196,7 +196,7 @@
     </div>
 
     {{-- Refund Timeline --}}
-    <div class="mt-6 rounded-xl border border-zinc-200 bg-white p-5">
+    <div class="mt-6 rounded-xl border border-diidsBorder bg-white p-5">
         <h3 class="text-base font-medium text-zinc-900">
             @lang('shop::app.eu_withdrawal.confirmation.next_steps_title')
         </h3>
@@ -210,7 +210,7 @@
                         @lang('shop::app.eu_withdrawal.confirmation.step_received')
                     </p>
 
-                    <p class="text-xs text-zinc-500">
+                    <p class="text-xs text-diidsInk/60">
                         {{ $withdrawal->received_at->copy()->setTimezone('UTC')->format('d M Y, H:i') }} UTC
                     </p>
                 </div>
@@ -228,7 +228,7 @@
                         @lang('shop::app.eu_withdrawal.confirmation.step_email')
                     </p>
 
-                    <p class="text-xs text-zinc-500">
+                    <p class="text-xs text-diidsInk/60">
                         @if ($withdrawal->confirmation_sent_at)
                             @lang('shop::app.eu_withdrawal.confirmation.email_sent')
                         @elseif ($withdrawal->confirmation_error)
@@ -249,7 +249,7 @@
                             @lang('shop::app.eu_withdrawal.confirmation.step_refund_done')
                         </p>
 
-                        <p class="text-xs text-zinc-500">
+                        <p class="text-xs text-diidsInk/60">
                             {{ $withdrawal->refunded_at->copy()->setTimezone('UTC')->format('d M Y, H:i') }} UTC
                         </p>
                     </div>
@@ -273,7 +273,7 @@
                             </div>
                         @endif
 
-                        <p class="mt-2 text-xs text-zinc-500">
+                        <p class="mt-2 text-xs text-diidsInk/60">
                             @lang('shop::app.eu_withdrawal.confirmation.declined_notice')
                         </p>
                     </div>
@@ -285,7 +285,7 @@
                             @lang('shop::app.eu_withdrawal.confirmation.step_refund')
                         </p>
 
-                        <p class="text-xs text-zinc-500">
+                        <p class="text-xs text-diidsInk/60">
                             @lang('shop::app.eu_withdrawal.confirmation.refund_notice')
                         </p>
                     </div>
@@ -294,7 +294,7 @@
         </ol>
     </div>
 
-    <p class="mt-6 text-xs text-zinc-500">
+    <p class="mt-6 text-xs text-diidsInk/60">
         @lang('shop::app.eu_withdrawal.confirmation.durable_medium_notice')
     </p>
 </div>

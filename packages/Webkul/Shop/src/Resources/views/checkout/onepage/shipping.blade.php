@@ -24,11 +24,11 @@
 
             <template v-else>
                 <!-- Accordion Blade Component -->
-                <x-shop::accordion class="overflow-hidden !border-b-0 max-md:rounded-lg max-md:!border-none max-md:!bg-gray-100">
+                <x-shop::accordion class="overflow-hidden !border-b-0 max-md:rounded-lg max-md:!border-none max-md:!bg-diidsSurface">
                     <!-- Accordion Blade Component Header -->
                     <x-slot:header class="px-0 py-4 max-md:p-3 max-md:text-sm max-md:font-medium max-sm:p-2">
                         <div class="flex items-center justify-between">
-                            <h2 class="text-2xl font-medium max-md:text-base">
+                            <h2 class="font-dmserif text-2xl text-diidsInk max-md:text-base">
                                 @lang('shop::app.checkout.onepage.shipping.shipping-method')
                             </h2>
                         </div>
@@ -60,7 +60,7 @@
                                     </label>
 
                                     <label 
-                                        class="block cursor-pointer rounded-xl border border-zinc-200 p-5 max-sm:flex max-sm:gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
+                                        class="block cursor-pointer rounded-xl border border-diidsBorder p-5 max-sm:flex max-sm:gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
                                         :for="rate.method"
                                     >
                                         <span class="icon-flate-rate text-6xl text-navyBlue max-sm:text-5xl"></span>
@@ -70,7 +70,7 @@
                                                 @{{ rate.base_formatted_price }}
                                             </p>
                                             
-                                            <p class="mt-2.5 text-xs font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-zinc-500">
+                                            <p class="mt-2.5 text-xs font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-diidsInk/60">
                                                 <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
                                             </p>
                                         </div>

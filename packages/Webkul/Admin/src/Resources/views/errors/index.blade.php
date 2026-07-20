@@ -21,11 +21,11 @@
                     alt="{{ config('app.name') }}"
                 />
 
-				<div class="text-[38px] font-bold text-gray-800 dark:text-white">
+				<div class="text-[38px] font-bold text-diidsInk dark:text-white">
                     {{ $errorCode }}
                 </div>
 
-                <p class="mb-6 text-sm text-gray-800">
+                <p class="mb-6 text-sm text-diidsInk">
                     @lang("admin::app.errors.{$errorCode}.description")
                 </p>
 
@@ -33,7 +33,7 @@
                     <div class="flex items-center gap-2.5">
                         <a
                             onclick="history.back()"
-                            class="text-sm font-semibold text-blue-600 transition-all hover:underline"
+                            class="text-sm font-semibold text-navyBlue transition-all hover:underline"
                         >
                             @lang('admin::app.errors.go-back')
                         </a>
@@ -46,18 +46,18 @@
 
                         <a
                             href="{{ route('admin.dashboard.index') }}"
-                            class="text-sm font-semibold text-blue-600 transition-all hover:underline"
+                            class="text-sm font-semibold text-navyBlue transition-all hover:underline"
                         >
                             @lang('admin::app.errors.dashboard')
                         </a>
                     </div>
                 </div>
 
-                <p class="text-sm text-gray-800">
+                <p class="text-sm text-diidsInk">
                     @lang('admin::app.errors.support', [
                         'link'  => 'mailto:' . (core()->getAdminEmailDetails()['email'] ?? 'support@example.com'),
                         'email' => core()->getAdminEmailDetails()['email'] ?? 'support@example.com',
-                        'class' => 'font-semibold text-blue-600 transition-all hover:underline',
+                        'class' => 'font-semibold text-navyBlue transition-all hover:underline',
                     ])
                 </p>
             </div>

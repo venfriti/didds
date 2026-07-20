@@ -5,11 +5,11 @@
     >
         <div class="flex items-center justify-between gap-5 py-2">
             <div class="flex flex-col gap-1">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.catalog.products.edit.types.booking.slots.title')
                 </p>
 
-                <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                     @lang('admin::app.catalog.products.edit.types.booking.slots.description-info')
                 </p>
             </div>
@@ -114,14 +114,14 @@
                             </template>
 
                             <template v-else>
-                                <p class="text-gray-500">
+                                <p class="text-diidsInk/60">
                                     @lang('admin::app.catalog.products.edit.types.booking.slots.unavailable')
                                 </p>
                             </template>
                         </div>
 
                         <p
-                            class="text-right text-blue-600 transition-all cursor-pointer place-content-start hover:underline"
+                            class="text-right text-navyBlue transition-all cursor-pointer place-content-start hover:underline"
                             @click="currentIndex=dayIndex;toggle()"
                         >
                             @lang('admin::app.catalog.products.edit.types.booking.slots.action.add')
@@ -150,7 +150,7 @@
                             <div class="flex items-center gap-4 ltr:mr-11 rtl:ml-11">
                                 <!-- Add Slots Button -->
                                 <div
-                                    class="font-medium text-blue-600 cursor-pointer w-fit dark:text-white"
+                                    class="font-medium text-navyBlue cursor-pointer w-fit dark:text-white"
                                     @click="add"
                                 >
                                     @lang('admin::app.catalog.products.edit.types.booking.slots.add')
@@ -169,7 +169,7 @@
 
                     <x-slot:content>
                         <template v-if="field['same_for_week']?.length">
-                            <div class="flex gap-2.5 pb-2.5 text-gray-800 dark:text-white">
+                            <div class="flex gap-2.5 pb-2.5 text-diidsInk dark:text-white">
                                 <div class="w-full">
                                     @lang('admin::app.catalog.products.edit.types.booking.slots.modal.slot.from')
                                 </div>
@@ -190,7 +190,7 @@
                         </template>
 
                         <template v-else-if="field['different_for_week'][currentIndex]?.length">
-                            <div class="mx-2.5 flex gap-2.5 pb-2.5 text-gray-800 dark:text-white">
+                            <div class="mx-2.5 flex gap-2.5 pb-2.5 text-diidsInk dark:text-white">
                                 <div class="w-full">
                                     @lang('admin::app.catalog.products.edit.types.booking.slots.modal.slot.from')
                                 </div>

@@ -21,7 +21,7 @@
             id="address-step-container"
         >
             <div class="flex items-center border-b p-4 dark:border-gray-800">
-                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                <p class="text-base font-semibold text-diidsInk dark:text-white">
                     @lang('admin::app.sales.orders.create.cart.address.title')
                 </p>
             </div>
@@ -35,12 +35,12 @@
                     <form @submit="handleSubmit($event, addAddressToCart)">
                         <!-- Billing Address Header -->
                         <div class="mb-4 flex items-center justify-between">
-                            <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                            <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.sales.orders.create.cart.address.billing-address')
                             </p>
 
                             <p
-                                class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                class="cursor-pointer text-navyBlue transition-all hover:underline"
                                 @click="activeAddressForm = 'billing'; selectedAddressForEdit = null; $refs.updateCreateModal.open()"
                                 v-if="! cart.billing_address"
                             >
@@ -74,7 +74,7 @@
                                         class="grid cursor-pointer gap-1.5"
                                         :for="`billing_address_id_${address.id}`"
                                     >
-                                        <p class="text-base text-gray-800 dark:text-white">
+                                        <p class="text-base text-diidsInk dark:text-white">
                                             @{{ address.first_name + ' ' + address.last_name }}
 
                                             <template v-if="address.company_name">
@@ -82,11 +82,11 @@
                                             </template>
                                         </p>
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @{{ address.email }}
                                         </p>
 
-                                        <p class="text-gray-600 dark:text-gray-300">
+                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                             @{{
                                                 [
                                                     address.address.join(', '),
@@ -99,7 +99,7 @@
 
                                     <!-- Edit Action -->
                                     <p
-                                        class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                        class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         @click="
                                             selectedAddressForEdit = address;
                                             activeAddressForm = 'billing';
@@ -131,7 +131,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer select-none text-base text-[#6E6E6E] dark:text-gray-400 max-sm:text-xs ltr:pl-0 rtl:pr-0"
+                                    class="cursor-pointer select-none text-base text-[#6E6E6E] dark:text-diidsInk/40 max-sm:text-xs ltr:pl-0 rtl:pr-0"
                                     for="use_for_shipping"
                                 >
                                     @lang('admin::app.sales.orders.create.cart.address.same-as-billing')
@@ -146,12 +146,12 @@
                             >
                                 <!-- Shipping Address Header -->
                                 <div class="mb-4 flex items-center justify-between">
-                                    <p class="text-base font-medium text-gray-600 dark:text-gray-300">
+                                    <p class="text-base font-medium text-diidsInk/70 dark:text-gray-300">
                                         @lang('admin::app.sales.orders.create.cart.address.shipping-address')
                                     </p>
 
                                     <p
-                                        class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                        class="cursor-pointer text-navyBlue transition-all hover:underline"
                                         @click="
                                             activeAddressForm = 'shipping';
                                             selectedAddressForEdit = null;
@@ -189,7 +189,7 @@
                                                 class="grid cursor-pointer gap-1.5"
                                                 :for="`shipping_address_id_${address.id}`"
                                             >
-                                                <p class="text-base text-gray-800 dark:text-white">
+                                                <p class="text-base text-diidsInk dark:text-white">
                                                     @{{ address.first_name + ' ' + address.last_name }}
 
                                                     <template v-if="address.company_name">
@@ -197,11 +197,11 @@
                                                     </template>
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @{{ address.email }}
                                                 </p>
 
-                                                <p class="text-gray-600 dark:text-gray-300">
+                                                <p class="text-diidsInk/70 dark:text-gray-300">
                                                     @{{
                                                         [
                                                             address.address.join(', '),
@@ -214,7 +214,7 @@
 
                                             <!-- Edit Action -->
                                             <p
-                                                class="cursor-pointer text-blue-600 transition-all hover:underline"
+                                                class="cursor-pointer text-navyBlue transition-all hover:underline"
                                                 @click="
                                                     selectedAddressForEdit = address;
                                                     activeAddressForm = 'shipping';
@@ -261,7 +261,7 @@
                     >
                         <!-- Drawer Header -->
                         <x-slot:header>
-                            <p class="py-2 text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="py-2 text-lg font-bold text-diidsInk dark:text-white">
                                 <template v-if="activeAddressForm == 'billing'">
                                     @lang('admin::app.sales.orders.create.cart.address.billing-address')
                                 </template>

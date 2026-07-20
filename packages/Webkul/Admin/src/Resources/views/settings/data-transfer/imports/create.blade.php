@@ -14,7 +14,7 @@
 
         <!-- Page Header -->
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.data-transfer.imports.create.title')
             </p>
 
@@ -22,7 +22,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.settings.data_transfer.imports.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.settings.data-transfer.imports.create.back-btn')
                 </a>
@@ -45,7 +45,7 @@
 
                 <!-- Setup Import Panel -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.settings.data-transfer.imports.create.general')
                     </p>
 
@@ -87,7 +87,7 @@
                                                 :href="'{{ route('admin.settings.data_transfer.imports.download_sample', ['type' => ':type:', 'format' => ':format:']) }}'.replace(':type:', $refs['importType']?.value).replace(':format:', '{{ $format }}')"
                                                 target="_blank"
                                                 id="source-sample-link"
-                                                class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                                                class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                                             >
                                                 {{ strtoupper($format) }}
                                             </a>
@@ -129,11 +129,11 @@
                             :placeholder="trans('admin::app.settings.data-transfer.imports.create.images-directory')"
                         />
 
-                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-300">
+                        <p class="mt-2 text-xs text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.settings.data-transfer.imports.create.file-info')
                         </p>
 
-                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-300">
+                        <p class="mt-2 text-xs text-diidsInk/70 dark:text-gray-300">
                             @lang('admin::app.settings.data-transfer.imports.create.file-info-example')
                         </p>
                     </x-admin::form.control-group>
@@ -150,7 +150,7 @@
                 <x-admin::accordion>
                     <x-slot:header>
                         <div class="flex items-center justify-between">
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.data-transfer.imports.create.settings')
                             </p>
                         </div>

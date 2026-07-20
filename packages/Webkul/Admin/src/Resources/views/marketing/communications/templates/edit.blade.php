@@ -13,7 +13,7 @@
         {!! view_render_event('bagisto.admin.marketing.communications.templates.edit.edit_form_controls.before', ['template' => $template]) !!}
 
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.marketing.communications.templates.edit.title')
             </p>
 
@@ -21,7 +21,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.marketing.communications.email_templates.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.marketing.communications.templates.edit.back-btn')
                 </a>
@@ -82,7 +82,7 @@
                     <x-admin::accordion>
                         <x-slot:header>
                             <div class="flex items-center justify-between">
-                                <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                     @lang('admin::app.marketing.communications.templates.edit.general')
                                 </p>
                             </div>

@@ -14,7 +14,7 @@
         {!! view_render_event('admin.settings.channels.create.create_form_controls.before') !!}
 
         <div class="flex items-center justify-between">
-            <p class="text-xl font-bold text-gray-800 dark:text-white">
+            <p class="text-xl font-bold text-diidsInk dark:text-white">
                 @lang('admin::app.settings.channels.create.title')
             </p>
 
@@ -22,7 +22,7 @@
                 <!-- Back Button -->
                 <a
                     href="{{ route('admin.settings.channels.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 >
                     @lang('admin::app.settings.channels.create.cancel')
                 </a>
@@ -46,7 +46,7 @@
 
                 <!-- General Information -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.settings.channels.create.general')
                     </p>
 
@@ -125,7 +125,7 @@
                                 />
 
                                 <label
-                                    class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                    class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                     for="inventory_sources_{{ $inventorySource->id }}"
                                     v-pre
                                 >
@@ -196,7 +196,7 @@
 
                 <!-- Logo and Design -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.settings.channels.create.design')
                     </p>
 
@@ -242,7 +242,7 @@
                                 />
                             </x-admin::form.control-group>
 
-                            <p class="text-xs text-gray-600 dark:text-gray-300">
+                            <p class="text-xs text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.settings.channels.create.logo-size')
                             </p>
                         </div>
@@ -262,7 +262,7 @@
                                 />
                             </x-admin::form.control-group>
 
-                            <p class="text-xs text-gray-600 dark:text-gray-300">
+                            <p class="text-xs text-diidsInk/70 dark:text-gray-300">
                                 @lang('admin::app.settings.channels.create.favicon-size')
                             </p>
                         </div>
@@ -275,7 +275,7 @@
 
                 <!-- Home Page SEO -->
                 <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
-                    <p class="mb-4 text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="mb-4 text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.settings.channels.create.seo')
                     </p>
 
@@ -357,7 +357,7 @@
                 <!-- Currencies and Locales -->
                 <x-admin::accordion>
                     <x-slot:header>
-                        <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                        <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                             @lang('admin::app.settings.channels.create.currencies-and-locales')
                         </p>
                     </x-slot>
@@ -382,7 +382,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                        class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                         for="locales_{{ $locale->id }}"
                                         v-pre
                                     >
@@ -446,7 +446,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                        class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                         for="currencies_{{ $currency->id }}"
                                         v-pre
                                     >
@@ -501,7 +501,7 @@
                 <x-admin::accordion>
                     <x-slot:header>
                         <div class="flex items-center justify-between">
-                            <p class="p-2.5 text-base font-semibold text-gray-800 dark:text-white">
+                            <p class="p-2.5 text-base font-semibold text-diidsInk dark:text-white">
                                 @lang('admin::app.settings.channels.create.settings')
                             </p>
                         </div>
@@ -528,7 +528,7 @@
 
                         <!-- Allowed API's  -->
                         <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white">
+                            <x-admin::form.control-group.label class="!text-diidsInk dark:!text-white">
                                 @lang('admin::app.settings.channels.create.allowed-ips')
                             </x-admin::form.control-group.label>
 

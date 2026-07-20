@@ -6,7 +6,7 @@
 
     <!-- Heading of the page -->
     <div class="mb-7 flex items-center justify-between">
-        <p class="py-3 text-xl font-bold text-gray-800 dark:text-white">
+        <p class="py-3 text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.configuration.index.title')
         </p>
 
@@ -17,7 +17,7 @@
 
                 <input
                     type="text"
-                    class="block w-full rounded-lg border bg-white px-10 py-1.5 leading-6 text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                    class="block w-full rounded-lg border bg-white px-10 py-1.5 leading-6 text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                     placeholder="@lang('admin::app.configuration.index.search')"
                 >
             </div>
@@ -30,12 +30,12 @@
             <div>
                 <div class="grid gap-1">
                     <!-- Title of the Main Card -->
-                    <p class="font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                         {{ $item->getName() }}
                     </p>
 
                     <!-- Info of the Main Card -->
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <p class="text-diidsInk/70 dark:text-gray-300">
                         {{ $item->getInfo() }}
                     </p>
                 </div>
@@ -44,7 +44,7 @@
                     <!-- Menus cards -->
                     @foreach ($item->getChildren() as $key => $child)
                         <a
-                            class="flex max-w-[360px] items-center gap-2 rounded-lg p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+                            class="flex max-w-[360px] items-center gap-2 rounded-lg p-2 transition-all hover:bg-diidsSurface dark:hover:bg-gray-950"
                             href="{{ route('admin.configuration.index', ($item->getKey() . '/' . $key)) }}"
                         >
                             @if ($icon = $child->getIcon())
@@ -59,11 +59,11 @@
                             @endif
 
                             <div class="grid">
-                                <p class="mb-1.5 text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="mb-1.5 text-base font-semibold text-diidsInk dark:text-white">
                                     {{ $child->getName() }}
                                 </p>
 
-                                <p class="text-xs text-gray-600 dark:text-gray-300">
+                                <p class="text-xs text-diidsInk/70 dark:text-gray-300">
                                     {{ $child->getInfo() }}
                                 </p>
                             </div>
@@ -81,8 +81,8 @@
 
                 <input
                     type="text"
-                    class="peer block w-full rounded-lg border bg-white px-10 py-1.5 leading-6 text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-400 dark:focus:border-gray-400"
-                    :class="{'border-gray-400': isDropdownOpen}"
+                    class="peer block w-full rounded-lg border bg-white px-10 py-1.5 leading-6 text-diidsInk/70 transition-all hover:border-diidsBorder focus:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-diidsBorder dark:focus:border-diidsBorder"
+                    :class="{'border-diidsBorder': isDropdownOpen}"
                     placeholder="@lang('admin::app.configuration.index.search')"
                     v-model.lazy="searchTerm"
                     @click="searchTerm.length >= 2 ? isDropdownOpen = true : {}"
@@ -101,14 +101,14 @@
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
                                 :href="category.url"
-                                class="cursor-pointer border-b p-4 text-sm font-semibold text-gray-600 last:border-b-0 hover:bg-gray-100 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                                class="cursor-pointer border-b p-4 text-sm font-semibold text-diidsInk/70 last:border-b-0 hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                                 v-for="category in searchedResults.data"
                             >
                                 @{{ category.title }}
                             </a>
 
                             <div
-                                class="p-4 text-sm font-semibold text-gray-600 dark:text-gray-300"
+                                class="p-4 text-sm font-semibold text-diidsInk/70 dark:text-gray-300"
                                 v-if="searchedResults.data.length === 0"
                             >
                                 @lang('admin::app.configuration.index.no-result-found')

@@ -18,38 +18,38 @@
         <template v-else>
             <div class="border-b dark:border-gray-800">
                 <div class="flex items-center justify-between p-4">
-                    <p class="text-base font-semibold text-gray-600 dark:text-gray-300">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
                         @lang('admin::app.dashboard.index.customer-with-most-sales')
                     </p>
 
-                    <p class="text-xs font-semibold text-gray-400">
+                    <p class="text-xs font-semibold text-diidsInk/40">
                         @{{ report.date_range }}
                     </p>
                 </div>
 
                 <div
-                    class="flex flex-col gap-8 border-b p-4 transition-all last:border-b-0 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+                    class="flex flex-col gap-8 border-b p-4 transition-all last:border-b-0 hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950"
                     v-if="report.statistics.length"
                     v-for="customer in report.statistics"
                 >
                     <a :href="customer.id ? '{{ route('admin.customers.customers.view', ':id') }}'.replace(':id', customer.id) : '#'">
                         <div class="flex justify-between gap-1.5">
                             <div class="flex flex-col">
-                                <p class="font-semibold text-gray-600 dark:text-gray-300">
+                                <p class="font-semibold text-diidsInk/70 dark:text-gray-300">
                                     @{{ customer.full_name }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ customer.email }}
                                 </p>
                             </div>
 
                             <div class="flex flex-col">
-                                <p class="font-semibold text-gray-800 dark:text-white">
+                                <p class="font-semibold text-diidsInk dark:text-white">
                                     @{{ customer.formatted_total }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300" v-if="customer.orders">
+                                <p class="text-diidsInk/70 dark:text-gray-300" v-if="customer.orders">
                                     @{{ "@lang('admin::app.dashboard.index.order-count')".replace(':count', customer.orders) }}
                                 </p>
                             </div>
@@ -70,11 +70,11 @@
 
                         <!-- Add Variants Information -->
                         <div class="flex flex-col items-center">
-                            <p class="text-base font-semibold text-gray-400">
+                            <p class="text-base font-semibold text-diidsInk/40">
                                 @lang('admin::app.dashboard.index.add-customer')
                             </p>
 
-                            <p class="text-gray-400">
+                            <p class="text-diidsInk/40">
                                 @lang('admin::app.dashboard.index.customer-info')
                             </p>
                         </div>

@@ -4,8 +4,8 @@
     </x-slot>
 
     <div class="container mt-10 mx-auto max-w-xl px-5 max-md:mt-6 max-md:px-4">
-        <div class="rounded-xl border border-zinc-200 bg-white p-8 max-sm:p-5">
-            <h1 class="text-2xl font-medium max-md:text-xl">
+        <div class="rounded-xl border border-diidsBorder bg-white p-8 max-sm:p-5">
+            <h1 class="font-dmserif text-2xl text-diidsInk max-md:text-xl">
                 @lang('shop::app.eu_withdrawal.lookup.heading')
             </h1>
 
@@ -43,7 +43,7 @@
                         required
                         autocomplete="off"
                         value="{{ old('order_increment_id') }}"
-                        class="block w-full rounded-lg border border-zinc-200 px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
+                        class="block w-full rounded-lg border border-diidsBorder px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
                     >
 
                     @error('order_increment_id')
@@ -66,7 +66,7 @@
                         required
                         autocomplete="email"
                         value="{{ old('email') }}"
-                        class="block w-full rounded-lg border border-zinc-200 px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
+                        class="block w-full rounded-lg border border-diidsBorder px-4 py-3 text-sm focus:border-navyBlue focus:outline-none focus:ring-1 focus:ring-navyBlue"
                     >
                     
                     @error('email')
@@ -83,7 +83,7 @@
             </form>
         </div>
 
-        <p class="mt-6 text-center text-xs text-zinc-500">
+        <p class="mt-6 text-center text-xs text-diidsInk/60">
             @lang('shop::app.eu_withdrawal.lookup.legal_note')
         </p>
     </div>

@@ -19,13 +19,13 @@
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-base font-semibold text-gray-600 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-white">
                         @lang('admin::app.reporting.sales.index.top-payment-methods')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.sales.view', ['type' => 'top-payment-methods']) }}"
-                        class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                     >
                         @lang('admin::app.reporting.sales.index.view-details')
                     </a>
@@ -53,7 +53,7 @@
                                         ></div>
                                     </div>
 
-                                    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                                    <p class="text-sm font-semibold text-diidsInk/70 dark:text-gray-300">
                                         @{{ method.formatted_total }}
                                     </p>
                                 </div>

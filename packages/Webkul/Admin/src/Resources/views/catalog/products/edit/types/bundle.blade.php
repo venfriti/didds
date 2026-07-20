@@ -22,11 +22,11 @@
             <!-- Panel Header -->
             <div class="mb-2.5 flex justify-between gap-5 p-4">
                 <div class="flex flex-col gap-2">
-                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                         @lang('admin::app.catalog.products.edit.types.bundle.title')
                     </p>
 
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                    <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                         @lang('admin::app.catalog.products.edit.types.bundle.info')
                     </p>
                 </div>
@@ -73,11 +73,11 @@
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.bundle.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.bundle.empty-info')
                     </p>
                 </div>
@@ -100,7 +100,7 @@
                     <x-admin::modal ref="updateCreateOptionModal">
                         <!-- Modal Header -->
                         <x-slot:header>
-                            <p class="text-lg font-bold text-gray-800 dark:text-white">
+                            <p class="text-lg font-bold text-diidsInk dark:text-white">
                                 @lang('admin::app.catalog.products.edit.types.bundle.update-create.title')
                             </p>
                         </x-slot>
@@ -234,13 +234,13 @@
             <div class="mb-2.5 flex justify-between gap-5 p-4">
                 <div class="flex flex-col gap-2">
                     <p
-                        class="text-base font-semibold text-gray-800 dark:text-white"
+                        class="text-base font-semibold text-diidsInk dark:text-white"
                         :class="{'required': option.is_required == 1}"
                     >
                         @{{ (index + 1) + '. ' + option.label + ' - ' + types[option.type].title }}
                     </p>
 
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                    <p class="text-xs font-medium text-diidsInk/60 dark:text-gray-300">
                         @{{ types[option.type].info }}
                     </p>
                 </div>
@@ -248,14 +248,14 @@
                 <!-- Add Button -->
                 <div class="flex items-center gap-x-5">
                     <p
-                        class="cursor-pointer font-semibold text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer font-semibold text-navyBlue transition-all hover:underline"
                         @click="$refs['productSearch' + option.id].openDrawer()"
                     >
                         @lang('admin::app.catalog.products.edit.types.bundle.option.add-btn')
                     </p>
 
                     <p
-                        class="cursor-pointer font-semibold text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer font-semibold text-navyBlue transition-all hover:underline"
                         @click="edit"
                     >
                         @lang('admin::app.catalog.products.edit.types.bundle.option.edit-btn')
@@ -289,7 +289,7 @@
                             <div class="flex gap-2.5">
                                 <!-- Drag Icon -->
                                 <div>
-                                    <i class="icon-drag cursor-grab text-xl transition-all hover:text-gray-700 dark:text-gray-300"></i>
+                                    <i class="icon-drag cursor-grab text-xl transition-all hover:text-diidsInk/80 dark:text-gray-300"></i>
                                 </div>
 
                                 <!-- Is Default Option -->
@@ -305,7 +305,7 @@
                                     />
 
                                     <label
-                                        class="cursor-pointer text-2xl peer-checked:text-blue-600"
+                                        class="cursor-pointer text-2xl peer-checked:text-navyBlue"
                                         :class="[option.type == 'checkbox' || option.type == 'multiselect' ? 'icon-uncheckbox  peer-checked:icon-checked' : 'icon-radio-normal peer-checked:icon-radio-selected']"
                                         :for="'bundle_options[' + option.id + '][products][' + element.id + '][is_default]'"
                                     >
@@ -315,12 +315,12 @@
                                 <!-- Image -->
                                 <div
                                     class="relative h-[60px] max-h-[60px] w-full max-w-[60px] overflow-hidden rounded"
-                                    :class="{'overflow-hidden rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! element.product.images.length}"
+                                    :class="{'overflow-hidden rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert': ! element.product.images.length}"
                                 >
                                     <template v-if="! element.product.images.length">
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                             @lang('admin::app.catalog.products.edit.types.bundle.image-placeholder')
                                         </p>
                                     </template>
@@ -332,11 +332,11 @@
 
                                 <!-- Details -->
                                 <div class="grid place-content-start gap-1.5">
-                                    <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                    <p class="text-base font-semibold text-diidsInk dark:text-white">
                                         @{{ element.product.name }}
                                     </p>
 
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         @{{ `@lang('admin::app.catalog.products.edit.types.bundle.option.sku')`.replace(':sku', element.product.sku) }}
                                     </p>
                                 </div>
@@ -344,7 +344,7 @@
 
                             <!-- Actions -->
                             <div class="grid place-content-start gap-1 ltr:text-right rtl:text-left">
-                                <p class="font-semibold text-gray-800 dark:text-white">
+                                <p class="font-semibold text-diidsInk dark:text-white">
                                     @{{ $admin.formatPrice(element.product.price) }}
                                 </p>
 
@@ -370,7 +370,7 @@
                                         type="text"
                                         :name="'bundle_options[' + option.id + '][products][' + element.id + '][qty]'"
                                         v-model="element.qty"
-                                        class="min-h-[39px] w-[86px] rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                                        class="min-h-[39px] w-[86px] rounded-md border px-3 py-2 text-sm text-diidsInk/70 transition-all hover:border-diidsBorder dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
                                         :class="[errors['bundle_options[' + option.id + '][products][' + element.id + '][qty]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                         rules="required|numeric|min_value:1"
                                         label="@lang('admin::app.catalog.products.edit.types.bundle.option.default-qty')"
@@ -411,11 +411,11 @@
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center gap-1.5">
-                    <p class="text-base font-semibold text-gray-400">
+                    <p class="text-base font-semibold text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.bundle.option.empty-title')
                     </p>
 
-                    <p class="text-gray-400">
+                    <p class="text-diidsInk/40">
                         @lang('admin::app.catalog.products.edit.types.bundle.option.empty-info')
                     </p>
                 </div>

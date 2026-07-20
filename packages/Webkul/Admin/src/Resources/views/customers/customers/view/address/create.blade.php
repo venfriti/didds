@@ -1,5 +1,5 @@
 <v-create-customer-address @address-created="addressCreated">
-    <div class="mr-1 inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-gray-600 transition-all hover:rounded-md hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800">
+    <div class="mr-1 inline-flex w-full max-w-max cursor-pointer items-center justify-between gap-x-2 px-1 py-1.5 text-center font-semibold text-diidsInk/70 transition-all hover:rounded-md hover:bg-diidsBorder dark:text-gray-300 dark:hover:bg-gray-800">
         <span class="icon-location text-2xl"></span>
 
         @lang('admin::app.customers.customers.view.address.create.create-address-btn')
@@ -16,7 +16,7 @@
         <!-- Address Create Button -->
         @if (bouncer()->hasPermission('customers.addresses.create'))
             <div
-                class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-blue-600 transition-all hover:underline"
+                class="flex cursor-pointer items-center justify-between gap-1.5 px-2.5 text-navyBlue transition-all hover:underline"
                 @click="$refs.createAddress.toggle()"
             >
                 @lang('admin::app.customers.customers.view.address.create.create-btn')
@@ -39,7 +39,7 @@
                 >
                     <!-- Drawer Header -->
                     <x-slot:header class="py-5">
-                        <p class="text-lg font-bold text-gray-800 dark:text-white">
+                        <p class="text-lg font-bold text-diidsInk dark:text-white">
                             @lang('admin::app.customers.customers.view.address.create.title')
                         </p>
                     </x-slot>
@@ -298,7 +298,7 @@
                             />
 
                             <label
-                                class="cursor-pointer text-xs font-medium text-gray-600 dark:text-gray-300"
+                                class="cursor-pointer text-xs font-medium text-diidsInk/70 dark:text-gray-300"
                                 for="default_address"
                             >
                                 @lang('admin::app.customers.customers.view.address.create.default-address')

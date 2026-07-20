@@ -12,7 +12,7 @@
         id="v-products-carousel-template"
     >
         <div
-            class="container mt-20 max-lg:px-8 max-md:mt-8 max-sm:mt-7 max-sm:!px-4"
+            class="container pt-20 max-lg:px-8 max-md:pt-8 max-sm:pt-7 max-sm:!px-4"
             v-if="! isLoading && products.length"
         >
             <div class="flex items-baseline justify-between">
@@ -23,7 +23,7 @@
                 <div class="flex items-center gap-8">
                     <a
                         :href="navigationLink"
-                        class="group flex items-center no-underline decoration-1 underline-offset-4 transition-transform duration-200 hover:scale-105 focus-visible:scale-105 focus-visible:underline focus-visible:outline-none"
+                        class="group flex items-center no-underline decoration-1 underline-offset-4 transition-transform duration-200 hover:scale-105 hover:underline focus-visible:scale-105 focus-visible:underline focus-visible:outline-none"
                         v-if="navigationLink"
                     >
                         <p class="items-center font-mono text-xs uppercase tracking-[0.08em] text-diidsInk max-sm:text-[11px]">
@@ -59,7 +59,7 @@
 
             <div
                 ref="swiperContainer"
-                class="flex gap-8 pb-2.5 [&>*]:flex-[0] mt-10 overflow-auto scroll-smooth scrollbar-hide max-md:gap-7 max-md:mt-5 max-sm:gap-4 max-md:pb-0 max-md:whitespace-nowrap"
+                class="flex gap-8 pb-2.5 pt-10 [&>*]:flex-[0] overflow-auto scroll-smooth scrollbar-hide max-md:gap-7 max-md:pb-0 max-md:pt-5 max-sm:gap-4 max-md:whitespace-nowrap"
             >
                 <x-shop::products.card
                     class="min-w-[291px] max-md:h-fit max-md:min-w-56 max-sm:min-w-[192px]"

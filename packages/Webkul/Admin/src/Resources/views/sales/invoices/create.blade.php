@@ -1,6 +1,6 @@
 <!-- Invoice Create Vue Component -->
 <v-create-invoices>
-    <div class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+    <div class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
         <span class="icon-sales text-2xl"></span>
 
         @lang('admin::app.sales.invoices.create.invoice')
@@ -14,7 +14,7 @@
     >
         <div>
             <div
-                class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                     @click="$refs.invoice.open()"
                 >
                     <span
@@ -65,10 +65,10 @@
                                                     src="{{ $item->product?->base_image_url }}"
                                                 />
                                             @else
-                                                <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                                <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                                     <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                                    <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                                         @lang('admin::app.sales.invoices.create.product-image')
                                                     </p>
                                                 </div>
@@ -76,14 +76,14 @@
 
                                             <div class="grid place-content-start gap-1.5">
                                                 <p 
-                                                    class="break-all text-base font-semibold text-gray-800 dark:text-white"
+                                                    class="break-all text-base font-semibold text-diidsInk dark:text-white"
                                                     v-pre
                                                 >
                                                     {{ $item->name }}
                                                 </p>
 
                                                 <div class="flex flex-col place-items-start gap-1.5">
-                                                    <p class="text-gray-600 dark:text-gray-300">
+                                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                                         @lang('admin::app.sales.invoices.create.amount-per-unit', [
                                                             'amount' => core()->formatBasePrice($item->base_price),
                                                             'qty'    => $item->qty_ordered,
@@ -93,7 +93,7 @@
                                                     @if (isset($item->additional['attributes']))
                                                         @foreach ($item->additional['attributes'] as $attribute)
                                                             <p 
-                                                                class="text-gray-600 dark:text-gray-300" 
+                                                                class="text-diidsInk/70 dark:text-gray-300" 
                                                                 v-pre
                                                             >
                                                                 @if (
@@ -106,7 +106,7 @@
 
                                                                     <a
                                                                         href="{{ Storage::url($attribute['option_label']) }}"
-                                                                        class="text-blue-600 hover:underline"
+                                                                        class="text-navyBlue hover:underline"
                                                                         download="{{ File::basename($attribute['option_label']) }}"
                                                                     >
                                                                         {{ File::basename($attribute['option_label']) }}
@@ -116,7 +116,7 @@
                                                         @endforeach
                                                     @endif
 
-                                                    <p class="text-gray-600 dark:text-gray-300">
+                                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                                         @lang('admin::app.sales.invoices.create.sku', ['sku' => $item->sku])
                                                     </p>
                                                 </div>
@@ -160,7 +160,7 @@
 
                                 <label
                                     for="can_create_transaction"
-                                    class="cursor-pointer !text-sm !font-semibold !text-gray-600 dark:!text-gray-300"
+                                    class="cursor-pointer !text-sm !font-semibold !text-diidsInk/70 dark:!text-gray-300"
                                 >
                                     @lang('admin::app.sales.invoices.create.create-transaction')
                                 </label>

@@ -218,7 +218,7 @@
                                     this.generateToggleIconComponent({
                                         class: [
                                             hasChildren ? 'icon-sort-down' : '',
-                                            'text-xl rounded-md cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950'
+                                            'text-xl rounded-md cursor-pointer transition-all hover:bg-diidsSurface dark:hover:bg-gray-950'
                                         ],
                                     }),
 

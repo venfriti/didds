@@ -17,10 +17,10 @@
                 @change="inputChanged()"
             />
 
-            <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600">
+            <span class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue">
             </span>
 
-            <div class="cursor-pointer text-sm text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white">
+            <div class="cursor-pointer text-sm text-diidsInk/70 hover:text-diidsInk dark:text-gray-300 dark:hover:text-white">
                 @{{ label }}
             </div>
         </label>

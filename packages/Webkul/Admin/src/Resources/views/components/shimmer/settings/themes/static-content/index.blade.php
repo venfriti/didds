@@ -15,7 +15,7 @@
         </div>
 
         <!-- Tabs -->
-        <div class="pt-4 text-center text-sm font-medium text-gray-500">
+        <div class="pt-4 text-center text-sm font-medium text-diidsInk/60">
             <div class="mb-4 flex gap-4 border-b-2 pt-2 max-sm:hidden">
                 <div class="shimmer h-10 w-16"></div>
 

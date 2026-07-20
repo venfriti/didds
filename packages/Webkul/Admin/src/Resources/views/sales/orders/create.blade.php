@@ -8,7 +8,7 @@
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
         <div class="grid gap-1.5">
             <p
-                class="text-xl font-bold leading-6 text-gray-800 dark:text-white"
+                class="text-xl font-bold leading-6 text-diidsInk dark:text-white"
                 v-pre
             >
                 @lang('admin::app.sales.orders.create.title', ['name' => e($cart->customer->name)])
@@ -18,7 +18,7 @@
         <!-- Back Button -->
         <a
             href="{{ route('admin.sales.orders.index') }}"
-            class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+            class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
         >
             @lang('admin::app.sales.orders.create.back-btn')
         </a>

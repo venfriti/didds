@@ -1,10 +1,10 @@
-<p class="price-label text-sm text-zinc-500 max-sm:text-xs max-sm:leading-4">
+<p class="price-label text-sm text-diidsInk/60 max-sm:text-xs max-sm:leading-4">
     {{ $label }}
 </p>
 
 @if (isset($prices['final']) && $prices['final']['price'] < $prices['regular']['price'])
     <p
-        class="regular-price font-medium text-zinc-500 line-through max-sm:text-sm max-sm:leading-4"
+        class="regular-price font-medium text-diidsInk/60 line-through max-sm:text-sm max-sm:leading-4"
         aria-label="{{ $prices['regular']['formatted_price'] }}"
     >
         {{ $prices['regular']['formatted_price'] }}

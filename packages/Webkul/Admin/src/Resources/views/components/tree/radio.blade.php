@@ -5,7 +5,7 @@
     >
         <label
             :for="id"
-            class="inline-flex w-max cursor-pointer select-none items-center p-1.5 text-gray-600 dark:text-gray-300"
+            class="inline-flex w-max cursor-pointer select-none items-center p-1.5 text-diidsInk/70 dark:text-gray-300"
         >
             <input
                 type="radio"
@@ -17,9 +17,9 @@
                 @change="inputChanged()"
             >
 
-            <span class="icon-radio-normal peer-checked:icon-radio-selected mr-1 cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"></span>
+            <span class="icon-radio-normal peer-checked:icon-radio-selected mr-1 cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"></span>
 
-            <div class="cursor-pointer text-sm text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white">
+            <div class="cursor-pointer text-sm text-diidsInk/70 hover:text-diidsInk dark:text-gray-300 dark:hover:text-white">
                 @{{ label }}
             </div>
         </label>

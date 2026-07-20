@@ -19,13 +19,13 @@
             <div class="box-shadow relative flex-1 rounded bg-white p-4 dark:bg-gray-900">
                 <!-- Header -->
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-base font-semibold text-gray-600 dark:text-white">
+                    <p class="text-base font-semibold text-diidsInk/70 dark:text-white">
                         @lang('admin::app.reporting.products.index.top-selling-products-by-quantity')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.products.view', ['type' => 'top-selling-products-by-quantity']) }}"
-                        class="cursor-pointer text-sm text-blue-600 transition-all hover:underline"
+                        class="cursor-pointer text-sm text-navyBlue transition-all hover:underline"
                     >
                         @lang('admin::app.reporting.products.index.view-details')
                     </a>
@@ -53,7 +53,7 @@
                                         ></div>
                                     </div>
 
-                                    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                                    <p class="text-sm font-semibold text-diidsInk/70 dark:text-gray-300">
                                         @{{ product.total_qty_ordered }}
                                     </p>
                                 </div>

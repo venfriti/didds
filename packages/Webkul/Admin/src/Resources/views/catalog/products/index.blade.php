@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
-        <p class="text-xl font-bold text-gray-800 dark:text-white">
+        <p class="text-xl font-bold text-diidsInk dark:text-white">
             @lang('admin::app.catalog.products.index.title')
         </p>
 
@@ -77,8 +77,8 @@
                                 <span
                                     class="icon-uncheckbox cursor-pointer rounded-md text-2xl"
                                     :class="[
-                                        applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-blue-600' : (
-                                            applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
+                                        applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-navyBlue' : (
+                                            applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-navyBlue' : ''
                                         ),
                                     ]"
                                 >
@@ -86,14 +86,14 @@
                             </label>
                         @endif
 
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <p class="text-diidsInk/70 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
                                 <template v-for="column in columnGroup">
                                     <span
                                         class="after:content-['/'] last:after:content-['']"
                                         :class="{
-                                            'font-medium text-gray-800 dark:text-white': applied.sort.column == column,
-                                            'cursor-pointer hover:text-gray-800 dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
+                                            'font-medium text-diidsInk dark:text-white': applied.sort.column == column,
+                                            'cursor-pointer hover:text-diidsInk dark:hover:text-white': available.columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                         }"
                                         @click="
                                             available.columns.find(columnTemp => columnTemp.index === column)?.sortable ? sort(available.columns.find(columnTemp => columnTemp.index === column)): {}
@@ -105,7 +105,7 @@
                             </span>
 
                             <i
-                                class="align-text-bottom text-base text-gray-800 dark:text-white ltr:ml-1.5 rtl:mr-1.5"
+                                class="align-text-bottom text-base text-diidsInk dark:text-white ltr:ml-1.5 rtl:mr-1.5"
                                 :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
                                 v-if="columnGroup.includes(applied.sort.column)"
                             ></i>
@@ -129,7 +129,7 @@
 
             <template v-else>
                 <div
-                    class="row border-b px-2 py-2.5 transition-all hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950 sm:px-4 md:grid md:grid-cols-[2fr_1fr_1fr] md:grid-rows-1 md:gap-1.5"
+                    class="row border-b px-2 py-2.5 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:hover:bg-gray-950 sm:px-4 md:grid md:grid-cols-[2fr_1fr_1fr] md:grid-rows-1 md:gap-1.5"
                     v-for="record in available.records"
                 >
                     <!-- Mobile Layout -->
@@ -148,7 +148,7 @@
                                     >
 
                                     <label
-                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                        class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                         :for="`mass_action_select_record_${record.product_id}`"
                                     ></label>
                                 @endif
@@ -166,10 +166,10 @@
                                     </template>
 
                                     <template v-else>
-                                        <div class="relative h-12 w-12 rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert sm:h-16 sm:w-16">
+                                        <div class="relative h-12 w-12 rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert sm:h-16 sm:w-16">
                                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}" class="h-full w-full object-cover">
 
-                                            <p class="absolute bottom-0 w-full text-center text-[6px] font-semibold text-gray-400">
+                                            <p class="absolute bottom-0 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                                 @lang('admin::app.catalog.products.index.datagrid.product-image')
                                             </p>
                                         </div>
@@ -177,44 +177,44 @@
                                 </div>
 
                                 <div class="flex flex-col gap-1 flex-1">
-                                    <p class="break-all text-sm font-semibold text-gray-800 dark:text-white sm:text-base">
+                                    <p class="break-all text-sm font-semibold text-diidsInk dark:text-white sm:text-base">
                                         @{{ record.name }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                         @{{ "@lang('admin::app.catalog.products.index.datagrid.id-value')".replace(':id', record.product_id) }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                         @{{ "@lang('admin::app.catalog.products.index.datagrid.sku-value')".replace(':sku', record.sku) }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                         @{{ "@lang('admin::app.catalog.products.index.datagrid.attribute-family-value')".replace(':attribute_family', record.attribute_family) }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                         @{{ record.category_name ?? 'N/A' }}
                                     </p>
 
-                                    <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                    <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                         @{{ record.type }}
                                     </p>
 
-                                    <p class="text-sm font-semibold text-gray-800 dark:text-white sm:text-base">
+                                    <p class="text-sm font-semibold text-diidsInk dark:text-white sm:text-base">
                                         @{{ $admin.formatPrice(record.price) }}
                                     </p>
 
                                     <div>
                                         <div v-if="['configurable', 'bundle', 'grouped' , 'booking'].includes(record.type)">
-                                            <p class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm">
+                                            <p class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm">
                                                 <span class="text-red-600">N/A</span>
                                             </p>
                                         </div>
 
                                         <div v-else>
                                             <p
-                                                class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm"
+                                                class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm"
                                                 v-if="record.quantity > 0"
                                             >
                                                 <span class="text-green-600">
@@ -223,7 +223,7 @@
                                             </p>
 
                                             <p
-                                                class="text-xs text-gray-600 dark:text-gray-300 sm:text-sm"
+                                                class="text-xs text-diidsInk/70 dark:text-gray-300 sm:text-sm"
                                                 v-else
                                             >
                                                 <span class="text-red-600">
@@ -241,7 +241,7 @@
 
                             <div class="flex items-center gap-1">
                                 <span
-                                    class="cursor-pointer rounded-md p-1.5 text-xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800"
+                                    class="cursor-pointer rounded-md p-1.5 text-xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800"
                                     :class="action.icon"
                                     v-text="! action.icon ? action.title : ''"
                                     v-for="action in record.actions"
@@ -267,21 +267,21 @@
                                 >
 
                                 <label
-                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                     :for="`mass_action_select_record_${record.product_id}`"
                                 ></label>
                             @endif
 
                             <div class="flex flex-col gap-1.5">
-                                <p class="break-all text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="break-all text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ record.name }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.catalog.products.index.datagrid.sku-value')".replace(':sku', record.sku) }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.catalog.products.index.datagrid.attribute-family-value')".replace(':attribute_family', record.attribute_family) }}
                                 </p>
                             </div>
@@ -302,10 +302,10 @@
                                 </template>
 
                                 <template v-else>
-                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
 
-                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                             @lang('admin::app.catalog.products.index.datagrid.product-image')
                                         </p>
                                     </div>
@@ -313,20 +313,20 @@
                             </div>
 
                             <div class="flex flex-col gap-1.5">
-                                <p class="text-base font-semibold text-gray-800 dark:text-white">
+                                <p class="text-base font-semibold text-diidsInk dark:text-white">
                                     @{{ $admin.formatPrice(record.price) }}
                                 </p>
 
                                 <!-- Parent Product Quantity -->
                                 <div v-if="['configurable', 'bundle', 'grouped' , 'booking'].includes(record.type)">
-                                    <p class="text-gray-600 dark:text-gray-300">
+                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                         <span class="text-red-600">N/A</span>
                                     </p>
                                 </div>
 
                                 <div v-else>
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-if="record.quantity > 0"
                                     >
                                         <span class="text-green-600">
@@ -335,7 +335,7 @@
                                     </p>
 
                                     <p
-                                        class="text-gray-600 dark:text-gray-300"
+                                        class="text-diidsInk/70 dark:text-gray-300"
                                         v-else
                                     >
                                         <span class="text-red-600">
@@ -344,7 +344,7 @@
                                     </p>
                                 </div>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ "@lang('admin::app.catalog.products.index.datagrid.id-value')".replace(':id', record.product_id) }}
                                 </p>
                             </div>
@@ -357,11 +357,11 @@
                                     @{{ record.status ? "@lang('admin::app.catalog.products.index.datagrid.active')" : "@lang('admin::app.catalog.products.index.datagrid.disable')" }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ record.category_name ?? 'N/A' }}
                                 </p>
 
-                                <p class="text-gray-600 dark:text-gray-300">
+                                <p class="text-diidsInk/70 dark:text-gray-300">
                                     @{{ record.type }}
                                 </p>
                             </div>
@@ -371,7 +371,7 @@
                                 v-if="available.actions.length"
                             >
                                 <span
-                                    class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                    class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                     :class="action.icon"
                                     v-text="! action.icon ? action.title : ''"
                                     v-for="action in record.actions"
@@ -415,14 +415,14 @@
                             <!-- Modal Header -->
                             <x-slot:header>
                                 <p
-                                    class="text-lg font-bold text-gray-800 dark:text-white"
+                                    class="text-lg font-bold text-diidsInk dark:text-white"
                                     v-if="! attributes.length"
                                 >
                                     @lang('admin::app.catalog.products.index.create.title')
                                 </p>
 
                                 <p
-                                    class="text-lg font-bold text-gray-800 dark:text-white"
+                                    class="text-lg font-bold text-diidsInk dark:text-white"
                                     v-else
                                 >
                                     @lang('admin::app.catalog.products.index.create.configurable-attributes')
@@ -508,7 +508,7 @@
                                         v-for="attribute in attributes"
                                     >
                                         <label
-                                            class="block text-xs font-medium leading-6 text-gray-800 dark:text-white"
+                                            class="block text-xs font-medium leading-6 text-diidsInk dark:text-white"
                                             v-text="attribute.name"
                                         >
                                         </label>
@@ -539,7 +539,7 @@
                                     <!-- Back Button -->
                                     <x-admin::button
                                         button-type="button"
-                                        class="transparent-button hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                                        class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                                         :title="trans('admin::app.catalog.products.index.create.back-btn')"
                                         v-if="attributes.length"
                                         @click="attributes = []"

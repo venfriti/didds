@@ -1,9 +1,9 @@
 @props(['count' => 0])
 
-<div class="mt-8 flex flex-wrap gap-20 max-1060:flex-col max-sm:mt-0 max-sm:gap-[30px]">
+<div class="flex flex-wrap gap-20 pt-8 max-1060:flex-col max-sm:gap-[30px] max-sm:pt-0">
     <div class="grid flex-1 gap-y-6">
         <!-- Cart Action -->
-        <div class="flex items-center justify-between border-b border-zinc-200 pb-2.5 max-sm:justify-normal max-sm:gap-5 max-sm:py-2.5">
+        <div class="flex items-center justify-between border-b border-diidsBorder pb-2.5 max-sm:justify-normal max-sm:gap-5 max-sm:py-2.5">
             <div class="flex select-none items-center">
                 <div class="shimmer h-[25px] w-6 rounded max-sm:h-5"></div>
 
@@ -15,9 +15,9 @@
 
         <!-- Cart Items -->
         @for ($i = 0; $i < $count; $i++)
-            <div class="flex justify-between gap-x-2.5 border-b border-zinc-200 pb-5">
+            <div class="flex justify-between gap-x-2.5 border-b border-diidsBorder pb-5">
                 <div class="flex gap-x-5 max-sm:gap-x-3.5">
-                    <div class="mt-11 select-none max-sm:mt-0 max-sm:grid max-sm:h-20 max-sm:items-center max-sm:leading-[80px]">
+                    <div class="select-none pt-11 max-sm:grid max-sm:h-20 max-sm:items-center max-sm:pt-0 max-sm:leading-[80px]">
                         <div class="shimmer h-[25px] w-6 rounded"></div>
                     </div>
 

@@ -20,7 +20,7 @@
             <div>
                 <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
                     <!-- Title -->
-                    <p class="text-xl font-bold text-gray-800 dark:text-white">
+                    <p class="text-xl font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.sales.rma.rules.index.title')
                     </p>
 
@@ -60,7 +60,7 @@
                     }">
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             :style="'grid-template-columns: repeat(' + (record.actions.length ? 6 : 4) + ', 1fr);'"
                         >
                             @if ($hasPermission)
@@ -75,7 +75,7 @@
                                 >
 
                                 <label
-                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                     :for="`mass_action_select_record_${record.id}`"
                                 >
                                 </label>
@@ -99,7 +99,7 @@
                                     <a @click="selectedLocales=1; editModal(record.actions.find(action => action.method === 'GET').url)">
                                         <span
                                             :class="record.actions.find(action => action.title === 'Edit')?.icon"
-                                            class="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                             :title="record.actions.find(action => action.title === 'Edit')?.title"
                                         >
                                         </span>
@@ -110,7 +110,7 @@
                                     <a @click="performAction(record.actions.find(action => action.method === 'DELETE'))">
                                         <span
                                             :class="record.actions.find(action => action.method === 'DELETE')?.icon"
-                                            class="icon-delete cursor-pointer rounded-md p-2 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="icon-delete cursor-pointer rounded-md p-2 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                             :title="record.actions.find(action => action.method === 'DELETE')?.title"
                                         >
                                         </span>
@@ -136,11 +136,11 @@
                             <x-admin::modal ref="rulesModal">
                                 <!-- Modal Header -->
                                 <x-slot:header>
-                                    <p v-if="! selectedLocales" class="text-lg font-bold text-gray-800 dark:text-white">
+                                    <p v-if="! selectedLocales" class="text-lg font-bold text-diidsInk dark:text-white">
                                         @lang('admin::app.sales.rma.rules.create.create-title')
                                     </p>
 
-                                    <p v-else class="text-lg font-bold text-gray-800 dark:text-white">
+                                    <p v-else class="text-lg font-bold text-diidsInk dark:text-white">
                                         @lang('admin::app.sales.rma.rules.edit.edit-title')
                                     </p>
                                 </x-slot>

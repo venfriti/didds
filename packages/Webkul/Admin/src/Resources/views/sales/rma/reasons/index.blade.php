@@ -21,7 +21,7 @@
             <div>
                 <div class="flex items-center justify-between gap-4 max-sm:flex-wrap">
                     <!-- Title -->
-                    <p class="text-xl font-bold text-gray-800 dark:text-white">
+                    <p class="text-xl font-bold text-diidsInk dark:text-white">
                         @lang('admin::app.sales.rma.reasons.index.title')
                     </p>
 
@@ -61,7 +61,7 @@
                     }">
                         <div
                             v-for="record in available.records"
-                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-gray-600 transition-all hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+                            class="row grid items-center gap-2.5 border-b px-4 py-4 text-diidsInk/70 transition-all hover:bg-diidsSurface dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
                             :style="'grid-template-columns: repeat(' + (record.actions.length ? 8 : 6) + ', 1fr);'"
                         >
                             @if ($hasPermission)
@@ -76,7 +76,7 @@
                                 >
 
                                 <label
-                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-blue-600"
+                                    class="icon-uncheckbox peer-checked:icon-checked cursor-pointer rounded-md text-2xl peer-checked:text-navyBlue"
                                     :for="`mass_action_select_record_${record.id}`"
                                 >
                                 </label>
@@ -107,7 +107,7 @@
                                     <a @click="selectedLocales=1; editModal(record.actions.find(action => action.index === 'edit')?.url)">
                                         <span
                                             :class="record.actions.find(action => action.index === 'edit')?.icon"
-                                            class="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                         >
                                         </span>
                                     </a>
@@ -117,7 +117,7 @@
                                     <a @click="performAction(record.actions.find(action => action.method === 'DELETE'))">
                                         <span
                                             :class="record.actions.find(action => action.method === 'DELETE')?.icon"
-                                            class="icon-delete cursor-pointer rounded-md p-2 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            class="icon-delete cursor-pointer rounded-md p-2 text-2xl transition-all hover:bg-diidsBorder dark:hover:bg-gray-800 max-sm:place-self-center"
                                             :title="record.actions.find(action => action.method === 'DELETE')?.title"
                                         >
                                         </span>
@@ -143,11 +143,11 @@
                             <x-admin::modal ref="reasonsModal">
                                 <!-- Modal Header -->
                                 <x-slot:header>
-                                    <p v-if="! selectedLocales" class="text-lg font-bold text-gray-800 dark:text-white">
+                                    <p v-if="! selectedLocales" class="text-lg font-bold text-diidsInk dark:text-white">
                                         @lang('admin::app.sales.rma.reasons.create.create-title')
                                     </p>
 
-                                    <p v-else class="text-lg font-bold text-gray-800 dark:text-white">
+                                    <p v-else class="text-lg font-bold text-diidsInk dark:text-white">
                                         @lang('admin::app.sales.rma.reasons.edit.edit-title')
                                     </p>
                                 </x-slot>
@@ -235,7 +235,7 @@
                                         >
                                             <select
                                                 name="resolution_type[]"
-                                                class="flex w-full min-h-10 py-2 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                                class="flex w-full min-h-10 py-2 px-3 border rounded-md text-sm text-diidsInk/70 dark:text-gray-300 transition-all hover:border-diidsBorder dark:hover:border-diidsBorder focus:border-diidsBorder dark:focus:border-diidsBorder dark:bg-gray-900 dark:border-gray-800"
                                                 :class="[errors['resolution_type[]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                                 v-model="reason.reasonResolutions"
                                                 rules="required"

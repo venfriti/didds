@@ -23,7 +23,7 @@
                     <!-- Input Form -->
                     <div class="flex flex-col gap-2 flex-1 overflow-auto">
                         <div class="flex justify-between items-center">
-                            <p class="text-xl text-gray-800 dark:text-white font-bold">
+                            <p class="text-xl text-diidsInk dark:text-white font-bold">
                                 @lang('admin::app.sales.rma.custom-field.edit.edit-title')
                             </p>
 
@@ -31,7 +31,7 @@
                                 <!-- Cancel Button -->
                                 <a
                                     href="{{ route('admin.sales.rma.custom-fields.index') }}"
-                                    class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
+                                    class="transparent-button hover:bg-diidsBorder dark:hover:bg-gray-800 dark:text-white"
                                 >
                                     @lang('admin::app.catalog.attributes.create.back-btn')
                                 </a>
@@ -63,7 +63,7 @@
                                     <x-slot:toggle>
                                         <button
                                             type="button"
-                                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                                            class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                                         >
                                             <span class="icon-store text-2xl"></span>
 
@@ -84,7 +84,7 @@
                                         @foreach ($channels as $channel)
                                             <a
                                                 href="?{{ Arr::query(['channel' => $channel->code, 'locale' => $currentLocale->code]) }}"
-                                                class="flex cursor-pointer gap-2.5 px-5 py-2 text-base hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
+                                                class="flex cursor-pointer gap-2.5 px-5 py-2 text-base hover:bg-diidsSurface dark:text-white dark:hover:bg-gray-950"
                                             >
                                                 {{ $channel->name }}
                                             </a>
@@ -98,7 +98,7 @@
                                     <x-slot:toggle>
                                         <button
                                             type="button"
-                                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 focus:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                                            class="transparent-button px-1 py-1.5 hover:bg-diidsBorder focus:bg-diidsBorder dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
                                         >
                                             <span class="icon-language text-2xl"></span>
 
@@ -119,7 +119,7 @@
                                         @foreach ($currentChannel->locales->sortBy('name') as $locale)
                                             <a
                                                 href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
-                                                class="flex gap-2.5 px-5 py-2 text-base cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+                                                class="flex gap-2.5 px-5 py-2 text-base cursor-pointer hover:bg-diidsSurface dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-diidsSurface dark:bg-gray-950' : ''}}"
                                             >
                                                 {{ $locale->name }}
                                             </a>
@@ -132,7 +132,7 @@
                         <!-- General -->
                         <div class="bg-white dark:bg-gray-900 box-shadow rounded">
                             <div class="flex justify-between items-center p-1.5">
-                                <p class="p-2.5 text-gray-800 dark:text-white text-base font-semibold">
+                                <p class="p-2.5 text-diidsInk dark:text-white text-base font-semibold">
                                     @lang('admin::app.catalog.attributes.create.general')
                                 </p>
                             </div>
@@ -192,7 +192,7 @@
                                         <input
                                             type="text"
                                             id="code"
-                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:focus:border-gray-400 focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-diidsInk/70 dark:text-gray-300 transition-all hover:border-diidsBorder dark:hover:border-diidsBorder dark:focus:border-diidsBorder focus:border-diidsBorder dark:bg-gray-900 dark:border-gray-800"
                                             name="slug"
                                             v-bind="field"
                                             placeholder="{{ trans('admin::app.catalog.attributes.index.datagrid.code') }}"
@@ -287,7 +287,7 @@
                                                     type="text"
                                                     :id="'options[' + index + ']'"
                                                     :class="[errors['{{ 'name' }}'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-diidsInk/70 dark:text-gray-300 transition-all hover:border-diidsBorder dark:hover:border-diidsBorder focus:border-diidsBorder dark:focus:border-diidsBorder dark:bg-gray-900 dark:border-gray-800"
                                                     :name="'options[' + index + ']'"
                                                     v-bind="field"
                                                     placeholder="{{ trans('admin::app.catalog.attributes.create.options') }}"
@@ -325,7 +325,7 @@
                                                     type="text"
                                                     :id="'value[' + index + ']'"
                                                     :class="[errors['{{ 'name' }}'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-md text-sm text-diidsInk/70 dark:text-gray-300 transition-all hover:border-diidsBorder dark:hover:border-diidsBorder focus:border-diidsBorder dark:focus:border-diidsBorder dark:bg-gray-900 dark:border-gray-800"
                                                     :name="'value[' + index + ']'"
                                                     v-bind="field"
                                                     placeholder="{{ trans('admin::app.settings.themes.edit.value-input') }}"
@@ -369,7 +369,7 @@
 
                             <!-- Validation -->
                             <div class="flex justify-between items-center p-1.5">
-                                <p class="p-2.5 text-gray-800 dark:text-white text-base font-semibold">
+                                <p class="p-2.5 text-diidsInk dark:text-white text-base font-semibold">
                                     @lang('admin::app.catalog.attributes.create.validations')
                                 </p>
                             </div>
@@ -415,7 +415,7 @@
                                     />
 
                                     <label
-                                        class="text-xs text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                        class="text-xs text-diidsInk/70 dark:text-gray-300 font-medium cursor-pointer"
                                         for="is_required"
                                     >
                                         @lang('admin::app.catalog.attributes.edit.is-required')

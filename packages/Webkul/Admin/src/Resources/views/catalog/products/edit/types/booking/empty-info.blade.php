@@ -11,20 +11,20 @@
 
             <div class="flex flex-col items-center gap-2">
                 <p
-                    class="text-base font-semibold text-gray-400"
+                    class="text-base font-semibold text-diidsInk/40"
                     v-if="type == 'event'"
                 >
                     @lang('admin::app.catalog.products.edit.types.booking.empty-info.tickets.add')
                 </p>
 
                 <p
-                    class="text-base font-semibold text-gray-400"
+                    class="text-base font-semibold text-diidsInk/40"
                     v-else
                 >
                     @lang('admin::app.catalog.products.edit.types.booking.empty-info.slots.add')
                 </p>
 
-                <p class="text-gray-400">
+                <p class="text-diidsInk/40">
                     @lang('admin::app.catalog.products.edit.types.booking.empty-info.slots.description')
                 </p>
             </div>

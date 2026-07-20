@@ -1,7 +1,7 @@
 <!-- Shipment Vue Components -->
 <v-create-shipment>
     <div
-        class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+        class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
     >
         <span class="icon-ship text-2xl"></span>
 
@@ -16,7 +16,7 @@
     >
         <div>
             <div
-                class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                class="transparent-button px-1 py-1.5 hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800"
                 @click="$refs.shipment.open()"
             >
                 <span
@@ -142,10 +142,10 @@
                                                         src="{{ $item->product?->base_image_url }}"
                                                     >
                                                 @else
-                                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-gray-300 dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
+                                                    <div class="relative h-[60px] max-h-[60px] w-full max-w-[60px] rounded border border-dashed border-diidsBorder dark:border-gray-800 dark:mix-blend-exclusion dark:invert">
                                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
+                                                        <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-diidsInk/40">
                                                             @lang('admin::app.sales.invoices.view.product-image')
                                                         </p>
                                                     </div>
@@ -154,14 +154,14 @@
                                                 <div class="grid place-content-start gap-1.5">
                                                     <!-- Item Name -->
                                                     <p 
-                                                        class="text-base font-semibold text-gray-800 dark:text-white"
+                                                        class="text-base font-semibold text-diidsInk dark:text-white"
                                                         v-pre
                                                     >
                                                         {{ $item->name }}
                                                     </p>
 
                                                     <div class="flex flex-col place-items-start gap-1.5">
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.shipments.create.amount-per-unit', [
                                                                 'amount' => core()->formatBasePrice($item->base_price),
                                                                 'qty'    => $item->qty_ordered,
@@ -172,7 +172,7 @@
                                                         @if (isset($item->additional['attributes']))
                                                             @foreach ($item->additional['attributes'] as $attribute)
                                                                 <p 
-                                                                    class="text-gray-600 dark:text-gray-300"
+                                                                    class="text-diidsInk/70 dark:text-gray-300"
                                                                     v-pre
                                                                 >
                                                                     @if (
@@ -185,7 +185,7 @@
 
                                                                         <a
                                                                             href="{{ Storage::url($attribute['option_label']) }}"
-                                                                            class="text-blue-600 hover:underline"
+                                                                            class="text-navyBlue hover:underline"
                                                                             download="{{ File::basename($attribute['option_label']) }}"
                                                                         >
                                                                             {{ File::basename($attribute['option_label']) }}
@@ -196,12 +196,12 @@
                                                         @endif
 
                                                         <!-- Item SKU -->
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             @lang('admin::app.sales.shipments.create.sku', ['sku' => $item->sku])
                                                         </p>
 
                                                         <!--Item Status -->
-                                                        <p class="text-gray-600 dark:text-gray-300">
+                                                        <p class="text-diidsInk/70 dark:text-gray-300">
                                                             {{ $item->qty_ordered ? trans('admin::app.sales.shipments.create.item-ordered', ['qty_ordered' => $item->qty_ordered]) : '' }}
 
                                                             {{ $item->qty_invoiced ? trans('admin::app.sales.shipments.create.item-invoice', ['qty_invoiced' => $item->qty_invoiced]) : '' }}
@@ -223,14 +223,14 @@
                                                 <div class="grid gap-1">
                                                     <!--Inventory Source -->
                                                     <p
-                                                        class="text-base font-semibold text-gray-800 dark:text-white"
+                                                        class="text-base font-semibold text-diidsInk dark:text-white"
                                                         v-pre
                                                     >
                                                         {{ $inventorySource->name }}
                                                     </p>
 
                                                     <!-- Available Quantity -->
-                                                    <p class="text-gray-600 dark:text-gray-300">
+                                                    <p class="text-diidsInk/70 dark:text-gray-300">
                                                         @lang('admin::app.sales.shipments.create.qty-available') :
 
                                                         @php
