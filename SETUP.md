@@ -19,7 +19,22 @@ composer install
 
 ## 3. Environment file
 
-`.env` is gitignored on purpose — it holds real database credentials and mail secrets, so everyone needs their own.
+`.env` is gitignored on purpose — it holds real database credentials and mail secrets, so it's never in git. There are two ways to get one, depending on what you were given:
+
+### Option A — you were handed a working `.env` file
+
+If the repo owner gave you their actual `.env` (outside of git, e.g. dropped directly into your project folder after cloning), just place it at the project root as `.env` and run:
+
+```bash
+php artisan key:generate
+```
+
+Then still check/update these for your own machine, since a `.env` written for someone else's setup won't automatically match yours:
+
+- `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` — must point at a database that actually exists on **your** MySQL install, not theirs. Create one matching these values before moving to step 4.
+- `APP_URL` — must match the host/port you'll actually run the server on (e.g. `http://127.0.0.1:8010`). A mismatch here is a common cause of assets/logo appearing to "not load" even though the file is served correctly — the browser and the app disagree on the site's own origin.
+
+### Option B — starting from `.env.example`
 
 ```bash
 cp .env.example .env
@@ -30,6 +45,8 @@ php artisan key:generate
 
 - `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` — your local MySQL credentials
 - `MAIL_PASSWORD` / `RESEND_KEY` — only needed if you want outgoing email (order confirmations, password resets) to actually send. Leave as placeholders otherwise; the app runs fine without it, emails just won't deliver.
+
+Either way, `APP_KEY` must be freshly generated per machine via `php artisan key:generate` — never copy this specific value from someone else's `.env`, even if you copy everything else. It's the encryption key behind sessions and cookies.
 
 ## 4. Database
 
@@ -97,6 +114,19 @@ php artisan serve --port=8010
 ### Admin roles
 
 Bagisto's own role system already covers per-admin permission restriction — no custom code needed. **Admin → Settings → Roles** gives you a checklist tree of every section/sub-option in the panel; assign a role to any admin user and their sidebar (and route access) is limited to exactly what's checked. Only a role with `permission_type: all` (the default "Administrator" role) sees everything. The seeded "Order Manager" account is a ready-made example — log in as it to see the restriction in action.
+
+## Restarting from scratch
+
+If your local setup has drifted (your own experiments, a half-finished migration, content that doesn't match what's expected) and you'd rather reset than debug, do a real from-scratch reinstall rather than patching pieces individually — it's more reliable than guessing at what's inconsistent.
+
+1. **Drop and recreate your local database** (empty). Anything in it — product data, admin edits, local changes — will be lost. Export first if any of it is worth keeping.
+2. **Pull the latest `main`.** You specifically need commit `38d195d` or later — that's the one that added `DiidsBaselineSeeder` and its JSON fixtures. If you're on an older commit, none of this exists yet regardless of what you run.
+3. **Re-run `composer install`** if `composer.json` or anything under `packages/` changed since you last installed.
+4. **Environment file** — see step 3 above. If you're resetting because your `.env` itself might be part of the problem (wrong `APP_URL`, stale port, etc.), the safest move is to get a fresh copy — either a fresh `.env.example` copy with your own DB credentials re-entered, or a fresh copy of the repo owner's working `.env` — rather than trying to patch your existing one in place.
+5. **`php artisan migrate:fresh --seed`** (not plain `migrate --seed`) — `migrate:fresh` drops every table and rebuilds cleanly, which avoids leftover state conflicting with the seeder's update-in-place logic.
+6. **Storage symlink.** If `public/storage` already exists as a plain folder rather than a symlink (common failure mode on Windows), delete it first, then run `php artisan storage:link`.
+7. **Confirm the baseline image files actually exist** at `storage/app/public/channel/1/diids-logo.svg` and `storage/app/public/theme/home/*.webp` before assuming anything's broken. If your `git pull` didn't bring these in, the seeder will still set the correct *path* in the database, but there'll be nothing on disk for it to point at — which shows up as a broken logo/images even though the database itself looks correct.
+8. **`php artisan optimize:clear`** — this is the step most likely to get skipped and the one most likely to leave you staring at stale content even after everything above succeeded. See the caching note under Troubleshooting.
 
 ## Troubleshooting
 
