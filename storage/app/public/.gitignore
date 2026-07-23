@@ -1,3 +1,20 @@
 *
 !data-transfer
 !.gitignore
+
+# DIIDS baseline branding/content assets - referenced by the seeded
+# theme_customizations rows in DiidsBaselineSeeder, so they need to exist
+# on a fresh clone before any admin-uploaded content is added.
+!channel
+!channel/1
+!channel/1/diids-logo.svg
+!theme
+!theme/home
+!theme/home/hero1-QZHHNKsI4ZzhCSTcD7X7.webp
+!theme/home/hero2-Xhw6S4iCwaM43UdVAD1L.webp
+!theme/home/hero3-wide-1H27MdGdZp85dhd7RrWi.webp
+!theme/home/hero4-wide-iOlYhfHiRoIH1VwWXNQZ.webp
+!theme/home/hero5-Y3RYO3ExiDejZtN1JmPS.webp
+!theme/home/hero6-wide-NnGdXiVbWT5l0XHjSSr6.webp
+!theme/home/game1-M2ABrdYX2aiqSBLYMMTI.webp
+!theme/home/game2-wvrJJfIWvuUBwUDz4Paj.webp

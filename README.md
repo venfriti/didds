@@ -32,8 +32,8 @@ All application code lives in `packages/Webkul/` (~40 packages, Bagisto's modula
 |---|---|
 | `Shop` | Customer-facing storefront — theme, product pages, cart, checkout |
 | `Admin` | Store owner's admin panel — catalog, orders, settings, roles |
-| `Theme` | Homepage content blocks (hero carousel, product carousels, footer links) — edited via `theme_customizations` DB rows, not Blade |
-| `CMS` | Static pages (About Us, policies) — content lives in `cms_page_translations`, not Blade |
+| `Theme` | Homepage content blocks (hero carousel, product carousels, footer links) — data lives in `theme_customizations` DB rows; the baseline version is seeded from `database/seeders/diids/theme-customizations.json` |
+| `CMS` | Static pages (About Us, policies) — data lives in `cms_page_translations`; the baseline version is seeded from `database/seeders/diids/cms-pages.json` |
 | `Paypal`, `Razorpay`, `Stripe`, `PayU`, `PhonePe` | Other payment gateways bundled with Bagisto; Paystack is the one actually wired up for this store, via the separate `wontonee/paystack` package |
 
 See `CLAUDE.md` for the fuller architecture notes (repository pattern, proxy models, event-driven extensibility) if you're working on core package code rather than just theme/content.
@@ -51,7 +51,9 @@ Full test/lint/build commands are in `CLAUDE.md`.
 
 ## Content vs. code
 
-A lot of what makes the site look like DIIDS — homepage sections, footer links, CMS page copy, product catalog, admin roles — lives in the **database**, not in git. Cloning this repo gets you the branded templates and styling; it does not get you the actual product catalog or homepage content. See [SETUP.md](SETUP.md) for what a fresh clone actually includes.
+Homepage sections, footer links, CMS page copy, and site branding (logo, currency, name) live in the **database**, not as Blade files — that's how Bagisto's admin panel is able to let a non-developer edit them without touching code. To make sure a fresh clone still looks like DIIDS rather than a generic Bagisto demo, those specific rows are seeded automatically via `database/seeders/DiidsBaselineSeeder.php`, which runs as part of `php artisan migrate --seed`. Its source data lives in `database/seeders/diids/*.json` — edit those files and re-run the seeder to change the baseline.
+
+**The product catalog is the one thing intentionally left out of this baseline.** It stays purely database-managed, since it changes constantly as real inventory gets added — a fresh install starts with zero products. See [SETUP.md](SETUP.md) for the full setup sequence, including admin logins.
 
 ## License
 
