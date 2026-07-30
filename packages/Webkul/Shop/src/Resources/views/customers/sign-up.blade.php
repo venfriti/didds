@@ -21,38 +21,36 @@
         @lang('shop::app.customers.signup-form.page-title')
     </x-slot>
 
-	<div class="container mt-20 max-1180:px-5 max-md:mt-12">
-        {!! view_render_event('bagisto.shop.customers.sign-up.logo.before') !!}
-
-        <!-- Company Logo -->
-        <div class="flex items-center gap-x-14 max-[1180px]:gap-x-9">
-            <a
-                href="{{ route('shop.home.index') }}"
-                class="m-[0_auto_20px_auto]"
-                aria-label="@lang('shop::app.customers.signup-form.bagisto')"
-            >
-                <img
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ config('app.name') }}"
-                    width="131"
-                    height="29"
-                >
+    <div class="diids-auth">
+        <!-- Left: editorial image -->
+        <div class="diids-auth__visual">
+            <img src="{{ bagisto_asset('images/auth-visual.webp') }}" alt="DIIDS">
+            <a href="{{ route('shop.home.index') }}" class="diids-auth__brand" aria-label="{{ config('app.name') }}">
+                <img src="{{ bagisto_asset('images/diids-logo.svg') }}" alt="DIIDS" width="120" height="40">
             </a>
+            <p class="diids-auth__tagline">Everyday Confidence</p>
         </div>
 
-        {!! view_render_event('bagisto.shop.customers.sign-up.logo.before') !!}
+        <!-- Right: form -->
+        <div class="diids-auth__panel">
+            <div class="diids-auth__inner">
+                <a href="{{ route('shop.home.index') }}" class="diids-auth__brand-mobile" aria-label="{{ config('app.name') }}">
+                    <img src="{{ bagisto_asset('images/diids-logo.svg') }}" alt="DIIDS" width="110" height="36">
+                </a>
 
-        <!-- Form Container -->
-		<div class="m-auto w-full max-w-[870px] rounded-xl border border-diidsBorder p-16 px-[90px] max-md:px-8 max-md:py-8 max-sm:border-none max-sm:p-0">
-			<h1 class="font-dmserif text-4xl max-md:text-3xl max-sm:text-xl">
-                @lang('shop::app.customers.signup-form.page-title')
-            </h1>
+                <p class="diids-auth__eyebrow">Account</p>
+                <h1 class="diids-auth__title">@lang('shop::app.customers.signup-form.page-title')</h1>
+                <p class="diids-auth__sub">@lang('shop::app.customers.signup-form.form-signup-text')</p>
 
-			<p class="mt-4 text-xl text-diidsInk/60 max-sm:mt-0 max-sm:text-sm">
-                @lang('shop::app.customers.signup-form.form-signup-text')
-            </p>
+                @if (core()->getConfigData('customer.settings.social_login.enable_google'))
+                    <a href="{{ route('customer.social-login.index', 'google') }}" class="diids-google">
+                        @include('social_login::icons.google')
+                        <span>Continue with Google</span>
+                    </a>
+                    <div class="diids-auth__divider"><span>or</span></div>
+                @endif
 
-            <div class="mt-14 rounded max-sm:mt-8">
+            <div class="diids-auth__form">
                 <x-shop::form :action="route('shop.customers.register.store')">
                     {!! view_render_event('bagisto.shop.customers.signup_form_controls.before') !!}
 
@@ -149,26 +147,9 @@
 
                     {!! view_render_event('bagisto.shop.customers.signup_form.password.after') !!}
 
-                    <!-- Confirm Password -->
-                    <x-shop::form.control-group>
-                        <x-shop::form.control-group.label>
-                            @lang('shop::app.customers.signup-form.confirm-pass')
-                        </x-shop::form.control-group.label>
-
-                        <x-shop::form.control-group.control
-                            type="password"
-                            class="px-6 py-4 max-md:py-3 max-sm:py-2"
-                            name="password_confirmation"
-                            rules="confirmed:@password"
-                            value=""
-                            :label="trans('shop::app.customers.signup-form.password')"
-                            :placeholder="trans('shop::app.customers.signup-form.confirm-pass')"
-                            :aria-label="trans('shop::app.customers.signup-form.confirm-pass')"
-                            aria-required="true"
-                        />
-
-                        <x-shop::form.control-group.error control-name="password_confirmation" />
-                    </x-shop::form.control-group>
+                    {{-- Confirm Password: hidden for a simpler flow; mirrored
+                         from the password field on submit so validation passes. --}}
+                    <input type="hidden" name="password_confirmation" id="diids-pass-confirm" />
 
                     {!! view_render_event('bagisto.shop.customers.signup_form.password_confirmation.after') !!}
 
@@ -261,24 +242,28 @@
                 </x-shop::form>
             </div>
 
-			<p class="mt-5 font-medium text-diidsInk/60 max-sm:text-center max-sm:text-sm">
-                @lang('shop::app.customers.signup-form.account-exists')
-
-                <a class="text-navyBlue"
-                    href="{{ route('shop.customer.session.index') }}"
-                >
-                    @lang('shop::app.customers.signup-form.sign-in-button')
-                </a>
-            </p>
-		</div>
-
-        <p class="mb-4 mt-8 text-center text-xs text-diidsInk/60">
-            @lang('shop::app.customers.signup-form.footer', ['current_year'=> date('Y') ])
-        </p>
-	</div>
+                <p class="diids-auth__meta">
+                    @lang('shop::app.customers.signup-form.account-exists')
+                    <a href="{{ route('shop.customer.session.index') }}">
+                        @lang('shop::app.customers.signup-form.sign-in-button')
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 
     @push('scripts')
         {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
+        <script>
+            // Mirror password -> hidden confirm field so the single-password
+            // register flow satisfies the "confirmed" rule.
+            document.addEventListener('input', function (e) {
+                if (e.target && e.target.name === 'password') {
+                    var c = document.getElementById('diids-pass-confirm');
+                    if (c) c.value = e.target.value;
+                }
+            });
+        </script>
     @endpush
 
     <!-- Terms & Conditions Modal -->

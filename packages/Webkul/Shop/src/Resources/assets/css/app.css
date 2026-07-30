@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,6 +8,63 @@
     font-family: "bagisto-shop";
     src: url("../fonts/bagisto-shop.woff") format("woff");
     font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   DIIDS brand typefaces
+   --------------------------------------------------------------------------
+   Display serif: Magste (elegant display serif) -> font-dmserif token.
+   UI/body sans:  Grift  (grotesque sans)        -> font-poppins token.
+   Each registered under a single family name, with weight variants mapped so
+   Tailwind's font-weight utilities resolve to the right file.
+   ========================================================================== */
+@font-face {
+    font-family: "Magste";
+    src: url("../fonts/Magste-Regular.woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Glimmer Groove — luxury bold fashion display, used for the HERO wordmark. */
+@font-face {
+    font-family: "Glimmer Groove";
+    src: url("../fonts/GlimmerGroove-Regular.woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Grift";
+    src: url("../fonts/Grift-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Grift";
+    src: url("../fonts/Grift-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Grift";
+    src: url("../fonts/Grift-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Grift";
+    src: url("../fonts/Grift-Bold.woff2") format("woff2");
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -550,22 +607,40 @@ img.lazy {
    ========================================================================== */
 
 :root {
-  --diids-bg:        #EDE8E0;
-  --diids-surface:   #F5F5F3;
-  --diids-ink:       #141414;
-  --diids-navy:      #1F2A44;
-  --diids-navy-hover: #16203C;
-  --diids-blush:     #C98B7A;
-  --diids-border:    #D6D6D3;
+  /* Pure black & white system. One ink, one paper, plus a few greys for
+     structure. No color accents — contrast and type do the work. */
+  --diids-bg:        #FFFFFF;
+  --diids-surface:   #FFFFFF;
+  --diids-ink:       #0A0A0A;
+  --diids-paper:     #FFFFFF;
+  --diids-navy:      #0A0A0A;   /* legacy alias -> ink (kept so old refs resolve) */
+  --diids-navy-hover: #000000;
+  --diids-blush:     #0A0A0A;   /* legacy alias -> ink */
+  --diids-border:    #E4E4E4;
+  --diids-hairline:  #111111;
+  --diids-muted:     #6B6B6B;
 
-  --diids-font-display: 'Manrope', -apple-system, sans-serif;
-  --diids-font-body:    'Manrope', -apple-system, sans-serif;
+  /* Magste is reserved for the HERO display only (see .diids-hero__word).
+     Everywhere else — section headings included — uses Grift, so the site
+     reads as one consistent grotesque system. */
+  --diids-font-hero:    'Magste', 'Times New Roman', serif;
+  --diids-font-display: 'Grift', -apple-system, 'Helvetica Neue', sans-serif;
+  --diids-font-body:    'Grift', -apple-system, 'Helvetica Neue', sans-serif;
   --diids-font-mono:    'IBM Plex Mono', monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--diids-surface) !important;
+  background-color: var(--diids-paper) !important;
   color: var(--diids-ink);
+  font-family: var(--diids-font-body);
+  /* Let the browser hint small text (default 'auto'); forcing
+     -webkit-font-smoothing:antialiased strips hinting and makes dense small
+     glyphs (M, m, B, W) render broken on standard-DPI screens. */
+  text-rendering: optimizeLegibility;
 }
 
 /* Signature element: variant "care tag" selector — applied to the
@@ -654,6 +729,1209 @@ body {
   font-weight: 600;
 }
 
+/* ==========================================================================
+   DIIDS HERO — WebGL models plane + oversized Magste type blended over it
+   --------------------------------------------------------------------------
+   Layer order (back -> front):
+     1. models (.diids-hero__figure, WebGL plane)   z1
+     2. giant Magste words (.diids-hero__type)      z2   mix-blend: difference
+     3. marker / lede / actions / scroll (chrome)   z3
+   Putting the type ABOVE the image with mix-blend-mode:difference makes the
+   letters invert to white where they cross the (dark) models and stay black
+   over the white page — this both BLENDS the type into the image and fixes the
+   thin-stroke fade, because every stroke now sits on high-contrast ground.
+   ========================================================================== */
+.diids-hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100svh - 132px);
+  background: var(--diids-paper);
+  overflow: hidden;
+}
+
+/* Models — bigger, centered, standing on the page, IN FRONT of the type so
+   they occlude the letters (depth). */
+.diids-hero__figure {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+  /* Sized by height, width follows the cutout's aspect (763/1500) so the WebGL
+     plane matches the image and nothing crops or stretches. Bigger than before
+     but tuned so heads clear the header. */
+  height: min(72svh, 720px);
+  aspect-ratio: 763 / 1500;
+  pointer-events: auto;
+  will-change: transform;
+}
+/* WebGL canvas mount fills the figure box */
+.diids-hero__gl {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.diids-hero__gl canvas { display: block; }
+/* <img> fallback stack (crossfades). Hidden entirely once WebGL takes over. */
+.diids-hero__img {
+  display: block;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.16));
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.diids-hero__img.is-active { opacity: 1; }
+.diids-hero__gl.hero-gl--ready ~ .diids-hero__img { opacity: 0 !important; }
+
+/* slide dots (bottom center) */
+.diids-hero__dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+  z-index: 4;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.diids-hero__dot {
+  width: 28px;
+  height: 2px;
+  background: rgba(10,10,10,0.22);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.4s ease, width 0.4s ease;
+}
+.diids-hero__dot.is-active { background: var(--diids-ink); width: 44px; }
+.diids-hero__dot:hover { background: rgba(10,10,10,0.5); }
+
+/* index counter in the marker */
+.diids-hero__count { display: inline-flex; gap: 0.35em; }
+.diids-hero__count em { font-style: normal; }
+
+/* Oversized display words, BLENDED over the image. */
+.diids-hero__type {
+  position: absolute;
+  inset: 0;
+  z-index: 1;                      /* BEHIND the models */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 6svh;
+  gap: 0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+/* Solid ink words — always fully legible on the white page; the models (z2)
+   pass in front and occlude the letters where they overlap, giving depth. No
+   blend math, so the thin Magste serifs never drop out. */
+.diids-hero__word {
+  display: block;
+  font-family: var(--diids-font-hero);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--diids-ink);
+  /* Web/desktop: smaller, more refined. */
+  font-size: clamp(2.5rem, 12.5vw, 11.5rem);
+  white-space: nowrap;
+  will-change: transform;
+}
+.diids-hero__word--top    { transform: translateX(-4vw); }
+.diids-hero__word--bottom { transform: translateX(5vw); }
+
+/* Top marker hairline */
+.diids-hero__marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 5vw, 4rem);
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--diids-ink);
+}
+
+/* Lower-left intro copy */
+.diids-hero__lede {
+  position: absolute;
+  left: clamp(1.25rem, 5vw, 4rem);
+  bottom: clamp(2.5rem, 6vw, 4rem);
+  z-index: 3;
+  max-width: 22rem;
+  font-family: var(--diids-font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--diids-ink);
+}
+
+/* Lower-right actions */
+.diids-hero__actions {
+  position: absolute;
+  right: clamp(1.25rem, 5vw, 4rem);
+  bottom: clamp(2.5rem, 6vw, 4rem);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Scroll cue bottom-center */
+.diids-hero__scroll {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--diids-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+}
+.diids-hero__scroll-line {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  animation: diids-scrollcue 2.4s ease-in-out infinite;
+}
+@keyframes diids-scrollcue {
+  0%, 100% { transform: scaleX(0.35); opacity: 0.4; }
+  50%      { transform: scaleX(1);    opacity: 1;   }
+}
+
+/* ---- Tablet / mobile hero: clean stacked flow ---------------------------- *
+ * The absolute-positioned desktop composition doesn't work on narrow screens
+ * (overlaps). Below 992px the hero becomes a normal column:
+ *   marker  ->  description  ->  image + Magste type  ->  buttons  ->  dots
+ * so the copy reads directly under the "DIIDS / 0X / 04" marker.
+ */
+@media (max-width: 991px) {
+  .diids-hero {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.25rem, 5vw, 2rem);
+    gap: 1.25rem;
+    overflow: visible;
+  }
+
+  .diids-hero__marker {
+    position: static;
+    padding: 0;
+  }
+
+  /* description right under the marker */
+  .diids-hero__lede {
+    position: static;
+    order: 2;
+    max-width: 34rem;
+    font-size: 0.9375rem;
+  }
+
+  /* image: a PORTRAIT box (matches the cutout aspect) centered in the column.
+     Keeping the box close to the image aspect means the WebGL plane is ~square-
+     portrait and the cutout fills it centered — no wide-box off-centering. */
+  .diids-hero__figure {
+    position: relative;
+    order: 3;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    height: min(58svh, 520px);
+    width: auto;
+    aspect-ratio: 3 / 4;         /* stable portrait stage for every slide */
+    max-width: 100%;
+    margin: 0 auto;
+    align-self: center;
+    z-index: 2;
+  }
+  .diids-hero__gl { position: absolute; inset: 0; }
+  .diids-hero__img { object-fit: contain; object-position: center bottom; }
+  /* type overlays the figure region: pin it to the figure's flow position by
+     making it absolute over the hero but vertically aligned to the figure via
+     the same order + a translate. Simpler: center it over the whole column and
+     let the figure (z2) sit in front. */
+  .diids-hero__type {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    order: 0;
+    padding-bottom: 0;
+    z-index: 1;
+    justify-content: center;
+  }
+  /* Tablet/mobile: bigger, bolder presence. */
+  .diids-hero__word { font-size: clamp(3rem, 17vw, 6.5rem); }
+
+  .diids-hero__actions {
+    position: static;
+    order: 4;
+    justify-content: flex-start;
+  }
+  .diids-hero__actions .diids-btn { flex: 1 1 auto; }
+
+  .diids-hero__dots {
+    position: static;
+    order: 5;
+    transform: none;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+
+  .diids-hero__scroll { display: none; }
+}
+
+/* ==========================================================================
+   DIIDS BUTTONS — modern, sharp, monochrome
+   ========================================================================== */
+.diids-btn {
+  --pad-y: 0.95rem;
+  --pad-x: 1.9rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pad-y) var(--pad-x);
+  font-family: var(--diids-font-body);
+  font-weight: 700;              /* heavier so Grift's M/W hold at small size */
+  font-size: 0.8125rem;          /* 13px — a touch larger for crisp rasterizing */
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--diids-ink);
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 0.4s cubic-bezier(0.65,0,0.35,1), background 0.4s ease;
+  pointer-events: auto;
+}
+/* wipe fill on hover — clipped to a wrapper span instead of overflow:hidden on
+   the button, so the button itself never becomes a clipping/stacking context
+   that muddies text rasterization. */
+.diids-btn > span {
+  position: relative;
+  z-index: 1;
+}
+.diids-btn--solid { background: var(--diids-ink); color: var(--diids-paper); }
+.diids-btn--solid:hover { background: var(--diids-paper); color: var(--diids-ink); }
+
+.diids-btn--ghost { background: transparent; color: var(--diids-ink); }
+.diids-btn--ghost:hover { background: var(--diids-ink); color: var(--diids-paper); }
+
+/* On-dark solid button (white on image) */
+.diids-btn--ondark { background: var(--diids-paper); color: var(--diids-ink); border-color: var(--diids-paper); }
+.diids-btn--ondark:hover { background: transparent; color: var(--diids-paper); }
+
+/* ==========================================================================
+   DIIDS HOMEPAGE EDITORIAL BANDS
+   ========================================================================== */
+.diids-band {
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+.diids-band__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--diids-border);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.diids-h2 {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: none;
+}
+.diids-band__meta {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+}
+.diids-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--diids-font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--diids-ink);
+  padding-bottom: 2px;
+  width: max-content;
+  transition: gap 0.3s ease;
+}
+.diids-link:hover { gap: 0.9em; }
+
+/* -- STATEMENT ------------------------------------------------------------- */
+.diids-statement {
+  padding-block: clamp(4rem, 9vw, 8rem);
+}
+.diids-statement__label {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.diids-statement__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+.diids-statement__lead {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.6vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.diids-statement__body {
+  display: grid;
+  gap: 1.5rem;
+}
+.diids-statement__body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+@media (max-width: 768px) {
+  .diids-statement__grid { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* -- CATEGORY GRID --------------------------------------------------------- */
+.diids-cats { padding-bottom: clamp(2rem, 4vw, 3rem); }
+.diids-cats__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+}
+.diids-cat {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #f3f3f1;
+}
+.diids-cat--wide { grid-column: span 2; aspect-ratio: 21 / 9; }
+/* Wide "Editorial" tile: crop so faces stay in frame instead of the default
+   center-crop landing mid-torso. Percentage targets the face band (~28% down
+   the source image) rather than the literal top edge. */
+.diids-cat--wide img { object-position: center 28%; }
+.diids-cat img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* slightly oversized so parallax can shift without exposing edges */
+  transform: scale(1.06);
+  transition: transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.diids-cat:hover img { transform: scale(1.12) !important; }
+.diids-cat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0) 55%);
+}
+.diids-cat__tag {
+  position: absolute;
+  top: 1.25rem; left: 1.25rem;
+  z-index: 1;
+  font-family: var(--diids-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+.diids-cat__cta {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.diids-cat__cta em {
+  font-style: normal;
+  display: inline-flex;
+  width: 1.6em; height: 1.6em;
+  align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  font-size: 0.7em;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), background 0.4s ease, color 0.4s ease;
+}
+.diids-cat:hover .diids-cat__cta em { transform: translateX(4px); background: #fff; color: #0a0a0a; }
+@media (max-width: 640px) {
+  .diids-cats__grid { grid-template-columns: 1fr; }
+  .diids-cat--wide { grid-column: span 1; aspect-ratio: 4 / 5; }
+}
+
+/* ==========================================================================
+   DIIDS SCROLL FX — reveal + parallax
+   ========================================================================== */
+.diids-fx-reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 1s cubic-bezier(0.22,1,0.36,1),
+              transform 1s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform;
+}
+.diids-fx-reveal.is-in { opacity: 1; transform: none; }
+
+/* parallax images get JS-driven transform; ensure the container clips */
+.diids-fx-parallax { will-change: transform; }
+
+/* -- CAMPAIGN BAND --------------------------------------------------------- */
+/* ==========================================================================
+   DIIDS MARQUEE — infinite horizontal scroll band, between cats and campaign
+   ========================================================================== */
+.diids-marquee {
+  overflow: hidden;
+  background: transparent;
+  padding-block: clamp(1.5rem, 3.5vw, 2.75rem) clamp(2.5rem, 5vw, 4rem);
+}
+.diids-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: diids-marquee-scroll 26s linear infinite;
+}
+.diids-marquee__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.9em;
+  padding-inline-end: 0.9em;
+}
+.diids-marquee__group span:not(.diids-marquee__dot) {
+  font-family: var(--diids-font-hero);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--diids-ink);
+  white-space: nowrap;
+}
+.diids-marquee__dot {
+  color: var(--diids-ink);
+  opacity: 0.35;
+  font-size: 0.6em;
+}
+@keyframes diids-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.diids-marquee:hover .diids-marquee__track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .diids-marquee__track { animation: none; }
+}
+
+.diids-campaign {
+  position: relative;
+  margin-top: 0;
+  padding-inline: 0;
+  min-height: min(80svh, 720px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.diids-campaign__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.diids-campaign::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.1) 60%);
+}
+.diids-campaign__overlay {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  padding: clamp(2rem, 6vw, 5rem);
+  color: #fff;
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+.diids-campaign__kicker {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.diids-campaign__headline {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   DIIDS TOP BAR — black utility strip (currency · brand line · locale)
+   ========================================================================== */
+.diids-topbar {
+  background: var(--diids-ink);
+  border: 0 !important;
+}
+/* Default: everything in the bar is white... */
+.diids-topbar { color: var(--diids-paper); }
+.diids-topbar [ref="toggleBlock"],
+.diids-topbar [ref="toggleBlock"] span,
+.diids-topbar__tagline { color: var(--diids-paper) !important; }
+
+.diids-topbar__tagline {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 0;
+  white-space: nowrap;
+}
+/* ...EXCEPT the dropdown panel (position:absolute, white bg) which stays
+   ink-on-paper so options are readable. */
+.diids-topbar .absolute.z-20,
+.diids-topbar .absolute.z-20 * { color: var(--diids-ink) !important; }
+
+/* ==========================================================================
+   DIIDS HEADER / NAV — editorial monochrome
+   ========================================================================== */
+/* Promo strip: tighter, true black */
+.diids-hero + * { /* no-op guard */ }
+
+/* Desktop nav category links -> mono, tracked, understated */
+#v-desktop-category a[class*="uppercase"],
+[id="v-desktop-category-template"] a {
+  font-family: var(--diids-font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+/* Active/hover underline uses ink (token already remapped) but make it a thin
+   1px rule rather than the chunky 4px bar for a more refined feel. */
+.group.border-b-4 { border-bottom-width: 1px !important; }
+.group.border-b-4:hover,
+.hover\:border-navyBlue:hover { border-color: var(--diids-ink) !important; }
+
+/* ---- DIIDS search: minimal underline field, editorial -------------------- */
+.diids-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 460px;
+  border-bottom: 1px solid var(--diids-border);
+  transition: border-color 0.35s ease;
+}
+.diids-search:focus-within { border-color: var(--diids-ink); }
+
+.diids-search__icon {
+  flex: none;
+  font-size: 1.15rem;
+  color: var(--diids-ink);
+  opacity: 0.55;
+  transition: opacity 0.35s ease;
+}
+.diids-search:focus-within .diids-search__icon { opacity: 1; }
+
+.diids-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0.7rem 0.5rem 0.7rem 0.7rem;
+  font-family: var(--diids-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--diids-ink);
+  outline: none;
+}
+.diids-search__input::placeholder {
+  color: var(--diids-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.6875rem;
+}
+
+/* submit arrow — appears/animates on focus or when there's a query */
+.diids-search__submit {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: 0;
+  color: var(--diids-ink);
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.diids-search:focus-within .diids-search__submit { opacity: 1; transform: translateX(0); }
+.diids-search__submit:hover { transform: translateX(3px); }
+
+/* the image-search camera trigger: pull it out of absolute positioning so it
+   sits inline at the end of the field (after the input), not over the text. */
+.diids-search v-image-search,
+.diids-search v-image-search > * { display: contents; }
+.diids-search .icon-camera {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  order: 5;
+  flex: none;
+  display: inline-flex !important;
+  align-items: center;
+  padding: 0 0.5rem !important;
+  font-size: 1rem !important;
+  color: var(--diids-ink);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.diids-search .icon-camera:hover { opacity: 1; }
+/* keep the input from running under the trailing icons */
+.diids-search__input { padding-right: 0.25rem; }
+
+/* ==========================================================================
+   DIIDS MENU — premium dropdown + drawer motion
+   ========================================================================== */
+/* DIIDS logo sizing/consistency */
+.diids-logo { height: auto; width: clamp(96px, 8vw, 128px); }
+
+/* Nav item hover: animated underline that grows from left (replaces the
+   chunky bottom-border bar). Targets the desktop category links. */
+[id="v-desktop-category-template"] .group > span > a,
+.diids-nav-link {
+  position: relative;
+  padding-block: 0.35rem;
+}
+[id="v-desktop-category-template"] .group > span > a::after {
+  content: "";
+  position: absolute;
+  left: 1.25rem; right: 1.25rem;
+  bottom: -0.15rem;
+  height: 1px;
+  background: var(--diids-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.65,0,0.35,1);
+}
+[id="v-desktop-category-template"] .group:hover > span > a::after { transform: scaleX(1); }
+/* drop the old thick 4px bar entirely */
+[id="v-desktop-category-template"] .group.border-b-4 { border-bottom-color: transparent !important; }
+
+/* Mega-dropdown panel: smoother rise + fade, softer shadow, hairline top */
+[id="v-desktop-category-template"] .group .absolute.top-\[78px\],
+[id="v-desktop-category-template"] .group [class*="top-[78px]"] {
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.18) !important;
+  border-top: 1px solid var(--diids-border) !important;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+/* Drawer (mobile categories + cart): slide + fade, smooth easing.
+   Bagisto's drawer uses inline transforms via Vue; we refine timing + the
+   backdrop feel here. */
+.drawer-content, [class*="drawer"] .fixed.inset-0 {
+  transition: opacity 0.4s ease !important;
+}
+.drawer-panel, [class*="drawer"] [class*="translate-x"] {
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+/* Mobile hamburger icon -> refined weight */
+.icon-hamburger { font-size: 1.4rem; }
+
+/* Mega-menu links: mono labels, ink hover */
+[id="v-desktop-category-template"] .absolute p.font-medium,
+[id="v-desktop-category-template"] .absolute p.text-navyBlue {
+  font-family: var(--diids-font-body);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+[id="v-desktop-category-template"] .absolute li a {
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+[id="v-desktop-category-template"] .absolute li a:hover {
+  color: var(--diids-ink);
+  padding-left: 0.35rem;
+}
+
+/* ==========================================================================
+   DIIDS legacy button bridge
+   --------------------------------------------------------------------------
+   Bagisto markup uses .primary-button / .secondary-button in many places
+   (header dropdown, account, checkout). Re-skin them to the DIIDS system so
+   the whole site is consistent without touching every template.
+   ========================================================================== */
+.primary-button {
+  border-radius: 0 !important;
+  background: var(--diids-ink) !important;
+  color: var(--diids-paper) !important;
+  border: 1px solid var(--diids-ink) !important;
+  font-family: var(--diids-font-body) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  transition: background 0.35s ease, color 0.35s ease !important;
+}
+.primary-button:hover {
+  background: var(--diids-paper) !important;
+  color: var(--diids-ink) !important;
+}
+.secondary-button {
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--diids-ink) !important;
+  border: 1px solid var(--diids-ink) !important;
+  font-family: var(--diids-font-body) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  transition: background 0.35s ease, color 0.35s ease !important;
+}
+.secondary-button:hover {
+  background: var(--diids-ink) !important;
+  color: var(--diids-paper) !important;
+}
+
+/* ==========================================================================
+   DIIDS PRODUCT CARDS + SECTIONS
+   ========================================================================== */
+/* Square off the floating wishlist/compare chips to match the editorial system */
+[id="v-product-card-template"] .icon-heart,
+[id="v-product-card-template"] .icon-heart-fill,
+[id="v-product-card-template"] .icon-compare {
+  border-radius: 0 !important;
+  border: 1px solid var(--diids-border);
+  box-shadow: none !important;
+}
+/* No brand-red hearts — keep the wishlist state monochrome (filled = ink) */
+[id="v-product-card-template"] .icon-heart-fill.text-red-500,
+[id="v-product-card-template"] .icon-heart-fill.text-red-600 {
+  color: var(--diids-ink) !important;
+}
+
+/* Section headings across the homepage: couture serif, oversized, tight */
+[id="v-products-carousel-template"] h2,
+.diids-section-title {
+  font-family: var(--diids-font-display) !important;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Category carousel: square imagery + refined labels (tokens handle color) */
+[id="v-category-carousel-template"] img,
+[id*="categor"] .rounded-full,
+[id*="categor"] .rounded-md {
+  border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   DIIDS IMAGERY — full color
+   --------------------------------------------------------------------------
+   Photography (hero, product, lookbook, CMS) renders in full color. The
+   black & white system applies to UI chrome and typography, not the imagery.
+   A gentle hover zoom is handled per-component; no color filtering here.
+   ========================================================================== */
+
+/* ==========================================================================
+   DIIDS AUTH — two-column (editorial image + form)
+   ========================================================================== */
+.diids-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100svh;
+  background: var(--diids-paper);
+}
+.diids-auth__visual {
+  position: relative;
+  overflow: hidden;
+  background: #ecebe8;
+}
+.diids-auth__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.diids-auth__brand {
+  position: absolute;
+  top: clamp(1.5rem, 3vw, 2.5rem);
+  left: clamp(1.5rem, 3vw, 2.5rem);
+  z-index: 2;
+}
+.diids-auth__brand img { filter: brightness(0) invert(1); height: 34px; width: auto; }
+.diids-auth__tagline {
+  position: absolute;
+  left: clamp(1.5rem, 3vw, 2.5rem);
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  z-index: 2;
+  color: #fff;
+  font-family: var(--diids-font-hero);
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+
+.diids-auth__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+.diids-auth__inner { width: 100%; max-width: 26rem; }
+
+.diids-auth__brand-mobile { display: none; margin-bottom: 2rem; }
+.diids-auth__brand-mobile img { height: 34px; width: auto; }
+
+.diids-auth__eyebrow {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  margin-bottom: 0.75rem;
+}
+.diids-auth__title {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.diids-auth__sub { margin-top: 0.75rem; color: var(--diids-muted); font-size: 0.9rem; }
+
+/* Google button */
+.diids-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--diids-ink);
+  font-family: var(--diids-font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.diids-google:hover { background: var(--diids-ink); color: var(--diids-paper); }
+/* keep the Google logo full-color on hover (don't invert it) */
+.diids-google svg, .diids-google img { width: 18px; height: 18px; flex: none; }
+/* compact variant for the header guest dropdown */
+.diids-google--sm { margin-top: 0.75rem; padding: 0.6rem 0.9rem; font-size: 0.7rem; gap: 0.5rem; }
+.diids-google--sm svg, .diids-google--sm img { width: 15px; height: 15px; }
+
+/* Checkout sign-in modal: remove grey footer stripe, tidy spacing */
+[id="v-modal-template"] .bg-white,
+.v-checkout-login .bg-white { background: #fff !important; }
+[id*="modal"] [class*="footer"], .modal-footer { background: #fff !important; border-top: 0 !important; }
+
+.diids-auth__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  color: var(--diids-muted);
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.diids-auth__divider::before,
+.diids-auth__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--diids-border);
+}
+
+/* Inputs -> square, hairline */
+.diids-auth__input {
+  border-radius: 0 !important;
+  border-color: var(--diids-border) !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.9rem;
+}
+.diids-auth__input:focus { border-color: var(--diids-ink) !important; }
+
+.diids-auth__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 1.5rem;
+}
+.diids-auth__link {
+  font-size: 0.8rem;
+  color: var(--diids-ink);
+  border-bottom: 1px solid var(--diids-ink);
+  padding-bottom: 1px;
+}
+.diids-auth__submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 0 !important;
+}
+.diids-auth__meta { margin-top: 1.5rem; font-size: 0.85rem; color: var(--diids-muted); }
+.diids-auth__meta a { color: var(--diids-ink); border-bottom: 1px solid var(--diids-ink); padding-bottom: 1px; }
+
+/* Hide the SocialLogin package's auto-injected icon row inside auth forms —
+   we render our own "Continue with Google" button at the top. */
+.diids-auth__inner form + div .inline-flex[aria-label],
+.diids-auth__inner .flex.flex-wrap.items-center.gap-5,
+.diids-auth__inner .flex.flex-wrap.gap-4 {
+  display: none !important;
+}
+
+/* Register: streamline. Keep name/email/password; drop the newsletter noise
+   inline (still submittable if present, just visually quieter). */
+.diids-auth__form .icon-uncheck ~ label { font-size: 0.8rem; }
+.diids-auth__form { margin-top: 0.5rem; }
+/* square inputs + consistent spacing inside auth forms */
+.diids-auth__inner .control-group input:not([type="checkbox"]),
+.diids-auth__inner .control-group select {
+  border-radius: 0 !important;
+  border-color: var(--diids-border) !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.9rem !important;
+}
+.diids-auth__inner .control-group input:focus { border-color: var(--diids-ink) !important; }
+.diids-auth__inner .control-group label { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--diids-muted); }
+.diids-auth__inner .primary-button { border-radius: 0 !important; width: 100%; max-width: none !important; }
+
+@media (max-width: 860px) {
+  .diids-auth { grid-template-columns: 1fr; }
+  .diids-auth__visual { display: none; }
+  .diids-auth__brand-mobile { display: block; }
+}
+
+/* ==========================================================================
+   DIIDS STORY / ABOUT page
+   ========================================================================== */
+.diids-story__hero {
+  position: relative;
+  height: min(70svh, 640px);
+  overflow: hidden;
+  background: #ecebe8;
+}
+.diids-story__hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.diids-story__hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 60%); }
+.diids-story__hero-overlay {
+  position: absolute;
+  left: clamp(1.5rem, 5vw, 4rem);
+  bottom: clamp(1.5rem, 5vw, 3rem);
+  z-index: 1;
+  color: #fff;
+}
+.diids-story__kicker {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.75rem;
+}
+.diids-story__title {
+  font-family: var(--diids-font-hero);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.diids-story__body {
+  padding-top: clamp(3rem, 7vw, 6rem) !important;
+}
+.diids-story__cta {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: 0 1.5rem clamp(4rem, 8vw, 7rem);
+}
+
+/* ==========================================================================
+   DIIDS DOC / policy pages
+   ========================================================================== */
+.diids-doc__head {
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--diids-border);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.diids-doc__kicker {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  margin-bottom: 0.75rem;
+}
+.diids-doc__title {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.diids-doc__body { padding-top: clamp(2rem, 4vw, 3rem) !important; }
+
+/* ==========================================================================
+   DIIDS ERROR / 404 page
+   ========================================================================== */
+.diids-error {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--diids-paper);
+  overflow: hidden;
+}
+.diids-error__brand { position: absolute; top: clamp(1.5rem, 3vw, 2.5rem); left: 50%; transform: translateX(-50%); }
+.diids-error__brand img { height: 32px; width: auto; }
+.diids-error__code {
+  font-family: var(--diids-font-hero);
+  font-size: clamp(7rem, 26vw, 20rem);
+  line-height: 0.8;
+  color: var(--diids-ink);
+  letter-spacing: -0.03em;
+}
+.diids-error__inner { max-width: 34rem; }
+.diids-error__title {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: -0.01em;
+  margin-top: 1rem;
+}
+.diids-error__desc { margin-top: 0.75rem; color: var(--diids-muted); font-size: 0.95rem; }
+.diids-error__actions { display: flex; gap: 0.75rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+.diids-error__tagline {
+  position: absolute;
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--diids-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+}
+
+/* ==========================================================================
+   DIIDS CONTACT page — two column (info + form)
+   ========================================================================== */
+.diids-contact {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+}
+.diids-contact__kicker {
+  font-family: var(--diids-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  margin-bottom: 1rem;
+}
+.diids-contact__title {
+  font-family: var(--diids-font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.diids-contact__lead { margin-top: 1.25rem; color: #333; line-height: 1.7; max-width: 26rem; }
+.diids-contact__details { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1.5rem; }
+.diids-contact__details dt {
+  font-family: var(--diids-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  margin-bottom: 0.35rem;
+}
+.diids-contact__details dd { font-size: 0.95rem; }
+.diids-contact__details a { border-bottom: 1px solid var(--diids-ink); padding-bottom: 1px; }
+
+/* form controls -> square hairline */
+.diids-contact__panel .control-group input,
+.diids-contact__panel .control-group textarea {
+  border-radius: 0 !important;
+  border-color: var(--diids-border) !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.9rem !important;
+}
+.diids-contact__panel .control-group input:focus,
+.diids-contact__panel .control-group textarea:focus { border-color: var(--diids-ink) !important; }
+.diids-contact__panel .control-group label {
+  font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--diids-muted);
+}
+
+@media (max-width: 860px) {
+  .diids-contact { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .diids-hero__scroll-line { animation: none; }
+  .diids-fx-reveal { opacity: 1 !important; transform: none !important; }
+  .diids-fx-parallax { transform: none !important; }
 }

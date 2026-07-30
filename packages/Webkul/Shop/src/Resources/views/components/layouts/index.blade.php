@@ -48,8 +48,8 @@
 
         <link
             rel="icon"
-            sizes="16x16"
-            href="{{ core()->getCurrentChannel()->favicon_url ?? bagisto_asset('images/favicon.ico') }}"
+            type="image/png"
+            href="{{ bagisto_asset('images/diids-favicon.png') }}"
         />
 
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
@@ -66,15 +66,8 @@
             crossorigin
         />
 
-        <link
-            rel="preload" as="style"
-            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        />
-
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        />
+        {{-- Brand typefaces (ABChanel serif + Brooklyn sans) are self-hosted via
+             @font-face in app.css; no external font stylesheet needed. --}}
 
         @stack('styles')
 
@@ -109,21 +102,6 @@
 
             <!-- Confirm Modal Blade Component -->
             <x-shop::modal.confirm />
-
-            <!-- Promo Strip -->
-            @if ($hasHeader)
-                <div class="flex items-center justify-center gap-10 overflow-hidden bg-navyBlue px-4 py-2.5 text-diidsSurface">
-                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:text-[10px]">
-                        Free shipping on all orders
-                    </p>
-                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:hidden">
-                        No returns on opened items &mdash; hygiene policy
-                    </p>
-                    <p class="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] max-sm:hidden">
-                        24/7 customer support
-                    </p>
-                </div>
-            @endif
 
             <!-- Page Header Blade Component -->
             @if ($hasHeader)

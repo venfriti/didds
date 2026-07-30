@@ -14,14 +14,48 @@
     "file": "assets/vue-DVNmD55A.js",
     "name": "vue"
   },
+  "node_modules/three/build/three.module.js": {
+    "file": "assets/three-Y-ql4QRg.js",
+    "name": "three",
+    "src": "node_modules/three/build/three.module.js",
+    "isDynamicEntry": true
+  },
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-DOn0kY5l.css",
+    "file": "assets/app-4Qoi2568.css",
     "src": "src/Resources/assets/css/app.css",
     "isEntry": true
+  },
+  "src/Resources/assets/fonts/GlimmerGroove-Regular.woff2": {
+    "file": "assets/GlimmerGroove-Regular-BVyoYj1X.woff2",
+    "src": "src/Resources/assets/fonts/GlimmerGroove-Regular.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-Bold.woff2": {
+    "file": "assets/Grift-Bold-BCLmcWq1.woff2",
+    "src": "src/Resources/assets/fonts/Grift-Bold.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-Medium.woff2": {
+    "file": "assets/Grift-Medium-B_ztm0YM.woff2",
+    "src": "src/Resources/assets/fonts/Grift-Medium.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-Regular.woff2": {
+    "file": "assets/Grift-Regular-DkHj0DP6.woff2",
+    "src": "src/Resources/assets/fonts/Grift-Regular.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-SemiBold.woff2": {
+    "file": "assets/Grift-SemiBold-DUgdLwI1.woff2",
+    "src": "src/Resources/assets/fonts/Grift-SemiBold.woff2"
+  },
+  "src/Resources/assets/fonts/Magste-Regular.woff2": {
+    "file": "assets/Magste-Regular-Cil4AwgV.woff2",
+    "src": "src/Resources/assets/fonts/Magste-Regular.woff2"
   },
   "src/Resources/assets/fonts/bagisto-shop.woff": {
     "file": "assets/bagisto-shop-BHAKyv0r.woff",
     "src": "src/Resources/assets/fonts/bagisto-shop.woff"
+  },
+  "src/Resources/assets/images/auth-visual.webp": {
+    "file": "assets/auth-visual-DSwsM-OE.webp",
+    "src": "src/Resources/assets/images/auth-visual.webp"
   },
   "src/Resources/assets/images/cash-on-delivery.png": {
     "file": "assets/cash-on-delivery-Ck2rBtSq.png",
@@ -31,6 +65,18 @@
     "file": "assets/default-language-BxH8WlkY.svg",
     "src": "src/Resources/assets/images/default-language.svg"
   },
+  "src/Resources/assets/images/diids-favicon.png": {
+    "file": "assets/diids-favicon-3q0pSU2M.png",
+    "src": "src/Resources/assets/images/diids-favicon.png"
+  },
+  "src/Resources/assets/images/diids-logo-light.svg": {
+    "file": "assets/diids-logo-light-Pd0UAvH0.svg",
+    "src": "src/Resources/assets/images/diids-logo-light.svg"
+  },
+  "src/Resources/assets/images/diids-logo.svg": {
+    "file": "assets/diids-logo-BoXxMz5m.svg",
+    "src": "src/Resources/assets/images/diids-logo.svg"
+  },
   "src/Resources/assets/images/empty-dwn-product.png": {
     "file": "assets/empty-dwn-product-DYRIKFWL.png",
     "src": "src/Resources/assets/images/empty-dwn-product.png"
@@ -39,21 +85,41 @@
     "file": "assets/favicon-Df9chQdB.ico",
     "src": "src/Resources/assets/images/favicon.ico"
   },
-  "src/Resources/assets/images/hero-image.jpg": {
-    "file": "assets/hero-image-BlVTwpsv.jpg",
-    "src": "src/Resources/assets/images/hero-image.jpg"
+  "src/Resources/assets/images/hero/hero-1-mobile.webp": {
+    "file": "assets/hero-1-mobile-BCX9AC0_.webp",
+    "src": "src/Resources/assets/images/hero/hero-1-mobile.webp"
   },
-  "src/Resources/assets/images/hero-image.webp": {
-    "file": "assets/hero-image-DwKg3YHc.webp",
-    "src": "src/Resources/assets/images/hero-image.webp"
+  "src/Resources/assets/images/hero/hero-1.webp": {
+    "file": "assets/hero-1-D35oh0AV.webp",
+    "src": "src/Resources/assets/images/hero/hero-1.webp"
+  },
+  "src/Resources/assets/images/hero/hero-2-mobile.webp": {
+    "file": "assets/hero-2-mobile-TkZD14cX.webp",
+    "src": "src/Resources/assets/images/hero/hero-2-mobile.webp"
+  },
+  "src/Resources/assets/images/hero/hero-2.webp": {
+    "file": "assets/hero-2-D5Qw-hP3.webp",
+    "src": "src/Resources/assets/images/hero/hero-2.webp"
+  },
+  "src/Resources/assets/images/hero/hero-3-mobile.webp": {
+    "file": "assets/hero-3-mobile-Beyrn5We.webp",
+    "src": "src/Resources/assets/images/hero/hero-3-mobile.webp"
+  },
+  "src/Resources/assets/images/hero/hero-3.webp": {
+    "file": "assets/hero-3-1bPZ34wr.webp",
+    "src": "src/Resources/assets/images/hero/hero-3.webp"
+  },
+  "src/Resources/assets/images/hero/hero-4-mobile.webp": {
+    "file": "assets/hero-4-mobile-CqXGwvMD.webp",
+    "src": "src/Resources/assets/images/hero/hero-4-mobile.webp"
+  },
+  "src/Resources/assets/images/hero/hero-4.webp": {
+    "file": "assets/hero-4-DntAlnlo.webp",
+    "src": "src/Resources/assets/images/hero/hero-4.webp"
   },
   "src/Resources/assets/images/large-product-placeholder.webp": {
     "file": "assets/large-product-placeholder-B9xoAuKQ.webp",
     "src": "src/Resources/assets/images/large-product-placeholder.webp"
-  },
-  "src/Resources/assets/images/logo.svg": {
-    "file": "assets/logo-CZWQQgOF.svg",
-    "src": "src/Resources/assets/images/logo.svg"
   },
   "src/Resources/assets/images/medium-product-placeholder.webp": {
     "file": "assets/medium-product-placeholder-INODB-G2.webp",
@@ -87,6 +153,22 @@
     "file": "assets/review-ZWqERyaT.png",
     "src": "src/Resources/assets/images/review.png"
   },
+  "src/Resources/assets/images/shoot/cat-collection.webp": {
+    "file": "assets/cat-collection-B_zHx6VW.webp",
+    "src": "src/Resources/assets/images/shoot/cat-collection.webp"
+  },
+  "src/Resources/assets/images/shoot/cat-men.webp": {
+    "file": "assets/cat-men-CN_V93gw.webp",
+    "src": "src/Resources/assets/images/shoot/cat-men.webp"
+  },
+  "src/Resources/assets/images/shoot/cat-women.webp": {
+    "file": "assets/cat-women-DxOTrnFj.webp",
+    "src": "src/Resources/assets/images/shoot/cat-women.webp"
+  },
+  "src/Resources/assets/images/shoot/couple-a.webp": {
+    "file": "assets/couple-a-IBnEFQWT.webp",
+    "src": "src/Resources/assets/images/shoot/couple-a.webp"
+  },
   "src/Resources/assets/images/small-product-placeholder.webp": {
     "file": "assets/small-product-placeholder-CMT26fOX.webp",
     "src": "src/Resources/assets/images/small-product-placeholder.webp"
@@ -112,7 +194,7 @@
     "src": "src/Resources/assets/images/wishlist.png"
   },
   "src/Resources/assets/js/app.js": {
-    "file": "assets/app-Cga0x9Ye.js",
+    "file": "assets/app-lxyDUPcW.js",
     "name": "app",
     "src": "src/Resources/assets/js/app.js",
     "isEntry": true,
@@ -120,6 +202,9 @@
       "_vue-DVNmD55A.js",
       "_vendor-DqIzTJ5W.js",
       "_veeValidate-BTASPs_i.js"
+    ],
+    "dynamicImports": [
+      "node_modules/three/build/three.module.js"
     ],
     "css": [
       "assets/app-DsP8OK1c.css"

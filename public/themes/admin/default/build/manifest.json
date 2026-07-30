@@ -264,9 +264,21 @@
     "isDynamicEntry": true
   },
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-CWsNBvZZ.css",
+    "file": "assets/app-D93zJoj5.css",
     "src": "src/Resources/assets/css/app.css",
     "isEntry": true
+  },
+  "src/Resources/assets/fonts/Grift-Bold.woff2": {
+    "file": "assets/Grift-Bold-BCLmcWq1.woff2",
+    "src": "src/Resources/assets/fonts/Grift-Bold.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-Regular.woff2": {
+    "file": "assets/Grift-Regular-DkHj0DP6.woff2",
+    "src": "src/Resources/assets/fonts/Grift-Regular.woff2"
+  },
+  "src/Resources/assets/fonts/Grift-SemiBold.woff2": {
+    "file": "assets/Grift-SemiBold-DUgdLwI1.woff2",
+    "src": "src/Resources/assets/fonts/Grift-SemiBold.woff2"
   },
   "src/Resources/assets/fonts/bagisto-admin.woff": {
     "file": "assets/bagisto-admin-BzOkv6lg.woff",
@@ -291,6 +303,14 @@
   "src/Resources/assets/images/dark-logo.svg": {
     "file": "assets/dark-logo-P5H7MBtx.svg",
     "src": "src/Resources/assets/images/dark-logo.svg"
+  },
+  "src/Resources/assets/images/diids-logo-light.svg": {
+    "file": "assets/diids-logo-light-Pd0UAvH0.svg",
+    "src": "src/Resources/assets/images/diids-logo-light.svg"
+  },
+  "src/Resources/assets/images/diids-logo.svg": {
+    "file": "assets/diids-logo-BoXxMz5m.svg",
+    "src": "src/Resources/assets/images/diids-logo.svg"
   },
   "src/Resources/assets/images/empty-placeholders/customers.svg": {
     "file": "assets/customers-BksiMJdH.svg",

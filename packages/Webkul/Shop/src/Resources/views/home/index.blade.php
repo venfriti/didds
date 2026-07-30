@@ -41,38 +41,18 @@
         <!-- Static Content -->
         @switch ($customization->type)
             @case ($customization::IMAGE_CAROUSEL)
-                <!-- Image Carousel -->
-                <div class="relative">
-                    <x-shop::carousel
-                        :options="$data"
-                        aria-label="{{ trans('shop::app.home.index.image-carousel') }}"
-                    />
+                {{--
+                    DIIDS hero. The admin-configured image carousel is bypassed in
+                    favor of a single fixed editorial hero: transparent cutout of the
+                    DIIDS couple standing on the page, with an oversized Magste
+                    wordmark behind them (see components/hero.blade.php). Magste is
+                    used ONLY here; the rest of the site is Grift.
+                --}}
+                <x-shop::hero />
 
-                    <!-- Hero overlay -->
-                    <div class="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center gap-5 px-6 text-center">
-                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-white/80 max-sm:text-[10px]">
-                            DIIDS &middot; No. 001
-                        </p>
-
-                        <h1 class="font-dmserif text-6xl uppercase tracking-tight text-white max-md:text-4xl max-sm:text-3xl">
-                            Everyday&nbsp;Confidence
-                        </h1>
-
-                        <p class="max-w-md text-sm text-white/90 max-sm:text-xs">
-                            Premium fabrics, honest fit &mdash; underwear built for comfort, every day of the week.
-                        </p>
-
-                        <div class="pointer-events-auto mt-2 flex flex-wrap items-center justify-center gap-4">
-                            <a href="/men" class="primary-button !rounded-full !bg-white !text-navyBlue !border-white">
-                                Shop Men
-                            </a>
-
-                            <a href="/women" class="secondary-button !rounded-full !border-white !text-white hover:!bg-white/10">
-                                Shop Women
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {{-- DIIDS-designed editorial bands, using the real shoot imagery,
+                     sit directly beneath the hero and above the admin carousels. --}}
+                <x-shop::home-sections />
 
                 @break
             @case ($customization::STATIC_CONTENT)

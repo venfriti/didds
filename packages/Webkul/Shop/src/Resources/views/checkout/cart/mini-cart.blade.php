@@ -59,9 +59,7 @@
                         </p>
                     </div>
 
-                    <p class="text-base max-md:text-diidsInk/60 max-sm:text-xs">
-                        {{ core()->getConfigData('sales.checkout.mini_cart.offer_info')}}
-                    </p>
+                    {{-- Promotional offer line removed per brand direction. --}}
 
                     {!! view_render_event('bagisto.shop.checkout.mini-cart.drawer.header.after') !!}
                 </x-slot>

@@ -15,9 +15,10 @@
             class="flex items-center"
         >
             <img
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                width="131"
-                height="29"
+                src="{{ bagisto_asset('images/diids-logo.svg') }}"
+                class="diids-logo"
+                width="120"
+                height="40"
                 alt="{{ config('app.name') }}"
             >
         </a>
@@ -57,27 +58,24 @@
         <div class="relative w-full">
             <form
                 action="{{ route('shop.search.index') }}"
-                class="flex max-w-[445px] items-center"
+                class="diids-search"
                 role="search"
                 toolname="search_products"
                 tooldescription="{{ trans('shop::app.components.layouts.webmcp.search-products') }}"
                 toolautosubmit
             >
-                <label
-                    for="organic-search"
-                    class="sr-only"
-                >
+                <label for="organic-search" class="sr-only">
                     @lang('shop::app.components.layouts.header.desktop.bottom.search')
                 </label>
 
-                <div class="icon-search pointer-events-none absolute top-2.5 flex items-center text-xl ltr:left-3 rtl:right-3"></div>
+                <span class="diids-search__icon icon-search" aria-hidden="true"></span>
 
                 <input
                     type="text"
                     name="query"
                     value="{{ request('query') }}"
                     toolparamdescription="{{ trans('shop::app.components.layouts.webmcp.search-products-query') }}"
-                    class="block w-full py-3 text-xs font-medium text-diidsInk transition-all border border-diidsBorder rounded-full bg-diidsSurface px-11 hover:border-navyBlue focus:border-navyBlue"
+                    class="diids-search__input"
                     minlength="{{ core()->getConfigData('catalog.products.search.min_query_length') }}"
                     maxlength="{{ core()->getConfigData('catalog.products.search.max_query_length') }}"
                     placeholder="@lang('shop::app.components.layouts.header.desktop.bottom.search-text')"
@@ -89,9 +87,10 @@
 
                 <button
                     type="submit"
-                    class="hidden"
+                    class="diids-search__submit"
                     aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.submit')"
                 >
+                    <span aria-hidden="true">→</span>
                 </button>
 
                 @if (core()->getConfigData('catalog.products.settings.image_search'))
@@ -161,21 +160,28 @@
 
                         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.customers_action.before') !!}
 
-                        <div class="flex gap-4 mt-6">
+                        @if (core()->getConfigData('customer.settings.social_login.enable_google'))
+                            <a href="{{ route('customer.social-login.index', 'google') }}" class="diids-google diids-google--sm mt-4">
+                                @include('social_login::icons.google')
+                                <span>Continue with Google</span>
+                            </a>
+                        @endif
+
+                        <div class="mt-3 grid grid-cols-2 gap-2.5">
                             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.sign_in_button.before') !!}
 
                             <a
                                 href="{{ route('shop.customer.session.create') }}"
-                                class="block m-0 mx-auto text-base text-center primary-button w-max !rounded-full px-7 max-md:rounded-lg ltr:ml-0 rtl:mr-0"
+                                class="diids-btn diids-btn--solid !py-2.5 !text-[0.7rem] justify-center"
                             >
-                                @lang('shop::app.components.layouts.header.desktop.bottom.sign-in')
+                                <span>@lang('shop::app.components.layouts.header.desktop.bottom.sign-in')</span>
                             </a>
 
                             <a
                                 href="{{ route('shop.customers.register.index') }}"
-                                class="block m-0 mx-auto text-base text-center border-2 secondary-button w-max !rounded-full px-7 max-md:rounded-lg max-md:py-3 ltr:ml-0 rtl:mr-0"
+                                class="diids-btn diids-btn--ghost !py-2.5 !text-[0.7rem] justify-center"
                             >
-                                @lang('shop::app.components.layouts.header.desktop.bottom.sign-up')
+                                <span>@lang('shop::app.components.layouts.header.desktop.bottom.sign-up')</span>
                             </a>
 
                             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.sign_up_button.after') !!}
@@ -295,6 +301,13 @@
             class="flex items-center"
             v-else-if="'{{ core()->getConfigData('general.design.categories.category_view') }}' !== 'sidebar'"
         >
+            <!-- Shop (all products) — first -->
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-navyBlue">
+                <a href="{{ route('shop.search.index') }}" class="inline-block px-5 uppercase">
+                    Shop
+                </a>
+            </div>
+
             <div
                 class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-navyBlue"
                 v-for="category in categories"
@@ -348,6 +361,13 @@
         <div v-else>
             <!-- Categories Navigation -->
             <div class="flex items-center">
+                <!-- Shop (all products) — first -->
+                <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-navyBlue">
+                    <a href="{{ route('shop.search.index') }}" class="inline-block px-3 uppercase">
+                        Shop
+                    </a>
+                </div>
+
                 <!-- Show only first 4 categories in main navigation -->
                 <div
                     class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-navyBlue"

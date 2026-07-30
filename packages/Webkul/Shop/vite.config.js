@@ -18,7 +18,8 @@ export default defineConfig(({ mode }) => {
                     manualChunks: {
                         vue: ["vue"],
                         veeValidate: ["vee-validate", "@vee-validate/rules", "@vee-validate/i18n"],
-                        vendor: ["axios", "mitt"]
+                        vendor: ["axios", "mitt"],
+                        three: ["three"]
                     }
                 }
             }

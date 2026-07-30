@@ -33,23 +33,37 @@ module.exports = {
 
         extend: {
             colors: {
-                navyBlue: "#141414",
-                lightOrange: "#F6F2EB",
-                darkGreen: '#40994A',
-                darkBlue: '#0044F2',
-                darkPink: '#F85156',
+                // Pure black & white system. Legacy accent tokens remapped to
+                // ink so any lingering references stay on-brand (no stray color).
+                navyBlue: "#0A0A0A",
+                lightOrange: "#FFFFFF",
+                darkGreen: '#0A0A0A',
+                darkBlue: '#0A0A0A',
+                darkPink: '#0A0A0A',
 
-                diidsBg: "#E9E9E7",
-                diidsSurface: "#F5F5F3",
-                diidsInk: "#141414",
-                diidsBlush: "#C98B7A",
-                diidsBorder: "#D6D6D3",
+                diidsBg: "#FFFFFF",
+                diidsSurface: "#FFFFFF",
+                diidsInk: "#0A0A0A",
+                diidsBlush: "#0A0A0A",
+                diidsBorder: "#E4E4E4",
+                diidsMuted: "#6B6B6B",
             },
 
             fontFamily: {
-                poppins: ["Manrope", "-apple-system", "sans-serif"],
-                dmserif: ["Manrope", "-apple-system", "sans-serif"],
+                // Grift = grotesque sans, used for ALL UI/body/headings.
+                // Magste is hero-only and applied via .diids-hero CSS, NOT via
+                // these utility tokens — so font-dmserif/font-poppins resolve to
+                // Grift everywhere in the templates.
+                poppins: ["Grift", "-apple-system", "Helvetica Neue", "sans-serif"],
+                grift: ["Grift", "-apple-system", "Helvetica Neue", "sans-serif"],
+                dmserif: ["Grift", "-apple-system", "Helvetica Neue", "sans-serif"],
+                serif: ["Grift", "-apple-system", "Helvetica Neue", "sans-serif"],
+                magste: ["Magste", "Times New Roman", "serif"],
                 mono: ["IBM Plex Mono", "monospace"],
+            },
+
+            letterSpacing: {
+                tightest: "-0.04em",
             },
         }
     },

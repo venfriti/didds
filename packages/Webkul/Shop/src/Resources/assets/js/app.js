@@ -164,4 +164,15 @@ import Debounce from "./directives/debounce";
 
 app.directive("debounce", Debounce);
 
+/**
+ * DIIDS hero. Two dependency-light modules, kept out of the Vue tree so they
+ * run regardless of when/where the app mounts:
+ *   - hero-webgl:    WebGL image plane with scroll displacement (lazy three.js)
+ *   - hero-parallax: pointer/scroll drift for the Magste type + chrome
+ */
+import "./hero-webgl";
+import "./hero-parallax";
+import "./hero-slider";
+import "./scroll-fx";
+
 export default app;

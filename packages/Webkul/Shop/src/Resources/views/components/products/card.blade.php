@@ -14,7 +14,7 @@
             class="group w-full"
             v-if="mode != 'list'"
         >
-            <div class="relative aspect-[3/4] w-full max-w-[291px] overflow-hidden rounded-md bg-diidsSurface max-md:max-w-full max-md:rounded-lg">
+            <div class="relative aspect-[3/4] w-full max-w-[291px] overflow-hidden rounded-none bg-diidsSurface max-md:max-w-full max-md:rounded-none">
                 {!! view_render_event('bagisto.shop.components.products.card.image.before') !!}
 
                 <!-- Product Image -->
@@ -46,7 +46,7 @@
                     <div class="absolute top-2.5 flex flex-col items-start gap-1.5 ltr:left-2.5 rtl:right-2.5">
                         <!-- Product Sale Badge -->
                         <p
-                            class="inline-block rounded-full bg-navyBlue px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-white"
+                            class="inline-block rounded-none bg-navyBlue px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white"
                             v-if="product.on_sale"
                         >
                             @lang('shop::app.components.products.card.sale')
@@ -54,7 +54,7 @@
 
                         <!-- Product New Badge -->
                         <p
-                            class="inline-block rounded-full bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-navyBlue"
+                            class="inline-block rounded-none border border-navyBlue bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-navyBlue"
                             v-else-if="product.is_new"
                         >
                             @lang('shop::app.components.products.card.new')

@@ -55,7 +55,7 @@
         type="text/x-template"
         id="v-topbar-template"
     >
-        <div class="flex w-full items-center justify-between border border-b border-l-0 border-r-0 border-t-0 px-16">
+        <div class="diids-topbar flex w-full items-center justify-between px-16">
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.currency_switcher.before') !!}
 
             <!-- Currency Switcher -->
@@ -89,19 +89,9 @@
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.currency_switcher.after') !!}
 
-            <p
-                class="py-3 text-xs font-medium"
-                v-pre
-            >
-                {{ core()->getConfigData('general.content.header_offer.title') }}
-                
-                <a 
-                    href="{{ core()->getConfigData('general.content.header_offer.redirection_link') }}" 
-                    class="underline"
-                    role="button"
-                >
-                    {{ core()->getConfigData('general.content.header_offer.redirection_title') }}
-                </a>
+            {{-- Brand line (replaces the old promo). --}}
+            <p class="diids-topbar__tagline" v-pre>
+                Underwear, engineered for everyday confidence.
             </p>
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.locale_switcher.before') !!}

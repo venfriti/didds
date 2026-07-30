@@ -31,7 +31,7 @@
     <div class="grid grid-cols-[1.4fr_repeat(3,1fr)_1.2fr] gap-x-10 gap-y-10 px-[60px] py-16 max-1180:grid-cols-2 max-1180:px-8 max-md:grid-cols-1 max-md:gap-8 max-md:px-8 max-md:py-10 max-sm:px-4 max-sm:py-8">
         <!-- Wordmark + social -->
         <div class="grid gap-6 max-1180:col-span-2 max-md:col-span-1">
-            <p class="font-dmserif text-2xl tracking-wide text-diidsSurface">
+            <p class="font-dmserif uppercase leading-[0.85] tracking-tightest text-diidsSurface text-[clamp(3rem,7vw,6rem)]">
                 DIIDS
             </p>
 

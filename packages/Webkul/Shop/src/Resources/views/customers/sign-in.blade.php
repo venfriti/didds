@@ -1,7 +1,6 @@
 <!-- SEO Meta Content -->
 @push('meta')
     <meta name="description" content="@lang('shop::app.customers.login-form.page-title')"/>
-
     <meta name="keywords" content="@lang('shop::app.customers.login-form.page-title')"/>
 @endPush
 
@@ -10,57 +9,52 @@
     :has-feature="false"
     :has-footer="false"
 >
-    <!-- Page Title -->
     <x-slot:title>
         @lang('shop::app.customers.login-form.page-title')
     </x-slot>
 
-    <div class="container mt-20 max-1180:px-5 max-md:mt-12">
-        {!! view_render_event('bagisto.shop.customers.login.logo.before') !!}
-
-        <!-- Company Logo -->
-        <div class="flex items-center gap-x-14 max-[1180px]:gap-x-9">
-            <a
-                href="{{ route('shop.home.index') }}"
-                class="m-[0_auto_20px_auto]"
-                aria-label="@lang('shop::app.customers.login-form.bagisto')"
-            >
-                <img
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ config('app.name') }}"
-                    width="131"
-                    height="29"
-                >
+    <div class="diids-auth">
+        {{-- Left: editorial image --}}
+        <div class="diids-auth__visual">
+            <img src="{{ bagisto_asset('images/auth-visual.webp') }}" alt="DIIDS">
+            <a href="{{ route('shop.home.index') }}" class="diids-auth__brand" aria-label="{{ config('app.name') }}">
+                <img src="{{ bagisto_asset('images/diids-logo.svg') }}" alt="DIIDS" width="120" height="40">
             </a>
+            <p class="diids-auth__tagline">Everyday Confidence</p>
         </div>
 
-        {!! view_render_event('bagisto.shop.customers.login.logo.after') !!}
+        {{-- Right: form --}}
+        <div class="diids-auth__panel">
+            <div class="diids-auth__inner">
+                <a href="{{ route('shop.home.index') }}" class="diids-auth__brand-mobile" aria-label="{{ config('app.name') }}">
+                    <img src="{{ bagisto_asset('images/diids-logo.svg') }}" alt="DIIDS" width="110" height="36">
+                </a>
 
-        <!-- Form Container -->
-        <div class="m-auto w-full max-w-[870px] rounded-xl border border-diidsBorder p-16 px-[90px] max-md:px-8 max-md:py-8 max-sm:border-none max-sm:p-0">
-            <h1 class="font-dmserif text-4xl max-md:text-3xl max-sm:text-xl">
-                @lang('shop::app.customers.login-form.page-title')
-            </h1>
+                <p class="diids-auth__eyebrow">Account</p>
+                <h1 class="diids-auth__title">@lang('shop::app.customers.login-form.page-title')</h1>
 
-            <p class="mt-4 text-xl text-diidsInk/60 max-sm:mt-0 max-sm:text-sm">
-                @lang('shop::app.customers.login-form.form-login-text')
-            </p>
+                {!! view_render_event('bagisto.shop.customers.login.before') !!}
 
-            {!! view_render_event('bagisto.shop.customers.login.before') !!}
+                {{-- Google sign-in --}}
+                @if (core()->getConfigData('customer.settings.social_login.enable_google'))
+                    <a href="{{ route('customer.social-login.index', 'google') }}" class="diids-google">
+                        @include('social_login::icons.google')
+                        <span>Continue with Google</span>
+                    </a>
 
-            <div class="mt-14 rounded max-sm:mt-8">
+                    <div class="diids-auth__divider"><span>or</span></div>
+                @endif
+
                 <x-shop::form :action="route('shop.customer.session.create')">
                     {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
 
-                    <!-- Email -->
                     <x-shop::form.control-group>
                         <x-shop::form.control-group.label class="required">
                             @lang('shop::app.customers.login-form.email')
                         </x-shop::form.control-group.label>
-
                         <x-shop::form.control-group.control
                             type="email"
-                            class="px-6 py-4 max-md:py-3 max-sm:py-2"
+                            class="diids-auth__input"
                             name="email"
                             rules="required|email"
                             value=""
@@ -69,19 +63,16 @@
                             :aria-label="trans('shop::app.customers.login-form.email')"
                             aria-required="true"
                         />
-
                         <x-shop::form.control-group.error control-name="email" />
                     </x-shop::form.control-group>
 
-                    <!-- Password -->
                     <x-shop::form.control-group>
                         <x-shop::form.control-group.label class="required">
                             @lang('shop::app.customers.login-form.password')
                         </x-shop::form.control-group.label>
-
                         <x-shop::form.control-group.control
                             type="password"
-                            class="px-6 py-4 max-md:py-3 max-sm:py-2"
+                            class="diids-auth__input"
                             id="password"
                             name="password"
                             rules="required|min:6"
@@ -91,110 +82,62 @@
                             :aria-label="trans('shop::app.customers.login-form.password')"
                             aria-required="true"
                         />
-
                         <x-shop::form.control-group.error control-name="password" />
                     </x-shop::form.control-group>
 
-                    <div class="flex justify-between">
+                    <div class="diids-auth__row">
                         <div class="flex select-none items-center gap-1.5">
-                            <input
-                                type="checkbox"
-                                id="show-password"
-                                class="peer hidden"
-                                onchange="switchVisibility()"
-                            />
-
-                            <label
-                                class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-2xl text-navyBlue peer-checked:text-navyBlue max-sm:text-xl"
-                                for="show-password"
-                            ></label>
-
-                            <label
-                                class="cursor-pointer select-none text-base text-diidsInk/60 max-sm:text-sm ltr:pl-0 rtl:pr-0"
-                                for="show-password"
-                            >
+                            <input type="checkbox" id="show-password" class="peer hidden" onchange="switchVisibility()"/>
+                            <label class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-xl text-navyBlue" for="show-password"></label>
+                            <label class="cursor-pointer select-none text-sm text-diidsInk/60" for="show-password">
                                 @lang('shop::app.customers.login-form.show-password')
                             </label>
                         </div>
-
-                        <div class="block">
-                            <a
-                                href="{{ route('shop.customers.forgot_password.create') }}"
-                                class="cursor-pointer text-base text-black max-sm:text-sm"
-                            >
-                                <span>
-                                    @lang('shop::app.customers.login-form.forgot-pass')
-                                </span>
-                            </a>
-                        </div>
+                        <a href="{{ route('shop.customers.forgot_password.create') }}" class="diids-auth__link">
+                            @lang('shop::app.customers.login-form.forgot-pass')
+                        </a>
                     </div>
 
-                    <!-- Captcha -->
                     @if (core()->getConfigData('customer.captcha.credentials.status'))
                         <x-shop::form.control-group class="mt-5">
                             {!! \Webkul\Customer\Facades\Captcha::render() !!}
-
                             <x-shop::form.control-group.error control-name="recaptcha_token" />
                         </x-shop::form.control-group>
                     @endif
 
-                    <!-- Submit Button -->
-                    <div class="mt-8 flex flex-wrap items-center gap-9 max-sm:justify-center max-sm:gap-5 max-sm:text-center">
-                        <button
-                            class="primary-button m-0 mx-auto block w-full max-w-[374px] !rounded-full px-11 py-4 text-center text-base max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5 ltr:ml-0 rtl:mr-0"
-                            type="submit"
-                        >
-                            @lang('shop::app.customers.login-form.button-title')
-                        </button>
-                    </div>
+                    <button class="diids-btn diids-btn--solid diids-auth__submit" type="submit">
+                        <span>@lang('shop::app.customers.login-form.button-title')</span>
+                    </button>
 
                     {!! view_render_event('bagisto.shop.customers.login_form_controls.after') !!}
                 </x-shop::form>
-            </div>
 
-            {!! view_render_event('bagisto.shop.customers.login.after') !!}
+                {!! view_render_event('bagisto.shop.customers.login.after') !!}
 
-            @if (
-                request()->cookie('enable-resend')
-                && request()->cookie('email-for-resend')
-            )
-                <p class="mt-5 font-medium text-diidsInk/60 max-sm:text-center max-sm:text-sm">
-                    <a
-                        class="text-navyBlue"
-                        href="{{ route('shop.customers.resend.verification_email', urlencode(request()->cookie('email-for-resend'))) }}"
-                    >
-                        @lang('shop::app.customers.login-form.resend-verification')
+                @if (request()->cookie('enable-resend') && request()->cookie('email-for-resend'))
+                    <p class="diids-auth__meta">
+                        <a href="{{ route('shop.customers.resend.verification_email', urlencode(request()->cookie('email-for-resend'))) }}">
+                            @lang('shop::app.customers.login-form.resend-verification')
+                        </a>
+                    </p>
+                @endif
+
+                <p class="diids-auth__meta">
+                    @lang('shop::app.customers.login-form.new-customer')
+                    <a href="{{ route('shop.customers.register.index') }}">
+                        @lang('shop::app.customers.login-form.create-your-account')
                     </a>
                 </p>
-            @endif
-
-            <p class="mt-5 font-medium text-diidsInk/60 max-sm:text-center max-sm:text-sm">
-                @lang('shop::app.customers.login-form.new-customer')
-
-                <a
-                    class="text-navyBlue"
-                    href="{{ route('shop.customers.register.index') }}"
-                >
-                    @lang('shop::app.customers.login-form.create-your-account')
-                </a>
-            </p>
+            </div>
         </div>
-
-        <p class="mb-4 mt-8 text-center text-xs text-diidsInk/60">
-            @lang('shop::app.customers.login-form.footer', ['current_year'=> date('Y') ])
-        </p>
     </div>
 
     @push('scripts')
         {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
-
         <script>
             function switchVisibility() {
-                let passwordField = document.getElementById("password");
-
-                passwordField.type = passwordField.type === "password"
-                    ? "text"
-                    : "password";
+                let f = document.getElementById("password");
+                f.type = f.type === "password" ? "text" : "password";
             }
         </script>
     @endpush

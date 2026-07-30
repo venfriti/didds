@@ -100,13 +100,20 @@
 
                         <!-- Modal Footer -->
                         <x-slot:footer>
-                            <div class="flex flex-wrap items-center gap-4">
+                            <div class="w-full">
                                 <x-shop::button
-                                    class="primary-button max-w-none flex-auto !rounded-full px-11 py-3 max-md:py-1.5"
+                                    class="primary-button !w-full max-w-none flex-auto !rounded-none px-11 py-3.5"
                                     :title="trans('shop::app.checkout.login.title')"
                                     ::loading="isStoring"
                                     ::disabled="isStoring"
                                 />
+
+                                @if (core()->getConfigData('customer.settings.social_login.enable_google'))
+                                    <a href="{{ route('customer.social-login.index', 'google') }}" class="diids-google mt-3">
+                                        @include('social_login::icons.google')
+                                        <span>Continue with Google</span>
+                                    </a>
+                                @endif
                             </div>
                         </x-slot>
                     </x-shop::modal>

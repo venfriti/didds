@@ -5,20 +5,37 @@
         @lang('shop::app.home.contact.title')
     </x-slot>
 
-    <div class="container mt-8 max-1180:px-5 max-md:mt-6 max-md:px-4">
-        <!-- Form Container -->
-		<div class="m-auto w-full max-w-[870px] rounded-xl border border-diidsBorder p-16 px-[90px] max-md:px-8 max-md:py-8 max-sm:border-none max-sm:p-0">
-			<h1 class="font-dmserif text-4xl max-md:text-3xl max-sm:text-xl">
-                @lang('shop::app.home.contact.title')
-            </h1>
-
-			<p class="mt-4 text-xl text-diidsInk/60 max-sm:mt-1 max-sm:text-sm">
-                @lang('shop::app.home.contact.about')
+    <section class="diids-contact">
+        <!-- Left: brand-side info -->
+        <aside class="diids-contact__aside">
+            <p class="diids-contact__kicker">DIIDS / Contact</p>
+            <h1 class="diids-contact__title">Let's talk</h1>
+            <p class="diids-contact__lead">
+                Questions about fit, an order, or a wholesale enquiry? Send a note
+                and the team will get back to you.
             </p>
 
+            <dl class="diids-contact__details">
+                <div>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:{{ core()->getConfigData('emails.configure.email_settings.contact_email') ?: 'shop@mail.diids.com' }}">{{ core()->getConfigData('emails.configure.email_settings.contact_email') ?: 'shop@mail.diids.com' }}</a></dd>
+                </div>
+                <div>
+                    <dt>Support</dt>
+                    <dd>By chat &amp; email, every day</dd>
+                </div>
+                <div>
+                    <dt>Follow</dt>
+                    <dd>@diids</dd>
+                </div>
+            </dl>
+        </aside>
+
+        <!-- Right: form -->
+        <div class="diids-contact__panel">
             <div
                 id="contact-us-form"
-                class="mt-14 rounded max-sm:mt-8"
+                class="diids-contact__form"
             >
                 <!-- Contact Form -->
                 <x-shop::form :action="route('shop.home.contact_us.send_mail')">
@@ -115,18 +132,16 @@
                     @endif
 
                     <!-- Submit Button -->
-                    <div class="mt-8 flex flex-wrap items-center gap-9 max-sm:justify-center max-sm:text-center">
-                        <button
-                            class="primary-button m-0 mx-auto block w-full max-w-[374px] !rounded-full px-11 py-4 text-center text-base max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5 ltr:ml-0 rtl:mr-0"
-                            type="submit"
-                        >
-                            @lang('shop::app.home.contact.submit')
-                        </button>
-                    </div>
+                    <button
+                        class="diids-btn diids-btn--solid mt-6 !w-full justify-center"
+                        type="submit"
+                    >
+                        <span>@lang('shop::app.home.contact.submit')</span>
+                    </button>
                 </x-shop::form>
             </div>
-		</div>
-    </div>
+        </div>
+    </section>
 
     @push('scripts')
         {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}

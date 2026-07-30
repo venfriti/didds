@@ -26,12 +26,6 @@ return [
         'icon' => 'icon-orders',
         'sort' => 3,
     ], [
-        'key' => 'account.downloadables',
-        'name' => 'shop::app.layouts.downloadable-products',
-        'route' => 'shop.customers.account.downloadable_products.index',
-        'icon' => 'icon-download',
-        'sort' => 4,
-    ], [
         'key' => 'account.reviews',
         'name' => 'shop::app.layouts.reviews',
         'route' => 'shop.customers.account.reviews.index',
@@ -49,11 +43,5 @@ return [
         'route' => 'shop.customers.account.gdpr.index',
         'icon' => 'icon-gdpr-safe',
         'sort' => 7,
-    ], [
-        'key' => 'account.rma',
-        'name' => 'shop::app.layouts.rma',
-        'route' => 'shop.customers.account.rma.index',
-        'icon' => 'icon-compare-1',
-        'sort' => 8,
     ],
 ];

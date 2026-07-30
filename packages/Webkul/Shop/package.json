@@ -24,6 +24,7 @@
     "mitt": "^3.0.0",
     "playwright": "^1.48.1",
     "readline-sync": "^1.4.10",
+    "three": "^0.185.1",
     "vee-validate": "^4.9.1",
     "vue-flatpickr": "^2.3.0"
   }
