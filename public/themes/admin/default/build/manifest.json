@@ -264,7 +264,7 @@
     "isDynamicEntry": true
   },
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-D93zJoj5.css",
+    "file": "assets/app-C6ayU5Fn.css",
     "src": "src/Resources/assets/css/app.css",
     "isEntry": true
   },
@@ -283,6 +283,10 @@
   "src/Resources/assets/fonts/bagisto-admin.woff": {
     "file": "assets/bagisto-admin-BzOkv6lg.woff",
     "src": "src/Resources/assets/fonts/bagisto-admin.woff"
+  },
+  "src/Resources/assets/images/auth-visual.webp": {
+    "file": "assets/auth-visual-DSwsM-OE.webp",
+    "src": "src/Resources/assets/images/auth-visual.webp"
   },
   "src/Resources/assets/images/average-orders.svg": {
     "file": "assets/average-orders-UpY6pgyW.svg",
@@ -303,6 +307,10 @@
   "src/Resources/assets/images/dark-logo.svg": {
     "file": "assets/dark-logo-P5H7MBtx.svg",
     "src": "src/Resources/assets/images/dark-logo.svg"
+  },
+  "src/Resources/assets/images/diids-favicon.png": {
+    "file": "assets/diids-favicon-3q0pSU2M.png",
+    "src": "src/Resources/assets/images/diids-favicon.png"
   },
   "src/Resources/assets/images/diids-logo-light.svg": {
     "file": "assets/diids-logo-light-Pd0UAvH0.svg",

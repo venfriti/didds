@@ -275,6 +275,16 @@ class Customer extends Authenticatable implements CustomerContract
     }
 
     /**
+     * Get all saved payment methods of a customer.
+     *
+     * @return HasMany
+     */
+    public function payment_methods()
+    {
+        return $this->hasMany(CustomerPaymentMethodProxy::modelClass(), 'customer_id');
+    }
+
+    /**
      * Get the customer's subscription.
      *
      * @return HasOne

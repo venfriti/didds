@@ -12,21 +12,8 @@
         </i>
 
         <!-- Logo -->
-        <a href="{{ route('admin.dashboard.index') }}" class="flex-shrink-0">
-            @if ($logo = core()->getConfigData('general.design.admin_logo.logo_image'))
-                <img
-                    class="h-8 w-auto sm:h-10"
-                    src="{{ Storage::url($logo) }}"
-                    alt="{{ config('app.name') }}"
-                />
-            @else
-                <img
-                    src="{{ request()->cookie('dark_mode') ? bagisto_asset('images/dark-logo.svg') : bagisto_asset('images/logo.svg') }}"
-                    class="h-8 w-auto sm:h-10"
-                    id="logo-image"
-                    alt="{{ config('app.name') }}"
-                />
-            @endif
+        <a href="{{ route('admin.dashboard.index') }}" class="diids-admin-header-logo flex-shrink-0">
+            DIIDS
         </a>
 
         <!-- Mega Search Bar Vue Component -->
@@ -88,7 +75,7 @@
                         />
                     </button>
                 @else
-                    <button class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-navyBlue text-xs font-semibold leading-6 text-white transition-all hover:opacity-90 focus:opacity-90 sm:h-9 sm:w-9 sm:text-sm">
+                    <button class="diids-admin-avatar flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-navyBlue text-xs font-semibold leading-6 text-white transition-all hover:opacity-90 focus:opacity-90 sm:h-9 sm:w-9 sm:text-sm">
                         {{ substr($admin->name, 0, 1) }}
                     </button>
                 @endif
@@ -141,20 +128,7 @@
     <!-- Drawer Header -->
     <x-slot:header>
         <div class="flex items-center justify-between">
-            @if ($logo = core()->getConfigData('general.design.admin_logo.logo_image'))
-                <img
-                    src="{{ Storage::url($logo) }}"
-                    class="h-8 w-auto sm:h-10"
-                    alt="{{ config('app.name') }}"
-                />
-            @else
-                <img
-                    src="{{ request()->cookie('dark_mode') ? bagisto_asset('images/dark-logo.svg') : bagisto_asset('images/logo.svg') }}"
-                    class="h-8 w-auto sm:h-10"
-                    id="logo-image"
-                    alt="{{ config('app.name') }}"
-                />
-            @endif
+            <span class="diids-admin-header-logo">DIIDS</span>
         </div>
     </x-slot>
 
@@ -542,7 +516,7 @@
                     </span>
                 
                     <span
-                        class="absolute -top-2 flex h-5 min-w-5 cursor-pointer items-center justify-center rounded-full bg-navyBlue p-1.5 text-[10px] font-semibold leading-[9px] text-white ltr:left-5 rtl:right-5"
+                        class="diids-admin-badge absolute -top-2 flex h-5 min-w-5 cursor-pointer items-center justify-center rounded-full bg-navyBlue p-1.5 text-[10px] font-semibold leading-[9px] text-white ltr:left-5 rtl:right-5"
                         v-if="totalUnRead"
                     >
                         @{{ totalUnRead }}
@@ -754,12 +728,8 @@
 
                     if (this.isDarkMode) {
                         this.$emitter.emit('change-theme', 'dark');
-
-                        document.getElementById('logo-image').src = this.dark_logo;
                     } else {
                         this.$emitter.emit('change-theme', 'light');
-
-                        document.getElementById('logo-image').src = this.logo;
                     }
                 },
 

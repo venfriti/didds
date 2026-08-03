@@ -15,11 +15,7 @@
         <div class="diids-admin-auth__panel-wrap">
             <div class="diids-admin-auth__inner">
                 <!-- Logo -->
-                <img
-                    class="diids-admin-auth__logo"
-                    src="{{ bagisto_asset('images/diids-logo.svg') }}"
-                    alt="{{ config('app.name') }}"
-                />
+                <p class="diids-admin-auth__logo-text">DIIDS</p>
 
                 <p class="diids-admin-auth__eyebrow">Admin</p>
 

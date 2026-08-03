@@ -447,7 +447,7 @@
                                     {!! view_render_event('bagisto.shop.products.view.buy_now.after', ['product' => $product]) !!}
                                 @endif
 
-                                <p class="diids-hygiene-notice mt-4 text-xs" style="color: var(--diids-ink); opacity: 0.75;">
+                                <p class="diids-hygiene-notice mt-4 text-xs max-sm:mt-2.5" style="color: var(--diids-ink); opacity: 0.75;">
                                     For health and hygiene reasons, opened underwear items cannot be returned or refunded.
                                     <a href="{{ route('shop.cms.page', 'return-policy') }}" class="underline" target="_blank" rel="noopener">Read our return policy</a>.
                                 </p>

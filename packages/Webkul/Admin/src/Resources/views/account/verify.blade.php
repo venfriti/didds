@@ -13,11 +13,7 @@
                     alt="{{ config('app.name') }}"
                 />
             @else
-                <img
-                    class="w-max"
-                    src="{{ bagisto_asset('images/logo.svg') }}"
-                    alt="{{ config('app.name') }}"
-                />
+                <span class="diids-admin-header-logo">DIIDS</span>
             @endif
 
             <!-- Card -->

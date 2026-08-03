@@ -17,10 +17,10 @@
         <!-- Total Sales Section -->
         <template v-else>
             <div class="box-shadow rounded">
-                <div class="flex flex-wrap gap-4 border-b bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+                <div class="flex flex-wrap gap-4 border-b bg-white p-4 dark:border-gray-800 dark:bg-gray-900 diids-stat-grid diids-stat-grid--3">
                     <!-- Today's Sales -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/total-sales.svg')}}"
                                 title="@lang('admin::app.dashboard.index.today-sales')"
@@ -55,8 +55,8 @@
                     </div>
 
                     <!-- Today's Orders -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/total-orders.svg')}}"
                                 title="@lang('admin::app.dashboard.index.today-orders')"
@@ -91,8 +91,8 @@
                     </div>
 
                     <!-- Today's Customers -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/customers.svg')}}"
                                 title="@lang('admin::app.dashboard.index.today-customers')"

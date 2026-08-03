@@ -85,7 +85,7 @@
                 >
                     <div class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0">
                         <div
-                            class="absolute left-1/2 top-1/2 z-[999] w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg bg-zinc-100 max-md:w-[90%]"
+                            class="absolute left-1/2 top-1/2 z-[999] w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg bg-white max-md:w-[90%]"
                             :class="panelClass || 'max-w-[595px]'"
                         >
                             <!-- Header Slot-->

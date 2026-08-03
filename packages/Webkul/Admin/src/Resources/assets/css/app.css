@@ -720,3 +720,365 @@
     background: #fff;
     color: #0a0a0a;
 }
+.diids-admin-auth__logo-text {
+    font-family: "Grift", -apple-system, "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    font-size: 1.85rem;
+    letter-spacing: 0.02em;
+    color: #0a0a0a;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   DIIDS ADMIN — modern redesign: global type, sidebar, topbar, dashboard
+   Applied as an override layer on top of stock Bagisto markup/Vue behavior.
+   ========================================================================== */
+
+/* ---- Global type ---- */
+body {
+    font-family: "Grift", -apple-system, "Helvetica Neue", sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .font-dmserif {
+    font-family: "Grift", -apple-system, "Helvetica Neue", sans-serif !important;
+}
+
+/* Square everything by default — corners, borders, shadows toned down */
+.rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl {
+    border-radius: 2px !important;
+}
+.rounded-full:not(.diids-admin-avatar):not(.diids-admin-badge) {
+    border-radius: 2px !important;
+}
+.box-shadow, [class*="shadow-"] {
+    box-shadow: none !important;
+    border: 1px solid #e4e4e4;
+}
+
+/* ---- Sidebar ---- */
+.fixed.top-14.z-\[1000\] {
+    background: #fff !important;
+    border-right: 1px solid #e4e4e4;
+    box-shadow: none !important;
+}
+html.dark .fixed.top-14.z-\[1000\] {
+    background: #0a0a0a !important;
+    border-right-color: #262626;
+}
+.fixed.top-14.z-\[1000\] nav > div > a {
+    border-radius: 0 !important;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+.fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue,
+.fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] {
+    background: #0a0a0a !important;
+}
+.fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue p,
+.fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] p,
+.fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue span,
+.fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] span {
+    color: #fff !important;
+}
+html.dark .fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue,
+html.dark .fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] {
+    background: #fff !important;
+}
+html.dark .fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue p,
+html.dark .fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] p,
+html.dark .fixed.top-14.z-\[1000\] nav > div > a.bg-navyBlue span,
+html.dark .fixed.top-14.z-\[1000\] nav > div > a[class*="bg-navyBlue"] span {
+    color: #0a0a0a !important;
+}
+.fixed.top-14.z-\[1000\] nav p {
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+    color: #4a4a48;
+}
+html.dark .fixed.top-14.z-\[1000\] nav p {
+    color: #d4d4d1;
+}
+.fixed.top-14.z-\[1000\] [class^="icon-"] {
+    font-size: 1.15rem !important;
+}
+
+/* Sidebar collapse control at the bottom — was leaking stock white bg in dark mode */
+.fixed.bottom-0.w-full.max-w-\[270px\] {
+    background: #fff !important;
+}
+html.dark .fixed.bottom-0.w-full.max-w-\[270px\] {
+    background: #0a0a0a !important;
+    border-top-color: #262626 !important;
+}
+
+/* ---- Topbar / header ---- */
+header.sticky.top-0 {
+    border-bottom: 1px solid #e4e4e4 !important;
+}
+header input[type="text"] {
+    border-radius: 0 !important;
+    border-color: #e4e4e4 !important;
+}
+header input[type="text"]:focus {
+    border-color: #0a0a0a !important;
+}
+.diids-admin-avatar,
+header .bg-navyBlue.rounded-full {
+    border-radius: 50% !important;
+    background: #0a0a0a !important;
+}
+
+/* ---- Buttons (global admin) ---- */
+.primary-button, .btn-primary, button.bg-navyBlue, a.bg-navyBlue {
+    border-radius: 0 !important;
+    background: #0a0a0a !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em;
+}
+.primary-button:hover, .btn-primary:hover, button.bg-navyBlue:hover, a.bg-navyBlue:hover {
+    background: #2a2a2a !important;
+}
+.secondary-button, .btn-secondary {
+    border-radius: 0 !important;
+    border-color: #0a0a0a !important;
+}
+
+/* ---- Dashboard ---- */
+.diids-dash-title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+    line-height: 1.25 !important;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #0a0a0a;
+}
+html.dark .diids-dash-title {
+    color: #fff;
+}
+.diids-dash-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8a86;
+    margin-top: 0.35rem;
+}
+html.dark .diids-dash-sub {
+    color: #9a9a97;
+}
+.diids-dash-section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a8a86;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+html.dark .diids-dash-section-label {
+    color: #9a9a97;
+}
+
+/* Stat card grid: square hairline cards instead of one flat strip.
+   Hooked to explicit `.diids-stat-*` marker classes added directly in the
+   blade templates — Vue's `text/x-template` scripts are inert source text,
+   never live DOM, so `[id="v-dashboard-*-template"]` selectors never match
+   anything rendered and must not be used here. */
+.diids-stat-grid {
+    display: grid !important;
+    gap: 0 !important;
+    border: 1px solid #e4e4e4 !important;
+    padding: 0 !important;
+    background: #fff !important;
+}
+html.dark .diids-stat-grid {
+    background: #111 !important;
+    border-color: #2a2a2a !important;
+}
+.diids-stat-grid--5 { grid-template-columns: repeat(5, 1fr); }
+.diids-stat-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.diids-stat-grid > .flex.flex-wrap {
+    display: contents;
+}
+.diids-stat-card {
+    padding: 1.5rem;
+    border-right: 1px solid #e4e4e4;
+    gap: 0 !important;
+    display: block !important;
+    min-width: 0 !important;
+}
+html.dark .diids-stat-card {
+    border-right-color: #2a2a2a;
+}
+.diids-stat-card:last-child {
+    border-right: none;
+}
+.diids-stat-card__icon {
+    height: 1.6rem !important;
+    max-height: 1.6rem !important;
+    width: 1.6rem !important;
+    max-width: 1.6rem !important;
+    margin-bottom: 0.6rem;
+    opacity: 0.85;
+}
+.diids-stat-card p.text-base {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+}
+html.dark .diids-stat-card p.text-base {
+    color: #fff !important;
+}
+.diids-stat-card p.text-xs.font-semibold.text-diidsInk\/70 {
+    font-size: 0.7rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8a86 !important;
+    margin-top: 0.4rem;
+    font-weight: 700 !important;
+}
+html.dark .diids-stat-card p.text-xs.font-semibold.text-diidsInk\/70 {
+    color: #9a9a97 !important;
+}
+@media (max-width: 1024px) {
+    .diids-stat-grid--5 { grid-template-columns: repeat(3, 1fr); }
+    .diids-stat-grid--5 > .diids-stat-card:nth-child(3) { border-right: none; }
+}
+@media (max-width: 640px) {
+    .diids-stat-grid--5 { grid-template-columns: repeat(2, 1fr); }
+    .diids-stat-grid--3 { grid-template-columns: 1fr; }
+    .diids-stat-grid--3 .diids-stat-card {
+        border-right: none;
+        border-bottom: 1px solid #e4e4e4;
+    }
+    html.dark .diids-stat-grid--3 .diids-stat-card {
+        border-bottom-color: #2a2a2a;
+    }
+}
+
+/* Content section cards (Stock Threshold, Top Selling, etc.) */
+.box-shadow.rounded, div[class*="box-shadow"] {
+    border: 1px solid #e4e4e4 !important;
+    border-radius: 0 !important;
+}
+html.dark .box-shadow.rounded, html.dark div[class*="box-shadow"] {
+    border-color: #2a2a2a !important;
+    background: #111 !important;
+}
+
+/* DIIDS text wordmark used everywhere the old logo.svg/dark-logo.svg image
+   was — light/dark aware via the existing `.dark` class on <html>. */
+.diids-admin-header-logo {
+    display: inline-block;
+    font-family: "Grift", -apple-system, "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.01em;
+    color: #0a0a0a;
+    text-transform: uppercase;
+    line-height: 1;
+}
+html.dark .diids-admin-header-logo {
+    color: #fff;
+}
+
+/* ---- Store Stats chart + section headers ---- */
+.diids-dash-section-label ~ div canvas {
+    padding: 0.25rem 0;
+}
+
+/* ---- Empty states (Add Product / Add Customer / Stock Threshold) ---- */
+.text-base.font-semibold.text-diidsInk\/40 {
+    font-size: 0.85rem !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #4a4a48 !important;
+}
+html.dark .text-base.font-semibold.text-diidsInk\/40 {
+    color: #d4d4d1 !important;
+}
+p.text-diidsInk\/40 {
+    color: #8a8a86 !important;
+}
+html.dark p.text-diidsInk\/40 {
+    color: #9a9a97 !important;
+}
+img[src*="icon-add-product"],
+img[src*="empty-placeholders/customers"] {
+    opacity: 0.65;
+}
+html.dark img[src*="icon-add-product"],
+html.dark img[src*="empty-placeholders/customers"] {
+    opacity: 0.85;
+}
+
+/* Product placeholder tile (front.svg dashed box) */
+.border-dashed.border-diidsBorder {
+    border-color: #d6d6d3 !important;
+    background: #f5f5f3;
+}
+html.dark .border-dashed.border-diidsBorder {
+    border-color: #2a2a2a !important;
+    background: #161616;
+}
+
+/* ---- Topbar chrome: search / bell / store-link icon buttons ---- */
+header .icon-search, header .icon-notification, header .icon-store,
+header .icon-dark, header .icon-light, header .icon-menu {
+    color: #4a4a48;
+}
+html.dark header .icon-search, html.dark header .icon-notification, html.dark header .icon-store,
+html.dark header .icon-dark, html.dark header .icon-light, html.dark header .icon-menu {
+    color: #d4d4d1;
+}
+header [class^="icon-"]:hover, header [class*=" icon-"]:hover {
+    color: #0a0a0a;
+}
+html.dark header [class^="icon-"]:hover, html.dark header [class*=" icon-"]:hover {
+    color: #fff;
+}
+header input[type="text"] {
+    border-radius: 0 !important;
+}
+/* Mega-search results dropdown + admin dropdown menus (notifications, account) */
+header .absolute.top-8.z-10.w-full.rounded-lg,
+header [class*="shadow-["] {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid #e4e4e4 !important;
+}
+html.dark header .absolute.top-8.z-10.w-full.rounded-lg,
+html.dark header [class*="shadow-["] {
+    border-color: #2a2a2a !important;
+    background: #111 !important;
+}
+.diids-admin-badge {
+    border-radius: 50% !important;
+}
+
+/* ---- Dark mode: unify every stock Tailwind gray shade to one flat scale ----
+   Stock Bagisto markup mixes dark:bg-gray-900 (#111827, blue-tinted) and
+   dark:bg-gray-950 (#030712, near-black-blue) across body/cards/inputs, while
+   the sidebar/stat-card overrides above use pure #0a0a0a/#111. Two competing
+   near-black scales is what reads as "not uniform" — collapse both onto one:
+   #0a0a0a page background, #111 one level up (cards/panels/inputs), #2a2a2a
+   borders, consistently. */
+html.dark .dark\:bg-gray-900,
+html.dark .dark\:bg-gray-800 {
+    background-color: #111 !important;
+}
+html.dark .dark\:bg-gray-950 {
+    background-color: #0a0a0a !important;
+}
+html.dark .dark\:border-gray-800,
+html.dark .dark\:border-gray-700 {
+    border-color: #2a2a2a !important;
+}
+html.dark .dark\:hover\:bg-gray-950:hover {
+    background-color: #161616 !important;
+}
+html.dark .dark\:text-gray-300 {
+    color: #d4d4d1 !important;
+}
+html.dark .dark\:text-gray-400 {
+    color: #9a9a97 !important;
+}

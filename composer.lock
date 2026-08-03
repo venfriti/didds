@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "855c42bcd91be10eb4803d7cb0b32846",
+    "content-hash": "36b9ae77c32c36efacd16f3e3b30e8ca",
     "packages": [
         {
             "name": "apimatic/core",
@@ -11620,54 +11620,6 @@
                 }
             ],
             "time": "2026-04-26T05:33:54+00:00"
-        },
-        {
-            "name": "wontonee/paystack",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wontonee/paystack-bagisto.git",
-                "reference": "cebd306416794008ba933d0c285ea3ea55a3f634"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wontonee/paystack-bagisto/zipball/cebd306416794008ba933d0c285ea3ea55a3f634",
-                "reference": "cebd306416794008ba933d0c285ea3ea55a3f634",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1|^8.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": [],
-                    "providers": [
-                        "Wontonee\\Paystack\\Providers\\PaystackServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Wontonee\\Paystack\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Wontonee",
-                    "email": "dev@wontonee.com"
-                }
-            ],
-            "description": "Paystack Payment Gateway for Bagisto - Accept payments across Africa with Cards, Bank Transfer, Mobile Money & USSD",
-            "support": {
-                "issues": "https://github.com/wontonee/paystack-bagisto/issues",
-                "source": "https://github.com/wontonee/paystack-bagisto/tree/1.0.1"
-            },
-            "time": "2025-10-09T07:01:18+00:00"
         }
     ],
     "packages-dev": [

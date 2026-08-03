@@ -109,6 +109,63 @@
                                 {{-- \Webkul\Payment\Payment::getAdditionalDetails($payment['method'] --}}
                             </div>
                         </div>
+
+                        @auth('customer')
+                            @if ($savedCards = auth()->guard('customer')->user()->payment_methods)
+                                @if (! $savedCards->isEmpty())
+                                    <div
+                                        class="mt-5 grid gap-2.5"
+                                        v-if="selectedPaymentMethod == 'paystack'"
+                                    >
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-diidsInk/60">
+                                            @lang('shop::app.checkout.onepage.payment.saved-cards')
+                                        </p>
+
+                                        @foreach ($savedCards as $savedCard)
+                                            <label class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-diidsBorder p-3 has-[:checked]:border-navyBlue">
+                                                <input
+                                                    type="radio"
+                                                    name="paystack_saved_card"
+                                                    value="{{ $savedCard->id }}"
+                                                    @change="selectSavedCard({{ $savedCard->id }})"
+                                                >
+
+                                                <span class="text-sm">
+                                                    {{ $savedCard->card_type ? ucfirst($savedCard->card_type) : 'Card' }}
+                                                    &bull;&bull;&bull;&bull; {{ $savedCard->last4 }}
+                                                    ({{ str_pad($savedCard->exp_month, 2, '0', STR_PAD_LEFT) }}/{{ $savedCard->exp_year }})
+                                                </span>
+                                            </label>
+                                        @endforeach
+
+                                        <label class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-diidsBorder p-3 has-[:checked]:border-navyBlue">
+                                            <input
+                                                type="radio"
+                                                name="paystack_saved_card"
+                                                value=""
+                                                checked
+                                                @change="selectSavedCard(null)"
+                                            >
+
+                                            <span class="text-sm">
+                                                @lang('shop::app.checkout.onepage.payment.use-new-card')
+                                            </span>
+                                        </label>
+
+                                        <label class="mt-1.5 flex cursor-pointer items-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                v-model="saveCard"
+                                            >
+
+                                            <span class="text-xs text-diidsInk/70">
+                                                @lang('shop::app.checkout.onepage.payment.save-card')
+                                            </span>
+                                        </label>
+                                    </div>
+                                @endif
+                            @endif
+                        @endauth
                     </x-slot>
                 </x-shop::accordion>
 
@@ -131,8 +188,26 @@
 
             emits: ['payment-method-selected', 'processing', 'processed'],
 
+            data() {
+                return {
+                    selectedPaymentMethod: null,
+
+                    saveCard: false,
+                };
+            },
+
+            watch: {
+                saveCard(value) {
+                    this.$axios.post("{{ route('paystack.select-saved-card') }}", {
+                        save_card_intent: value,
+                    }).catch(() => {});
+                },
+            },
+
             methods: {
                 store(selectedMethod) {
+                    this.selectedPaymentMethod = selectedMethod.method;
+
                     this.$emit('payment-method-selected', selectedMethod.method);
 
                     this.$emit('processing', 'review');
@@ -143,7 +218,7 @@
                         .then(response => {
                             this.$emit('processed', response.data.cart);
 
-                            // Used in mobile view. 
+                            // Used in mobile view.
                             if (window.innerWidth <= 768) {
                                 window.scrollTo({
                                     top: document.body.scrollHeight,
@@ -158,6 +233,12 @@
                                 window.location.href = error.response.data.redirect_url;
                             }
                         });
+                },
+
+                selectSavedCard(id) {
+                    this.$axios.post("{{ route('paystack.select-saved-card') }}", {
+                        customer_payment_method_id: id,
+                    }).catch(() => {});
                 },
             },
         });

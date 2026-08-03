@@ -43,6 +43,7 @@ return [
             'password' => 'Password',
             'resend-verification' => 'Resend Verification Email',
             'show-password' => 'Show Password',
+            'social-login-failed' => 'Sign in with :provider failed. Please try again or use your email and password.',
             'title' => 'Sign In',
             'verify-first' => 'Verify your email account first.',
         ],
@@ -166,6 +167,20 @@ return [
                     'title' => 'Address',
                     'update-btn' => 'Update',
                     'vat-id' => 'Vat ID',
+                ],
+            ],
+
+            'payment-methods' => [
+                'index' => [
+                    'title' => 'Payment Methods',
+                    'default' => 'Default',
+                    'delete' => 'Delete',
+                    'delete-success' => 'Payment method successfully deleted.',
+                    'default-delete' => 'Default payment method cannot be changed.',
+                    'empty-payment-methods' => 'You have no saved payment methods yet. Cards you choose to save at checkout will appear here.',
+                    'security-warning' => 'Suspicious activity found!!!',
+                    'set-as-default' => 'Set as Default',
+                    'expires' => 'Expires :month/:year',
                 ],
             ],
 
@@ -1185,6 +1200,9 @@ return [
 
             'payment' => [
                 'payment-method' => 'Payment Method',
+                'saved-cards' => 'Saved Cards',
+                'save-card' => 'Save this card for future purchases',
+                'use-new-card' => 'Use a new card',
             ],
 
             'shipping' => [
@@ -1306,6 +1324,7 @@ return [
         'gdpr-request' => 'GDPR Requests',
         'my-account' => 'My Account',
         'orders' => 'Orders',
+        'payment-methods' => 'Payment Methods',
         'profile' => 'Profile',
         'reviews' => 'Reviews',
         'rma' => 'RMA',

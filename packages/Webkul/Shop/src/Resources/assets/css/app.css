@@ -663,10 +663,34 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 640px) {
+  .diids-variant-tag {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.6875rem;
+  }
+}
+
 .diids-variant-tag.selected {
   border-style: solid;
   border-color: var(--diids-navy);
   color: var(--diids-navy);
+}
+
+/* Variant group label ("Color" / "Size (Men)") above the swatches. On
+   mobile the display-serif heading (same font as the H1 product title)
+   reads as the same visual weight as the title, so hierarchy collapses —
+   switch to the mono/uppercase "care tag" label language on small screens
+   instead, matching .diids-variant-tag. Desktop keeps the serif heading. */
+@media (max-width: 640px) {
+  .diids-variant-label {
+    font-family: var(--diids-font-mono) !important;
+    font-size: 0.6875rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--diids-muted);
+    margin-bottom: 0.5rem !important;
+  }
 }
 
 /* CMS page content (About Us, policy pages, etc.) — the html_content
@@ -1128,7 +1152,7 @@ body {
 .diids-cats { padding-bottom: clamp(2rem, 4vw, 3rem); }
 .diids-cats__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(0.5rem, 1.2vw, 1rem);
 }
 .diids-cat {
@@ -1138,7 +1162,7 @@ body {
   aspect-ratio: 4 / 5;
   background: #f3f3f1;
 }
-.diids-cat--wide { grid-column: span 2; aspect-ratio: 21 / 9; }
+.diids-cat--wide { grid-column: span 1; aspect-ratio: 4 / 5; }
 /* Wide "Editorial" tile: crop so faces stay in frame instead of the default
    center-crop landing mid-torso. Percentage targets the face band (~28% down
    the source image) rather than the literal top edge. */
@@ -1316,17 +1340,7 @@ body {
 /* Default: everything in the bar is white... */
 .diids-topbar { color: var(--diids-paper); }
 .diids-topbar [ref="toggleBlock"],
-.diids-topbar [ref="toggleBlock"] span,
-.diids-topbar__tagline { color: var(--diids-paper) !important; }
-
-.diids-topbar__tagline {
-  font-family: var(--diids-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.85rem 0;
-  white-space: nowrap;
-}
+.diids-topbar [ref="toggleBlock"] span { color: var(--diids-paper) !important; }
 /* ...EXCEPT the dropdown panel (position:absolute, white bg) which stays
    ink-on-paper so options are readable. */
 .diids-topbar .absolute.z-20,
@@ -1442,6 +1456,16 @@ body {
    ========================================================================== */
 /* DIIDS logo sizing/consistency */
 .diids-logo { height: auto; width: clamp(96px, 8vw, 128px); }
+.diids-logo-text {
+  font-family: var(--diids-font-display, inherit);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  letter-spacing: 0.02em;
+  color: var(--diids-ink, #0a0a0a);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
 
 /* Nav item hover: animated underline that grows from left (replaces the
    chunky bottom-border bar). Targets the desktop category links. */

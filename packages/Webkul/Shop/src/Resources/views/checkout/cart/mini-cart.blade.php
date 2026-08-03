@@ -59,7 +59,11 @@
                         </p>
                     </div>
 
-                    {{-- Promotional offer line removed per brand direction. --}}
+                    @if ($offerInfo = core()->getConfigData('sales.checkout.mini_cart.offer_info'))
+                        <p class="text-base max-md:text-diidsInk/60 max-sm:text-xs">
+                            {{ $offerInfo }}
+                        </p>
+                    @endif
 
                     {!! view_render_event('bagisto.shop.checkout.mini-cart.drawer.header.after') !!}
                 </x-slot>

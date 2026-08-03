@@ -23,16 +23,10 @@
 
             <a
                 href="{{ route('shop.home.index') }}"
-                class="flex max-h-[30px] items-center"
+                class="diids-logo-text flex max-h-[30px] items-center"
                 aria-label="@lang('shop::app.components.layouts.header.mobile.bagisto')"
             >
-                <img
-                    class="diids-logo block"
-                    src="{{ bagisto_asset('images/diids-logo.svg') }}"
-                    alt="{{ config('app.name') }}"
-                    width="110"
-                    height="36"
-                >
+                DIIDS
             </a>
 
             {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.after') !!}
@@ -246,13 +240,8 @@
 
                 <x-slot:header>
                     <div class="flex items-center justify-between">
-                        <a href="{{ route('shop.home.index') }}">
-                            <img
-                                src="{{ bagisto_asset('images/diids-logo.svg') }}"
-                                alt="{{ config('app.name') }}"
-                                width="131"
-                                height="29"
-                            >
+                        <a href="{{ route('shop.home.index') }}" class="diids-logo-text">
+                            DIIDS
                         </a>
                     </div>
                 </x-slot>

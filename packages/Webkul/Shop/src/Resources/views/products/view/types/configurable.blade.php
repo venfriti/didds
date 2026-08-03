@@ -26,7 +26,7 @@
                     <!-- Dropdown Options Container -->
                     <template v-if="! attribute.swatch_type || attribute.swatch_type == '' || attribute.swatch_type == 'dropdown'">
                         <!-- Dropdown Label -->
-                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk max-sm:mb-1.5 max-sm:text-base max-sm:font-medium">
+                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk diids-variant-label">
                             @{{ attribute.label }}
                         </h2>
                         
@@ -56,7 +56,7 @@
                     <!-- Swatch Options Container -->
                     <template v-else>
                         <!-- Option Label -->
-                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk max-sm:mb-2 max-sm:text-base">
+                        <h2 class="mb-4 font-dmserif text-xl text-diidsInk diids-variant-label">
                             @{{ attribute.label }}
                         </h2>
 

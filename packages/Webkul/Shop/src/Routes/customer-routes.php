@@ -6,6 +6,7 @@ use Webkul\Shop\Http\Controllers\Customer\Account\AddressController;
 use Webkul\Shop\Http\Controllers\Customer\Account\DownloadableProductController;
 use Webkul\Shop\Http\Controllers\Customer\Account\EUWithdrawalController as CustomerEUWithdrawalController;
 use Webkul\Shop\Http\Controllers\Customer\Account\OrderController;
+use Webkul\Shop\Http\Controllers\Customer\Account\PaymentMethodController;
 use Webkul\Shop\Http\Controllers\Customer\Account\RMAController;
 use Webkul\Shop\Http\Controllers\Customer\Account\WishlistController;
 use Webkul\Shop\Http\Controllers\Customer\CustomerController;
@@ -146,6 +147,17 @@ Route::prefix('customer')->group(function () {
                 Route::patch('edit/{id}', 'makeDefault')->name('shop.customers.account.addresses.update.default');
 
                 Route::delete('delete/{id}', 'destroy')->name('shop.customers.account.addresses.delete');
+            });
+
+            /**
+             * Payment Methods.
+             */
+            Route::controller(PaymentMethodController::class)->prefix('payment-methods')->group(function () {
+                Route::get('', 'index')->name('shop.customers.account.payment_methods.index');
+
+                Route::patch('edit/{id}', 'makeDefault')->name('shop.customers.account.payment_methods.update.default');
+
+                Route::delete('delete/{id}', 'destroy')->name('shop.customers.account.payment_methods.delete');
             });
 
             /**

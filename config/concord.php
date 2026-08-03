@@ -37,6 +37,7 @@ return [
         Webkul\PayU\Providers\ModuleServiceProvider::class,
         Webkul\Payment\Providers\ModuleServiceProvider::class,
         Webkul\Paypal\Providers\ModuleServiceProvider::class,
+        Webkul\Paystack\Providers\ModuleServiceProvider::class,
         Webkul\Product\Providers\ModuleServiceProvider::class,
         Webkul\Razorpay\Providers\ModuleServiceProvider::class,
         Webkul\RMA\Providers\ModuleServiceProvider::class,

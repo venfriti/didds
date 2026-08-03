@@ -1,0 +1,25 @@
+{
+    "name": "bagisto/laravel-paystack-connect",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bagisto",
+            "email": "support@bagisto.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Webkul\\Paystack\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webkul\\Paystack\\Providers\\PaystackServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

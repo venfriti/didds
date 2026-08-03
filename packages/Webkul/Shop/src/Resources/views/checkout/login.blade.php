@@ -46,7 +46,7 @@
                         </x-slot>
 
                         <!-- Modal Content -->
-                        <x-slot:content>
+                        <x-slot:content class="!pb-0">
                             <!-- Email -->
                             <x-shop::form.control-group>
                                 <x-shop::form.control-group.label class="required">
@@ -99,7 +99,7 @@
                         </x-slot>
 
                         <!-- Modal Footer -->
-                        <x-slot:footer>
+                        <x-slot:footer class="!mt-0 !pt-3">
                             <div class="w-full">
                                 <x-shop::button
                                     class="primary-button !w-full max-w-none flex-auto !rounded-none px-11 py-3.5"

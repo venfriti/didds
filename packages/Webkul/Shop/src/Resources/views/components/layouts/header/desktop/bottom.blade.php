@@ -12,15 +12,9 @@
         <a
             href="{{ route('shop.home.index') }}"
             aria-label="{{ config('app.name') }}"
-            class="flex items-center"
+            class="diids-logo-text flex items-center"
         >
-            <img
-                src="{{ bagisto_asset('images/diids-logo.svg') }}"
-                class="diids-logo"
-                width="120"
-                height="40"
-                alt="{{ config('app.name') }}"
-            >
+            DIIDS
         </a>
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}

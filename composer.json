@@ -49,8 +49,7 @@
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-sitemap": "^7.3",
         "stevebauman/purify": "^6.3",
-        "stripe/stripe-php": "^17.3",
-        "wontonee/paystack": "^1.0"
+        "stripe/stripe-php": "^17.3"
     },
     "require-dev": {
         "bagisto/laravel-datafaker": "2.3.*",
@@ -94,6 +93,7 @@
             "Webkul\\PayU\\": "packages/Webkul/PayU/src",
             "Webkul\\Payment\\": "packages/Webkul/Payment/src",
             "Webkul\\Paypal\\": "packages/Webkul/Paypal/src",
+            "Webkul\\Paystack\\": "packages/Webkul/Paystack/src",
             "Webkul\\PhonePe\\": "packages/Webkul/PhonePe/src",
             "Webkul\\Product\\": "packages/Webkul/Product/src",
             "Webkul\\RMA\\": "packages/Webkul/RMA/src",
@@ -122,6 +122,7 @@
             "Webkul\\Installer\\Tests\\": "packages/Webkul/Installer/tests",
             "Webkul\\Payment\\Tests\\": "packages/Webkul/Payment/tests",
             "Webkul\\PayU\\Tests\\": "packages/Webkul/PayU/tests",
+            "Webkul\\Paystack\\Tests\\": "packages/Webkul/Paystack/tests",
             "Webkul\\Razorpay\\Tests\\": "packages/Webkul/Razorpay/tests",
             "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
             "Webkul\\Stripe\\Tests\\": "packages/Webkul/Stripe/tests"

@@ -19,7 +19,7 @@
 
     <!-- Page Header -->
     <div class="flex flex-wrap bg-diidsSurface">
-        <div class="flex w-full justify-between border border-b border-l-0 border-r-0 border-t-0 border-diidsBorder bg-diidsSurface px-[60px] py-4 max-lg:px-8 max-md:px-4">
+        <div class="flex w-full items-center justify-between border border-b border-l-0 border-r-0 border-t-0 border-diidsBorder bg-diidsSurface px-[60px] py-4 max-lg:px-8 max-md:px-4">
             <div class="flex items-center gap-x-14 max-[1180px]:gap-x-9">
                 {!! view_render_event('bagisto.shop.checkout.cart.logo.before') !!}
 

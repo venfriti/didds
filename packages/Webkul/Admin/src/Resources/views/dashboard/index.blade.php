@@ -5,12 +5,12 @@
 
     <!-- User Details Section -->
     <div class="flex items-center justify-between gap-4 mb-5 max-sm:flex-wrap">
-        <div class="grid gap-1.5">
-            <p class="text-xl font-bold !leading-normal text-diidsInk dark:text-white" v-pre>
+        <div class="grid gap-1">
+            <p class="diids-dash-title" v-pre>
                 @lang('admin::app.dashboard.index.user-name', ['user_name' => auth()->guard('admin')->user()->name])
             </p>
 
-            <p class="!leading-normal text-diidsInk/70 dark:text-gray-300">
+            <p class="diids-dash-sub">
                 @lang('admin::app.dashboard.index.user-info')
             </p>
         </div>
@@ -34,7 +34,7 @@
 
             <!-- Overall Details -->
             <div class="flex flex-col gap-2">
-                <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
+                <p class="diids-dash-section-label">
                     @lang('admin::app.dashboard.index.overall-details')
                 </p>
 
@@ -48,7 +48,7 @@
 
             <!-- Todays Details -->
             <div class="flex flex-col gap-2">
-                <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
+                <p class="diids-dash-section-label">
                     @lang('admin::app.dashboard.index.today-details')
                 </p>
 
@@ -62,7 +62,7 @@
 
             <!-- Stock Threshold -->
             <div class="flex flex-col gap-2">
-                <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
+                <p class="diids-dash-section-label">
                     @lang('admin::app.dashboard.index.stock-threshold')
                 </p>
 
@@ -76,7 +76,7 @@
         <!-- Right Section -->
         <div class="flex w-[360px] max-w-full flex-col gap-2 max-sm:w-full">
             <!-- First Component -->
-            <p class="text-base font-semibold text-diidsInk/70 dark:text-gray-300">
+            <p class="diids-dash-section-label">
                 @lang('admin::app.dashboard.index.store-stats')
             </p>
 

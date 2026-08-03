@@ -16,11 +16,11 @@
 
         <!-- Total Sales Section -->
         <template v-else>
-            <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900">
+            <div class="box-shadow rounded bg-white p-4 dark:bg-gray-900 diids-stat-grid diids-stat-grid--5">
                 <div class="flex flex-wrap gap-4">
                     <!-- Total Sales -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/total-sales.svg')}}"
                                 title="@lang('admin::app.dashboard.index.total-sales')"
@@ -55,8 +55,8 @@
                     </div>
 
                     <!-- Total Orders -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/total-orders.svg')}}"
                                 title="@lang('admin::app.dashboard.index.total-orders')"
@@ -91,8 +91,8 @@
                     </div>
 
                     <!-- Total Customers -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/customers.svg')}}"
                                 title="@lang('admin::app.dashboard.index.total-customers')"
@@ -127,8 +127,8 @@
                     </div>
 
                     <!-- Average sales -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/average-orders.svg')}}"
                                 title="@lang('admin::app.dashboard.index.average-sale')"
@@ -164,8 +164,8 @@
                     </div>
 
                     <!-- Unpaid Invoices -->
-                    <div class="flex min-w-[200px] flex-1 gap-2.5">
-                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert">
+                    <div class="flex min-w-[200px] flex-1 gap-2.5 diids-stat-card">
+                        <div class="h-[60px] max-h-[60px] w-full max-w-[60px] dark:mix-blend-exclusion dark:invert diids-stat-card__icon">
                             <img
                                 src="{{ bagisto_asset('images/unpaid-invoices.svg')}}"
                                 title="@lang('admin::app.dashboard.index.total-unpaid-invoices')"

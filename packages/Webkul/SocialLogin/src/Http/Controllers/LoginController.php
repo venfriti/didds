@@ -49,6 +49,10 @@ class LoginController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
+            report($e);
+
+            session()->flash('error', trans('shop::app.customers.login-form.social-login-failed', ['provider' => ucfirst($provider)]));
+
             return redirect()->route('shop.customer.session.index');
         }
 

@@ -21,7 +21,7 @@
     "isDynamicEntry": true
   },
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-4Qoi2568.css",
+    "file": "assets/app-CQsE06oZ.css",
     "src": "src/Resources/assets/css/app.css",
     "isEntry": true
   },
@@ -136,6 +136,10 @@
   "src/Resources/assets/images/paypal.png": {
     "file": "assets/paypal-CIu1GKlz.png",
     "src": "src/Resources/assets/images/paypal.png"
+  },
+  "src/Resources/assets/images/paystack.png": {
+    "file": "assets/paystack-yyny4PdQ.png",
+    "src": "src/Resources/assets/images/paystack.png"
   },
   "src/Resources/assets/images/payu.png": {
     "file": "assets/payu-Lrh50Ekl.png",

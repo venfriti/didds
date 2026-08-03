@@ -107,7 +107,7 @@
 
                 {!! view_render_event('bagisto.shop.components.products.card.name.before') !!}
 
-                <p class="break-words text-sm font-semibold uppercase tracking-wide max-md:mb-1 max-md:max-w-56 max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-[192px] max-sm:text-xs max-sm:leading-4">
+                <p class="line-clamp-2 min-h-[2.5em] break-words text-sm font-semibold uppercase leading-tight tracking-wide max-md:mb-1 max-md:max-w-56 max-md:min-h-[2.75em] max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-[192px] max-sm:min-h-[2rem] max-sm:text-xs max-sm:leading-4">
                     @{{ product.name }}
                 </p>
 

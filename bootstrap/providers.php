@@ -27,6 +27,7 @@ use Webkul\Notification\Providers\NotificationServiceProvider;
 use Webkul\Payment\Providers\PaymentServiceProvider;
 use Webkul\Paypal\Providers\PaypalServiceProvider;
 use Webkul\PayU\Providers\PayUServiceProvider;
+use Webkul\Paystack\Providers\PaystackServiceProvider;
 use Webkul\PhonePe\Providers\PhonePeServiceProvider;
 use Webkul\Product\Providers\ProductServiceProvider;
 use Webkul\Razorpay\Providers\RazorpayServiceProvider;
@@ -78,6 +79,7 @@ return [
     PayUServiceProvider::class,
     PaymentServiceProvider::class,
     PaypalServiceProvider::class,
+    PaystackServiceProvider::class,
     PhonePeServiceProvider::class,
     ProductServiceProvider::class,
     RMAServiceProvider::class,

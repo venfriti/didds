@@ -8,18 +8,7 @@
 	<div class="flex h-[100vh] items-center justify-center bg-white dark:bg-gray-900">
         <div class="flex max-w-[745px] items-center gap-5">
             <div class="w-full">
-                @php
-                    $logoUrl = core()->getConfigData('general.design.admin_logo.logo_image') 
-                                ? Storage::url(core()->getConfigData('general.design.admin_logo.logo_image')) 
-                                : bagisto_asset('images/logo.svg');
-                @endphp
-
-                <img
-                    class="mb-6 h-10"
-                    src="{{ $logoUrl }}"
-                    id="logo-image"
-                    alt="{{ config('app.name') }}"
-                />
+                <p class="diids-admin-header-logo mb-6">DIIDS</p>
 
 				<div class="text-[38px] font-bold text-diidsInk dark:text-white">
                     {{ $errorCode }}

@@ -89,10 +89,24 @@
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.currency_switcher.after') !!}
 
-            {{-- Brand line (replaces the old promo). --}}
-            <p class="diids-topbar__tagline" v-pre>
-                Underwear, engineered for everyday confidence.
-            </p>
+            @if ($headerOfferTitle = core()->getConfigData('general.content.header_offer.title'))
+                <p
+                    class="py-3 text-xs font-medium"
+                    v-pre
+                >
+                    {{ $headerOfferTitle }}
+
+                    @if ($headerOfferLink = core()->getConfigData('general.content.header_offer.redirection_link'))
+                        <a
+                            href="{{ $headerOfferLink }}"
+                            class="underline"
+                            role="button"
+                        >
+                            {{ core()->getConfigData('general.content.header_offer.redirection_title') }}
+                        </a>
+                    @endif
+                </p>
+            @endif
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.locale_switcher.before') !!}
 
