@@ -748,8 +748,14 @@ h1, h2, h3, .font-dmserif {
 .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl {
     border-radius: 2px !important;
 }
-.rounded-full:not(.diids-admin-avatar):not(.diids-admin-badge) {
+.rounded-full:not(.diids-admin-avatar):not(.diids-admin-badge):not(.diids-admin-toggle) {
     border-radius: 2px !important;
+}
+/* Toggle switches stay pill-shaped (track + knob) — a square toggle reads
+   as broken, not "on brand". */
+.diids-admin-toggle,
+.diids-admin-toggle::after {
+    border-radius: 9999px !important;
 }
 .box-shadow, [class*="shadow-"] {
     box-shadow: none !important;

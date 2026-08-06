@@ -27,11 +27,19 @@ class Bundle extends AbstractType
     /**
      * Get product minimal price.
      *
+     * A fixed price set directly on the bundle product wins outright (it
+     * doesn't vary by which variant is picked per option, so min/max/regular
+     * all collapse to the same figure) — see Type\Bundle::getFinalPrice().
+     *
      * @param  int  $qty
      * @return float
      */
     public function getMinimalPrice($qty = null)
     {
+        if ($this->product->has_fixed_price) {
+            return $this->product->price;
+        }
+
         $minPrice = 0;
 
         $haveRequiredOptions = $this->haveRequiredOptions();
@@ -68,6 +76,10 @@ class Bundle extends AbstractType
      */
     public function getRegularMinimalPrice()
     {
+        if ($this->product->has_fixed_price) {
+            return $this->product->price;
+        }
+
         $minPrice = 0;
 
         $haveRequiredOptions = $this->haveRequiredOptions();
@@ -107,6 +119,10 @@ class Bundle extends AbstractType
      */
     public function getMaximumPrice()
     {
+        if ($this->product->has_fixed_price) {
+            return $this->product->price;
+        }
+
         $optionPrices = [];
 
         foreach ($this->product->bundle_options as $option) {
@@ -152,6 +168,10 @@ class Bundle extends AbstractType
      */
     public function getRegularMaximumPrice()
     {
+        if ($this->product->has_fixed_price) {
+            return $this->product->price;
+        }
+
         $optionPrices = [];
 
         foreach ($this->product->bundle_options as $option) {

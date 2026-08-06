@@ -111,60 +111,65 @@
                         </div>
 
                         @auth('customer')
-                            @if ($savedCards = auth()->guard('customer')->user()->payment_methods)
-                                @if (! $savedCards->isEmpty())
-                                    <div
-                                        class="mt-5 grid gap-2.5"
-                                        v-if="selectedPaymentMethod == 'paystack'"
-                                    >
-                                        <p class="text-xs font-semibold uppercase tracking-wide text-diidsInk/60">
-                                            @lang('shop::app.checkout.onepage.payment.saved-cards')
-                                        </p>
+                            @php
+                                $savedCards = auth()->guard('customer')->user()->payment_methods;
+                            @endphp
 
-                                        @foreach ($savedCards as $savedCard)
-                                            <label class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-diidsBorder p-3 has-[:checked]:border-navyBlue">
-                                                <input
-                                                    type="radio"
-                                                    name="paystack_saved_card"
-                                                    value="{{ $savedCard->id }}"
-                                                    @change="selectSavedCard({{ $savedCard->id }})"
-                                                >
+                            <div
+                                class="mt-5 grid gap-2.5"
+                                v-if="selectedPaymentMethod == 'paystack'"
+                            >
+                                @if ($savedCards && ! $savedCards->isEmpty())
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-diidsInk/60">
+                                        @lang('shop::app.checkout.onepage.payment.saved-cards')
+                                    </p>
 
-                                                <span class="text-sm">
-                                                    {{ $savedCard->card_type ? ucfirst($savedCard->card_type) : 'Card' }}
-                                                    &bull;&bull;&bull;&bull; {{ $savedCard->last4 }}
-                                                    ({{ str_pad($savedCard->exp_month, 2, '0', STR_PAD_LEFT) }}/{{ $savedCard->exp_year }})
-                                                </span>
-                                            </label>
-                                        @endforeach
-
+                                    @foreach ($savedCards as $savedCard)
                                         <label class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-diidsBorder p-3 has-[:checked]:border-navyBlue">
                                             <input
                                                 type="radio"
                                                 name="paystack_saved_card"
-                                                value=""
-                                                checked
-                                                @change="selectSavedCard(null)"
+                                                value="{{ $savedCard->id }}"
+                                                @change="selectSavedCard({{ $savedCard->id }})"
                                             >
 
                                             <span class="text-sm">
-                                                @lang('shop::app.checkout.onepage.payment.use-new-card')
+                                                {{ $savedCard->card_type ? ucfirst($savedCard->card_type) : 'Card' }}
+                                                &bull;&bull;&bull;&bull; {{ $savedCard->last4 }}
+                                                ({{ str_pad($savedCard->exp_month, 2, '0', STR_PAD_LEFT) }}/{{ $savedCard->exp_year }})
                                             </span>
                                         </label>
+                                    @endforeach
 
-                                        <label class="mt-1.5 flex cursor-pointer items-center gap-2">
-                                            <input
-                                                type="checkbox"
-                                                v-model="saveCard"
-                                            >
+                                    <label class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-diidsBorder p-3 has-[:checked]:border-navyBlue">
+                                        <input
+                                            type="radio"
+                                            name="paystack_saved_card"
+                                            value=""
+                                            checked
+                                            @change="selectSavedCard(null)"
+                                        >
 
-                                            <span class="text-xs text-diidsInk/70">
-                                                @lang('shop::app.checkout.onepage.payment.save-card')
-                                            </span>
-                                        </label>
-                                    </div>
+                                        <span class="text-sm">
+                                            @lang('shop::app.checkout.onepage.payment.use-new-card')
+                                        </span>
+                                    </label>
                                 @endif
-                            @endif
+
+                                {{-- Shown to every logged-in customer, not just
+                                     ones who already have a saved card — this is
+                                     how the first card ever gets saved. --}}
+                                <label class="mt-1.5 flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        v-model="saveCard"
+                                    >
+
+                                    <span class="text-xs text-diidsInk/70">
+                                        @lang('shop::app.checkout.onepage.payment.save-card')
+                                    </span>
+                                </label>
+                            </div>
                         @endauth
                     </x-slot>
                 </x-shop::accordion>

@@ -1959,3 +1959,116 @@ body {
   .diids-fx-reveal { opacity: 1 !important; transform: none !important; }
   .diids-fx-parallax { transform: none !important; }
 }
+
+/* ---------------------------------------------------------------------
+   Product description — structured PDP copy (intro, features, policy,
+   fabric). Rendered from HTML stored on the product's description
+   attribute, so this owns the full look rather than relying on browser
+   defaults for h3/ul/p.
+--------------------------------------------------------------------- */
+.diids-product-description { color: var(--diids-ink); }
+
+.diids-product-description__intro {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--diids-ink);
+  max-width: 100%;
+}
+
+.diids-product-description__section {
+  margin-top: 2.75rem;
+  padding-top: 2.75rem;
+  border-top: 1px solid var(--diids-border);
+}
+.diids-product-description__section:first-of-type {
+  margin-top: 2.5rem;
+}
+
+.diids-product-description__heading {
+  font-family: var(--diids-font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--diids-ink);
+  margin-bottom: 1.1rem;
+}
+
+.diids-product-description__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.diids-product-description__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--diids-ink);
+}
+.diids-product-description__features li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.5em;
+  background: var(--diids-ink);
+  border-radius: 50%;
+}
+
+.diids-product-description__body {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--diids-muted);
+  max-width: 100%;
+}
+.diids-product-description__body strong {
+  color: var(--diids-ink);
+  font-weight: 600;
+}
+
+.diids-product-description__care {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.diids-product-description__care li {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--diids-muted);
+  border: 1px solid var(--diids-border);
+  padding: 0.4rem 0.75rem;
+  white-space: nowrap;
+}
+
+.diids-product-description__fabric {
+  border: 1px solid var(--diids-border);
+  padding: 1.25rem 1.5rem;
+}
+.diids-product-description__fabric-stat {
+  font-family: var(--diids-font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: var(--diids-ink);
+  margin-bottom: 0.4rem;
+}
+.diids-product-description__fabric-note {
+  font-size: 0.88rem;
+  color: var(--diids-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .diids-product-description__features {
+    grid-template-columns: 1fr;
+  }
+}

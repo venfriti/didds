@@ -87,9 +87,9 @@
                     :is-selected="true"
                 >
                     <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg text-diidsInk/60 max-1180:text-sm">
+                        <div class="diids-product-description text-lg text-diidsInk/60 max-1180:text-sm">
                             {!! $product->description !!}
-                        </p>
+                        </div>
                     </div>
                 </x-shop::tabs.item>
 

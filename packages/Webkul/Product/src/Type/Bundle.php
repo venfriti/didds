@@ -28,7 +28,6 @@ class Bundle extends AbstractType
      * @var array
      */
     protected $skipAttributes = [
-        'price',
         'cost',
         'special_price',
         'special_price_from',
@@ -163,12 +162,37 @@ class Bundle extends AbstractType
     /**
      * Get product minimal price.
      *
+     * A bundle may opt into a fixed price via the `has_fixed_price` toggle
+     * (e.g. a discounted set price that doesn't move with whichever variant
+     * the customer picks per option) — see hasFixedPrice(). Bundles that
+     * don't opt in keep Bagisto's stock behavior of pricing at 0 here (the
+     * real total is then built up option-by-option in
+     * prepareForCart()/the price indexer, as before). Plain "price" is not
+     * used as the trigger on its own: Bagisto product fixtures/history can
+     * leave a stray nonzero price on bundle products that was never meant
+     * to be charged.
+     *
      * @param  int  $qty
      * @return float
      */
     public function getFinalPrice($qty = null)
     {
+        if ($this->hasFixedPrice()) {
+            return round($this->product->price, 2);
+        }
+
         return round(0, 2);
+    }
+
+    /**
+     * Whether this bundle should charge its own `price` attribute outright
+     * instead of summing the selected option products' prices.
+     *
+     * @return bool
+     */
+    public function hasFixedPrice(): bool
+    {
+        return (bool) $this->product->has_fixed_price;
     }
 
     /**
@@ -250,6 +274,14 @@ class Bundle extends AbstractType
             return $products;
         }
 
+        // A bundle with its own fixed price already has that price seeded
+        // into $products[0] via getFinalPrice() above — the per-option
+        // child totals must NOT be added on top of it, or the customer
+        // would be charged the fixed price plus every selected variant's
+        // own price again. Stock (price-less) bundles keep summing as
+        // before, since their parent price starts at 0.
+        $hasFixedPrice = $this->hasFixedPrice();
+
         foreach ($this->getCartChildProducts($data) as $productId => $data) {
             $product = $this->productRepository->find($productId);
 
@@ -278,20 +310,28 @@ class Bundle extends AbstractType
 
             $products = array_merge($products, $cartProduct);
 
-            $products[0]['price'] += $cartProduct[0]['total'];
-            $products[0]['price_incl_tax'] += $cartProduct[0]['total'];
-            $products[0]['base_price'] += $cartProduct[0]['base_total'];
-            $products[0]['base_price_incl_tax'] += $cartProduct[0]['base_total'];
-            $products[0]['total'] += $cartProduct[0]['total'];
-            $products[0]['total_incl_tax'] += $cartProduct[0]['total'];
-            $products[0]['base_total'] += $cartProduct[0]['base_total'];
-            $products[0]['base_total_incl_tax'] += $cartProduct[0]['base_total'];
+            if (! $hasFixedPrice) {
+                $products[0]['price'] += $cartProduct[0]['total'];
+                $products[0]['price_incl_tax'] += $cartProduct[0]['total'];
+                $products[0]['base_price'] += $cartProduct[0]['base_total'];
+                $products[0]['base_price_incl_tax'] += $cartProduct[0]['base_total'];
+                $products[0]['total'] += $cartProduct[0]['total'];
+                $products[0]['total_incl_tax'] += $cartProduct[0]['total'];
+                $products[0]['base_total'] += $cartProduct[0]['base_total'];
+                $products[0]['base_total_incl_tax'] += $cartProduct[0]['base_total'];
+            }
+
             $products[0]['weight'] += $cartProduct[0]['total_weight'];
         }
 
         $products[0]['total_weight'] = $products[0]['base_total_weight'] = $products[0]['weight'] * $products[0]['quantity'];
 
-        $products[0]['total'] = $products[0]['base_total'] = $products[0]['base_total'] * $products[0]['quantity'];
+        if ($hasFixedPrice) {
+            $products[0]['total'] = $products[0]['base_total'] = $products[0]['price'] * $products[0]['quantity'];
+            $products[0]['total_incl_tax'] = $products[0]['base_total_incl_tax'] = $products[0]['price'] * $products[0]['quantity'];
+        } else {
+            $products[0]['total'] = $products[0]['base_total'] = $products[0]['base_total'] * $products[0]['quantity'];
+        }
 
         return $products;
     }
