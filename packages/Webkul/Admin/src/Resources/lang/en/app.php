@@ -4915,6 +4915,7 @@ return [
                         'package-width' => 'Default Package Width (cm)',
                         'page-title' => 'DHL Express',
                         'request-pickup' => 'Automatically Request Courier Pickup (may incur DHL pickup fees)',
+                        'sandbox-mode' => 'Sandbox Mode (use DHL test environment, no real shipments/charges)',
                         'status' => 'Status',
                         'title' => 'Title',
                         'title-info' => 'DHL Express fetches live shipping rates from DHL\'s MyDHL API based on the destination address and cart weight. Requires a DHL Express developer account with API Key, API Secret, and Account Number from developer.dhl.com.',

@@ -18,11 +18,12 @@ use Webkul\Sales\Models\Shipment;
 class DhlShipmentService
 {
     /**
-     * MyDHL API shipments endpoint.
+     * MyDHL API version. Required on every request via the x-version
+     * header.
      *
      * @var string
      */
-    protected $apiUrl = 'https://express.api.dhl.com/mydhlapi/shipments';
+    protected $apiVersion = '3.3.1';
 
     /**
      * Creates a DHL shipment for the given order shipment and returns the
@@ -53,8 +54,9 @@ class DhlShipmentService
                 core()->getConfigData('sales.carriers.dhl.api_key'),
                 core()->getConfigData('sales.carriers.dhl.api_secret')
             )
+                ->withHeaders(['x-version' => $this->apiVersion])
                 ->timeout(20)
-                ->post($this->apiUrl, $payload);
+                ->post($this->getBaseUrl().'/shipments', $payload);
 
             if (! $response->successful()) {
                 Log::error('DHL shipment creation failed', [
@@ -114,6 +116,17 @@ class DhlShipmentService
     }
 
     /**
+     * MyDHL API base URL - sandbox and production use different paths
+     * under the same host.
+     */
+    protected function getBaseUrl(): string
+    {
+        return core()->getConfigData('sales.carriers.dhl.sandbox_mode')
+            ? 'https://express.api.dhl.com/mydhlapi/test'
+            : 'https://express.api.dhl.com/mydhlapi';
+    }
+
+    /**
      * Builds the MyDHL API shipment creation payload.
      */
     protected function buildPayload(Shipment $shipment, $order, $shippingAddress): array
@@ -145,6 +158,7 @@ class DhlShipmentService
                         'phone' => core()->getConfigData('sales.carriers.dhl.origin_phone'),
                         'email' => core()->getConfigData('sales.carriers.dhl.origin_email'),
                     ],
+                    'typeCode' => 'business',
                 ],
                 'receiverDetails' => [
                     'postalAddress' => [
@@ -158,6 +172,7 @@ class DhlShipmentService
                         'phone' => $shippingAddress->phone ?: core()->getConfigData('sales.carriers.dhl.origin_phone'),
                         'email' => $order->customer_email,
                     ],
+                    'typeCode' => 'private',
                 ],
             ],
             'content' => [

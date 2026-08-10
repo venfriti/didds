@@ -1942,6 +1942,12 @@ return [
                 'channel_based' => true,
                 'locale_based' => true,
             ], [
+                'name' => 'sandbox_mode',
+                'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.sandbox-mode',
+                'type' => 'boolean',
+                'channel_based' => false,
+                'locale_based' => false,
+            ], [
                 'name' => 'api_key',
                 'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.api-key',
                 'type' => 'text',

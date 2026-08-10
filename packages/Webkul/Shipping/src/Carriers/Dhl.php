@@ -24,12 +24,13 @@ class Dhl extends AbstractShipping
     protected $method = 'dhl_dhl';
 
     /**
-     * MyDHL API base URL. Sandbox and production share the same host;
-     * the API key pair itself determines which environment is used.
+     * MyDHL API version. Required on every request via the x-version
+     * header; DHL's own spec pins this and does not expect it to change
+     * unless explicitly upgrading to a newer API revision.
      *
      * @var string
      */
-    protected $apiUrl = 'https://express.api.dhl.com/mydhlapi/rates';
+    protected $apiVersion = '3.3.1';
 
     /**
      * Calculate rate for DHL.
@@ -106,54 +107,48 @@ class Dhl extends AbstractShipping
         if (
             ! $shippingAddress
             || ! $shippingAddress->country
-            || ! $shippingAddress->postcode
+            || ! $shippingAddress->city
         ) {
             return null;
         }
 
         $weight = $this->getTotalWeight($cart);
 
-        $payload = [
-            'customerDetails' => [
-                'shipperDetails' => [
-                    'postalCode' => $this->getConfigData('origin_postal_code'),
-                    'cityName' => $this->getConfigData('origin_city'),
-                    'countryCode' => $this->getConfigData('origin_country_code'),
-                ],
-                'receiverDetails' => [
-                    'postalCode' => $shippingAddress->postcode,
-                    'cityName' => $shippingAddress->city,
-                    'countryCode' => $shippingAddress->country,
-                ],
-            ],
-            'accounts' => [
-                [
-                    'typeCode' => 'shipper',
-                    'number' => $this->getConfigData('account_number'),
-                ],
-            ],
-            'plannedShippingDateAndTime' => now()->addDay()->format('Y-m-d\TH:i:s \G\M\TP'),
+        // GET /rates takes flat query params, not a nested JSON body -
+        // this is a single-piece rate request per DHL's MyDHL API spec.
+        $query = [
+            'accountNumber' => $this->getConfigData('account_number'),
+            'originCountryCode' => $this->getConfigData('origin_country_code'),
+            'originCityName' => $this->getConfigData('origin_city'),
+            'destinationCountryCode' => $shippingAddress->country,
+            'destinationCityName' => $shippingAddress->city,
+            'weight' => $weight,
+            'weightUnit' => 'KGM',
+            'length' => (float) $this->getConfigData('package_length') ?: 20,
+            'width' => (float) $this->getConfigData('package_width') ?: 15,
+            'height' => (float) $this->getConfigData('package_height') ?: 10,
+            'dimensionsUnit' => 'CM',
+            'plannedShippingDate' => now()->addDay()->format('Y-m-d'),
+            'isCustomsDeclarable' => 'false',
             'unitOfMeasurement' => 'metric',
-            'isCustomsDeclarable' => false,
-            'packages' => [
-                [
-                    'weight' => $weight,
-                    'dimensions' => [
-                        'length' => (float) $this->getConfigData('package_length') ?: 20,
-                        'width' => (float) $this->getConfigData('package_width') ?: 15,
-                        'height' => (float) $this->getConfigData('package_height') ?: 10,
-                    ],
-                ],
-            ],
         ];
+
+        if ($this->getConfigData('origin_postal_code')) {
+            $query['originPostalCode'] = $this->getConfigData('origin_postal_code');
+        }
+
+        if ($shippingAddress->postcode) {
+            $query['destinationPostalCode'] = $shippingAddress->postcode;
+        }
 
         try {
             $response = Http::withBasicAuth(
                 $this->getConfigData('api_key'),
                 $this->getConfigData('api_secret')
             )
+                ->withHeaders(['x-version' => $this->apiVersion])
                 ->timeout(10)
-                ->get($this->apiUrl, $payload);
+                ->get($this->getBaseUrl().'/rates', $query);
 
             if (! $response->successful()) {
                 Log::warning('DHL rate lookup failed', [
@@ -182,6 +177,17 @@ class Dhl extends AbstractShipping
 
             return null;
         }
+    }
+
+    /**
+     * MyDHL API base URL - sandbox and production use different paths
+     * under the same host.
+     */
+    protected function getBaseUrl(): string
+    {
+        return $this->getConfigData('sandbox_mode')
+            ? 'https://express.api.dhl.com/mydhlapi/test'
+            : 'https://express.api.dhl.com/mydhlapi';
     }
 
     /**
