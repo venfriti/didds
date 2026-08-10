@@ -72,11 +72,13 @@ class PaystackController extends Controller
         try {
             $reference = (string) Str::uuid();
 
-            // Paystack is charged in Naira regardless of the storefront's
-            // selected display currency — base_grand_total is the cart
-            // total in the channel's base currency (NGN for this store),
-            // not grand_total, which fluctuates with the currency switcher.
-            $amountInSubunit = (int) round($cart->base_grand_total * 100);
+            // Paystack is always charged in USD regardless of the
+            // storefront's selected display currency — base_grand_total is
+            // the cart total in the channel's base currency (NGN for this
+            // store), converted to USD via the stored exchange rate rather
+            // than using grand_total, which fluctuates with whatever
+            // currency the customer happens to be browsing in.
+            $amountInSubunit = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
 
             $email = $cart->customer_email ?: $cart->billing_address?->email;
 
@@ -84,7 +86,7 @@ class PaystackController extends Controller
                 ->post("{$this->apiUrl}/transaction/initialize", [
                     'email' => $email,
                     'amount' => $amountInSubunit,
-                    'currency' => 'NGN',
+                    'currency' => 'USD',
                     'reference' => $reference,
                     'callback_url' => route('paystack.payment.callback'),
                     'metadata' => [
@@ -160,7 +162,7 @@ class PaystackController extends Controller
                 return redirect()->route('shop.checkout.cart.index');
             }
 
-            $expectedAmount = (int) round($cart->base_grand_total * 100);
+            $expectedAmount = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
 
             if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
                 session()->flash('error', trans('paystack::app.response.amount-mismatch'));
@@ -320,8 +322,8 @@ class PaystackController extends Controller
                 ->post("{$this->apiUrl}/transaction/charge_authorization", [
                     'authorization_code' => $savedCard->authorization_code,
                     'email' => $email,
-                    'amount' => (int) round($cart->base_grand_total * 100),
-                    'currency' => 'NGN',
+                    'amount' => (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100),
+                    'currency' => 'USD',
                     'reference' => $reference,
                 ]);
 
