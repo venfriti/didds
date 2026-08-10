@@ -4895,6 +4895,25 @@ return [
                             'title' => 'Type',
                         ],
                     ],
+
+                    'dhl' => [
+                        'account-number' => 'DHL Account Number',
+                        'api-key' => 'API Key',
+                        'api-secret' => 'API Secret',
+                        'default-item-weight' => 'Default Item Weight (kg)',
+                        'description' => 'Description',
+                        'fallback-rate' => 'Fallback Rate (used if live DHL rate lookup fails)',
+                        'origin-city' => 'Origin City',
+                        'origin-country-code' => 'Origin Country Code (2-letter, e.g. NG)',
+                        'origin-postal-code' => 'Origin Postal Code',
+                        'package-height' => 'Default Package Height (cm)',
+                        'package-length' => 'Default Package Length (cm)',
+                        'package-width' => 'Default Package Width (cm)',
+                        'page-title' => 'DHL Express',
+                        'status' => 'Status',
+                        'title' => 'Title',
+                        'title-info' => 'DHL Express fetches live shipping rates from DHL\'s MyDHL API based on the destination address and cart weight. Requires a DHL Express developer account with API Key, API Secret, and Account Number from developer.dhl.com.',
+                    ],
                 ],
 
                 'payment-methods' => [
