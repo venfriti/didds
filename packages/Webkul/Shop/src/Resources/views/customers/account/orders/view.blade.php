@@ -1470,9 +1470,20 @@
                                             @lang('shop::app.customers.account.orders.view.shipments.tracking-number')
                                         </label>
 
-                                        <span>
-                                            {{  $shipment->track_number }}
-                                        </span>
+                                        @if ($shipment->track_number && $shipment->carrier_title === 'DHL Express')
+                                            <a
+                                                href="https://www.dhl.com/en/express/tracking.html?AWB={{ $shipment->track_number }}"
+                                                target="_blank"
+                                                rel="noopener"
+                                                class="text-blue-600 underline"
+                                            >
+                                                {{  $shipment->track_number }}
+                                            </a>
+                                        @else
+                                            <span>
+                                                {{  $shipment->track_number }}
+                                            </span>
+                                        @endif
                                     </div>
 
                                     <div class="text-base font-medium">
@@ -1539,9 +1550,20 @@
                                             <div class="flex justify-between">
                                                 @lang('shop::app.customers.account.orders.view.shipments.tracking-number'):
 
-                                                <span>
-                                                    {{  $shipment->track_number }}
-                                                </span>
+                                                @if ($shipment->track_number && $shipment->carrier_title === 'DHL Express')
+                                                    <a
+                                                        href="https://www.dhl.com/en/express/tracking.html?AWB={{ $shipment->track_number }}"
+                                                        target="_blank"
+                                                        rel="noopener"
+                                                        class="text-blue-600 underline"
+                                                    >
+                                                        {{  $shipment->track_number }}
+                                                    </a>
+                                                @else
+                                                    <span>
+                                                        {{  $shipment->track_number }}
+                                                    </span>
+                                                @endif
                                             </div>
 
                                             @lang('shop::app.customers.account.orders.view.shipments.individual-shipment', ['shipment_id' => $shipment->id])

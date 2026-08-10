@@ -312,7 +312,18 @@
                                 class="pt-4 font-semibold text-diidsInk dark:text-white"
                                 v-pre
                             >
-                                {{ $shipment->track_number }}
+                                @if ($shipment->carrier_title === 'DHL Express')
+                                    <a
+                                        href="https://www.dhl.com/en/express/tracking.html?AWB={{ $shipment->track_number }}"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="text-blue-600 underline"
+                                    >
+                                        {{ $shipment->track_number }}
+                                    </a>
+                                @else
+                                    {{ $shipment->track_number }}
+                                @endif
                             </p>
 
                             <p class="text-diidsInk/70 dark:text-gray-300">
