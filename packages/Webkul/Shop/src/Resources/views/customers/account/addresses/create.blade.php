@@ -278,11 +278,10 @@
                             address can't later turn out to be unshippable.
                         -->
                         <ul
-                            class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded border border-zinc-200 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                            class="diids-city-suggestions"
                             v-if="showCitySuggestions && citySuggestions.length"
                         >
                             <li
-                                class="cursor-pointer px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-gray-800"
                                 v-for="suggestion in citySuggestions"
                                 :key="suggestion.city"
                                 @mousedown.prevent="selectCity(suggestion)"
@@ -395,6 +394,8 @@
 
                         cityQuery: "{{ old('city') }}",
 
+                        cityConfirmed: !! "{{ old('city') }}",
+
                         citySuggestions: [],
 
                         showCitySuggestions: false,
@@ -419,6 +420,8 @@
                         this.citySuggestions = [];
 
                         this.cityNotFound = false;
+
+                        this.cityConfirmed = false;
                     },
                 },
 
@@ -434,6 +437,8 @@
 
                     onCityInput() {
                         this.cityNotFound = false;
+
+                        this.cityConfirmed = false;
 
                         this.showCitySuggestions = true;
 
@@ -480,6 +485,38 @@
                         this.showCitySuggestions = false;
 
                         this.cityNotFound = false;
+
+                        this.cityConfirmed = true;
+                    },
+
+                    /**
+                     * Browser autofill sets the field without firing input
+                     * events, so verify on blur rather than trusting it.
+                     */
+                    verifyTypedCity() {
+                        const value = this.cityQuery.trim();
+
+                        if (this.cityConfirmed || ! value || ! this.country) {
+                            return;
+                        }
+
+                        this.$axios.get("{{ route('shop.api.core.cities') }}", {
+                                params: { query: value, country: this.country },
+                            })
+                            .then(response => {
+                                const match = (response.data.data || []).find(
+                                    item => item.city.toLowerCase() === value.toLowerCase()
+                                );
+
+                                if (match) {
+                                    this.cityQuery = match.city;
+                                    this.cityConfirmed = true;
+                                    this.cityNotFound = false;
+                                } else {
+                                    this.cityNotFound = true;
+                                }
+                            })
+                            .catch(() => { this.cityNotFound = true; });
                     },
 
                     onCityFocus() {
@@ -491,6 +528,8 @@
                     onCityBlur() {
                         setTimeout(() => {
                             this.showCitySuggestions = false;
+
+                            this.verifyTypedCity();
                         }, 150);
                     },
                 }

@@ -247,13 +247,16 @@
                         Cities are restricted to those the carrier actually
                         delivers to, so a customer can't save an address that
                         would later leave them with no shipping option.
+
+                        Positioned below the input (the label above it is part
+                        of the same relative container, so a plain top-full
+                        would overlap the field).
                     -->
                     <ul
-                        class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded border border-zinc-200 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                        class="diids-city-suggestions"
                         v-if="showCitySuggestions && citySuggestions.length"
                     >
                         <li
-                            class="cursor-pointer px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-gray-800"
                             v-for="suggestion in citySuggestions"
                             :key="suggestion.city"
                             @mousedown.prevent="selectCity(suggestion)"
@@ -363,6 +366,14 @@
 
                     cityQuery: this.address.city ?? '',
 
+                    /**
+                     * True only once the value has been matched against the
+                     * carrier's list, either by picking a suggestion or by
+                     * verifying a typed/autofilled one. An address loaded from
+                     * the customer's address book was validated when saved.
+                     */
+                    cityConfirmed: !! (this.address.city ?? ''),
+
                     citySuggestions: [],
 
                     showCitySuggestions: false,
@@ -393,6 +404,8 @@
                     this.citySuggestions = [];
 
                     this.cityNotFound = false;
+
+                    this.cityConfirmed = false;
                 },
             },
 
@@ -422,6 +435,13 @@
                 onCityInput() {
                     this.cityNotFound = false;
 
+                    /**
+                     * Any edit invalidates a previous selection - otherwise
+                     * picking a valid city and then typing over it would keep
+                     * the field marked as confirmed.
+                     */
+                    this.cityConfirmed = false;
+
                     this.showCitySuggestions = true;
 
                     clearTimeout(this.citySearchTimeout);
@@ -434,6 +454,45 @@
 
                     // Debounced so we aren't calling the carrier on every keystroke.
                     this.citySearchTimeout = setTimeout(() => this.searchCities(), 300);
+                },
+
+                /**
+                 * Browser autofill sets the field without firing input events,
+                 * so a pasted or autofilled city would otherwise never be
+                 * checked. Verifying on blur catches those, and confirms the
+                 * value against the carrier rather than trusting it.
+                 */
+                verifyTypedCity() {
+                    const value = this.cityQuery.trim();
+
+                    if (this.cityConfirmed || ! value || ! this.selectedCountry) {
+                        return;
+                    }
+
+                    this.$axios.get("{{ route('shop.api.core.cities') }}", {
+                            params: {
+                                query: value,
+                                country: this.selectedCountry,
+                            },
+                        })
+                        .then(response => {
+                            const match = (response.data.data || []).find(
+                                suggestion => suggestion.city.toLowerCase() === value.toLowerCase()
+                            );
+
+                            if (match) {
+                                this.cityQuery = match.city;
+
+                                this.cityConfirmed = true;
+
+                                this.cityNotFound = false;
+                            } else {
+                                this.cityNotFound = true;
+                            }
+                        })
+                        .catch(() => {
+                            this.cityNotFound = true;
+                        });
                 },
 
                 searchCities() {
@@ -468,6 +527,8 @@
                     this.showCitySuggestions = false;
 
                     this.cityNotFound = false;
+
+                    this.cityConfirmed = true;
                 },
 
                 onCityFocus() {
@@ -480,6 +541,8 @@
                     // Delay so a click on a suggestion registers first.
                     setTimeout(() => {
                         this.showCitySuggestions = false;
+
+                        this.verifyTypedCity();
                     }, 150);
                 },
             }

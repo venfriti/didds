@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Core\Rules\PostCode;
 use Webkul\Customer\Rules\VatIdRule;
+use Webkul\Shipping\Rules\ServiceableCity;
 
 class CartAddressRequest extends FormRequest
 {
@@ -61,6 +62,23 @@ class CartAddressRequest extends FormRequest
         if ($addressType == 'billing') {
             $this->mergeWithRules([
                 "{$addressType}.vat_id" => [(new VatIdRule)->setCountry($this->input('billing.country'))],
+            ]);
+        }
+
+        /**
+         * Only the shipping address is handed to the carrier, so only it has
+         * to name a city the carrier serves. When billing doubles as the
+         * shipping address it is validated in its place.
+         */
+        $isShippingAddress = $addressType === 'shipping'
+            || ($addressType === 'billing' && $this->input('billing.use_for_shipping'));
+
+        if ($isShippingAddress) {
+            $this->mergeWithRules([
+                "{$addressType}.city" => [
+                    'required',
+                    (new ServiceableCity)->setCountry($this->input("{$addressType}.country")),
+                ],
             ]);
         }
     }

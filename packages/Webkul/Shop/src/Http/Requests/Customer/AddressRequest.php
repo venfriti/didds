@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Core\Rules\PostCode;
 use Webkul\Customer\Rules\VatIdRule;
+use Webkul\Shipping\Rules\ServiceableCity;
 
 class AddressRequest extends FormRequest
 {
@@ -33,7 +34,7 @@ class AddressRequest extends FormRequest
             'address' => ['required', 'array', 'min:1'],
             'country' => core()->isCountryRequired() ? ['required'] : ['nullable'],
             'state' => core()->isStateRequired() ? ['required'] : ['nullable'],
-            'city' => ['required', 'string'],
+            'city' => ['required', 'string', (new ServiceableCity)->setCountry($this->input('country'))],
             'postcode' => core()->isPostCodeRequired() ? ['required', new PostCode] : [new PostCode],
             'phone' => ['required', new PhoneNumber],
             'vat_id' => [(new VatIdRule)->setCountry($this->input('country'))],
