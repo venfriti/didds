@@ -141,6 +141,65 @@ class Dhl extends AbstractShipping
             $query['destinationPostalCode'] = $shippingAddress->postcode;
         }
 
+        /**
+         * DHL validates the destination city against its own gazetteer and
+         * rejects the whole request with "The destination location is
+         * invalid" when it doesn't recognise the name. Customers routinely
+         * enter a neighbourhood ("Okoko, Ojo") rather than the city DHL
+         * knows ("Lagos"), so the lookup is retried against progressively
+         * broader place names before giving up.
+         */
+        foreach ($this->destinationCityCandidates($shippingAddress) as $cityName) {
+            $query['destinationCityName'] = $cityName;
+
+            $price = $this->requestRate($query);
+
+            if ($price !== null) {
+                return $price;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Destination names to try against DHL, most specific first. Falls back
+     * to the state, which for Nigerian addresses is normally the city DHL
+     * actually serves.
+     */
+    protected function destinationCityCandidates($shippingAddress): array
+    {
+        $candidates = [];
+
+        $city = trim((string) $shippingAddress->city);
+
+        if ($city !== '') {
+            $candidates[] = $city;
+
+            /**
+             * "Okoko, Ojo" and "Ikeja GRA" style entries: try the leading
+             * segment on its own before widening to the state.
+             */
+            if (str_contains($city, ',')) {
+                $candidates[] = trim(explode(',', $city)[0]);
+            }
+        }
+
+        $state = trim((string) $shippingAddress->state);
+
+        if ($state !== '') {
+            $candidates[] = $state;
+        }
+
+        return array_values(array_unique(array_filter($candidates)));
+    }
+
+    /**
+     * Performs a single rates lookup and returns the cheapest usable price
+     * in the store's base currency, or null when DHL can't quote this lane.
+     */
+    protected function requestRate(array $query): ?float
+    {
         try {
             $response = Http::withBasicAuth(
                 $this->getConfigData('api_key'),
@@ -151,8 +210,15 @@ class Dhl extends AbstractShipping
                 ->get($this->getBaseUrl().'/rates', $query);
 
             if (! $response->successful()) {
-                Log::warning('DHL rate lookup failed', [
+                /**
+                 * A rejected destination name is an expected outcome here -
+                 * the caller retries with a broader one - so it's logged at
+                 * debug rather than warning to avoid filling the log on
+                 * every checkout.
+                 */
+                Log::debug('DHL rate lookup failed', [
                     'status' => $response->status(),
+                    'city' => $query['destinationCityName'] ?? null,
                     'body' => $response->body(),
                 ]);
 

@@ -190,6 +190,24 @@ class DhlShipmentService
     }
 
     /**
+     * The city name DHL will accept for delivery. Shipment creation is a
+     * single non-repeatable call that mints a real waybill, so unlike the
+     * rates lookup it can't retry through candidates - it sends the state
+     * (the wider, DHL-recognised locality) when one is set, keeping the
+     * customer's own city wording on the address lines.
+     */
+    protected function resolveDeliveryCity($shippingAddress): string
+    {
+        $state = trim((string) $shippingAddress->state);
+
+        if ($state !== '') {
+            return mb_substr($state, 0, 45);
+        }
+
+        return mb_substr(trim((string) $shippingAddress->city), 0, 45);
+    }
+
+    /**
      * MyDHL API enforces a 45 character limit on each address line and
      * rejects the whole request if it's exceeded, so long street addresses
      * have to be trimmed rather than passed through verbatim.
@@ -271,14 +289,23 @@ class DhlShipmentService
                     'typeCode' => 'business',
                 ],
                 'receiverDetails' => [
-                    'postalAddress' => [
+                    'postalAddress' => array_filter([
                         'postalCode' => $shippingAddress->postcode,
-                        'cityName' => $shippingAddress->city,
+                        /**
+                         * DHL validates cityName against its own gazetteer
+                         * and rejects unrecognised neighbourhood names like
+                         * "Okoko, Ojo", so the broader state is sent when
+                         * one is available. The customer's own wording is
+                         * preserved on the address lines below, which is
+                         * what the courier actually delivers against.
+                         */
+                        'cityName' => $this->resolveDeliveryCity($shippingAddress),
                         'countryCode' => $shippingAddress->country,
                         'addressLine1' => $this->truncateAddressLine(
                             $shippingAddress->address1 ? implode(' ', (array) $shippingAddress->address1) : $shippingAddress->city
                         ),
-                    ],
+                        'addressLine2' => $this->truncateAddressLine($shippingAddress->city),
+                    ], fn ($value) => ! in_array($value, [null, ''], true)),
                     'contactInformation' => [
                         /**
                          * MyDHL API requires companyName on both parties. Most
@@ -496,7 +523,7 @@ class DhlShipmentService
              * placeOfIncoterm is the destination city under DAP terms, not
              * the origin - DHL's own samples use the receiving city here.
              */
-            'placeOfIncoterm' => mb_substr((string) $shippingAddress->city, 0, 45),
+            'placeOfIncoterm' => $this->resolveDeliveryCity($shippingAddress),
         ];
     }
 
