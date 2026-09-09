@@ -875,6 +875,36 @@
                                     <p class="text-diidsInk/70 dark:text-gray-300">
                                         {{ core()->formatDate($shipment->created_at, 'd M, Y H:i:s a') }}
                                     </p>
+
+                                    <!--
+                                        Carrier and tracking shown inline so the
+                                        order screen answers "where is this
+                                        parcel" without opening each shipment.
+                                    -->
+                                    @if ($shipment->carrier_title)
+                                        <p class="mt-1 text-diidsInk/70 dark:text-gray-300">
+                                            {{ $shipment->carrier_title }}
+                                        </p>
+                                    @endif
+
+                                    @if ($shipment->track_number)
+                                        <p class="mt-1 text-diidsInk/70 dark:text-gray-300">
+                                            @lang('admin::app.sales.shipments.view.tracking-number'):
+
+                                            @if ($shipment->carrier_title === 'DHL Express')
+                                                <a
+                                                    href="https://www.dhl.com/en/express/tracking.html?AWB={{ $shipment->track_number }}"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    class="text-navyBlue transition-all hover:underline"
+                                                >
+                                                    {{ $shipment->track_number }}
+                                                </a>
+                                            @else
+                                                {{ $shipment->track_number }}
+                                            @endif
+                                        </p>
+                                    @endif
                                 </div>
 
                                 <div class="flex gap-2.5">
