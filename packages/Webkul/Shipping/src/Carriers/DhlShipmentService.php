@@ -298,40 +298,95 @@ class DhlShipmentService
     /**
      * The city name DHL will accept for delivery. Shipment creation is a
      * single non-repeatable call that mints a real waybill, so unlike the
-     * rates lookup it can't retry through candidates - it sends the state
-     * (the wider, DHL-recognised locality) when one is set, keeping the
-     * customer's own city wording on the address lines.
+     * rates lookup it can't retry through candidates - the destination has
+     * to be settled before the call is made.
+     *
+     * The customer's own locality is always preferred: DHL's gazetteer
+     * carries small towns like OKPELLA, and widening to the state sends the
+     * parcel toward the wrong place entirely when the two don't line up.
+     * The state is only a last resort for a locality DHL doesn't know.
      */
     protected function resolveDeliveryCity($shippingAddress): string
     {
-        $city = trim((string) $shippingAddress->city);
+        $country = strtoupper(trim((string) $shippingAddress->country));
+
+        foreach ($this->deliveryCityCandidates($shippingAddress) as $candidate) {
+            if ($this->isServiceableCity($candidate, $country)) {
+                return mb_substr($candidate, 0, 45);
+            }
+        }
 
         /**
-         * Testing against the live API shows DHL is case-insensitive and
-         * accepts most plain place names ("abuja", "FCT", "Houghton
-         * Michigan" all resolve). The one shape it consistently rejects is
-         * a comma-separated neighbourhood such as "Okoko, Ojo", so only
-         * that case needs rewriting.
+         * Nothing matched the gazetteer - most likely the lookup itself is
+         * unavailable rather than every name being wrong. Send the
+         * customer's own locality, which is the accurate one; a rejected
+         * city surfaces as a shipment error we can act on, whereas a
+         * silently substituted state produces a valid waybill routed to the
+         * wrong region.
          */
-        if ($city !== '' && ! str_contains($city, ',')) {
-            return mb_substr($city, 0, 45);
+        $city = trim((string) $shippingAddress->city);
+
+        if ($city !== '') {
+            return mb_substr(str_contains($city, ',') ? trim(explode(',', $city)[0]) : $city, 0, 45);
+        }
+
+        return mb_substr(trim((string) $shippingAddress->state), 0, 45);
+    }
+
+    /**
+     * Destination names to try for a waybill, most precise first, so the
+     * parcel is addressed to where the customer actually is.
+     *
+     * @return array<int, string>
+     */
+    protected function deliveryCityCandidates($shippingAddress): array
+    {
+        $candidates = [];
+
+        $city = trim((string) $shippingAddress->city);
+
+        if ($city !== '') {
+            $candidates[] = $city;
+
+            /**
+             * "Okoko, Ojo" style entries: the leading segment is the
+             * specific locality and is what DHL is most likely to know.
+             */
+            if (str_contains($city, ',')) {
+                foreach (explode(',', $city) as $part) {
+                    if (($part = trim($part)) !== '') {
+                        $candidates[] = $part;
+                    }
+                }
+            }
         }
 
         $state = trim((string) $shippingAddress->state);
 
         if ($state !== '') {
-            return mb_substr($state, 0, 45);
+            $candidates[] = $state;
         }
 
-        /**
-         * No usable state - fall back to the part before the comma, which
-         * is more likely to be a place DHL knows than the full string.
-         */
-        if (str_contains($city, ',')) {
-            return mb_substr(trim(explode(',', $city)[0]), 0, 45);
+        return array_values(array_unique(array_filter($candidates)));
+    }
+
+    /**
+     * Whether DHL's gazetteer lists this exact city for the country. Reuses
+     * the cached city search, so a repeat destination costs no API call.
+     */
+    protected function isServiceableCity(string $city, string $countryCode): bool
+    {
+        if (mb_strlen($city) < 2 || ! preg_match('/^[A-Za-z]{2}$/', $countryCode)) {
+            return false;
         }
 
-        return mb_substr($city, 0, 45);
+        foreach ($this->searchCities($city, $countryCode) as $match) {
+            if (strcasecmp(trim($match['city']), $city) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
