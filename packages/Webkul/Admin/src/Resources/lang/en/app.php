@@ -1129,6 +1129,25 @@ return [
                 'rma-title' => 'Requests',
             ],
         ],
+
+        'in-progress-carts' => [
+            'index' => [
+                'title' => 'In-Progress Carts',
+
+                'datagrid' => [
+                    'address-entered' => 'Address Entered',
+                    'browsing' => 'Browsing',
+                    'email' => 'Email',
+                    'guest' => 'Guest',
+                    'id' => 'ID',
+                    'payment-initiated' => 'Payment Initiated - :method',
+                    'stage' => 'Stage',
+                    'total' => 'Total',
+                    'total-items' => 'Items',
+                    'updated-at' => 'Last Activity',
+                ],
+            ],
+        ],
     ],
 
     'catalog' => [
@@ -4081,6 +4100,25 @@ return [
             ],
         ],
 
+        'traffic' => [
+            'index' => [
+                'all-channels' => 'All Channels',
+                'conversion-by-source' => 'Conversion by Source',
+                'conversion-rate' => 'Conversion Rate',
+                'end-date' => 'End Date',
+                'orders' => 'Orders',
+                'page' => 'Page',
+                'source' => 'Source',
+                'start-date' => 'Start Date',
+                'title' => 'Traffic',
+                'top-pages' => 'Top Pages',
+                'top-sources' => 'Top Sources',
+                'view-details' => 'View Details',
+                'views' => 'Views',
+                'visitors' => 'Visitors',
+            ],
+        ],
+
         'view' => [
             'all-channels' => 'All Channels',
             'back-btn' => 'Back',
@@ -4902,7 +4940,8 @@ return [
                         'api-secret' => 'API Secret',
                         'default-item-weight' => 'Default Item Weight (kg)',
                         'description' => 'Description',
-                        'fallback-rate' => 'Fallback Rate (used if live DHL rate lookup fails)',
+                        'fallback-rate' => 'Domestic Fallback Rate (used if live DHL rate lookup fails)',
+                        'fallback-rate-international' => 'International Fallback Rate (used if live DHL rate lookup fails)',
                         'origin-address' => 'Origin Street Address',
                         'origin-city' => 'Origin City',
                         'origin-contact-name' => 'Origin Contact Name (shown on waybill)',
@@ -5333,6 +5372,7 @@ return [
                 'groups' => 'Groups',
                 'help' => 'Help & Resources',
                 'imports' => 'Imports',
+                'in-progress-carts' => 'In-Progress Carts',
                 'inventory-sources' => 'Inventory Sources',
                 'invoices' => 'Invoices',
                 'locales' => 'Locales',
@@ -5362,6 +5402,7 @@ return [
                 'tax-rates' => 'Tax Rates',
                 'taxes' => 'Taxes',
                 'themes' => 'Themes',
+                'traffic' => 'Traffic',
                 'transactions' => 'Transactions',
                 'url-rewrites' => 'URL Rewrites',
                 'users' => 'Users',
@@ -5580,6 +5621,7 @@ return [
         'groups' => 'Groups',
         'import' => 'Import',
         'imports' => 'Imports',
+        'in-progress-carts' => 'In-Progress Carts',
         'inventory-sources' => 'Inventory Sources',
         'invoices' => 'Invoices',
         'locales' => 'Locales',
@@ -5605,6 +5647,7 @@ return [
         'tax-rates' => 'Tax Rates',
         'taxes' => 'Taxes',
         'themes' => 'Themes',
+        'traffic' => 'Traffic',
         'transactions' => 'Transactions',
         'url-rewrites' => 'URL Rewrites',
         'users' => 'Users',

@@ -2066,6 +2066,13 @@ return [
                 'channel_based' => true,
                 'locale_based' => false,
             ], [
+                'name' => 'fallback_rate_international',
+                'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.fallback-rate-international',
+                'type' => 'text',
+                'validation' => 'numeric',
+                'channel_based' => true,
+                'locale_based' => false,
+            ], [
                 'name' => 'active',
                 'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.status',
                 'type' => 'boolean',

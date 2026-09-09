@@ -75,11 +75,11 @@ class Dhl extends AbstractShipping
         $price = $this->getLiveRate($cart);
 
         if ($price === null) {
-            if (! $this->getConfigData('fallback_rate')) {
-                return false;
-            }
+            $price = $this->getFallbackRate($cart);
+        }
 
-            $price = (float) $this->getConfigData('fallback_rate');
+        if ($price === null) {
+            return false;
         }
 
         $cartShippingRate = new CartShippingRate;
@@ -93,6 +93,38 @@ class Dhl extends AbstractShipping
         $cartShippingRate->base_price = $price;
 
         return $cartShippingRate;
+    }
+
+    /**
+     * Price to charge when DHL can't quote the lane at all. A single flat
+     * figure can't serve both a ~$5 domestic hop and a ~$55 international
+     * leg without badly over- or under-charging one of them, so domestic
+     * and international fall back separately. Returns null when no
+     * fallback is configured, in which case DHL simply isn't offered.
+     */
+    protected function getFallbackRate($cart): ?float
+    {
+        $destination = strtoupper((string) ($cart?->shipping_address?->country ?? ''));
+
+        $origin = strtoupper((string) $this->getConfigData('origin_country_code'));
+
+        $isDomestic = $destination !== '' && $destination === $origin;
+
+        $configured = $isDomestic
+            ? $this->getConfigData('fallback_rate')
+            : ($this->getConfigData('fallback_rate_international') ?: $this->getConfigData('fallback_rate'));
+
+        if (! $configured) {
+            return null;
+        }
+
+        Log::warning('DHL live rate unavailable, using fallback', [
+            'destination' => $destination,
+            'domestic' => $isDomestic,
+            'fallback' => $configured,
+        ]);
+
+        return (float) $configured;
     }
 
     /**
