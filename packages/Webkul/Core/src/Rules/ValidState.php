@@ -6,17 +6,18 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
- * Validates that a state belongs to the country it was submitted with.
+ * Sanity-checks the state on an address.
  *
- * The address forms present a dropdown of the country's states, but that
- * is a client-side convenience - a request can be posted directly, and a
- * stale page can submit a state left over from a previously selected
- * country. Since the state is passed to the shipping carrier and printed
- * on the waybill, an unrecognised value produces an undeliverable label.
+ * The state is a records-and-display field: it appears on invoices, order
+ * emails and the address book, but the shipping carrier is given the city,
+ * not the state, so a state we don't recognise cannot misroute a parcel.
  *
- * Countries with no states on record (Bagisto ships none for much of the
- * world) accept any value, since there is nothing to check against and
- * rejecting everything would block those customers entirely.
+ * Our state lists are therefore treated as suggestions rather than a
+ * closed set. They are incomplete (Bagisto ships none for most of the
+ * world), states get created and renamed, and customers know their own
+ * address better than our seed data does - so rejecting an unlisted value
+ * would strand real customers at checkout for no delivery benefit. Only
+ * obvious junk is refused.
  */
 class ValidState implements ValidationRule
 {
@@ -39,41 +40,28 @@ class ValidState implements ValidationRule
     {
         $state = trim((string) $value);
 
-        $country = strtoupper((string) $this->countryCode);
-
         /**
-         * An empty state or missing country is handled by their own rules -
+         * An empty state is handled by its own required/nullable rule -
          * raising a second error here would just be confusing.
          */
-        if ($state === '' || ! preg_match('/^[A-Za-z]{2}$/', $country)) {
+        if ($state === '') {
             return;
         }
 
-        $states = core()->groupedStatesByCountries()[$country] ?? [];
+        if (mb_strlen($state) > 60) {
+            $fail('shop::app.checkout.onepage.address.invalid-state')->translate();
 
-        if (empty($states)) {
             return;
         }
 
-        foreach ($states as $countryState) {
-            /**
-             * groupedStatesByCountries() hands back objects, but the same
-             * data is array-shaped elsewhere in the codebase, so accept
-             * either rather than depending on which caller we came from.
-             */
-            $countryState = (array) $countryState;
-
-            $code = $countryState['code'] ?? null;
-            $name = $countryState['default_name'] ?? null;
-
-            if (
-                strcasecmp((string) $code, $state) === 0
-                || strcasecmp((string) $name, $state) === 0
-            ) {
-                return;
-            }
+        /**
+         * Place names worldwide carry accents, apostrophes, hyphens, full
+         * stops and spaces ("Murang'a", "Elgeyo-Marakwet", "Washington,
+         * D.C."), so the check is only that it reads like a name at all -
+         * it must contain a letter and no control or markup characters.
+         */
+        if (! preg_match('/\pL/u', $state) || preg_match('/[<>{}\\/|]/u', $state)) {
+            $fail('shop::app.checkout.onepage.address.invalid-state')->translate();
         }
-
-        $fail('shop::app.checkout.onepage.address.invalid-state')->translate();
     }
 }

@@ -213,42 +213,42 @@
                         <x-shop::form.control-group.error control-name="country" />
                     </x-shop::form.control-group>
         
-                    <!-- State Name -->
+                    <!--
+                        Only shown for countries that have states on record;
+                        the carrier routes on city and postcode and never
+                        receives a state.
+                    -->
                     <x-shop::form.control-group>
                         <x-shop::form.control-group.label class="{{ core()->isStateRequired() ? 'required' : '' }}">
                             @lang('shop::app.customers.account.addresses.create.state')
                         </x-shop::form.control-group.label>
-        
-                        <template v-if="haveStates()">
-                            <x-shop::form.control-group.control
-                                type="select"
-                                id="state"
-                                name="state"
-                                rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                                v-model="state"
-                                :label="trans('shop::app.customers.account.addresses.create.state')"
-                                :placeholder="trans('shop::app.customers.account.addresses.create.state')"
-                            >
-                                <option 
-                                    v-for='(state, index) in countryStates[country]'
-                                    :value="state.code"
-                                >
-                                    @{{ state.default_name }}
-                                </option>
-                            </x-shop::form.control-group.control>
-                        </template>
-        
-                        <template v-else>
-                            <x-shop::form.control-group.control
-                                type="text"
-                                name="state"
-                                :value="old('state')"
-                                rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                                :label="trans('shop::app.customers.account.addresses.create.state')"
-                                :placeholder="trans('shop::app.customers.account.addresses.create.state')"
-                            />
-                        </template>
-        
+
+                        {{--
+                            A text input backed by a datalist rather than a
+                            select: the known states are offered as
+                            suggestions, but a customer in a country we have
+                            no list for can still type their own instead of
+                            being unable to complete the address.
+                        --}}
+                        <x-shop::form.control-group.control
+                            type="text"
+                            id="state"
+                            name="state"
+                            rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+                            v-model="state"
+                            :label="trans('shop::app.customers.account.addresses.create.state')"
+                            :placeholder="trans('shop::app.customers.account.addresses.create.state')"
+                            list="diids-state-options"
+                            autocomplete="address-level1"
+                        />
+
+                        <datalist id="diids-state-options">
+                            <option
+                                v-for='(state, index) in (countryStates?.[country] ?? [])'
+                                :value="state.default_name"
+                            ></option>
+                        </datalist>
+
                         <x-shop::form.control-group.error control-name="state" />
                     </x-shop::form.control-group>
 
@@ -426,15 +426,6 @@
                 },
 
                 methods: {
-                    haveStates() {
-                        /*
-                        * The double negation operator is used to convert the value to a boolean.
-                        * It ensures that the final result is a boolean value,
-                        * true if the array has a length greater than 0, and otherwise false.
-                        */
-                        return !!this.countryStates[this.country]?.length;
-                    },
-
                     onCityInput() {
                         this.cityNotFound = false;
 

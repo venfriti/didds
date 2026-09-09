@@ -176,46 +176,42 @@
 
                 {!! view_render_event('bagisto.shop.checkout.onepage.address.form.country.after') !!}
 
-                <!-- State -->
+                <!--
+                    State is only shown for countries that actually have one
+                    on record. The carrier routes on city and postcode and
+                    never receives a state, so asking for a free-text region
+                    just invites values that contradict the chosen city.
+                -->
                 <x-shop::form.control-group>
                     <x-shop::form.control-group.label class="{{ core()->isStateRequired() ? 'required' : '' }} !mt-0">
                         @lang('shop::app.checkout.onepage.address.state')
                     </x-shop::form.control-group.label>
 
-                    <template v-if="states">
-                        <template v-if="haveStates">
-                            <x-shop::form.control-group.control
-                                type="select"
-                                ::name="controlName + '.state'"
-                                rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                                ::value="address.state"
-                                :label="trans('shop::app.checkout.onepage.address.state')"
-                                :placeholder="trans('shop::app.checkout.onepage.address.state')"
-                            >
-                                <option value="">
-                                    @lang('shop::app.checkout.onepage.address.select-state')
-                                </option>
+                    {{--
+                        A text input backed by a datalist rather than a select:
+                        the known states are offered as suggestions, but a
+                        customer in a country we have no list for - or in a
+                        newly created state - can still type their own. A
+                        select would leave them with no way to complete the
+                        address.
+                    --}}
+                    <x-shop::form.control-group.control
+                        type="text"
+                        ::name="controlName + '.state'"
+                        rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+                        ::value="address.state"
+                        :label="trans('shop::app.checkout.onepage.address.state')"
+                        :placeholder="trans('shop::app.checkout.onepage.address.state')"
+                        list="diids-state-options"
+                        autocomplete="address-level1"
+                    />
 
-                                <option
-                                    v-for='(state, index) in states[selectedCountry]'
-                                    :value="state.code"
-                                >
-                                    @{{ state.default_name }}
-                                </option>
-                            </x-shop::form.control-group.control>
-                        </template>
-
-                        <template v-else>
-                            <x-shop::form.control-group.control
-                                type="text"
-                                ::name="controlName + '.state'"
-                                ::value="address.state"
-                                rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                                :label="trans('shop::app.checkout.onepage.address.state')"
-                                :placeholder="trans('shop::app.checkout.onepage.address.state')"
-                            />
-                        </template>
-                    </template>
+                    <datalist id="diids-state-options">
+                        <option
+                            v-for='(state, index) in (states?.[selectedCountry] ?? [])'
+                            :value="state.default_name"
+                        ></option>
+                    </datalist>
 
                     <x-shop::form.control-group.error ::name="controlName + '.state'" />
                 </x-shop::form.control-group>
@@ -384,12 +380,6 @@
 
                     citySearchTimeout: null,
                 }
-            },
-
-            computed: {
-                haveStates() {
-                    return !! this.states[this.selectedCountry]?.length;
-                },
             },
 
             watch: {

@@ -230,40 +230,41 @@
 
                 {!! view_render_event('bagisto.shop.customers.account.addresses.edit_form_controls.country.after', ['address' => $address]) !!}
 
-                <!-- State Name -->
+                <!--
+                    Only shown for countries that have states on record; the
+                    carrier routes on city and postcode and never receives a
+                    state.
+                -->
                 <x-shop::form.control-group>
                     <x-shop::form.control-group.label class="{{ core()->isStateRequired() ? 'required' : '' }}">
                         @lang('shop::app.customers.account.addresses.edit.state')
                     </x-shop::form.control-group.label>
-                    <template v-if="haveStates()">
-                        <x-shop::form.control-group.control
-                            type="select"
-                            name="state"
-                            id="state"
-                            rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                            v-model="addressData.state"
-                            :label="trans('shop::app.customers.account.addresses.edit.state')"
-                            :placeholder="trans('shop::app.customers.account.addresses.edit.state')"
-                        >
-                            <option 
-                                v-for='(state, index) in countryStates[addressData.country]'
-                                :value="state.code"
-                            >
-                                @{{ state.default_name }}
-                            </option>
-                        </x-shop::form.control-group.control>
-                    </template>
 
-                    <template v-else>
-                        <x-shop::form.control-group.control
-                            type="text"
-                            name="state"
-                            rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                            :value="old('state') ?? $address->state"
-                            :label="trans('shop::app.customers.account.addresses.edit.state')"
-                            :placeholder="trans('shop::app.customers.account.addresses.edit.state')"
-                        />
-                    </template>
+                    {{--
+                        A text input backed by a datalist rather than a
+                        select: the known states are offered as suggestions,
+                        but a customer in a country we have no list for can
+                        still type their own instead of being unable to save
+                        the address.
+                    --}}
+                    <x-shop::form.control-group.control
+                        type="text"
+                        name="state"
+                        id="state"
+                        rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+                        v-model="addressData.state"
+                        :label="trans('shop::app.customers.account.addresses.edit.state')"
+                        :placeholder="trans('shop::app.customers.account.addresses.edit.state')"
+                        list="diids-state-options"
+                        autocomplete="address-level1"
+                    />
+
+                    <datalist id="diids-state-options">
+                        <option
+                            v-for='(state, index) in (countryStates?.[addressData.country] ?? [])'
+                            :value="state.default_name"
+                        ></option>
+                    </datalist>
 
                     <x-shop::form.control-group.error control-name="state" />
                 </x-shop::form.control-group>
@@ -416,10 +417,6 @@
                 },
 
                 methods: {
-                    haveStates() {
-                        return !!this.countryStates[this.addressData.country]?.length;
-                    },
-
                     onCityInput() {
                         this.cityNotFound = false;
 
