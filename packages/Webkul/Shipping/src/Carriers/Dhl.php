@@ -165,18 +165,134 @@ class Dhl extends AbstractShipping
                 return null;
             }
 
-            $cheapest = collect($products)
-                ->pluck('totalPrice.0.price')
-                ->filter()
-                ->sort()
-                ->first();
+            $cheapest = null;
 
-            return $cheapest !== null ? (float) $cheapest : null;
+            foreach ($products as $product) {
+                $price = $this->extractPriceInBaseCurrency($product);
+
+                if (
+                    $price !== null
+                    && ($cheapest === null || $price < $cheapest)
+                ) {
+                    $cheapest = $price;
+                }
+            }
+
+            return $cheapest;
         } catch (\Throwable $e) {
             Log::warning('DHL rate lookup exception: '.$e->getMessage());
 
             return null;
         }
+    }
+
+    /**
+     * DHL quotes each product in several currencies at once (the billing
+     * currency, the payer's local currency and a EUR base), and which one
+     * sits at which index varies. Blindly taking the first entry means a
+     * NGN amount can end up charged as if it were the store's own currency,
+     * so the quote is matched on currency code and converted deliberately.
+     */
+    protected function extractPriceInBaseCurrency(array $product): ?float
+    {
+        $baseCurrency = core()->getBaseCurrencyCode();
+
+        $prices = [];
+
+        foreach ($product['totalPrice'] ?? [] as $totalPrice) {
+            $currency = $totalPrice['priceCurrency'] ?? null;
+            $price = $totalPrice['price'] ?? null;
+
+            if (
+                ! $currency
+                || ! is_numeric($price)
+            ) {
+                continue;
+            }
+
+            $prices[strtoupper($currency)] = (float) $price;
+        }
+
+        if (empty($prices)) {
+            return null;
+        }
+
+        /**
+         * Best case DHL already quoted in the store's own currency.
+         */
+        if (isset($prices[$baseCurrency])) {
+            return $prices[$baseCurrency];
+        }
+
+        /**
+         * Otherwise convert from whichever currency we did get, preferring
+         * the DHL account's own currency since that's what the shipment is
+         * actually billed in.
+         */
+        $sourceCurrency = isset($prices[$this->accountCurrencyCode()])
+            ? $this->accountCurrencyCode()
+            : array_key_first($prices);
+
+        $converted = $this->convertToBaseCurrency($prices[$sourceCurrency], $sourceCurrency);
+
+        if ($converted === null) {
+            Log::warning('DHL rate returned no usable currency', [
+                'available' => array_keys($prices),
+                'base' => $baseCurrency,
+            ]);
+        }
+
+        return $converted;
+    }
+
+    /**
+     * Converts a DHL-quoted amount into the store's base currency using the
+     * configured exchange rates. Returns null when no rate is available,
+     * so the caller falls back to the flat rate rather than charging a
+     * wildly wrong number.
+     */
+    protected function convertToBaseCurrency(float $amount, string $fromCurrency): ?float
+    {
+        $baseCurrency = core()->getBaseCurrencyCode();
+
+        if ($fromCurrency === $baseCurrency) {
+            return $amount;
+        }
+
+        $rate = core()->getExchangeRate(
+            core()->getAllCurrencies()->where('code', $fromCurrency)->first()?->id
+        );
+
+        if (! $rate || ! $rate->rate) {
+            return null;
+        }
+
+        /**
+         * Exchange rates are stored as "1 base currency = rate target
+         * currency", so converting back into base divides rather than
+         * multiplies.
+         */
+        return round($amount / (float) $rate->rate, 2);
+    }
+
+    /**
+     * The currency the DHL account itself bills in, derived from the
+     * configured origin country.
+     */
+    protected function accountCurrencyCode(): string
+    {
+        $currencyByCountry = [
+            'NG' => 'NGN',
+            'GH' => 'GHS',
+            'GB' => 'GBP',
+            'US' => 'USD',
+            'ZA' => 'ZAR',
+            'KE' => 'KES',
+        ];
+
+        $country = strtoupper((string) $this->getConfigData('origin_country_code'));
+
+        return $currencyByCountry[$country] ?? 'USD';
     }
 
     /**
