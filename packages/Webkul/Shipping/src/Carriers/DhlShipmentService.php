@@ -237,9 +237,16 @@ class DhlShipmentService
                         continue;
                     }
 
+                    $serviceArea = $address['serviceArea']['code'] ?? null;
+
                     $cities[$city] = [
                         'city' => $city,
-                        'service_area' => $address['serviceArea']['code'] ?? null,
+                        'service_area' => $serviceArea,
+                        /**
+                         * The state the address form should adopt for this
+                         * city, so the two fields can't contradict each other.
+                         */
+                        'state' => $this->stateForServiceArea($serviceArea, strtoupper($countryCode)),
                     ];
                 }
 
@@ -250,6 +257,39 @@ class DhlShipmentService
                 return [];
             }
         });
+    }
+
+    /**
+     * Maps a DHL service area onto the state the address form should use.
+     *
+     * DHL divides Nigeria into six courier regions rather than its 36
+     * states, and those regions are named after the hub city (Kano is
+     * served out of the Kaduna hub, for instance). Deriving the state from
+     * the chosen city is still better than letting the customer pick the
+     * two independently, which allows outright contradictions like
+     * state=Lagos with city=KANO.
+     *
+     * Returns null when there's no confident mapping, in which case the
+     * form leaves the state for the customer to choose.
+     */
+    protected function stateForServiceArea(?string $serviceArea, string $countryCode): ?string
+    {
+        if (! $serviceArea) {
+            return null;
+        }
+
+        $map = [
+            'NG' => [
+                'LOS' => 'Lagos',
+                'ABV' => 'Federal Capital Territory',
+                'KAD' => 'Kaduna',
+                'PHC' => 'Rivers',
+                'IBA' => 'Oyo',
+                'QRW' => 'Delta',
+            ],
+        ];
+
+        return $map[$countryCode][strtoupper($serviceArea)] ?? null;
     }
 
     /**
