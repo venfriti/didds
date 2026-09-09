@@ -12,21 +12,13 @@
                 />
             </x-shop::form.control-group>
 
-            <!-- Company Name -->
-            <x-shop::form.control-group>
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.checkout.onepage.address.company-name')
-                </x-shop::form.control-group.label>
-
+            <x-shop::form.control-group class="hidden">
                 <x-shop::form.control-group.control
                     type="text"
                     ::name="controlName + '.company_name'"
                     ::value="address.company_name"
-                    :placeholder="trans('shop::app.checkout.onepage.address.company-name')"
                 />
             </x-shop::form.control-group>
-
-            {!! view_render_event('bagisto.shop.checkout.onepage.address.form.company_name.after') !!}
 
             <!-- First Name -->
             <div class="grid grid-cols-2 gap-x-5 max-md:grid-cols-1">
@@ -233,7 +225,7 @@
 
             <div class="grid grid-cols-2 gap-x-5 max-md:grid-cols-1">
                 <!-- City -->
-                <x-shop::form.control-group>
+                <x-shop::form.control-group class="relative">
                     <x-shop::form.control-group.label class="required !mt-0">
                         @lang('shop::app.checkout.onepage.address.city')
                     </x-shop::form.control-group.label>
@@ -241,11 +233,48 @@
                     <x-shop::form.control-group.control
                         type="text"
                         ::name="controlName + '.city'"
-                        ::value="address.city"
+                        v-model="cityQuery"
                         rules="required"
+                        autocomplete="off"
                         :label="trans('shop::app.checkout.onepage.address.city')"
                         :placeholder="trans('shop::app.checkout.onepage.address.city')"
+                        @input="onCityInput"
+                        @focus="onCityFocus"
+                        @blur="onCityBlur"
                     />
+
+                    <!--
+                        Cities are restricted to those the carrier actually
+                        delivers to, so a customer can't save an address that
+                        would later leave them with no shipping option.
+                    -->
+                    <ul
+                        class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded border border-zinc-200 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                        v-if="showCitySuggestions && citySuggestions.length"
+                    >
+                        <li
+                            class="cursor-pointer px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-gray-800"
+                            v-for="suggestion in citySuggestions"
+                            :key="suggestion.city"
+                            @mousedown.prevent="selectCity(suggestion)"
+                        >
+                            @{{ suggestion.city }}
+                        </li>
+                    </ul>
+
+                    <p
+                        class="mt-1 text-xs text-zinc-500"
+                        v-if="isSearchingCities"
+                    >
+                        @lang('shop::app.checkout.onepage.address.searching-cities')
+                    </p>
+
+                    <p
+                        class="mt-1 text-xs text-red-600"
+                        v-else-if="cityNotFound"
+                    >
+                        @lang('shop::app.checkout.onepage.address.city-not-served')
+                    </p>
 
                     <x-shop::form.control-group.error ::name="controlName + '.city'" />
                 </x-shop::form.control-group>
@@ -331,12 +360,39 @@
                     countries: [],
 
                     states: null,
+
+                    cityQuery: this.address.city ?? '',
+
+                    citySuggestions: [],
+
+                    showCitySuggestions: false,
+
+                    isSearchingCities: false,
+
+                    cityNotFound: false,
+
+                    citySearchTimeout: null,
                 }
             },
 
             computed: {
                 haveStates() {
                     return !! this.states[this.selectedCountry]?.length;
+                },
+            },
+
+            watch: {
+                /**
+                 * A city is only valid for the country it was chosen from,
+                 * so switching country has to clear it rather than leave a
+                 * stale value the carrier would reject.
+                 */
+                selectedCountry() {
+                    this.cityQuery = '';
+
+                    this.citySuggestions = [];
+
+                    this.cityNotFound = false;
                 },
             },
 
@@ -361,6 +417,70 @@
                             this.states = response.data.data;
                         })
                         .catch(() => {});
+                },
+
+                onCityInput() {
+                    this.cityNotFound = false;
+
+                    this.showCitySuggestions = true;
+
+                    clearTimeout(this.citySearchTimeout);
+
+                    if (! this.selectedCountry || this.cityQuery.trim().length < 2) {
+                        this.citySuggestions = [];
+
+                        return;
+                    }
+
+                    // Debounced so we aren't calling the carrier on every keystroke.
+                    this.citySearchTimeout = setTimeout(() => this.searchCities(), 300);
+                },
+
+                searchCities() {
+                    this.isSearchingCities = true;
+
+                    this.$axios.get("{{ route('shop.api.core.cities') }}", {
+                            params: {
+                                query: this.cityQuery.trim(),
+                                country: this.selectedCountry,
+                            },
+                        })
+                        .then(response => {
+                            this.citySuggestions = response.data.data;
+
+                            this.cityNotFound = ! this.citySuggestions.length;
+                        })
+                        .catch(() => {
+                            this.citySuggestions = [];
+
+                            this.cityNotFound = true;
+                        })
+                        .finally(() => {
+                            this.isSearchingCities = false;
+                        });
+                },
+
+                selectCity(suggestion) {
+                    this.cityQuery = suggestion.city;
+
+                    this.citySuggestions = [];
+
+                    this.showCitySuggestions = false;
+
+                    this.cityNotFound = false;
+                },
+
+                onCityFocus() {
+                    if (this.citySuggestions.length) {
+                        this.showCitySuggestions = true;
+                    }
+                },
+
+                onCityBlur() {
+                    // Delay so a click on a suggestion registers first.
+                    setTimeout(() => {
+                        this.showCitySuggestions = false;
+                    }, 150);
                 },
             }
         });

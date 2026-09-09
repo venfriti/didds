@@ -2,6 +2,7 @@
 
 namespace Webkul\Shipping\Carriers;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Webkul\Sales\Models\Shipment;
@@ -157,6 +158,95 @@ class DhlShipmentService
 
             return null;
         }
+    }
+
+    /**
+     * Looks up cities DHL actually serves, matching on a name prefix. Used
+     * to drive the checkout city typeahead so a customer can only ever save
+     * a destination DHL can price and deliver to - previously they could
+     * type anything ("Okoko, Ojo") and end up with no shipping option at
+     * all.
+     *
+     * Results are cached because the underlying data is effectively static
+     * and the same prefixes get typed constantly.
+     *
+     * @return array<int, array{city: string, service_area: string|null}>
+     */
+    public function searchCities(string $query, string $countryCode): array
+    {
+        $query = trim($query);
+
+        if (
+            mb_strlen($query) < 2
+            || ! preg_match('/^[A-Za-z]{2}$/', $countryCode)
+        ) {
+            return [];
+        }
+
+        $cacheKey = 'dhl:cities:'.strtoupper($countryCode).':'.strtolower($query);
+
+        return Cache::remember($cacheKey, now()->addDay(), function () use ($query, $countryCode) {
+            if (! $this->hasCredentials()) {
+                return [];
+            }
+
+            try {
+                $response = Http::withBasicAuth(
+                    core()->getConfigData('sales.carriers.dhl.api_key'),
+                    core()->getConfigData('sales.carriers.dhl.api_secret')
+                )
+                    ->withHeaders(['x-version' => $this->apiVersion])
+                    ->timeout(8)
+                    ->get($this->getBaseUrl().'/address-validate', [
+                        'type' => 'delivery',
+                        'countryCode' => strtoupper($countryCode),
+                        'cityName' => $query,
+                        'strictValidation' => 'false',
+                    ]);
+
+                if (! $response->successful()) {
+                    /**
+                     * DHL answers an unmatched prefix with a 400, which is a
+                     * normal "no results" here rather than a fault.
+                     */
+                    return [];
+                }
+
+                $cities = [];
+
+                foreach ($response->json('address', []) as $address) {
+                    $city = $address['cityName'] ?? null;
+
+                    if (! $city) {
+                        continue;
+                    }
+
+                    $cities[$city] = [
+                        'city' => $city,
+                        'service_area' => $address['serviceArea']['code'] ?? null,
+                    ];
+                }
+
+                return array_values($cities);
+            } catch (\Throwable $e) {
+                Log::warning('DHL city lookup failed: '.$e->getMessage());
+
+                return [];
+            }
+        });
+    }
+
+    /**
+     * Whether the DHL API credentials are present. Distinct from
+     * isConfigured(), which also demands the full origin address needed to
+     * actually book a shipment - a city lookup only needs to authenticate.
+     */
+    public function hasCredentials(): bool
+    {
+        return (bool) (
+            core()->getConfigData('sales.carriers.dhl.api_key')
+            && core()->getConfigData('sales.carriers.dhl.api_secret')
+        );
     }
 
     /**
