@@ -184,17 +184,11 @@
 
                     <template v-if="states">
                         <template v-if="haveStates">
-                            <!--
-                                Bound with v-model so choosing a city can set
-                                the state to the one the carrier serves it
-                                from, instead of the two being picked
-                                independently and contradicting each other.
-                            -->
                             <x-shop::form.control-group.control
                                 type="select"
                                 ::name="controlName + '.state'"
                                 rules="{{ core()->isStateRequired() ? 'required' : '' }}"
-                                v-model="selectedState"
+                                ::value="address.state"
                                 :label="trans('shop::app.checkout.onepage.address.state')"
                                 :placeholder="trans('shop::app.checkout.onepage.address.state')"
                             >
@@ -366,8 +360,6 @@
                 return {
                     selectedCountry: this.address.country,
 
-                    selectedState: this.address.state ?? '',
-
                     countries: [],
 
                     states: null,
@@ -414,9 +406,6 @@
                     this.cityNotFound = false;
 
                     this.cityConfirmed = false;
-
-                    // A state only belongs to the country it was chosen for.
-                    this.selectedState = '';
                 },
             },
 
@@ -497,8 +486,6 @@
                                 this.cityConfirmed = true;
 
                                 this.cityNotFound = false;
-
-                                this.applyStateForCity(match);
                             } else {
                                 this.cityNotFound = true;
                             }
@@ -542,30 +529,6 @@
                     this.cityNotFound = false;
 
                     this.cityConfirmed = true;
-
-                    this.applyStateForCity(suggestion);
-                },
-
-                /**
-                 * Adopt the state the carrier serves this city from, so the
-                 * two fields can't disagree. Only applies when that state is
-                 * actually one of the options for the selected country -
-                 * otherwise the customer's own choice is left alone.
-                 */
-                applyStateForCity(suggestion) {
-                    if (! suggestion.state) {
-                        return;
-                    }
-
-                    const options = this.states?.[this.selectedCountry] ?? [];
-
-                    const match = options.find(
-                        option => option.default_name.toLowerCase() === suggestion.state.toLowerCase()
-                    );
-
-                    if (match) {
-                        this.selectedState = match.code;
-                    }
                 },
 
                 onCityFocus() {
