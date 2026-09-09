@@ -139,17 +139,33 @@ class DhlShipmentService
                 return null;
             }
 
-            $status = $shipments[0]['status'] ?? null;
+            $shipment = $shipments[0];
 
-            if (! $status) {
+            /**
+             * The shipment's own "status" field is the API call result
+             * ("Success"), NOT the delivery state - reading it as the
+             * delivery status means never detecting a delivery. Progress is
+             * reported as checkpoints under "events", newest first when
+             * requesting the last checkpoint.
+             */
+            $event = $shipment['events'][0] ?? null;
+
+            if (! $event) {
+                /**
+                 * A freshly created waybill has no checkpoints until the
+                 * parcel is actually scanned, which is normal rather than a
+                 * failure.
+                 */
                 return null;
             }
 
+            $timestamp = trim(($event['date'] ?? '').' '.($event['time'] ?? '')) ?: null;
+
             return [
-                'status_code' => $status['statusCode'] ?? null,
-                'status' => $status['status'] ?? null,
-                'description' => $status['description'] ?? null,
-                'timestamp' => $status['timestamp'] ?? null,
+                'status_code' => $event['typeCode'] ?? null,
+                'status' => $event['statusCode'] ?? ($event['typeCode'] ?? null),
+                'description' => $event['description'] ?? null,
+                'timestamp' => $timestamp,
             ];
         } catch (\Throwable $e) {
             Log::warning('DHL tracking lookup exception: '.$e->getMessage(), [
