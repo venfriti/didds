@@ -1173,6 +1173,7 @@ return [
                 'check-shipping-address' => 'Shipping address is missing.',
                 'city' => 'City',
                 'city-not-served' => 'We could not find that city. Try a nearby town or a shorter name.',
+                'invalid-state' => 'Please choose a state from the list for the selected country.',
                 'company-name' => 'Company Name',
                 'confirm' => 'Confirm',
                 'country' => 'Country',

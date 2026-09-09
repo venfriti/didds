@@ -5,6 +5,7 @@ namespace Webkul\Shop\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Core\Rules\PostCode;
+use Webkul\Core\Rules\ValidState;
 use Webkul\Customer\Rules\VatIdRule;
 use Webkul\Shipping\Rules\ServiceableCity;
 
@@ -54,7 +55,10 @@ class CartAddressRequest extends FormRequest
             "{$addressType}.address" => ['required', 'array', 'min:1'],
             "{$addressType}.city" => ['required'],
             "{$addressType}.country" => core()->isCountryRequired() ? ['required'] : ['nullable'],
-            "{$addressType}.state" => core()->isStateRequired() ? ['required'] : ['nullable'],
+            "{$addressType}.state" => array_merge(
+                core()->isStateRequired() ? ['required'] : ['nullable'],
+                [(new ValidState)->setCountry($this->input("{$addressType}.country"))]
+            ),
             "{$addressType}.postcode" => core()->isPostCodeRequired() ? ['required', new PostCode] : [new PostCode],
             "{$addressType}.phone" => ['required', new PhoneNumber],
         ]);
