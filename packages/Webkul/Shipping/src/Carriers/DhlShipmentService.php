@@ -198,13 +198,34 @@ class DhlShipmentService
      */
     protected function resolveDeliveryCity($shippingAddress): string
     {
+        $city = trim((string) $shippingAddress->city);
+
+        /**
+         * Testing against the live API shows DHL is case-insensitive and
+         * accepts most plain place names ("abuja", "FCT", "Houghton
+         * Michigan" all resolve). The one shape it consistently rejects is
+         * a comma-separated neighbourhood such as "Okoko, Ojo", so only
+         * that case needs rewriting.
+         */
+        if ($city !== '' && ! str_contains($city, ',')) {
+            return mb_substr($city, 0, 45);
+        }
+
         $state = trim((string) $shippingAddress->state);
 
         if ($state !== '') {
             return mb_substr($state, 0, 45);
         }
 
-        return mb_substr(trim((string) $shippingAddress->city), 0, 45);
+        /**
+         * No usable state - fall back to the part before the comma, which
+         * is more likely to be a place DHL knows than the full string.
+         */
+        if (str_contains($city, ',')) {
+            return mb_substr(trim(explode(',', $city)[0]), 0, 45);
+        }
+
+        return mb_substr($city, 0, 45);
     }
 
     /**
