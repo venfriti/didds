@@ -472,7 +472,8 @@
 
     /*
      * Shipped and delivered are both good news, so both are green - the
-     * darker shade reads as "on its way", the brighter as "arrived".
+     * brighter shade marks a parcel in motion, the darker one the settled
+     * end state.
      * Shipped previously shared a colour with delivered, so a dispatched
      * order looked identical to one the customer already had.
      *
@@ -481,12 +482,12 @@
      */
     .label-shipped,
     .label-completed {
-        @apply bg-green-800;
+        @apply bg-green-600;
     }
 
     .label-delivered,
     .label-active {
-        @apply bg-green-600;
+        @apply bg-green-800;
     }
 
 	.label-closed {

@@ -475,17 +475,18 @@ img.lazy {
 
     /*
      * Shipped and delivered are both good news, so both are green - the
-     * darker shade reads as "on its way", the brighter as "arrived".
+     * brighter shade marks a parcel in motion, the darker one the settled
+     * end state.
      * Shipped previously shared the cyan of processing, which made a
      * dispatched order indistinguishable from one still being packed.
      */
     .label-shipped {
-        @apply bg-green-800;
+        @apply bg-green-600;
     }
 
 	.label-completed,
     .label-active {
-		@apply bg-green-600;
+		@apply bg-green-800;
 	}
 
 	.label-closed {
