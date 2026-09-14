@@ -5,6 +5,7 @@ namespace Webkul\Shop\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Webkul\Checkout\Facades\Cart;
 use Webkul\Core\Repositories\CurrencyRepository;
 
 class Currency
@@ -68,7 +69,50 @@ class Currency
 
         unset($request['currency']);
 
+        $this->refreshStaleCartTotals($currencyCode);
+
         return $next($request);
+    }
+
+    /**
+     * Cart totals (shipping_amount in particular, since it's cached on
+     * selected_shipping_rate rather than recomputed per-request like item
+     * prices) are only recalculated when collectTotals() runs. If the
+     * resolved currency has changed since the cart's totals were last
+     * collected — e.g. a cart created under the old base currency before an
+     * admin currency migration, or a visitor whose geo-resolved currency
+     * flips between requests — the cached amounts silently mismatch the
+     * currency symbol shown elsewhere on the same page. Force a recollect
+     * so every amount on the page reflects the same currency consistently.
+     */
+    protected function refreshStaleCartTotals(string $currencyCode): void
+    {
+        $cart = Cart::getCart();
+
+        if (! $cart) {
+            return;
+        }
+
+        if ($cart->cart_currency_code !== $currencyCode) {
+            Cart::collectTotals();
+
+            return;
+        }
+
+        /**
+         * The currency code matching is not proof the amounts are current.
+         * A cart can have its code updated without its display totals being
+         * recomputed, which leaves naira figures labelled as dollars - the
+         * displayed total then disagrees with what the customer is actually
+         * charged (base_grand_total). Converting the base total back should
+         * reproduce the displayed one; when it doesn't, the display side is
+         * stale and has to be recollected.
+         */
+        $expected = (float) core()->convertPrice($cart->base_grand_total, $currencyCode);
+
+        if (abs($expected - (float) $cart->grand_total) > 0.01) {
+            Cart::collectTotals();
+        }
     }
 
     /**

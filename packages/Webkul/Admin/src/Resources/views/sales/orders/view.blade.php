@@ -905,6 +905,25 @@
                                             @endif
                                         </p>
                                     @endif
+
+                                    {{--
+                                        The waybill PDF is what the warehouse
+                                        actually prints and attaches to the
+                                        parcel, so it's linked next to the
+                                        tracking number rather than buried.
+                                    --}}
+                                    @if ($shipment->track_number && \Illuminate\Support\Facades\Storage::disk('public')->exists('shipping-labels/'.$shipment->track_number.'.pdf'))
+                                        <p class="mt-1">
+                                            <a
+                                                href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('shipping-labels/'.$shipment->track_number.'.pdf') }}"
+                                                target="_blank"
+                                                rel="noopener"
+                                                class="text-navyBlue transition-all hover:underline"
+                                            >
+                                                Download waybill (PDF)
+                                            </a>
+                                        </p>
+                                    @endif
                                 </div>
 
                                 <div class="flex gap-2.5">
