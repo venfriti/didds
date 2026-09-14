@@ -83,6 +83,10 @@ class OrderDataGrid extends DataGrid
                     'value' => Order::STATUS_COMPLETED,
                 ],
                 [
+                    'label' => trans('admin::app.sales.orders.index.datagrid.delivered'),
+                    'value' => Order::STATUS_DELIVERED,
+                ],
+                [
                     'label' => trans('admin::app.sales.orders.index.datagrid.canceled'),
                     'value' => Order::STATUS_CANCELED,
                 ],
@@ -110,7 +114,10 @@ class OrderDataGrid extends DataGrid
                         return '<p class="label-processing">'.trans('admin::app.sales.orders.index.datagrid.processing').'</p>';
 
                     case Order::STATUS_COMPLETED:
-                        return '<p class="label-active">'.trans('admin::app.sales.orders.index.datagrid.completed').'</p>';
+                        return '<p class="label-shipped">'.trans('admin::app.sales.orders.index.datagrid.completed').'</p>';
+
+                    case Order::STATUS_DELIVERED:
+                        return '<p class="label-active">'.trans('admin::app.sales.orders.index.datagrid.delivered').'</p>';
 
                     case Order::STATUS_CANCELED:
                         return '<p class="label-canceled">'.trans('admin::app.sales.orders.index.datagrid.canceled').'</p>';

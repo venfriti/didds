@@ -230,7 +230,8 @@ return [
                     'canceled' => 'रद्द हुआ',
                     'channel-name' => 'चैनल',
                     'closed' => 'बंद हुआ',
-                    'completed' => 'पूरा हुआ',
+                    'completed' => 'भेज दिया गया',
+                    'delivered' => 'वितरित',
                     'customer' => 'ग्राहक',
                     'date' => 'तारीख',
                     'email' => 'ईमेल',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'रद्द',
                         'channel-name' => 'चैनल का नाम',
                         'closed' => 'बंद',
-                        'completed' => 'पूर्ण',
+                        'completed' => 'भेज दिया गया',
+                        'delivered' => 'वितरित',
                         'customer-name' => 'ग्राहक का नाम',
                         'date' => 'तिथि',
                         'email' => 'ईमेल',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'GDPR अनुरोध',
 
                 'datagrid' => [
-                    'completed' => 'पूरा हुआ',
+                    'completed' => 'भेज दिया गया',
+                    'delivered' => 'वितरित',
                     'created-at' => 'बनाया गया',
                     'customer-name' => 'ग्राहक का नाम',
                     'declined' => 'अस्वीकृत',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'पूरा हुआ',
+                    'completed' => 'भेज दिया गया',
+                    'delivered' => 'वितरित',
                     'declined' => 'अस्वीकृत',
                     'message' => 'संदेश',
                     'pending' => 'लंबित',

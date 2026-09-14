@@ -230,7 +230,8 @@ return [
                     'canceled' => 'لغو شده',
                     'channel-name' => 'کانال',
                     'closed' => 'بسته شده',
-                    'completed' => 'تکمیل شده',
+                    'completed' => 'ارسال شد',
+                    'delivered' => 'تحویل داده شد',
                     'customer' => 'مشتری',
                     'date' => 'تاریخ',
                     'email' => 'ایمیل',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'لغو شده',
                         'channel-name' => 'نام کانال',
                         'closed' => 'بسته شده',
-                        'completed' => 'تکمیل شده',
+                        'completed' => 'ارسال شد',
+                        'delivered' => 'تحویل داده شد',
                         'customer-name' => 'نام مشتری',
                         'date' => 'تاریخ',
                         'email' => 'ایمیل',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'درخواست GDPR',
 
                 'datagrid' => [
-                    'completed' => 'تکمیل شده',
+                    'completed' => 'ارسال شد',
+                    'delivered' => 'تحویل داده شد',
                     'created-at' => 'ایجاد شده در',
                     'customer-name' => 'نام مشتری',
                     'declined' => 'رد شده',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'تکمیل شده',
+                    'completed' => 'ارسال شد',
+                    'delivered' => 'تحویل داده شد',
                     'declined' => 'رد شده',
                     'message' => 'پیام',
                     'pending' => 'در انتظار',

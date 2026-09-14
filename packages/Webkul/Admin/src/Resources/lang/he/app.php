@@ -230,7 +230,8 @@ return [
                     'canceled' => 'בוטלה',
                     'channel-name' => 'ערוץ',
                     'closed' => 'סגורה',
-                    'completed' => 'הושלמה',
+                    'completed' => 'נשלח',
+                    'delivered' => 'נמסר',
                     'customer' => 'לקוח',
                     'date' => 'תאריך',
                     'email' => 'אימייל',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'בוטלה',
                         'channel-name' => 'שם הערוץ',
                         'closed' => 'סגורה',
-                        'completed' => 'הושלמה',
+                        'completed' => 'נשלח',
+                        'delivered' => 'נמסר',
                         'customer-name' => 'שם הלקוח',
                         'date' => 'תאריך',
                         'email' => 'אימייל',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'בקשת GDPR',
 
                 'datagrid' => [
-                    'completed' => 'הושלם',
+                    'completed' => 'נשלח',
+                    'delivered' => 'נמסר',
                     'created-at' => 'נוצר בתאריך',
                     'customer-name' => 'שם הלקוח',
                     'declined' => 'נדחה',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'הושלם',
+                    'completed' => 'נשלח',
+                    'delivered' => 'נמסר',
                     'declined' => 'נדחה',
                     'message' => 'הודעה',
                     'pending' => 'ממתין',

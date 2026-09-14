@@ -459,6 +459,7 @@ img.lazy {
     .label-closed,
     .label-canceled,
     .label-info,
+    .label-shipped,
     .label-completed,
     .label-active {
         @apply text-[12px] text-white font-semibold py-px px-1.5 max-w-max rounded-[35px];
@@ -470,6 +471,16 @@ img.lazy {
 
 	.label-processing{
 		@apply bg-cyan-600;
+    }
+
+    /*
+     * Shipped and delivered are both good news, so both are green - the
+     * darker shade reads as "on its way", the brighter as "arrived".
+     * Shipped previously shared the cyan of processing, which made a
+     * dispatched order indistinguishable from one still being packed.
+     */
+    .label-shipped {
+        @apply bg-green-800;
     }
 
 	.label-completed,

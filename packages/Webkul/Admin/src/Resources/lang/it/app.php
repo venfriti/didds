@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Annullato',
                     'channel-name' => 'Canale',
                     'closed' => 'Chiuso',
-                    'completed' => 'Completato',
+                    'completed' => 'Spedito',
+                    'delivered' => 'Consegnato',
                     'customer' => 'Cliente',
                     'date' => 'Data',
                     'email' => 'Email',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Annullato',
                         'channel-name' => 'Nome Canale',
                         'closed' => 'Chiuso',
-                        'completed' => 'Completato',
+                        'completed' => 'Spedito',
+                        'delivered' => 'Consegnato',
                         'customer-name' => 'Nome Cliente',
                         'date' => 'Data',
                         'email' => 'Email',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'Richiesta GDPR',
 
                 'datagrid' => [
-                    'completed' => 'Completato',
+                    'completed' => 'Spedito',
+                    'delivered' => 'Consegnato',
                     'created-at' => 'Creato il',
                     'customer-name' => 'Nome Cliente',
                     'declined' => 'Rifiutato',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Completato',
+                    'completed' => 'Spedito',
+                    'delivered' => 'Consegnato',
                     'declined' => 'Rifiutato',
                     'message' => 'Messaggio',
                     'pending' => 'In Attesa',

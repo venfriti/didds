@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Storniert',
                     'channel-name' => 'Kanal',
                     'closed' => 'Geschlossen',
-                    'completed' => 'Abgeschlossen',
+                    'completed' => 'Versandt',
+                    'delivered' => 'Zugestellt',
                     'customer' => 'Kunde',
                     'date' => 'Datum',
                     'email' => 'E-Mail',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Storniert',
                         'channel-name' => 'Kanalname',
                         'closed' => 'Geschlossen',
-                        'completed' => 'Abgeschlossen',
+                        'completed' => 'Versandt',
+                        'delivered' => 'Zugestellt',
                         'customer-name' => 'Kundenname',
                         'date' => 'Datum',
                         'email' => 'E-Mail',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'DSGVO-Anfrage',
 
                 'datagrid' => [
-                    'completed' => 'Abgeschlossen',
+                    'completed' => 'Versandt',
+                    'delivered' => 'Zugestellt',
                     'created-at' => 'Erstellt am',
                     'customer-name' => 'Kundenname',
                     'declined' => 'Abgelehnt',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Abgeschlossen',
+                    'completed' => 'Versandt',
+                    'delivered' => 'Zugestellt',
                     'declined' => 'Abgelehnt',
                     'message' => 'Nachricht',
                     'pending' => 'Ausstehend',

@@ -230,7 +230,8 @@ return [
                     'canceled' => 'বাতিল',
                     'channel-name' => 'চ্যানেল',
                     'closed' => 'বন্ধ',
-                    'completed' => 'সম্পন্ন',
+                    'completed' => 'পাঠানো হয়েছে',
+                    'delivered' => 'বিতরণ করা হয়েছে',
                     'customer' => 'গ্রাহক',
                     'date' => 'তারিখ',
                     'email' => 'ইমেইল',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'বাতিল করা হয়েছে',
                         'channel-name' => 'চ্যানেল নাম',
                         'closed' => 'বন্ধ',
-                        'completed' => 'সম্পন্ন',
+                        'completed' => 'পাঠানো হয়েছে',
+                        'delivered' => 'বিতরণ করা হয়েছে',
                         'customer-name' => 'গ্রাহকের নাম',
                         'date' => 'তারিখ',
                         'email' => 'ইমেইল',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'জিডিপিআর অনুরোধ',
 
                 'datagrid' => [
-                    'completed' => 'সম্পন্ন হয়েছে',
+                    'completed' => 'পাঠানো হয়েছে',
+                    'delivered' => 'বিতরণ করা হয়েছে',
                     'created-at' => 'তৈরি হয়েছে',
                     'customer-name' => 'গ্রাহকের নাম',
                     'declined' => 'প্রত্যাখ্যাত',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'সম্পন্ন হয়েছে',
+                    'completed' => 'পাঠানো হয়েছে',
+                    'delivered' => 'বিতরণ করা হয়েছে',
                     'declined' => 'প্রত্যাখ্যাত',
                     'message' => 'বার্তা',
                     'pending' => 'মুলতুবি',

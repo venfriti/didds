@@ -480,7 +480,7 @@
                                             @break
 
                                         @case('completed')
-                                            <p class="label-processing">{{ $order->status_label }}</p>
+                                            <p class="label-shipped">{{ $order->status_label }}</p>
                                             @break
 
                                         @case('pending')

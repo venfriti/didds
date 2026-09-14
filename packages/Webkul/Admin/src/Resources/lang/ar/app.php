@@ -230,7 +230,8 @@ return [
                     'canceled' => 'تم الإلغاء',
                     'channel-name' => 'القناة',
                     'closed' => 'مغلق',
-                    'completed' => 'تم الانتهاء',
+                    'completed' => 'تم الشحن',
+                    'delivered' => 'تم التسليم',
                     'customer' => 'العميل',
                     'date' => 'التاريخ',
                     'email' => 'البريد الإلكتروني',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'تم الإلغاء',
                         'channel-name' => 'اسم القناة',
                         'closed' => 'مغلق',
-                        'completed' => 'مكتمل',
+                        'completed' => 'تم الشحن',
+                        'delivered' => 'تم التسليم',
                         'customer-name' => 'اسم العميل',
                         'date' => 'التاريخ',
                         'email' => 'البريد الإلكتروني',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'طلب GDPR',
 
                 'datagrid' => [
-                    'completed' => 'مكتمل',
+                    'completed' => 'تم الشحن',
+                    'delivered' => 'تم التسليم',
                     'created-at' => 'تم الإنشاء في',
                     'customer-name' => 'اسم العميل',
                     'declined' => 'مرفوض',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'مكتمل',
+                    'completed' => 'تم الشحن',
+                    'delivered' => 'تم التسليم',
                     'declined' => 'مرفوض',
                     'message' => 'الرسالة',
                     'pending' => 'قيد الانتظار',

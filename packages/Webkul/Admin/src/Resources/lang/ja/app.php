@@ -230,7 +230,8 @@ return [
                     'canceled' => 'キャンセル',
                     'channel-name' => 'チャネル',
                     'closed' => '終了',
-                    'completed' => '完了',
+                    'completed' => '発送済み',
+                    'delivered' => '配達済み',
                     'customer' => '顧客',
                     'date' => '日付',
                     'email' => 'メール',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'キャンセル済み',
                         'channel-name' => 'チャネル名',
                         'closed' => 'クローズ済み',
-                        'completed' => '完了済み',
+                        'completed' => '発送済み',
+                        'delivered' => '配達済み',
                         'customer-name' => '顧客名',
                         'date' => '日付',
                         'email' => 'メール',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'GDPRリクエスト',
 
                 'datagrid' => [
-                    'completed' => '完了',
+                    'completed' => '発送済み',
+                    'delivered' => '配達済み',
                     'created-at' => '作成日時',
                     'customer-name' => '顧客名',
                     'declined' => '拒否',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => '完了',
+                    'completed' => '発送済み',
+                    'delivered' => '配達済み',
                     'declined' => '拒否',
                     'message' => 'メッセージ',
                     'pending' => '保留中',

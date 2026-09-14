@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Cancel·lat',
                     'channel-name' => 'Canal',
                     'closed' => 'Tancat',
-                    'completed' => 'Completat',
+                    'completed' => 'Enviat',
+                    'delivered' => 'Lliurat',
                     'customer' => 'Client',
                     'date' => 'Data',
                     'email' => 'Correu electrònic',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Cancel·lat',
                         'channel-name' => 'Nom del canal',
                         'closed' => 'Tancat',
-                        'completed' => 'Completat',
+                        'completed' => 'Enviat',
+                        'delivered' => 'Lliurat',
                         'customer-name' => 'Nom del client',
                         'date' => 'Data',
                         'email' => 'Correu electrònic',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'Sol·licitud GDPR',
 
                 'datagrid' => [
-                    'completed' => 'Completat',
+                    'completed' => 'Enviat',
+                    'delivered' => 'Lliurat',
                     'created-at' => 'Creat el',
                     'customer-name' => 'Nom del Client',
                     'declined' => 'Rebutjat',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Completat',
+                    'completed' => 'Enviat',
+                    'delivered' => 'Lliurat',
                     'declined' => 'Rebutjat',
                     'message' => 'Missatge',
                     'pending' => 'Pendent',

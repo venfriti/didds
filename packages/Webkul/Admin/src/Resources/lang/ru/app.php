@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Отменено',
                     'channel-name' => 'Канал',
                     'closed' => 'Закрыто',
-                    'completed' => 'Завершено',
+                    'completed' => 'Отправлен',
+                    'delivered' => 'Доставлен',
                     'customer' => 'Клиент',
                     'date' => 'Дата',
                     'email' => 'Электронная почта',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Отменен',
                         'channel-name' => 'Имя канала',
                         'closed' => 'Закрыт',
-                        'completed' => 'Завершен',
+                        'completed' => 'Отправлен',
+                        'delivered' => 'Доставлен',
                         'customer-name' => 'Имя клиента',
                         'date' => 'Дата',
                         'email' => 'Эл. почта',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'Запросы GDPR',
 
                 'datagrid' => [
-                    'completed' => 'Завершено',
+                    'completed' => 'Отправлен',
+                    'delivered' => 'Доставлен',
                     'created-at' => 'Создано',
                     'customer-name' => 'Имя клиента',
                     'declined' => 'Отклонено',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Завершено',
+                    'completed' => 'Отправлен',
+                    'delivered' => 'Доставлен',
                     'declined' => 'Отклонено',
                     'message' => 'Сообщение',
                     'pending' => 'В ожидании',

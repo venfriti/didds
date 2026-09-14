@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Geannuleerd',
                     'channel-name' => 'Kanaal',
                     'closed' => 'Gesloten',
-                    'completed' => 'Voltooid',
+                    'completed' => 'Verzonden',
+                    'delivered' => 'Bezorgd',
                     'customer' => 'Klant',
                     'date' => 'Datum',
                     'email' => 'E-mail',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Geannuleerd',
                         'channel-name' => 'Kanaalnaam',
                         'closed' => 'Afgesloten',
-                        'completed' => 'Voltooid',
+                        'completed' => 'Verzonden',
+                        'delivered' => 'Bezorgd',
                         'customer-name' => 'Klantnaam',
                         'date' => 'Datum',
                         'email' => 'E-mail',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'GDPR Verzoek',
 
                 'datagrid' => [
-                    'completed' => 'Voltooid',
+                    'completed' => 'Verzonden',
+                    'delivered' => 'Bezorgd',
                     'created-at' => 'Aangemaakt Op',
                     'customer-name' => 'Klantnaam',
                     'declined' => 'Afgewezen',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Voltooid',
+                    'completed' => 'Verzonden',
+                    'delivered' => 'Bezorgd',
                     'declined' => 'Afgewezen',
                     'message' => 'Bericht',
                     'pending' => 'In Afwachting',

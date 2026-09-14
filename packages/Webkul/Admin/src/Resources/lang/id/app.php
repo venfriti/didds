@@ -230,7 +230,8 @@ return [
                     'canceled' => 'Dibatalkan',
                     'channel-name' => 'Saluran',
                     'closed' => 'Ditutup',
-                    'completed' => 'Selesai',
+                    'completed' => 'Dikirim',
+                    'delivered' => 'Terkirim',
                     'customer' => 'Pelanggan',
                     'date' => 'Tanggal',
                     'email' => 'Email',
@@ -2245,7 +2246,8 @@ return [
                         'canceled' => 'Dibatalkan',
                         'channel-name' => 'Nama Kanal',
                         'closed' => 'Ditutup',
-                        'completed' => 'Selesai',
+                        'completed' => 'Dikirim',
+                        'delivered' => 'Terkirim',
                         'customer-name' => 'Nama Pelanggan',
                         'date' => 'Tanggal',
                         'email' => 'Email',
@@ -2382,7 +2384,8 @@ return [
                 'title' => 'Permintaan GDPR',
 
                 'datagrid' => [
-                    'completed' => 'Selesai',
+                    'completed' => 'Dikirim',
+                    'delivered' => 'Terkirim',
                     'created-at' => 'Dibuat Pada',
                     'customer-name' => 'Nama Pelanggan',
                     'declined' => 'Ditolak',
@@ -2398,7 +2401,8 @@ return [
                 ],
 
                 'modal' => [
-                    'completed' => 'Selesai',
+                    'completed' => 'Dikirim',
+                    'delivered' => 'Terkirim',
                     'declined' => 'Ditolak',
                     'message' => 'Pesan',
                     'pending' => 'Menunggu',

@@ -454,6 +454,8 @@
     .label-info,
     .label-fraud,
     .label-pending_payment,
+    .label-shipped,
+    .label-delivered,
     .label-completed,
     .label-active {
         @apply text-[12px] text-white font-semibold py-px px-1.5 max-w-max rounded-[35px];
@@ -468,10 +470,24 @@
 		@apply bg-cyan-600;
     }
 
-	.label-completed,
+    /*
+     * Shipped and delivered are both good news, so both are green - the
+     * darker shade reads as "on its way", the brighter as "arrived".
+     * Shipped previously shared a colour with delivered, so a dispatched
+     * order looked identical to one the customer already had.
+     *
+     * The order view builds its class as label-{status}, so the stored
+     * status "completed" needs the shipped colouring under its own name.
+     */
+    .label-shipped,
+    .label-completed {
+        @apply bg-green-800;
+    }
+
+    .label-delivered,
     .label-active {
-		@apply bg-green-600;
-	}
+        @apply bg-green-600;
+    }
 
 	.label-closed {
 		@apply bg-indigo-600;
