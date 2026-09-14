@@ -257,9 +257,13 @@ class OrderRepository extends Repository
         /**
          * If order is already completed and total quantity ordered is not equal to refunded
          * then it can be considered as completed.
+         *
+         * Delivered counts here too: it is a later stage than completed, so
+         * a recalculation must not knock a delivered order back to
+         * processing.
          */
         if (
-            $order->status === Order::STATUS_COMPLETED
+            in_array($order->status, [Order::STATUS_COMPLETED, Order::STATUS_DELIVERED], true)
             && $totalQtyOrdered != $totalQtyRefunded
         ) {
             return true;
@@ -322,7 +326,14 @@ class OrderRepository extends Repository
             $status = Order::STATUS_PROCESSING;
 
             if ($this->isInCompletedState($order)) {
-                $status = Order::STATUS_COMPLETED;
+                /**
+                 * Delivery is confirmed by the carrier and is the furthest
+                 * state an order reaches, so an unrelated recalculation
+                 * (an invoice, a partial shipment) must not roll it back.
+                 */
+                $status = $order->status === Order::STATUS_DELIVERED
+                    ? Order::STATUS_DELIVERED
+                    : Order::STATUS_COMPLETED;
             }
 
             if ($this->isInCanceledState($order)) {

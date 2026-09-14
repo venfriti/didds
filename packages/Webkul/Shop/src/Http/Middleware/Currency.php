@@ -5,6 +5,7 @@ namespace Webkul\Shop\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Core\Repositories\CurrencyRepository;
 
@@ -94,7 +95,7 @@ class Currency
         }
 
         if ($cart->cart_currency_code !== $currencyCode) {
-            Cart::collectTotals();
+            $this->repriceCart();
 
             return;
         }
@@ -111,8 +112,34 @@ class Currency
         $expected = (float) core()->convertPrice($cart->base_grand_total, $currencyCode);
 
         if (abs($expected - (float) $cart->grand_total) > 0.01) {
-            Cart::collectTotals();
+            $this->repriceCart();
         }
+    }
+
+    /**
+     * Re-price the cart for the current currency.
+     *
+     * collectTotals() alone recomputes the cart's own totals but leaves
+     * each line item's display price untouched - those are only refreshed
+     * by the repricing inside cart validation. Recollecting without it
+     * produced invoices where a parent line still carried dollars while its
+     * bundle options had been converted to naira, in the same table.
+     */
+    protected function repriceCart(): void
+    {
+        try {
+            Cart::validateItems();
+        } catch (\Throwable $e) {
+            /**
+             * Validation removes items that have become unbuyable, which we
+             * never want a currency switch to trigger silently. If it fails
+             * fall through to the totals recollect rather than leaving the
+             * page half-converted.
+             */
+            Log::warning('Currency repricing failed: '.$e->getMessage());
+        }
+
+        Cart::collectTotals();
     }
 
     /**

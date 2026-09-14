@@ -62,9 +62,17 @@ class SyncDhlTracking extends Command
             $this->line("Order #{$shipment->order->increment_id}: {$status['status_code']} — {$status['description']}");
 
             if ($this->isDelivered($status)) {
-                $orderRepository->updateOrderStatus($shipment->order, Order::STATUS_COMPLETED);
+                /**
+                 * "Completed" already means every item was invoiced and
+                 * dispatched, so reusing it here made delivery invisible -
+                 * the status never changed when the parcel actually
+                 * arrived. Delivery is its own state.
+                 */
+                if ($shipment->order->status !== Order::STATUS_DELIVERED) {
+                    $orderRepository->updateOrderStatus($shipment->order, Order::STATUS_DELIVERED);
 
-                $this->info("Order #{$shipment->order->increment_id} marked as completed (DHL delivered).");
+                    $this->info("Order #{$shipment->order->increment_id} marked as delivered (confirmed by DHL).");
+                }
             }
         }
 

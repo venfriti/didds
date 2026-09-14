@@ -47,9 +47,17 @@ class Order extends Model implements OrderContract
     public const STATUS_PROCESSING = 'processing';
 
     /**
-     * Completed state.
+     * Completed state - every item invoiced and dispatched. This is not
+     * proof of delivery; the carrier confirms that separately and the
+     * order then moves to STATUS_DELIVERED.
      */
     public const STATUS_COMPLETED = 'completed';
+
+    /**
+     * Delivered state - the carrier has confirmed the parcel reached the
+     * customer.
+     */
+    public const STATUS_DELIVERED = 'delivered';
 
     /**
      * Canceled state.
@@ -92,7 +100,8 @@ class Order extends Model implements OrderContract
         self::STATUS_PENDING => 'Pending',
         self::STATUS_PENDING_PAYMENT => 'Pending Payment',
         self::STATUS_PROCESSING => 'Processing',
-        self::STATUS_COMPLETED => 'Completed',
+        self::STATUS_COMPLETED => 'Shipped',
+        self::STATUS_DELIVERED => 'Delivered',
         self::STATUS_CANCELED => 'Canceled',
         self::STATUS_CLOSED => 'Closed',
         self::STATUS_FRAUD => 'Fraud',
