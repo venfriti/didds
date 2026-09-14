@@ -1948,6 +1948,13 @@ return [
                 'channel_based' => false,
                 'locale_based' => false,
             ], [
+                'name' => 'auto_create_shipment',
+                'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.auto-create-shipment',
+                'info' => 'admin::app.configuration.index.sales.shipping-methods.dhl.auto-create-shipment-info',
+                'type' => 'boolean',
+                'channel_based' => false,
+                'locale_based' => false,
+            ], [
                 'name' => 'api_key',
                 'title' => 'admin::app.configuration.index.sales.shipping-methods.dhl.api-key',
                 'type' => 'text',

@@ -4961,6 +4961,8 @@ return [
                         'page-title' => 'DHL Express',
                         'request-pickup' => 'Automatically Request Courier Pickup (may incur DHL pickup fees)',
                         'sandbox-mode' => 'Sandbox Mode (use DHL test environment, no real shipments/charges)',
+                        'auto-create-shipment' => 'Book DHL shipment automatically when an order is paid',
+                        'auto-create-shipment-info' => 'When on, a DHL waybill is created as soon as payment succeeds. When off, create the shipment yourself from the order page - the DHL call still happens then.',
                         'status' => 'Status',
                         'title' => 'Title',
                         'title-info' => 'DHL Express fetches live shipping rates from DHL\'s MyDHL API based on the destination address and cart weight. Requires a DHL Express developer account with API Key, API Secret, and Account Number from developer.dhl.com.',

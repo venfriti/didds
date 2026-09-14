@@ -58,41 +58,16 @@
                     <!-- Drawer Content -->
                     <x-slot:content class="!p-0">
                         <div class="grid p-4 pt-2">
-                            <div class="grid grid-cols-2 gap-x-5">
-                                <!-- Carrier Name -->
-                                <x-admin::form.control-group>
-                                    <x-admin::form.control-group.label>
-                                        @lang('admin::app.sales.shipments.create.carrier-name')
-                                    </x-admin::form.control-group.label>
-
-                                    <x-admin::form.control-group.control
-                                        type="text"
-                                        id="shipment[carrier_title]"
-                                        name="shipment[carrier_title]"
-                                        :label="trans('admin::app.sales.shipments.create.carrier-name')"
-                                        :placeholder="trans('admin::app.sales.shipments.create.carrier-name')"
-                                    />
-
-                                    <x-admin::form.control-group.error control-name="carrier_name" />
-                                </x-admin::form.control-group>
-
-                                <!-- Tracking Number -->
-                                <x-admin::form.control-group>
-                                    <x-admin::form.control-group.label>
-                                        @lang('admin::app.sales.shipments.create.tracking-number')
-                                    </x-admin::form.control-group.label>
-
-                                    <x-admin::form.control-group.control
-                                        type="text"
-                                        id="shipment[track_number]"
-                                        name="shipment[track_number]"
-                                        :label="trans('admin::app.sales.shipments.create.tracking-number')"
-                                        :placeholder="trans('admin::app.sales.shipments.create.tracking-number')"
-                                    />
-
-                                    <x-admin::form.control-group.error control-name="shipment[track_number]" />
-                                </x-admin::form.control-group>
-                            </div>
+                            {{--
+                                Carrier and tracking number are not asked
+                                for: creating the shipment calls DHL, which
+                                returns the real waybill number, and anything
+                                typed here would be overwritten by it. They
+                                are submitted empty so the request shape the
+                                controller expects is unchanged.
+                            --}}
+                            <input type="hidden" name="shipment[carrier_title]" value="">
+                            <input type="hidden" name="shipment[track_number]" value="">
 
                             <!-- Resource -->
                             <x-admin::form.control-group>
@@ -292,7 +267,15 @@
 
         data() {
             return {
-                source: "",
+                /**
+                 * Preselected when the channel has a single inventory
+                 * source, which is the usual case - leaving it blank made
+                 * every shipment start with a required-field error for a
+                 * choice there was only one answer to.
+                 */
+                source: @json($order->channel->inventory_sources->count() === 1
+                    ? (string) $order->channel->inventory_sources->first()->id
+                    : ''),
             };
         },
 
