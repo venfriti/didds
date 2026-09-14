@@ -4,8 +4,12 @@ namespace Webkul\Shop\Http\Controllers\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Webkul\CartRule\Exceptions\CouponUsageLimitExceededException;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Models\CustomerAddress;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Payment\Facades\Payment;
 use Webkul\Sales\Repositories\OrderRepository;
@@ -23,7 +27,8 @@ class OnepageController extends APIController
      */
     public function __construct(
         protected OrderRepository $orderRepository,
-        protected CustomerRepository $customerRepository
+        protected CustomerRepository $customerRepository,
+        protected CustomerAddressRepository $customerAddressRepository
     ) {}
 
     /**
@@ -61,6 +66,8 @@ class OnepageController extends APIController
         }
 
         Cart::saveAddresses($params);
+
+        $this->saveToAddressBook($params);
 
         $cart = Cart::getCart();
 
@@ -271,5 +278,79 @@ class OnepageController extends APIController
 
         return collect(Payment::getSupportedPaymentMethods()['payment_methods'] ?? [])
             ->contains('method', $method);
+    }
+
+    /**
+     * Persist a checkout address to the customer's address book when they
+     * ticked "save address".
+     *
+     * The checkout form posts save_address, but nothing consumed it, so the
+     * box did nothing and no customer-type address was ever created - which
+     * left the address fields blank on every subsequent checkout even for a
+     * logged-in customer with a full order history.
+     */
+    protected function saveToAddressBook(array $params): void
+    {
+        $customer = auth()->guard('customer')->user();
+
+        if (! $customer) {
+            return;
+        }
+
+        foreach (['billing', 'shipping'] as $type) {
+            $address = $params[$type] ?? null;
+
+            if (! $address || empty($address['save_address'])) {
+                continue;
+            }
+
+            /**
+             * Only the fields that belong on a stored address - the cart
+             * payload also carries checkout-only flags like
+             * use_for_shipping and save_address itself.
+             */
+            $attributes = array_merge(
+                Arr::only($address, [
+                    'company_name', 'first_name', 'last_name', 'email',
+                    'address', 'city', 'state', 'country', 'postcode', 'phone',
+                    'vat_id',
+                ]),
+                [
+                    'customer_id'  => $customer->id,
+                    'address_type' => CustomerAddress::ADDRESS_TYPE,
+                ]
+            );
+
+            if (is_array($attributes['address'] ?? null)) {
+                $attributes['address'] = implode(PHP_EOL, array_filter($attributes['address']));
+            }
+
+            /**
+             * Re-saving the same address on a later checkout should not
+             * grow the address book, so an identical entry is left alone.
+             */
+            $duplicate = $this->customerAddressRepository->findWhere([
+                'customer_id' => $customer->id,
+                'address_type' => CustomerAddress::ADDRESS_TYPE,
+                'address' => $attributes['address'] ?? '',
+                'city' => $attributes['city'] ?? '',
+                'postcode' => $attributes['postcode'] ?? '',
+                'country' => $attributes['country'] ?? '',
+            ])->first();
+
+            if ($duplicate) {
+                continue;
+            }
+
+            try {
+                $this->customerAddressRepository->create($attributes);
+            } catch (\Throwable $e) {
+                /**
+                 * The order matters more than the address book, so a
+                 * failure here is logged rather than blocking checkout.
+                 */
+                Log::warning('Could not save checkout address to address book: '.$e->getMessage());
+            }
+        }
     }
 }
