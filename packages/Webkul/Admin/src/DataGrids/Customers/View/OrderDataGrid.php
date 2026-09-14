@@ -105,7 +105,10 @@ class OrderDataGrid extends DataGrid
                         return '<p class="label-processing">'.trans('admin::app.customers.customers.view.datagrid.orders.processing').'</p>';
 
                     case Order::STATUS_COMPLETED:
-                        return '<p class="label-active">'.trans('admin::app.customers.customers.view.datagrid.orders.completed').'</p>';
+                        return '<p class="label-shipped">'.trans('admin::app.customers.customers.view.datagrid.orders.completed').'</p>';
+
+                    case Order::STATUS_DELIVERED:
+                        return '<p class="label-delivered">'.trans('admin::app.customers.customers.view.datagrid.orders.delivered').'</p>';
 
                     case Order::STATUS_CANCELED:
                         return '<p class="label-canceled">'.trans('admin::app.customers.customers.view.datagrid.orders.canceled').'</p>';

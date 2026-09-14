@@ -118,7 +118,7 @@ class OrderDataGrid extends DataGrid
                         return '<p class="label-shipped">'.trans('shop::app.customers.account.orders.status.options.completed').'</p>';
 
                     case Order::STATUS_DELIVERED:
-                        return '<p class="label-active">'.trans('shop::app.customers.account.orders.status.options.delivered').'</p>';
+                        return '<p class="label-delivered">'.trans('shop::app.customers.account.orders.status.options.delivered').'</p>';
 
                     case Order::STATUS_CANCELED:
                         return '<p class="label-canceled">'.trans('shop::app.customers.account.orders.status.options.canceled').'</p>';
