@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Continua al pagamento',
             'illegal' => 'La quantità non può essere inferiore a uno.',
+            'quantity-limit' => 'Puoi ordinare al massimo :quantity di questo articolo.',
             'inactive' => 'L\'articolo è stato disattivato e rimosso dal carrello.',
             'inactive-add' => 'L\'articolo inattivo non può essere aggiunto al carrello.',
             'inventory-warning' => 'La quantità richiesta non è disponibile, riprova più tardi.',

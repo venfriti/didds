@@ -129,6 +129,10 @@ class Cart
             'base_currency_code' => $baseCurrencyCode,
             'channel_currency_code' => core()->getChannelBaseCurrencyCode(),
             'cart_currency_code' => core()->getCurrentCurrencyCode(),
+            'visitor_id' => request()?->cookie('analytics_visitor_id'),
+            'landing_source' => request()?->hasSession() && request()->session()->has('landing_source')
+                ? request()->session()->get('landing_source')
+                : null,
         ], $data);
 
         $customer = $data['customer'] ?? auth()->guard()->user();
@@ -283,6 +287,28 @@ class Cart
                     $cartProduct['parent_id'] = $parentCartItem->id;
                 }
 
+                /**
+                 * Checked on the quantity the line would end up holding,
+                 * not the amount being added, so adding one unit five
+                 * times over is refused exactly like adding six at once.
+                 * Child rows of a configurable or bundle carry their
+                 * parent's quantity, so only the parent is checked.
+                 */
+                if (
+                    ! isset($cartProduct['parent_id'])
+                    && $this->exceedsQuantityLimit((int) ($cartProduct['quantity'] ?? 0))
+                ) {
+                    if (! $this->cart->all_items->count()) {
+                        $this->removeCart($this->cart);
+                    } else {
+                        $this->collectTotals();
+                    }
+
+                    throw new \Exception(trans('shop::app.checkout.cart.quantity-limit', [
+                        'quantity' => $this->maxQuantityPerItem(),
+                    ]));
+                }
+
                 if (! $cartItem) {
                     $cartItem = $this->cartItemRepository->create(array_merge($cartProduct, ['cart_id' => $this->cart->id]));
                 } else {
@@ -359,6 +385,12 @@ class Cart
                 $this->removeItem($itemId);
 
                 throw new \Exception(trans('shop::app.checkout.cart.illegal'));
+            }
+
+            if ($this->exceedsQuantityLimit($quantity)) {
+                throw new \Exception(trans('shop::app.checkout.cart.quantity-limit', [
+                    'quantity' => $this->maxQuantityPerItem(),
+                ]));
             }
 
             $item->quantity = $quantity;
@@ -833,6 +865,35 @@ class Cart
         }
 
         return true;
+    }
+
+    /**
+     * The most units of one product a customer may buy in a single order,
+     * or null when unlimited.
+     */
+    public function maxQuantityPerItem(): ?int
+    {
+        $max = core()->getConfigData('catalog.products.settings.max_quantity_per_item');
+
+        if ($max === null || $max === '' || (int) $max < 1) {
+            return null;
+        }
+
+        return (int) $max;
+    }
+
+    /**
+     * Whether this quantity is within the per-item limit.
+     *
+     * Checked against the quantity the cart would hold, not the amount
+     * being added, so ten separate additions of one unit are refused the
+     * same way a single addition of ten is.
+     */
+    protected function exceedsQuantityLimit(int $quantity): bool
+    {
+        $max = $this->maxQuantityPerItem();
+
+        return $max !== null && $quantity > $max;
     }
 
     /**

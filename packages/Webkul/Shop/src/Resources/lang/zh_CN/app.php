@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => '继续结帐',
             'illegal' => '数量不能少于一。',
+            'quantity-limit' => '此商品最多可订购 :quantity 件。',
             'inactive' => '该项目已停用，随后从购物车中移除。',
             'inactive-add' => '无法将停用的项目添加到购物车。',
             'inventory-warning' => '请求的数量不可用，请稍后再试。',

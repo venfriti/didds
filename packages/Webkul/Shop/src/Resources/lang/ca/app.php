@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Continuar amb el Pagament',
             'illegal' => 'La quantitat no pot ser inferior a un.',
+            'quantity-limit' => 'Podeu demanar com a màxim :quantity d\'aquest article.',
             'inactive' => 'L\'article ha estat desactivat i posteriorment eliminat de la cistella.',
             'inactive-add' => 'L\'article inactiu no es pot afegir a la cistella.',
             'inventory-warning' => 'La quantitat sol·licitada no està disponible, si us plau intenta-ho de nou més tard.',

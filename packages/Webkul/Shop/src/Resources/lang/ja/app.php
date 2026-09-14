@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'チェックアウトに進む',
             'illegal' => '数量は1未満にできません。',
+            'quantity-limit' => 'この商品は最大 :quantity 個までご注文いただけます。',
             'inactive' => 'アイテムは無効になり、カートから削除されました。',
             'inactive-add' => '非アクティブなアイテムはカートに追加できません。',
             'inventory-warning' => '要求された数量は利用できません。後でやり直してください。',

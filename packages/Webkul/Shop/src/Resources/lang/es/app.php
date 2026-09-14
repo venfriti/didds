@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Continuar con el Pago',
             'illegal' => 'La cantidad no puede ser menor que uno.',
+            'quantity-limit' => 'Puede pedir como máximo :quantity de este artículo.',
             'inactive' => 'El artículo ha sido desactivado y posteriormente eliminado del carrito.',
             'inactive-add' => 'El artículo inactivo no se puede agregar al carrito.',
             'inventory-warning' => 'La cantidad solicitada no está disponible, por favor inténtalo de nuevo más tarde.',

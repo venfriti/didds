@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Lanjut ke Pembayaran',
             'illegal' => 'Jumlah tidak boleh kurang dari satu.',
+            'quantity-limit' => 'Anda dapat memesan maksimal :quantity item ini.',
             'inactive' => 'Produk ini telah dinonaktifkan dan dihapus dari keranjang.',
             'inactive-add' => 'Produk tidak aktif tidak dapat ditambahkan ke keranjang.',
             'inventory-warning' => 'Jumlah yang diminta tidak tersedia, silakan coba lagi nanti.',

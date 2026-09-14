@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Ödemeye Geç',
             'illegal' => 'Geçersiz miktar.',
+            'quantity-limit' => 'Bu üründen en fazla :quantity adet sipariş edebilirsiniz.',
             'inactive' => 'Ürün satışta değil.',
             'inactive-add' => 'Pasif ürün sepete eklenemez.',
             'inventory-warning' => 'Stok yetersiz.',

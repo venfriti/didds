@@ -1076,6 +1076,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Continue to Checkout',
             'illegal' => 'Quantity cannot be lesser than one.',
+            'quantity-limit' => 'You can order at most :quantity of this item.',
             'inactive' => 'The item has been deactivated and subsequently removed from the cart.',
             'inactive-add' => 'Inactive item cannot be added to cart.',
             'inventory-warning' => 'The requested quantity is not available, please try again later.',

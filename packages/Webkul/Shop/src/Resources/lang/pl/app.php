@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Przejdź do realizacji zamówienia',
             'illegal' => 'Ilość nie może być mniejsza niż jeden',
+            'quantity-limit' => 'Możesz zamówić maksymalnie :quantity sztuk tego produktu.',
             'inactive' => 'Produkt został dezaktywowany i usunięty z koszyka',
             'inactive-add' => 'Nieaktywny produkt nie może zostać dodany do koszyka.',
             'inventory-warning' => 'Żądana ilość nie jest dostępna, prosimy spróbować ponownie później',

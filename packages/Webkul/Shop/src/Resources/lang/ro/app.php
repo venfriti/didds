@@ -1061,6 +1061,7 @@ return [
         'cart' => [
             'continue-to-checkout' => 'Continuă spre finalizare',
             'illegal' => 'Cantitatea nu poate fi mai mică de unu.',
+            'quantity-limit' => 'Puteți comanda cel mult :quantity din acest articol.',
             'inactive' => 'Articolul a fost dezactivat și eliminat din coș.',
             'inactive-add' => 'Articolul inactiv nu poate fi adăugat în coș.',
             'inventory-warning' => 'Cantitatea solicitată nu este disponibilă, vă rugăm să încercați din nou mai târziu.',

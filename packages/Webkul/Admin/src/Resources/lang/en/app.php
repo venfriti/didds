@@ -4477,6 +4477,8 @@ return [
                     'settings' => [
                         'compare-options' => 'Compare options',
                         'image-search-option' => 'Image Search Option',
+                        'max-quantity-per-item' => 'Maximum quantity per item',
+                        'max-quantity-per-item-info' => 'The most units of a single product a customer may buy in one order. Leave blank for no limit.',
                         'title' => 'Settings',
                         'title-info' => 'Settings refer to configurable choices that control how a system, application, or device behaves, tailored to user preferences and requirements.',
                         'wishlist-options' => 'Wishlist options',

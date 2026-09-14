@@ -808,6 +808,13 @@ return [
                 'title' => 'admin::app.configuration.index.catalog.products.settings.image-search-option',
                 'type' => 'boolean',
                 'default' => 1,
+            ], [
+                'name' => 'max_quantity_per_item',
+                'title' => 'admin::app.configuration.index.catalog.products.settings.max-quantity-per-item',
+                'info' => 'admin::app.configuration.index.catalog.products.settings.max-quantity-per-item-info',
+                'type' => 'text',
+                'validation' => 'nullable|numeric|min:1',
+                'default' => 5,
             ],
         ],
     ], [
