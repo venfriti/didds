@@ -4,6 +4,8 @@ namespace Webkul\Sales\Transformers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
+use Webkul\Checkout\Facades\Cart;
 
 class OrderResource extends JsonResource
 {
@@ -22,6 +24,8 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        $this->assertCurrencyIsConsistent();
+
         $shippingInformation = [];
 
         if ($this->haveStockableItems()) {
@@ -66,6 +70,8 @@ class OrderResource extends JsonResource
             'shipping_tax_amount' => $this->selected_shipping_rate?->tax_amount ?? 0,
             'base_shipping_tax_amount' => $this->selected_shipping_rate?->base_tax_amount ?? 0,
             'coupon_code' => $this->coupon_code,
+            'visitor_id' => $this->visitor_id,
+            'landing_source' => $this->landing_source,
             'applied_cart_rule_ids' => $this->applied_cart_rule_ids,
             'discount_amount' => $this->discount_amount,
             'base_discount_amount' => $this->base_discount_amount,
@@ -74,5 +80,45 @@ class OrderResource extends JsonResource
             'payment' => (new OrderPaymentResource($this->payment))->jsonSerialize(),
             'items' => OrderItemResource::collection($this->items)->jsonSerialize(),
         ];
+    }
+
+    /**
+     * Refuse to turn a cart into an order when its display amounts don't
+     * match its own currency.
+     *
+     * An order records order_currency_code from the cart, so a cart whose
+     * currency changed without its amounts being repriced would be written
+     * with, say, dollar figures stamped as naira - permanently, on the
+     * order, its items and every invoice built from them. That is how
+     * invoices came to show "NGN 40.00" beside "NGN 30,800.00" for the same
+     * bundle.
+     *
+     * Repricing here is safe: the base amounts are authoritative and
+     * unchanged, so this only rebuilds the display side that was already
+     * wrong.
+     */
+    protected function assertCurrencyIsConsistent(): void
+    {
+        $currency = $this->cart_currency_code;
+
+        if (! $currency || (float) $this->base_grand_total == 0.0) {
+            return;
+        }
+
+        $expected = (float) core()->convertPrice((float) $this->base_grand_total, $currency);
+
+        if (abs($expected - (float) $this->grand_total) <= 0.01) {
+            return;
+        }
+
+        Log::warning('Cart '.$this->id.' had stale display totals at order time', [
+            'currency' => $currency,
+            'stored_grand_total' => $this->grand_total,
+            'expected_grand_total' => $expected,
+        ]);
+
+        Cart::collectTotals();
+
+        $this->resource->refresh();
     }
 }
