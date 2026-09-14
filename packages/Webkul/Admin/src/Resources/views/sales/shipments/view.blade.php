@@ -330,6 +330,29 @@
                                 @lang('admin::app.sales.shipments.view.tracking-number')
                             </p>
                         @endif
+
+                        {{--
+                            The waybill is the document that physically goes
+                            on the parcel, so it belongs on the shipment
+                            screen the warehouse works from. Admin only - it
+                            is never shown to the customer.
+                        --}}
+                        @if ($shipment->track_number && \Illuminate\Support\Facades\Storage::disk('public')->exists('shipping-labels/'.$shipment->track_number.'.pdf'))
+                            <p class="pt-4 font-semibold text-diidsInk dark:text-white">
+                                <a
+                                    href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('shipping-labels/'.$shipment->track_number.'.pdf') }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="text-blue-600 underline"
+                                >
+                                    Download waybill (PDF)
+                                </a>
+                            </p>
+
+                            <p class="text-diidsInk/70 dark:text-gray-300">
+                                Shipping label
+                            </p>
+                        @endif
                     </div>
                 </x-slot>
             </x-admin::accordion>

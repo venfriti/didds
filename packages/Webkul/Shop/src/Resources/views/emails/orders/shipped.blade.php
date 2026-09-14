@@ -1,34 +1,34 @@
 @component('shop::emails.layout')
     <div style="margin-bottom: 34px;">
-        <span style="font-size: 22px;font-weight: 600;color: #121A26">
+        <span style="font-size: 22px;font-weight: 600;color: #0A0A0A">
             @lang('shop::app.emails.orders.shipped.title')
         </span> <br>
 
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+        <p style="font-size: 16px;color: #4B5563;line-height: 24px;">
             @lang('shop::app.emails.dear', ['customer_name' => $shipment->order->customer_full_name]),👋
         </p>
 
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+        <p style="font-size: 16px;color: #4B5563;line-height: 24px;">
             @lang('shop::app.emails.orders.shipped.greeting', [
                 'invoice_id' => $shipment->increment_id,
-                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $shipment->order_id) . '" style="color: #2969FF;">#' . $shipment->order->increment_id . '</a>',
+                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $shipment->order_id) . '" style="color: #0A0A0A; text-decoration: underline;">#' . $shipment->order->increment_id . '</a>',
                 'created_at' => core()->formatDate($shipment->order->created_at, 'Y-m-d H:i:s')
             ])
         </p>
     </div>
 
-    <div style="font-size: 20px;font-weight: 600;color: #121A26">
+    <div style="font-size: 20px;font-weight: 600;color: #0A0A0A">
         @lang('shop::app.emails.orders.shipped.summary')
     </div>
 
     <div style="display: flex;flex-direction: row;margin-top: 20px;justify-content: space-between;margin-bottom: 40px;">
         @if ($shipment->order->shipping_address)
             <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.shipping-address')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;margin-bottom: 40px;">
                     {{ $shipment->order->shipping_address->company_name ?? '' }}<br/>
 
                     {{ $shipment->order->shipping_address->name }}<br/>
@@ -44,16 +44,16 @@
                     @lang('shop::app.emails.orders.contact') : {{ $shipment->order->billing_address->phone }}
                 </div>
 
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.shipping')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;">
                     {{ $shipment->order->shipping_title }}
                 </div>
 
 
-                <div style="font-size: 16px; color: #384860;">
+                <div style="font-size: 16px; color: #4B5563;">
                     <div>
                         <span>
                             @lang('shop::app.emails.orders.carrier') :
@@ -67,12 +67,28 @@
                             @lang('shop::app.emails.orders.tracking-number', ['tracking_number' =>  $shipment->track_number])
                         </span>
                     </div>
+
+                    {{--
+                        A tracking number the customer has to copy into
+                        DHL's site themselves is friction in the one email
+                        they open to ask "where is my parcel".
+                    --}}
+                    @if ($shipment->track_number && $shipment->carrier_title === 'DHL Express')
+                        <div style="padding-top: 8px;">
+                            <a
+                                href="https://www.dhl.com/en/express/tracking.html?AWB={{ $shipment->track_number }}"
+                                style="color: #0A44A3; text-decoration: underline;"
+                            >
+                                Track your parcel
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
                 @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($shipment->order->payment->method); @endphp
 
                 @if (! empty($additionalDetails))
-                    <div style="font-size: 16px; color: #384860;">
+                    <div style="font-size: 16px; color: #4B5563;">
                         <div>
                             <span>{{ $additionalDetails->title }} : </span>
                         </div>
@@ -87,11 +103,11 @@
 
         @if ($shipment->order->billing_address)
             <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.billing-address')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;margin-bottom: 40px;">
                     {{ $shipment->order->billing_address->company_name ?? '' }}<br/>
 
                     {{ $shipment->order->billing_address->name }}<br/>
@@ -107,22 +123,22 @@
                     @lang('shop::app.emails.orders.contact') : {{ $shipment->order->billing_address->phone }}
                 </div>
 
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.payment')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;">
                     {{ core()->getConfigData('sales.payment_methods.' . $shipment->order->payment->method . '.title') }}
                 </div>
             </div>
         @endif
     </div>
 
-    <div style="padding-bottom: 40px;border-bottom: 1px solid #CBD5E1;">
+    <div style="padding-bottom: 40px;border-bottom: 1px solid #E5E5E5;">
         <table style="overflow-x: auto; border-collapse: collapse;
         border-spacing: 0;width: 100%">
             <thead>
-                <tr style="color: #121A26;border-top: 1px solid #CBD5E1;border-bottom: 1px solid #CBD5E1;">
+                <tr style="color: #0A0A0A;border-top: 1px solid #E5E5E5;border-bottom: 1px solid #E5E5E5;">
                     @foreach (['sku', 'name', 'price', 'qty'] as $item)
                         <th style="text-align: left;padding: 15px">
                             @lang('shop::app.emails.orders.' . $item)
@@ -131,7 +147,7 @@
                 </tr>
             </thead>
 
-            <tbody style="font-size: 16px;font-weight: 400;color: #384860;">
+            <tbody style="font-size: 16px;font-weight: 400;color: #4B5563;">
                 @foreach ($shipment->items as $item)
                     <tr style="vertical-align: text-top;">
                         <td style="text-align: left;padding: 15px">
