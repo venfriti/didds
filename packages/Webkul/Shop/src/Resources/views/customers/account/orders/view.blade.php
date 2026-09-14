@@ -466,29 +466,41 @@
                                 <div class="items-center">
                                     @lang('shop::app.customers.account.orders.view.status')
 
+                                    {{--
+                                        status_label, not the raw status: the
+                                        stored value "completed" means
+                                        dispatched, and showing that word to a
+                                        customer reads as "your order is
+                                        finished" while the parcel is still in
+                                        transit.
+                                    --}}
                                     @switch($order->status)
+                                        @case('delivered')
+                                            <p class="label-completed">{{ $order->status_label }}</p>
+                                            @break
+
                                         @case('completed')
-                                            <p class="label-completed">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-processing">{{ $order->status_label }}</p>
                                             @break
 
                                         @case('pending')
-                                            <p class="label-pending">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-pending">{{ $order->status_label }}</p>
                                             @break
 
                                         @case('closed')
-                                            <p class="label-closed">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-closed">{{ $order->status_label }}</p>
                                             @break
 
                                         @case('processing')
-                                            <p class="label-processing">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-processing">{{ $order->status_label }}</p>
                                             @break
 
                                         @case('canceled')
-                                            <p class="label-canceled">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-canceled">{{ $order->status_label }}</p>
                                             @break
 
                                         @default
-                                            <p class="label-info">{{ ucfirst($order->status) }}</p>
+                                            <p class="label-info">{{ $order->status_label }}</p>
                                     @endswitch
                                 </div>
                             </div>

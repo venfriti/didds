@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'ملغى',
                         'closed' => 'مغلق',
-                        'completed' => 'مكتمل',
+                        'completed' => 'تم الشحن',
+                        'delivered' => 'تم التسليم',
                         'fraud' => 'احتيال',
                         'pending' => 'معلق',
                         'pending-payment' => 'معلق على الدفع',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'ملغى',
                     'closed' => 'مغلق',
-                    'completed' => 'مكتمل',
+                    'completed' => 'تم الشحن',
+                    'delivered' => 'تم التسليم',
                     'fraud' => 'احتيال',
                     'pending' => 'معلق',
                     'pending-payment' => 'معلق على الدفع',

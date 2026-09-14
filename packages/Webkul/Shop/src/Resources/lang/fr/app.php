@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Annulée',
                         'closed' => 'Fermée',
-                        'completed' => 'Terminée',
+                        'completed' => 'Expédiée',
+                        'delivered' => 'Livrée',
                         'fraud' => 'Fraude',
                         'pending' => 'En attente',
                         'pending-payment' => 'En attente de paiement',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Annulé',
                     'closed' => 'Fermé',
-                    'completed' => 'Terminé',
+                    'completed' => 'Expédiée',
+                    'delivered' => 'Livrée',
                     'fraud' => 'Fraude',
                     'pending' => 'En attente',
                     'pending-payment' => 'Paiement en attente',

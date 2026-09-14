@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Anulowane',
                         'closed' => 'Zamknięte',
-                        'completed' => 'Zakończone',
+                        'completed' => 'Wysłane',
+                        'delivered' => 'Dostarczone',
                         'fraud' => 'Oszustwo',
                         'pending' => 'Oczekuje',
                         'pending-payment' => 'Oczekuje na płatność',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Anulowane',
                     'closed' => 'Zamknięte',
-                    'completed' => 'Zakończone',
+                    'completed' => 'Wysłane',
+                    'delivered' => 'Dostarczone',
                     'fraud' => 'Oszustwo',
                     'pending' => 'Oczekujące',
                     'pending-payment' => 'Oczekująca płatność',

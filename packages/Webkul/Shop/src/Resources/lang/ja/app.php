@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'キャンセル',
                         'closed' => 'クローズド',
-                        'completed' => '完了',
+                        'completed' => '発送済み',
+                        'delivered' => '配達済み',
                         'fraud' => '詐欺',
                         'pending' => '保留中',
                         'pending-payment' => '支払い保留',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'キャンセル',
                     'closed' => 'クローズ',
-                    'completed' => '完了',
+                    'completed' => '発送済み',
+                    'delivered' => '配達済み',
                     'fraud' => '不正',
                     'pending' => '保留中',
                     'pending-payment' => '支払い待ち',

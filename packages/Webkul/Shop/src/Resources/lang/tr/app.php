@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'İptal Edildi',
                         'closed' => 'Kapalı',
-                        'completed' => 'Tamamlandı',
+                        'completed' => 'Gönderildi',
+                        'delivered' => 'Teslim edildi',
                         'fraud' => 'Şüpheli İşlem',
                         'pending' => 'Beklemede',
                         'pending-payment' => 'Ödeme Bekliyor',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'İptal Edildi',
                     'closed' => 'Kapalı',
-                    'completed' => 'Tamamlandı',
+                    'completed' => 'Gönderildi',
+                    'delivered' => 'Teslim edildi',
                     'fraud' => 'Dolandırıcılık',
                     'pending' => 'Beklemede',
                     'pending-payment' => 'Ödeme Bekleniyor',

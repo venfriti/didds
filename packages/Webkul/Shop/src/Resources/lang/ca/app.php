@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Cancel·lat',
                         'closed' => 'Tancat',
-                        'completed' => 'Completat',
+                        'completed' => 'Enviat',
+                        'delivered' => 'Lliurat',
                         'fraud' => 'Frau',
                         'pending' => 'Pendent',
                         'pending-payment' => 'Pagament Pendent',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Cancel·lat',
                     'closed' => 'Tancat',
-                    'completed' => 'Completat',
+                    'completed' => 'Enviat',
+                    'delivered' => 'Lliurat',
                     'fraud' => 'Frau',
                     'pending' => 'Pendent',
                     'pending-payment' => 'Pagament pendent',

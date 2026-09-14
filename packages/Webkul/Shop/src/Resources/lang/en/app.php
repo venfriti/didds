@@ -203,7 +203,8 @@ return [
                     'options' => [
                         'canceled' => 'Canceled',
                         'closed' => 'Closed',
-                        'completed' => 'Completed',
+                        'completed' => 'Shipped',
+                        'delivered' => 'Delivered',
                         'fraud' => 'Fraud',
                         'pending' => 'Pending',
                         'pending-payment' => 'Pending Payment',
@@ -212,7 +213,8 @@ return [
 
                     'canceled' => 'Canceled',
                     'closed' => 'Closed',
-                    'completed' => 'Completed',
+                    'completed' => 'Shipped',
+                    'delivered' => 'Delivered',
                     'fraud' => 'Fraud',
                     'pending' => 'Pending',
                     'pending-payment' => 'Pending Payment',

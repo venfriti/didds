@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Отменен',
                         'closed' => 'Закрыт',
-                        'completed' => 'Завершен',
+                        'completed' => 'Відправлено',
+                        'delivered' => 'Доставлено',
                         'fraud' => 'Мошенничество',
                         'pending' => 'В ожидании',
                         'pending-payment' => 'Ожидание оплаты',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Скасовано',
                     'closed' => 'Закрито',
-                    'completed' => 'Завершено',
+                    'completed' => 'Відправлено',
+                    'delivered' => 'Доставлено',
                     'fraud' => 'Шахрайство',
                     'pending' => 'В очікуванні',
                     'pending-payment' => 'Очікує оплати',

@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Geannuleerd',
                         'closed' => 'Gesloten',
-                        'completed' => 'Voltooid',
+                        'completed' => 'Verzonden',
+                        'delivered' => 'Bezorgd',
                         'fraud' => 'Fraude',
                         'pending' => 'In Afwachting',
                         'pending-payment' => 'In Afwachting van Betaling',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Geannuleerd',
                     'closed' => 'Gesloten',
-                    'completed' => 'Voltooid',
+                    'completed' => 'Verzonden',
+                    'delivered' => 'Bezorgd',
                     'fraud' => 'Fraude',
                     'pending' => 'In afwachting',
                     'pending-payment' => 'Betaling in afwachting',

@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Annullato',
                         'closed' => 'Chiuso',
-                        'completed' => 'Completato',
+                        'completed' => 'Spedito',
+                        'delivered' => 'Consegnato',
                         'fraud' => 'Frode',
                         'pending' => 'In Sospeso',
                         'pending-payment' => 'Pagamento in Sospeso',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Annullato',
                     'closed' => 'Chiuso',
-                    'completed' => 'Completato',
+                    'completed' => 'Spedito',
+                    'delivered' => 'Consegnato',
                     'fraud' => 'Frode',
                     'pending' => 'In sospeso',
                     'pending-payment' => 'Pagamento in sospeso',

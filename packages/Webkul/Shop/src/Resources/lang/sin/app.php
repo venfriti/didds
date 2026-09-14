@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'අවලංගු',
                         'closed' => 'වසා කරන ලද',
-                        'completed' => 'සාර්ථකයි',
+                        'completed' => 'යවන ලදී',
+                        'delivered' => 'බාර දෙන ලදී',
                         'fraud' => 'හොඳින්',
                         'pending' => 'අපහසු',
                         'pending-payment' => 'අපහසු ගෙවීම',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'අවලංගු කර ඇත',
                     'closed' => 'වසා ඇත',
-                    'completed' => 'සම්පූර්ණයි',
+                    'completed' => 'යවන ලදී',
+                    'delivered' => 'බාර දෙන ලදී',
                     'fraud' => 'වංචාව',
                     'pending' => 'පැවැති',
                     'pending-payment' => 'ගෙවීම බලාපොරොත්තුවෙන්',

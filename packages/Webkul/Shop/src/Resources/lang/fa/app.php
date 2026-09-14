@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'لغو شده',
                         'closed' => 'بسته شده',
-                        'completed' => 'تکمیل شده',
+                        'completed' => 'ارسال شد',
+                        'delivered' => 'تحویل داده شد',
                         'fraud' => 'تقلبی',
                         'pending' => 'در انتظار',
                         'pending-payment' => 'در انتظار پرداخت',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'لغو شده',
                     'closed' => 'بسته شده',
-                    'completed' => 'تکمیل شده',
+                    'completed' => 'ارسال شد',
+                    'delivered' => 'تحویل داده شد',
                     'fraud' => 'تقلب',
                     'pending' => 'در انتظار',
                     'pending-payment' => 'در انتظار پرداخت',

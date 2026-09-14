@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'בוטל',
                         'closed' => 'סגור',
-                        'completed' => 'הושלם',
+                        'completed' => 'נשלח',
+                        'delivered' => 'נמסר',
                         'fraud' => 'בעל מסמר חשוד',
                         'pending' => 'ממתין',
                         'pending-payment' => 'ממתין לתשלום',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'בוטל',
                     'closed' => 'נסגר',
-                    'completed' => 'הושלם',
+                    'completed' => 'נשלח',
+                    'delivered' => 'נמסר',
                     'fraud' => 'הונאה',
                     'pending' => 'ממתין',
                     'pending-payment' => 'ממתין לתשלום',

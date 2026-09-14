@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'বাতিল',
                         'closed' => 'বন্ধ',
-                        'completed' => 'সম্পূর্ণ',
+                        'completed' => 'পাঠানো হয়েছে',
+                        'delivered' => 'বিতরণ করা হয়েছে',
                         'fraud' => 'প্রতারণা',
                         'pending' => 'মুলতুলি',
                         'pending-payment' => 'মুলতুলি পেমেন্ট',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'বাতিল',
                     'closed' => 'বন্ধ',
-                    'completed' => 'সম্পন্ন',
+                    'completed' => 'পাঠানো হয়েছে',
+                    'delivered' => 'বিতরণ করা হয়েছে',
                     'fraud' => 'প্রতারণা',
                     'pending' => 'অপেক্ষমান',
                     'pending-payment' => 'অপেক্ষমান পেমেন্ট',

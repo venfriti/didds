@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Dibatalkan',
                         'closed' => 'Ditutup',
-                        'completed' => 'Selesai',
+                        'completed' => 'Dikirim',
+                        'delivered' => 'Terkirim',
                         'fraud' => 'Penipuan',
                         'pending' => 'Menunggu',
                         'pending-payment' => 'Menunggu Pembayaran',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Dibatalkan',
                     'closed' => 'Ditutup',
-                    'completed' => 'Selesai',
+                    'completed' => 'Dikirim',
+                    'delivered' => 'Terkirim',
                     'fraud' => 'Penipuan',
                     'pending' => 'Tertunda',
                     'pending-payment' => 'Pembayaran tertunda',

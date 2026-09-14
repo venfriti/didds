@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Anulată',
                         'closed' => 'Închisă',
-                        'completed' => 'Finalizată',
+                        'completed' => 'Expediat',
+                        'delivered' => 'Livrat',
                         'fraud' => 'Fraudă',
                         'pending' => 'În așteptare',
                         'pending-payment' => 'Plată în așteptare',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Anulată',
                     'closed' => 'Închisă',
-                    'completed' => 'Finalizată',
+                    'completed' => 'Expediat',
+                    'delivered' => 'Livrat',
                     'fraud' => 'Fraudă',
                     'pending' => 'În așteptare',
                     'pending-payment' => 'Plată în așteptare',

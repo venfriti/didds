@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => '已取消',
                         'closed' => '已关闭',
-                        'completed' => '已完成',
+                        'completed' => '已发货',
+                        'delivered' => '已送达',
                         'fraud' => '欺诈',
                         'pending' => '待处理',
                         'pending-payment' => '待付款',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => '已取消',
                     'closed' => '已关闭',
-                    'completed' => '已完成',
+                    'completed' => '已发货',
+                    'delivered' => '已送达',
                     'fraud' => '欺诈',
                     'pending' => '待处理',
                     'pending-payment' => '待付款',

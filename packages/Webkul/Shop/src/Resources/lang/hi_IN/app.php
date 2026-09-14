@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'रद्द कर दिया गया',
                         'closed' => 'बंद कर दिया गया',
-                        'completed' => 'पूर्ण',
+                        'completed' => 'भेज दिया गया',
+                        'delivered' => 'वितरित',
                         'fraud' => 'धोखाधड़ी',
                         'pending' => 'अपूर्ण',
                         'pending-payment' => 'अपूर्ण भुगतान',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'रद्द किया गया',
                     'closed' => 'बंद',
-                    'completed' => 'पूर्ण',
+                    'completed' => 'भेज दिया गया',
+                    'delivered' => 'वितरित',
                     'fraud' => 'धोखाधड़ी',
                     'pending' => 'लंबित',
                     'pending-payment' => 'भुगतान लंबित',

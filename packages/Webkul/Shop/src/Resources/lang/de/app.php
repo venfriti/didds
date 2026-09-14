@@ -188,7 +188,8 @@ return [
                     'options' => [
                         'canceled' => 'Abgebrochen',
                         'closed' => 'Geschlossen',
-                        'completed' => 'Abgeschlossen',
+                        'completed' => 'Versandt',
+                        'delivered' => 'Zugestellt',
                         'fraud' => 'Betrug',
                         'pending' => 'Ausstehend',
                         'pending-payment' => 'Zahlung ausstehend',
@@ -197,7 +198,8 @@ return [
 
                     'canceled' => 'Storniert',
                     'closed' => 'Geschlossen',
-                    'completed' => 'Abgeschlossen',
+                    'completed' => 'Versandt',
+                    'delivered' => 'Zugestellt',
                     'fraud' => 'Betrug',
                     'pending' => 'Ausstehend',
                     'pending-payment' => 'Zahlung ausstehend',
