@@ -52,12 +52,12 @@ return [
         'sort' => 5,
         'icon' => '',
     ], [
-        'key' => 'sales.bookings',
-        'name' => 'admin::app.components.layouts.sidebar.booking-product',
-        'route' => 'admin.sales.bookings.index',
-        'sort' => 6,
-        'icon' => '',
     ], [
+        /**
+         * Bookings (sort 6) is deliberately absent: it covers appointment
+         * and event products this store does not sell. The package is
+         * still installed, so restoring the entry is one block of config.
+         */
         'key' => 'sales.rma',
         'name' => 'admin::app.components.layouts.sidebar.rma',
         'route' => 'admin.sales.rma.requests.index',
