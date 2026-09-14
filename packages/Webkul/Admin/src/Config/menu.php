@@ -52,7 +52,6 @@ return [
         'sort' => 5,
         'icon' => '',
     ], [
-    ], [
         /**
          * Bookings (sort 6) is deliberately absent: it covers appointment
          * and event products this store does not sell. The package is
