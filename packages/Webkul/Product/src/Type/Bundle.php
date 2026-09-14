@@ -455,11 +455,17 @@ class Bundle extends AbstractType
 
                 $label = $qty.' x '.$optionProduct->product->name;
 
-                $price = $optionProduct->product->getTypeInstance()->getMinimalPrice();
-
-                if ($price != 0) {
-                    $label .= ' '.core()->currency($price);
-                }
+                /**
+                 * The price is deliberately left off the stored label.
+                 *
+                 * core()->currency() formats in whatever currency the
+                 * shopper happened to be browsing in, and the string is
+                 * then frozen onto the order line for good. Admin screens
+                 * show amounts in the base currency, so a label captured in
+                 * naira sat directly beneath a dollar figure for the same
+                 * item. The option's own price is already shown in the
+                 * correct currency by the surrounding view.
+                 */
 
                 $labels[] = $label;
             }
