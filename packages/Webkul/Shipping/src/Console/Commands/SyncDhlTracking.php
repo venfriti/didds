@@ -39,7 +39,18 @@ class SyncDhlTracking extends Command
             ->where('carrier_title', 'DHL Express')
             ->whereNotNull('track_number')
             ->whereHas('order', function ($query) {
-                $query->whereNotIn('status', [Order::STATUS_COMPLETED, Order::STATUS_CANCELED, Order::STATUS_CLOSED]);
+                /**
+                 * Completed is the status a dispatched order sits in - it
+                 * is labelled "Shipped" - so excluding it skipped exactly
+                 * the parcels that are in transit and meant to be polled.
+                 * Only orders that have reached a genuine end state are
+                 * left out.
+                 */
+                $query->whereNotIn('status', [
+                    Order::STATUS_DELIVERED,
+                    Order::STATUS_CANCELED,
+                    Order::STATUS_CLOSED,
+                ]);
             })
             ->with('order')
             ->get();
