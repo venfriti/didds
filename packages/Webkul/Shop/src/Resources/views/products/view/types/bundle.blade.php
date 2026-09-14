@@ -276,14 +276,15 @@
                     <x-shop::form.control-group.error ::name="'bundle_options[' + option.id + '][]'" />
                 </x-shop::form.control-group>
 
-                <template v-if="['select', 'radio'].includes(option.type)">
-                    <x-shop::quantity-changer
-                        ::name="'bundle_option_qty[' + option?.id + ']'"
-                        ::value="productQty"
-                        class="mt-5 w-max gap-x-4 rounded-xl !border-diidsBorder px-4 py-1.5 max-sm:my-4"
-                        @change="qtyUpdated($event)"
-                    />
-                </template>
+                {{--
+                    No per-option quantity changer.
+                    A bundle ships the quantity configured for each option
+                    in admin, and the single cart quantity multiplies the
+                    whole set - otherwise "The Duo: Bra + Pant" could be
+                    bought as four bras and five pants, which is not the
+                    product being sold and prices it far above the set
+                    price. Admin still controls the quantity per option.
+                --}}
             </div>
         </script>
 

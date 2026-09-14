@@ -361,7 +361,13 @@ class Bundle extends AbstractType
                     continue;
                 }
 
-                $qty = $data['bundle_option_qty'][$optionId] ?? $optionProduct->qty;
+                /**
+                 * The configured quantity wins over anything posted. The
+                 * storefront no longer offers a per-option quantity, but a
+                 * crafted request could still carry one, and it sets both
+                 * what ships and what is charged.
+                 */
+                $qty = $optionProduct->qty;
 
                 if (! isset($products[$optionProduct->product_id])) {
                     $products[$optionProduct->product_id] = [
@@ -428,7 +434,12 @@ class Bundle extends AbstractType
      */
     public function getAdditionalOptions($data)
     {
-        $bundleOptionQuantities = $data['bundle_option_qty'] ?? [];
+        /**
+         * Rebuilt from the configured options below rather than seeded
+         * from the request, so a posted quantity cannot survive into the
+         * cart item's stored attributes.
+         */
+        $bundleOptionQuantities = [];
 
         $productBundleOptions = $this->productBundleOptionRepository
             ->whereIn('id', array_keys($data['bundle_options']))
@@ -447,11 +458,9 @@ class Bundle extends AbstractType
 
                 $optionProduct = $this->productBundleOptionProductRepository->find($optionProductId);
 
-                $qty = $data['bundle_option_qty'][$option->id] ?? $optionProduct->qty;
+                $qty = $optionProduct->qty;
 
-                if (! isset($data['bundle_option_qty'][$option->id])) {
-                    $bundleOptionQuantities[$option->id] = $qty;
-                }
+                $bundleOptionQuantities[$option->id] = $qty;
 
                 $label = $qty.' x '.$optionProduct->product->name;
 
