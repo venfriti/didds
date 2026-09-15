@@ -8,6 +8,7 @@ use Webkul\Admin\Helpers\Reporting\Cart;
 use Webkul\Admin\Helpers\Reporting\Customer;
 use Webkul\Admin\Helpers\Reporting\Product;
 use Webkul\Admin\Helpers\Reporting\Sale;
+use Webkul\Admin\Helpers\Reporting\Traffic;
 
 class Reporting
 {
@@ -20,7 +21,8 @@ class Reporting
         protected Cart $cartReporting,
         protected Sale $saleReporting,
         protected Product $productReporting,
-        protected Customer $customerReporting
+        protected Customer $customerReporting,
+        protected Traffic $trafficReporting
     ) {}
 
     /**
@@ -981,6 +983,130 @@ class Reporting
     public function getTopSearchTerms($type = 'graph'): EloquentCollection|array
     {
         return $this->productReporting->getTopSearchTerms(5);
+    }
+
+    /**
+     * Returns the top pages statistics.
+     *
+     * @param  string  $type
+     */
+    public function getTopPagesStats($type = 'graph'): array
+    {
+        if ($type == 'table') {
+            $records = $this->trafficReporting->getTopPages();
+
+            return [
+                'columns' => [
+                    [
+                        'key' => 'path',
+                        'label' => trans('admin::app.reporting.traffic.index.page'),
+                    ], [
+                        'key' => 'count',
+                        'label' => trans('admin::app.reporting.traffic.index.views'),
+                    ],
+                ],
+
+                'records' => $records,
+            ];
+        }
+
+        $totalPageViews = $this->trafficReporting->getTotalPageViewsProgress();
+
+        $pages = $this->trafficReporting->getTopPages(5);
+
+        $pages->map(function ($page) use ($totalPageViews) {
+            $page->progress = $totalPageViews['current']
+                ? ($page->count * 100) / $totalPageViews['current']
+                : 0;
+
+            return $page;
+        });
+
+        return $pages->toArray();
+    }
+
+    /**
+     * Returns the top traffic sources statistics.
+     *
+     * @param  string  $type
+     */
+    public function getTopSourcesStats($type = 'graph'): array
+    {
+        if ($type == 'table') {
+            $records = $this->trafficReporting->getTopSources();
+
+            return [
+                'columns' => [
+                    [
+                        'key' => 'source',
+                        'label' => trans('admin::app.reporting.traffic.index.source'),
+                    ], [
+                        'key' => 'count',
+                        'label' => trans('admin::app.reporting.traffic.index.views'),
+                    ],
+                ],
+
+                'records' => $records,
+            ];
+        }
+
+        $totalPageViews = $this->trafficReporting->getTotalPageViewsProgress();
+
+        $sources = $this->trafficReporting->getTopSources(5);
+
+        $sources->map(function ($source) use ($totalPageViews) {
+            $source->progress = $totalPageViews['current']
+                ? ($source->count * 100) / $totalPageViews['current']
+                : 0;
+
+            return $source;
+        });
+
+        return $sources->toArray();
+    }
+
+    /**
+     * Returns the conversion-by-source statistics.
+     *
+     * @param  string  $type
+     */
+    public function getConversionBySourceStats($type = 'graph'): array
+    {
+        if ($type == 'table') {
+            $records = $this->trafficReporting->getConversionBySource();
+
+            return [
+                'columns' => [
+                    [
+                        'key' => 'source',
+                        'label' => trans('admin::app.reporting.traffic.index.source'),
+                    ], [
+                        'key' => 'visitors',
+                        'label' => trans('admin::app.reporting.traffic.index.visitors'),
+                    ], [
+                        'key' => 'orders',
+                        'label' => trans('admin::app.reporting.traffic.index.orders'),
+                    ], [
+                        'key' => 'conversion_rate',
+                        'label' => trans('admin::app.reporting.traffic.index.conversion-rate'),
+                    ],
+                ],
+
+                'records' => $records,
+            ];
+        }
+
+        $sources = $this->trafficReporting->getConversionBySource(5);
+
+        $sources = $sources->map(function ($source) {
+            $source = (object) (array) $source;
+
+            $source->progress = $source->conversion_rate;
+
+            return $source;
+        });
+
+        return $sources->toArray();
     }
 
     /**

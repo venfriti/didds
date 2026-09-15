@@ -1,34 +1,34 @@
 @component('shop::emails.layout')
     <div style="margin-bottom: 34px;">
-        <span style="font-size: 22px;font-weight: 600;color: #121A26">
+        <span style="font-size: 22px;font-weight: 600;color: #0A0A0A">
             @lang('shop::app.emails.orders.refunded.title')
         </span> <br>
 
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+        <p style="font-size: 16px;color: #4B5563;line-height: 24px;">
             @lang('shop::app.emails.dear', ['customer_name' => $refund->order->customer_full_name]),👋
         </p>
 
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+        <p style="font-size: 16px;color: #4B5563;line-height: 24px;">
             @lang('shop::app.emails.orders.refunded.greeting', [
                 'invoice_id' => $refund->increment_id,
-                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $refund->order_id) . '" style="color: #2969FF;">#' . $refund->order->increment_id . '</a>',
+                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $refund->order_id) . '" style="color: #0A0A0A; text-decoration: underline;">#' . $refund->order->increment_id . '</a>',
                 'created_at' => core()->formatDate($refund->order->created_at, 'Y-m-d H:i:s')
             ])
         </p>
     </div>
 
-    <div style="font-size: 20px;font-weight: 600;color: #121A26">
+    <div style="font-size: 20px;font-weight: 600;color: #0A0A0A">
         @lang('shop::app.emails.orders.refunded.summary')
     </div>
 
     <div style="display: flex;flex-direction: row;margin-top: 20px;justify-content: space-between;margin-bottom: 40px;">
         @if ($refund->order->shipping_address)
             <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.shipping-address')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;margin-bottom: 40px;">
                     {{ $refund->order->shipping_address->company_name ?? '' }}<br/>
 
                     {{ $refund->order->shipping_address->name }}<br/>
@@ -44,11 +44,11 @@
                     @lang('shop::app.emails.orders.contact') : {{ $refund->order->billing_address->phone }}
                 </div>
 
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.shipping')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;">
                     {{ $refund->order->shipping_title }}
                 </div>
             </div>
@@ -56,11 +56,11 @@
 
         @if ($refund->order->billing_address)
             <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.billing-address')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;margin-bottom: 40px;">
                     {{ $refund->order->billing_address->company_name ?? '' }}<br/>
 
                     {{ $refund->order->billing_address->name }}<br/>
@@ -76,18 +76,18 @@
                     @lang('shop::app.emails.orders.contact') : {{ $refund->order->billing_address->phone }}
                 </div>
 
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
+                <div style="font-size: 16px;font-weight: 600;color: #0A0A0A;">
                     @lang('shop::app.emails.orders.payment')
                 </div>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
+                <div style="font-size: 16px;font-weight: 400;color: #4B5563;">
                     {{ core()->getConfigData('sales.payment_methods.' . $refund->order->payment->method . '.title') }}
                 </div>
 
                 @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($refund->order->payment->method); @endphp
 
                 @if (! empty($additionalDetails))
-                    <div style="font-size: 16px; color: #384860;">
+                    <div style="font-size: 16px; color: #4B5563;">
                         <div>{{ $additionalDetails['title'] }}</div>
                         <div>{{ $additionalDetails['value'] }}</div>
                     </div>
@@ -96,11 +96,11 @@
         @endif
     </div>
 
-    <div style="padding-bottom: 40px;border-bottom: 1px solid #CBD5E1;">
+    <div style="padding-bottom: 40px;border-bottom: 1px solid #E5E5E5;">
         <table style="overflow-x: auto; border-collapse: collapse;
         border-spacing: 0;width: 100%">
             <thead>
-                <tr style="color: #121A26;border-top: 1px solid #CBD5E1;border-bottom: 1px solid #CBD5E1;">
+                <tr style="color: #0A0A0A;border-top: 1px solid #E5E5E5;border-bottom: 1px solid #E5E5E5;">
                     @foreach (['name', 'price', 'qty'] as $item)
                         <th style="text-align: left;padding: 15px">
                             @lang('shop::app.emails.orders.' . $item)
@@ -109,7 +109,7 @@
                 </tr>
             </thead>
 
-            <tbody style="font-size: 16px;font-weight: 400;color: #384860;">
+            <tbody style="font-size: 16px;font-weight: 400;color: #4B5563;">
                 @foreach ($refund->items as $item)
                     <tr style="vertical-align: text-top;">
                         <td style="text-align: left;padding: 15px">
@@ -168,7 +168,7 @@
         </table>
     </div>
 
-    <div style="display: grid;justify-content: end;font-size: 16px;color: #384860;line-height: 30px;padding-top: 20px;padding-bottom: 20px;">
+    <div style="display: grid;justify-content: end;font-size: 16px;color: #4B5563;line-height: 30px;padding-top: 20px;padding-bottom: 20px;">
 
         @if (core()->getConfigData('sales.taxes.sales.display_subtotal') == 'including_tax')
             <div style="display: grid;gap: 20px;grid-template-columns: repeat(2, minmax(0, 1fr));">

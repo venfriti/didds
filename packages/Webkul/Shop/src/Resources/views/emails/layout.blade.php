@@ -22,39 +22,26 @@
         />
     </head>
 
-    <body style="font-family: inter;">
+    <body style="font-family: 'Inter', Arial, sans-serif;">
         <div style="max-width: 640px; margin-left: auto; margin-right: auto;">
             <div style="padding: 30px;">
                 <!-- Email Header -->
                 <div style="margin-bottom: 65px;">
-                    <a href="{{ route('shop.home.index') }}">
-                        @if ($logo = core()->getCurrentChannel()->logo_url)
-                            <img
-                                src="{{ $logo }}"
-                                alt="{{ config('app.name') }}"
-                                style="height: 40px; width: 110px;"
-                            />
-                        @else
-                            <img
-                                src="{{ bagisto_asset('images/diids-logo.svg', 'shop') }}"
-                                alt="{{ config('app.name') }}"
-                                width="131"
-                                height="29"
-                                style="width: 156px;height: 40px;"
-                            />
-                        @endif
-                    </a>
+                    <a
+                        href="{{ route('shop.home.index') }}"
+                        style="font-family: 'Inter', Arial, sans-serif; font-size: 28px; font-weight: 900; letter-spacing: 0.25px; text-decoration: none; color: #0A0A0A;"
+                    >DIIDS</a>
                 </div>
 
                 <!-- Email Content -->
                 {{ $slot }}
 
                 <!-- Email Footer -->
-                <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
+                <p style="font-size: 16px;color: #0A0A0A;line-height: 24px;">
                     @lang('shop::app.emails.thanks', [
                         'link' => 'mailto:' . core()->getContactEmailDetails()['email'],
                         'email' => core()->getContactEmailDetails()['email'],
-                        'style' => 'color: #2969FF;'
+                        'style' => 'color: #0A0A0A; text-decoration: underline;'
                     ])
                 </p>
             </div>

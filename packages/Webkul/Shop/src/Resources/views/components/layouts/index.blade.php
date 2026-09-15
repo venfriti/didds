@@ -145,6 +145,54 @@
 
         @stack('scripts')
 
+        <script type="module">
+            (function () {
+                var gdprEnabled = {{ (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled')) ? 'true' : 'false' }};
+
+                function getCookie(name) {
+                    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+
+                    return match ? decodeURIComponent(match[1]) : null;
+                }
+
+                // When GDPR consent is required, only track visitors who have
+                // explicitly opted into "measurement" cookies via the consent
+                // settings page — a missing cookie means no decision was made
+                // yet, and must be treated as "not consented", not "consented".
+                if (gdprEnabled && getCookie('measurement') !== 'true') {
+                    return;
+                }
+
+                var params = new URLSearchParams(window.location.search);
+
+                var payload = new URLSearchParams({
+                    _token: '{{ csrf_token() }}',
+                    path: window.location.pathname,
+                    url: window.location.href,
+                    referrer: document.referrer || '',
+                    utm_source: params.get('utm_source') || '',
+                    utm_medium: params.get('utm_medium') || '',
+                    utm_campaign: params.get('utm_campaign') || '',
+                });
+
+                var endpoint = '{{ route('shop.api.analytics.page_views.store') }}';
+
+                if (navigator.sendBeacon) {
+                    var blob = new Blob([payload.toString()], { type: 'application/x-www-form-urlencoded' });
+
+                    navigator.sendBeacon(endpoint, blob);
+                } else {
+                    fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: payload.toString(),
+                        keepalive: true,
+                        credentials: 'same-origin',
+                    }).catch(function () {});
+                }
+            })();
+        </script>
+
         {!! view_render_event('bagisto.shop.layout.vue-app-mount.before') !!}
         <script>
             /**

@@ -26,7 +26,7 @@
                 </div>
                 <div>
                     <dt>Follow</dt>
-                    <dd>@diids</dd>
+                    <dd><a href="https://www.instagram.com/diids.co" target="_blank" rel="noopener">@diids.co</a></dd>
                 </div>
             </dl>
         </aside>

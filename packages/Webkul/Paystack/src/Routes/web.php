@@ -9,6 +9,10 @@ Route::controller(PaystackController::class)
     ->group(function () {
         Route::get('redirect', 'redirect')->name('paystack.standard.redirect');
 
+        Route::post('init-inline', 'initInline')->name('paystack.init-inline');
+
+        Route::post('verify-inline', 'verifyInline')->name('paystack.verify-inline');
+
         Route::get('callback', 'callback')->name('paystack.payment.callback');
 
         Route::get('cancel', 'cancel')->name('paystack.payment.cancel');

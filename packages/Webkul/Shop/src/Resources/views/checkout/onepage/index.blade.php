@@ -160,6 +160,8 @@
 
                         selectedPaymentMethod: null,
 
+                        selectedSavedCard: null,
+
                         canPlaceOrder: false,
                     }
                 },
@@ -224,8 +226,24 @@
                         this.selectedPaymentMethod = method;
                     },
 
+                    setSelectedSavedCard(id) {
+                        this.selectedSavedCard = id;
+                    },
+
                     placeOrder() {
-                        if ((this.selectedPaymentMethod || this.cart.payment_method) == 'paypal_smart_button') {
+                        let method = this.selectedPaymentMethod || this.cart.payment_method;
+
+                        if (method == 'paypal_smart_button') {
+                            return;
+                        }
+
+                        // Paystack Inline: only when the customer isn't paying with
+                        // a previously saved card (that still goes through the
+                        // existing server-side charge_authorization + redirect
+                        // flow, which needs no popup since there's no card entry).
+                        if (method == 'paystack' && ! this.selectedSavedCard) {
+                            this.placeOrderWithPaystackInline();
+
                             return;
                         }
 
@@ -246,7 +264,72 @@
 
                                 this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message });
                             });
-                    }
+                    },
+
+                    placeOrderWithPaystackInline() {
+                        this.isPlacingOrder = true;
+
+                        this.$axios.post('{{ route('paystack.init-inline') }}')
+                            .then(response => {
+                                let { reference, access_code, public_key, email, amount } = response.data;
+
+                                this.launchPaystackPopup({ reference, access_code, public_key, email, amount });
+                            })
+                            .catch(error => {
+                                this.isPlacingOrder = false;
+
+                                this.$emitter.emit('add-flash', { type: 'error', message: error.response?.data?.message || 'Unable to start Paystack payment.' });
+                            });
+                    },
+
+                    launchPaystackPopup({ reference, access_code, public_key, email, amount }) {
+                        let openPopup = () => {
+                            let handler = PaystackPop.setup({
+                                key: public_key,
+                                email: email,
+                                amount: amount,
+                                currency: 'USD',
+                                ref: reference,
+                                access_code: access_code,
+                                callback: (response) => {
+                                    this.verifyPaystackInline(response.reference);
+                                },
+                                onClose: () => {
+                                    this.isPlacingOrder = false;
+                                },
+                            });
+
+                            handler.openIframe();
+                        };
+
+                        if (typeof PaystackPop !== 'undefined') {
+                            openPopup();
+
+                            return;
+                        }
+
+                        let script = document.createElement('script');
+                        script.src = 'https://js.paystack.co/v1/inline.js';
+                        script.onload = openPopup;
+                        script.onerror = () => {
+                            this.isPlacingOrder = false;
+
+                            this.$emitter.emit('add-flash', { type: 'error', message: 'Unable to load Paystack. Please try again.' });
+                        };
+                        document.head.appendChild(script);
+                    },
+
+                    verifyPaystackInline(reference) {
+                        this.$axios.post('{{ route('paystack.verify-inline') }}', { reference })
+                            .then(response => {
+                                window.location.href = response.data.redirect_url;
+                            })
+                            .catch(error => {
+                                this.isPlacingOrder = false;
+
+                                this.$emitter.emit('add-flash', { type: 'error', message: error.response?.data?.message || 'Payment verification failed.' });
+                            });
+                    },
                 },
             });
         </script>

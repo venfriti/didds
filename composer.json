@@ -69,6 +69,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Webkul\\Admin\\": "packages/Webkul/Admin/src",
+            "Webkul\\Analytics\\": "packages/Webkul/Analytics/src",
             "Webkul\\Attribute\\": "packages/Webkul/Attribute/src",
             "Webkul\\BookingProduct\\": "packages/Webkul/BookingProduct/src",
             "Webkul\\CMS\\": "packages/Webkul/CMS/src",

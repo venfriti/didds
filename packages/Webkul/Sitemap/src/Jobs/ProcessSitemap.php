@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL as URLFacade;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapIndex;
@@ -182,6 +183,11 @@ class ProcessSitemap implements ShouldQueue
 
         $sitemap->writeToDisk('public', $path);
 
+        // spatie/laravel-sitemap writes directly via the filesystem adapter,
+        // bypassing Laravel's disk 'visibility' config, so files land as
+        // owner-only (0600) and 403 when the webserver tries to serve them.
+        Storage::disk('public')->setVisibility($path, 'public');
+
         $this->generatedSitemaps[] = $path;
 
         $this->itemsToBeProcessed = [];
@@ -205,6 +211,8 @@ class ProcessSitemap implements ShouldQueue
         $path = $this->buildFilePath($channel);
 
         $sitemap->writeToDisk('public', $path);
+
+        Storage::disk('public')->setVisibility($path, 'public');
 
         return $path;
     }

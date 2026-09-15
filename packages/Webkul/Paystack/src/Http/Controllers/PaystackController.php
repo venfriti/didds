@@ -72,12 +72,6 @@ class PaystackController extends Controller
         try {
             $reference = (string) Str::uuid();
 
-            // Paystack is always charged in USD regardless of the
-            // storefront's selected display currency — base_grand_total is
-            // the cart total in the channel's base currency (NGN for this
-            // store), converted to USD via the stored exchange rate rather
-            // than using grand_total, which fluctuates with whatever
-            // currency the customer happens to be browsing in.
             $amountInSubunit = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
 
             $email = $cart->customer_email ?: $cart->billing_address?->email;
@@ -109,6 +103,116 @@ class PaystackController extends Controller
             session()->flash('error', trans('paystack::app.response.payment-failed').': '.$e->getMessage());
 
             return redirect()->route('shop.checkout.cart.index');
+        }
+    }
+
+    /**
+     * Initializes a Paystack transaction and returns the reference +
+     * access_code as JSON for the Paystack Inline (popup) widget, instead
+     * of redirecting to Paystack's hosted page. Used when the customer has
+     * no saved card selected — mirrors redirect() but responds with JSON.
+     */
+    public function initInline()
+    {
+        if (! $this->paystack->hasValidCredentials()) {
+            return response()->json(['message' => trans('paystack::app.response.provide-credentials')], 422);
+        }
+
+        $cart = Cart::getCart();
+
+        if (! $cart) {
+            return response()->json(['message' => trans('paystack::app.response.cart-not-found')], 422);
+        }
+
+        try {
+            $reference = (string) Str::uuid();
+
+            $amountInSubunit = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+
+            $email = $cart->customer_email ?: $cart->billing_address?->email;
+
+            $response = Http::withToken($this->paystack->getSecretKey())
+                ->post("{$this->apiUrl}/transaction/initialize", [
+                    'email' => $email,
+                    'amount' => $amountInSubunit,
+                    'currency' => 'USD',
+                    'reference' => $reference,
+                    'channels' => ['card', 'bank', 'ussd', 'bank_transfer', 'mobile_money'],
+                    'metadata' => [
+                        'cart_id' => $cart->id,
+                    ],
+                ]);
+
+            $result = $response->json();
+
+            if (! ($result['status'] ?? false) || empty($result['data']['access_code'] ?? null)) {
+                return response()->json(['message' => $result['message'] ?? trans('paystack::app.response.payment-failed')], 422);
+            }
+
+            return response()->json([
+                'reference' => $reference,
+                'access_code' => $result['data']['access_code'],
+                'public_key' => $this->paystack->getPublicKey(),
+                'email' => $email,
+                'amount' => $amountInSubunit,
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+
+            return response()->json(['message' => trans('paystack::app.response.payment-failed')], 500);
+        }
+    }
+
+    /**
+     * Verifies a transaction reference initiated via Paystack Inline and
+     * creates the order, returning JSON instead of a redirect so the
+     * popup's JS success callback can call this via fetch() and then
+     * navigate the browser itself.
+     */
+    public function verifyInline(Request $request)
+    {
+        $reference = $request->input('reference');
+
+        if (! $reference) {
+            return response()->json(['message' => trans('paystack::app.response.invalid-reference')], 422);
+        }
+
+        try {
+            $data = $this->verifyTransaction($reference);
+
+            if (! $data || ($data['status'] ?? null) !== 'success') {
+                return response()->json(['message' => trans('paystack::app.response.payment-failed')], 422);
+            }
+
+            $cartId = $data['metadata']['cart_id'] ?? null;
+
+            if (! $cartId) {
+                return response()->json(['message' => trans('paystack::app.response.cart-not-found')], 422);
+            }
+
+            $cart = $this->cartRepository->find($cartId);
+
+            if (! $cart || ! $cart->is_active) {
+                if ($existing = $this->findExistingOrderRedirect($reference)) {
+                    return response()->json(['success' => true, 'redirect_url' => $existing->getTargetUrl()]);
+                }
+
+                return response()->json(['message' => trans('paystack::app.response.cart-processed')], 422);
+            }
+
+            $expectedAmount = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+
+            if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
+                return response()->json(['message' => trans('paystack::app.response.amount-mismatch')], 422);
+            }
+
+            $redirect = $this->handleSuccessfulPayment($cart, $data);
+
+            return response()->json(['success' => true, 'redirect_url' => $redirect->getTargetUrl()]);
+        } catch (\Exception $e) {
+            report($e);
+
+            return response()->json(['message' => trans('paystack::app.response.verification-failed')], 500);
         }
     }
 

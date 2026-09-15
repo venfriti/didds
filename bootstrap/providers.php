@@ -2,6 +2,7 @@
 
 use App\Providers\AppServiceProvider;
 use Webkul\Admin\Providers\AdminServiceProvider;
+use Webkul\Analytics\Providers\AnalyticsServiceProvider;
 use Webkul\Attribute\Providers\AttributeServiceProvider;
 use Webkul\BookingProduct\Providers\BookingProductServiceProvider;
 use Webkul\CartRule\Providers\CartRuleServiceProvider;
@@ -54,6 +55,7 @@ return [
      * Webkul's service providers.
      */
     AdminServiceProvider::class,
+    AnalyticsServiceProvider::class,
     AttributeServiceProvider::class,
     BookingProductServiceProvider::class,
     CMSServiceProvider::class,

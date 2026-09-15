@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Webkul\Admin\Http\Controllers\Reporting\CustomerController;
 use Webkul\Admin\Http\Controllers\Reporting\ProductController;
 use Webkul\Admin\Http\Controllers\Reporting\SaleController;
+use Webkul\Admin\Http\Controllers\Reporting\TrafficController;
 
 /**
  * Reporting routes.
@@ -52,5 +53,20 @@ Route::prefix('reporting')->group(function () {
         Route::get('view', 'view')->name('admin.reporting.sales.view');
 
         Route::get('view/stats', 'viewStats')->name('admin.reporting.sales.view.stats');
+    });
+
+    /**
+     * Traffic routes.
+     */
+    Route::controller(TrafficController::class)->prefix('traffic')->group(function () {
+        Route::get('', 'index')->name('admin.reporting.traffic.index');
+
+        Route::get('stats', 'stats')->name('admin.reporting.traffic.stats');
+
+        Route::get('export', 'export')->name('admin.reporting.traffic.export');
+
+        Route::get('view', 'view')->name('admin.reporting.traffic.view');
+
+        Route::get('view/stats', 'viewStats')->name('admin.reporting.traffic.view.stats');
     });
 });

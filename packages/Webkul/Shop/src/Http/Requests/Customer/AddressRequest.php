@@ -35,7 +35,7 @@ class AddressRequest extends FormRequest
             'address' => ['required', 'array', 'min:1'],
             'country' => core()->isCountryRequired() ? ['required'] : ['nullable'],
             'state' => array_merge(
-                core()->isStateRequired() ? ['required'] : ['nullable'],
+                $this->stateRequirement($this->input('country')),
                 [(new ValidState)->setCountry($this->input('country'))]
             ),
             'city' => ['required', 'string', (new ServiceableCity)->setCountry($this->input('country'))],
@@ -56,5 +56,23 @@ class AddressRequest extends FormRequest
         return [
             'address.*' => 'address',
         ];
+    }
+
+    /**
+     * Whether a state must be supplied for the given country.
+     *
+     * The address form only shows the state field for countries that have
+     * states on record, so demanding one for the rest would reject an
+     * address the customer had no way to complete.
+     */
+    private function stateRequirement(?string $countryCode): array
+    {
+        if (! core()->isStateRequired()) {
+            return ['nullable'];
+        }
+
+        $states = core()->groupedStatesByCountries()[strtoupper((string) $countryCode)] ?? [];
+
+        return empty($states) ? ['nullable'] : ['required'];
     }
 }

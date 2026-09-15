@@ -8,6 +8,7 @@
 <v-payment-methods
     :methods="paymentMethods"
     @payment-method-selected="setSelectedPaymentMethod"
+    @saved-card-selected="setSelectedSavedCard"
     @processing="stepForward"
     @processed="stepProcessed"
 >
@@ -191,7 +192,7 @@
                 },
             },
 
-            emits: ['payment-method-selected', 'processing', 'processed'],
+            emits: ['payment-method-selected', 'saved-card-selected', 'processing', 'processed'],
 
             data() {
                 return {
@@ -241,6 +242,8 @@
                 },
 
                 selectSavedCard(id) {
+                    this.$emit('saved-card-selected', id);
+
                     this.$axios.post("{{ route('paystack.select-saved-card') }}", {
                         customer_payment_method_id: id,
                     }).catch(() => {});

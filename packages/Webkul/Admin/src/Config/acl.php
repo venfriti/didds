@@ -98,6 +98,11 @@ return [
         'route' => 'admin.sales.shipments.store',
         'sort' => 2,
     ], [
+        'key' => 'sales.in-progress-carts',
+        'name' => 'admin::app.acl.in-progress-carts',
+        'route' => 'admin.sales.in-progress-carts.index',
+        'sort' => 9,
+    ], [
         'key' => 'sales.refunds',
         'name' => 'admin::app.acl.refunds',
         'route' => 'admin.sales.refunds.index',
@@ -870,6 +875,17 @@ return [
             'admin.reporting.products.export',
         ],
         'sort' => 3,
+    ], [
+        'key' => 'reporting.traffic',
+        'name' => 'admin::app.acl.traffic',
+        'route' => [
+            'admin.reporting.traffic.index',
+            'admin.reporting.traffic.stats',
+            'admin.reporting.traffic.view',
+            'admin.reporting.traffic.view.stats',
+            'admin.reporting.traffic.export',
+        ],
+        'sort' => 4,
     ],
 
     /*

@@ -38,7 +38,13 @@
                                 class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
                                 @lang('admin::app.reporting.view.back-btn')
                             </a>
-                            
+
+                            <a v-else-if="entity === 'traffic'"
+                                href="{{ route('admin.reporting.traffic.index') }}"
+                                class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">
+                                @lang('admin::app.reporting.view.back-btn')
+                            </a>
+
                             <a v-else
                                 href="{{ route('admin.reporting.sales.index') }}"
                                 class="transparent-button hover:bg-diidsBorder dark:text-white dark:hover:bg-gray-800">

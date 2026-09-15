@@ -5,6 +5,7 @@ use Webkul\Admin\Http\Controllers\Sales\BookingController;
 use Webkul\Admin\Http\Controllers\Sales\BookingProductController;
 use Webkul\Admin\Http\Controllers\Sales\CartController;
 use Webkul\Admin\Http\Controllers\Sales\EUWithdrawalController;
+use Webkul\Admin\Http\Controllers\Sales\InProgressCartController;
 use Webkul\Admin\Http\Controllers\Sales\InvoiceController;
 use Webkul\Admin\Http\Controllers\Sales\OrderController;
 use Webkul\Admin\Http\Controllers\Sales\RefundController;
@@ -251,5 +252,12 @@ Route::prefix('sales')->group(function () {
         Route::post('{id}/mark-refunded', 'markRefunded')->name('admin.sales.eu-withdrawals.mark_refunded');
 
         Route::post('{id}/resend-confirmation', 'resendConfirmation')->name('admin.sales.eu-withdrawals.resend_confirmation');
+    });
+
+    /**
+     * In-progress carts routes.
+     */
+    Route::controller(InProgressCartController::class)->prefix('in-progress-carts')->group(function () {
+        Route::get('', 'index')->name('admin.sales.in-progress-carts.index');
     });
 });
