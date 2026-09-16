@@ -644,33 +644,50 @@ class DhlShipmentService
         foreach ($shipment->items as $item) {
             $quantity = (int) ($item->qty ?: 1);
 
-            /**
-             * DHL wants the unit price, not the line total, and rejects a
-             * declared value of zero - so free/promo items still need a
-             * nominal customs value. Prices are converted into the DHL
-             * account's own currency to match declaredValueCurrency, since
-             * the two have to reconcile.
-             */
-            $unitPrice = $this->toAccountCurrency((float) ($item->price ?: 0.01));
-
             $unitWeight = (float) $item->weight ?: 0.1;
 
-            $lineItems[] = [
-                'number' => ++$number,
-                'description' => $this->buildCustomsDescription($item, $originCountry),
-                'price' => round($unitPrice, 2),
-                'quantity' => [
-                    'value' => $quantity,
-                    'unitOfMeasurement' => 'PCS',
-                ],
-                'commodityCodes' => $this->buildCommodityCodes($item),
-                'exportReasonType' => 'permanent',
-                'manufacturerCountry' => $originCountry,
-                'weight' => [
-                    'netValue' => max(0.01, round($unitWeight * $quantity, 2)),
-                    'grossValue' => max(0.01, round($unitWeight * $quantity, 2)),
-                ],
-            ];
+            /**
+             * A set is declared as its components, not as one line.
+             *
+             * "The Match: Tank + Pant" is a singlet and a pair of briefs,
+             * which fall under different headings - declaring the pair
+             * under the singlet's code describes half the parcel wrongly,
+             * and that is the conversation to avoid if a parcel is opened.
+             * The components carry their own SKUs and prices, so the split
+             * reconciles to the same total.
+             */
+            $components = $this->declarableComponents($item);
+
+            foreach ($components as $component) {
+                /**
+                 * DHL wants the unit price, not the line total, and rejects
+                 * a declared value of zero - so free/promo items still need
+                 * a nominal customs value. Prices are converted into the
+                 * DHL account's own currency to match
+                 * declaredValueCurrency, since the two have to reconcile.
+                 */
+                $unitPrice = $this->toAccountCurrency((float) ($component['price'] ?: 0.01));
+
+                $lineQuantity = $quantity * $component['quantity'];
+                $lineWeight = $component['weight'] ?: $unitWeight;
+
+                $lineItems[] = [
+                    'number' => ++$number,
+                    'description' => $this->buildCustomsDescription($component['item'], $originCountry),
+                    'price' => round($unitPrice, 2),
+                    'quantity' => [
+                        'value' => max(1, $lineQuantity),
+                        'unitOfMeasurement' => 'PCS',
+                    ],
+                    'commodityCodes' => $this->buildCommodityCodes($component['item']),
+                    'exportReasonType' => 'permanent',
+                    'manufacturerCountry' => $originCountry,
+                    'weight' => [
+                        'netValue' => max(0.01, round($lineWeight * max(1, $lineQuantity), 2)),
+                        'grossValue' => max(0.01, round($lineWeight * max(1, $lineQuantity), 2)),
+                    ],
+                ];
+            }
         }
 
         if (empty($lineItems)) {
@@ -719,6 +736,71 @@ class DhlShipmentService
         $name = trim((string) $item->name) ?: 'Apparel';
 
         return mb_substr($name.' - cotton knitted apparel for adults, made in '.$originCountry, 0, 200);
+    }
+
+
+    /**
+     * The goods a shipment line actually contains, for customs.
+     *
+     * A simple product is itself. A bundle or configurable is its child
+     * rows, which carry their own SKUs, prices and weights - so a set is
+     * declared as the garments inside it rather than under a single code
+     * that describes only part of the parcel.
+     *
+     * Falls back to the line itself whenever children are missing or price
+     * to nothing, so a declaration is never emptied by this.
+     *
+     * @return array<int, array{item: mixed, price: float, quantity: int, weight: float}>
+     */
+    protected function declarableComponents($shipmentItem): array
+    {
+        $orderItem = $shipmentItem->order_item ?? null;
+
+        $line = [[
+            'item' => $shipmentItem,
+            'price' => (float) ($shipmentItem->price ?: 0),
+            'quantity' => 1,
+            'weight' => (float) ($shipmentItem->weight ?: 0),
+        ]];
+
+        if (! $orderItem) {
+            return $line;
+        }
+
+        $children = $orderItem->children ?? null;
+
+        if (! $children || $children->isEmpty()) {
+            return $line;
+        }
+
+        $components = [];
+
+        foreach ($children as $child) {
+            $price = (float) ($child->base_price ?: 0);
+
+            if ($price <= 0) {
+                continue;
+            }
+
+            $components[] = [
+                'item' => $child,
+                'price' => $price,
+                'quantity' => max(1, (int) ($child->qty_ordered ?: 1)),
+                'weight' => (float) ($child->weight ?: 0),
+            ];
+        }
+
+        /**
+         * Configurable products also have a child row, but it is the same
+         * garment in a chosen size - one line, not two - so a single
+         * component collapses back to the parent line rather than
+         * duplicating it.
+         */
+        if (count($components) < 2) {
+            return $line;
+        }
+
+        return $components;
     }
 
     /**
