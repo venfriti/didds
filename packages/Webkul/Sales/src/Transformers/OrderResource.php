@@ -105,20 +105,55 @@ class OrderResource extends JsonResource
             return;
         }
 
-        $expected = (float) core()->convertPrice((float) $this->base_grand_total, $currency);
+        $stale = $this->amountIsStale($this->base_grand_total, $this->grand_total, $currency);
 
-        if (abs($expected - (float) $this->grand_total) <= 0.01) {
+        /**
+         * The cart total can agree with its base while individual line
+         * items still hold the old currency - collectTotals() recomputes
+         * the totals from base values, so it repairs the header and leaves
+         * the items behind. Those item prices are copied onto the order and
+         * every invoice built from it, so they are checked too.
+         */
+        if (! $stale) {
+            foreach ($this->items as $item) {
+                if ($this->amountIsStale($item->base_price, $item->price, $currency)) {
+                    $stale = true;
+
+                    break;
+                }
+            }
+        }
+
+        if (! $stale) {
             return;
         }
 
-        Log::warning('Cart '.$this->id.' had stale display totals at order time', [
+        Log::warning('Cart '.$this->id.' had stale display amounts at order time', [
             'currency' => $currency,
             'stored_grand_total' => $this->grand_total,
-            'expected_grand_total' => $expected,
+            'base_grand_total' => $this->base_grand_total,
+            'expected_grand_total' => core()->convertPrice((float) $this->base_grand_total, $currency),
         ]);
 
         Cart::collectTotals();
 
         $this->resource->refresh();
+    }
+
+    /**
+     * Whether a display amount has drifted from the base it was converted
+     * from. A zero base carries no information - a configurable child's
+     * base_price is legitimately zero - so those are never treated as
+     * stale.
+     */
+    protected function amountIsStale($base, $shown, string $currency): bool
+    {
+        if ((float) $base == 0.0) {
+            return false;
+        }
+
+        $expected = (float) core()->convertPrice((float) $base, $currency);
+
+        return abs($expected - (float) $shown) > 0.01;
     }
 }
