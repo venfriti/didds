@@ -516,7 +516,7 @@ class DhlShipmentService
                     ],
                 ],
                 'isCustomsDeclarable' => $isCustomsDeclarable,
-                'description' => mb_substr('Order #'.$order->increment_id, 0, 70),
+                'description' => $this->buildContentDescription($order),
                 'unitOfMeasurement' => 'metric',
                 'incoterm' => 'DAP',
                 /**
@@ -722,29 +722,105 @@ class DhlShipmentService
     }
 
     /**
-     * Every line item must carry an HS code or the shipment risks being held
-     * or damaged at the destination customs office. DHL does not issue these
-     * codes - they come from customs tariff schedules - so the catalogue's
-     * two categories are mapped by hand:
+     * What the package contains, for the "Content" line on the waybill.
      *
-     *   6109.10 - knitted cotton t-shirts, singlets and vests (tanks, bras)
-     *   6115.95 - knitted cotton hosiery (socks)
+     * DHL's review of our demo labels flagged that an order number tells a
+     * handler or a customs officer nothing about what is in the box. This
+     * lists the actual goods instead, most significant first, and falls
+     * back to a generic description only when an order somehow has no
+     * nameable items.
+     */
+    protected function buildContentDescription($order): string
+    {
+        $names = [];
+
+        foreach ($order->items as $item) {
+            /**
+             * Child rows of a bundle or configurable repeat their parent's
+             * goods, so only top-level lines are named.
+             */
+            if ($item->parent_id) {
+                continue;
+            }
+
+            $name = trim((string) $item->name);
+
+            if ($name === '') {
+                continue;
+            }
+
+            $quantity = (int) ($item->qty_ordered ?? 1);
+
+            $names[] = $quantity > 1 ? $quantity.' x '.$name : $name;
+        }
+
+        if (empty($names)) {
+            return 'Cotton knitted apparel';
+        }
+
+        $description = implode(', ', $names);
+
+        /**
+         * The field is capped at 70 characters. A long order is summarised
+         * rather than cut mid-word, so the line always reads as a sentence.
+         */
+        if (mb_strlen($description) <= 70) {
+            return $description;
+        }
+
+        $first = $names[0];
+        $others = count($names) - 1;
+        $summary = mb_substr($first, 0, 50).' + '.$others.' more item'.($others > 1 ? 's' : '');
+
+        return mb_substr($summary, 0, 70);
+    }
+
+    /**
+     * The HS commodity code for a line item.
      *
-     * Both inbound and outbound codes are sent, as DHL's samples do.
+     * DHL's review flagged our original 6-digit codes as family-level: a
+     * 6-digit HS subheading is the internationally common part, and the
+     * 8-digit code carries the national detail customs actually assesses
+     * duty against. These are the 8-digit CN codes for cotton knitted
+     * underwear, which is what the whole catalogue is.
+     *
+     * The split that matters at 8 digits is garment type and, for briefs
+     * and slips, whether the garment is men's or women's - so the product
+     * name is matched before falling back to the general women's code.
+     *
+     * Pending confirmation by a customs broker; see the note in the
+     * integration handover.
      */
     protected function buildCommodityCodes($item): array
     {
-        $code = '610910';
+        /**
+         * Matched on the product name only. SKUs carry family prefixes -
+         * the Tank is DIIDS-BRA-002 - so including the SKU classified a
+         * singlet as a brassiere.
+         */
+        $name = strtolower(trim((string) ($item->name ?? '')));
 
-        $haystack = strtolower(($item->name ?? '').' '.($item->sku ?? ''));
-
-        if (str_contains($haystack, 'sock')) {
-            $code = '611595';
-        }
+        /**
+         * Ordered most specific first: "boxer" before the general brief
+         * rule, "tank" before "bra", and socks sit outside 6109 entirely.
+         * A set takes the code of its most heavily dutied component, which
+         * is how a mixed consignment is normally declared.
+         */
+        $code = match (true) {
+            str_contains($name, 'sock') => '61159500',    // socks, cotton, knitted
+            str_contains($name, 'tank') => '61091000',    // t-shirts & singlets, cotton
+            str_contains($name, 'boxer') => '61071100',   // men's underpants & briefs, cotton
+            str_contains($name, 'bra') => '62121090',     // brassieres
+            str_contains($name, 'pant')
+                || str_contains($name, 'panty')
+                || str_contains($name, 'brief') => '61082100',   // women's briefs, cotton
+            default => '61091000',                         // cotton knitted apparel
+        };
 
         return [
             ['typeCode' => 'outbound', 'value' => $code],
             ['typeCode' => 'inbound', 'value' => $code],
         ];
     }
+
 }
