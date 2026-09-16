@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Webkul\Shipping\Console\Commands\SyncDhlTracking;
 use Webkul\Shipping\Listeners\AutoCreateShipmentListener;
+use Webkul\Shipping\Listeners\CancelledOrderShipmentListener;
 use Webkul\Shipping\Listeners\DhlShipmentListener;
 
 class ShippingServiceProvider extends ServiceProvider
@@ -42,6 +43,13 @@ class ShippingServiceProvider extends ServiceProvider
          * works the same way either side of the setting.
          */
         Event::listen('checkout.order.save.after', AutoCreateShipmentListener::class);
+
+        /**
+         * Flags a waybill left live by a cancelled order. DHL offers no
+         * cancellation endpoint, so this cannot void it - it makes the
+         * liability visible on the order instead of silent.
+         */
+        Event::listen('sales.order.cancel.after', CancelledOrderShipmentListener::class);
 
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $schedule->command('dhl:sync-tracking')->everyThirtyMinutes()->withoutOverlapping();
