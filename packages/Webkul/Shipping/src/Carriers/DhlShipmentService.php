@@ -435,7 +435,7 @@ class DhlShipmentService
             : null;
 
         return [
-            'plannedShippingDateAndTime' => now()->addDay()->format('Y-m-d\TH:i:s \G\M\TP'),
+            'plannedShippingDateAndTime' => $this->nextPickupDate()->format('Y-m-d\TH:i:s \G\M\TP'),
             /**
              * DHL's integration guide is explicit that isRequested must
              * always be false here - pickups are booked through the separate
@@ -905,4 +905,24 @@ class DhlShipmentService
         ];
     }
 
+
+    /**
+     * The next day DHL will actually collect.
+     *
+     * The carrier asked for "tomorrow", which on a Friday or Saturday is a
+     * weekend - DHL does not collect domestically then and answers /rates
+     * with 404 "product(s) not available for the requested pickup date".
+     * The effect was that checkout offered no shipping at all, and since
+     * DHL is the only method, nobody could buy over a weekend.
+     */
+    protected function nextPickupDate(): \Carbon\Carbon
+    {
+        $date = now()->addDay();
+
+        while ($date->isWeekend()) {
+            $date->addDay();
+        }
+
+        return $date;
+    }
 }

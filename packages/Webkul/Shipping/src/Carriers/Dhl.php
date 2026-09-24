@@ -160,7 +160,7 @@ class Dhl extends AbstractShipping
             'width' => (float) $this->getConfigData('package_width') ?: 15,
             'height' => (float) $this->getConfigData('package_height') ?: 10,
             'dimensionsUnit' => 'CM',
-            'plannedShippingDate' => now()->addDay()->format('Y-m-d'),
+            'plannedShippingDate' => $this->nextPickupDate()->format('Y-m-d'),
             'isCustomsDeclarable' => 'false',
             'unitOfMeasurement' => 'metric',
         ];
@@ -424,5 +424,25 @@ class Dhl extends AbstractShipping
         }
 
         return $weight > 0 ? $weight : 0.5;
+    }
+
+    /**
+     * The next day DHL will actually collect.
+     *
+     * The carrier asked for "tomorrow", which on a Friday or Saturday is a
+     * weekend - DHL does not collect domestically then and answers /rates
+     * with 404 "product(s) not available for the requested pickup date".
+     * The effect was that checkout offered no shipping at all, and since
+     * DHL is the only method, nobody could buy over a weekend.
+     */
+    protected function nextPickupDate(): \Carbon\Carbon
+    {
+        $date = now()->addDay();
+
+        while ($date->isWeekend()) {
+            $date->addDay();
+        }
+
+        return $date;
     }
 }
