@@ -72,7 +72,9 @@ class PaystackController extends Controller
         try {
             $reference = (string) Str::uuid();
 
-            $amountInSubunit = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+            $currency = $this->chargeCurrency($cart);
+
+            $amountInSubunit = $this->chargeAmount($cart, $currency);
 
             $email = $cart->customer_email ?: $cart->billing_address?->email;
 
@@ -80,7 +82,7 @@ class PaystackController extends Controller
                 ->post("{$this->apiUrl}/transaction/initialize", [
                     'email' => $email,
                     'amount' => $amountInSubunit,
-                    'currency' => 'USD',
+                    'currency' => $currency,
                     'reference' => $reference,
                     'callback_url' => route('paystack.payment.callback'),
                     'metadata' => [
@@ -127,7 +129,9 @@ class PaystackController extends Controller
         try {
             $reference = (string) Str::uuid();
 
-            $amountInSubunit = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+            $currency = $this->chargeCurrency($cart);
+
+            $amountInSubunit = $this->chargeAmount($cart, $currency);
 
             $email = $cart->customer_email ?: $cart->billing_address?->email;
 
@@ -135,7 +139,7 @@ class PaystackController extends Controller
                 ->post("{$this->apiUrl}/transaction/initialize", [
                     'email' => $email,
                     'amount' => $amountInSubunit,
-                    'currency' => 'USD',
+                    'currency' => $currency,
                     'reference' => $reference,
                     'channels' => ['card', 'bank', 'ussd', 'bank_transfer', 'mobile_money'],
                     'metadata' => [
@@ -200,7 +204,7 @@ class PaystackController extends Controller
                 return response()->json(['message' => trans('paystack::app.response.cart-processed')], 422);
             }
 
-            $expectedAmount = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+            $expectedAmount = $this->chargeAmount($cart, $this->chargeCurrency($cart));
 
             if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
                 return response()->json(['message' => trans('paystack::app.response.amount-mismatch')], 422);
@@ -266,7 +270,7 @@ class PaystackController extends Controller
                 return redirect()->route('shop.checkout.cart.index');
             }
 
-            $expectedAmount = (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100);
+            $expectedAmount = $this->chargeAmount($cart, $this->chargeCurrency($cart));
 
             if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
                 session()->flash('error', trans('paystack::app.response.amount-mismatch'));
@@ -420,14 +424,16 @@ class PaystackController extends Controller
         try {
             $reference = (string) Str::uuid();
 
+            $currency = $this->chargeCurrency($cart);
+
             $email = $cart->customer_email ?: $cart->billing_address?->email;
 
             $response = Http::withToken($this->paystack->getSecretKey())
                 ->post("{$this->apiUrl}/transaction/charge_authorization", [
                     'authorization_code' => $savedCard->authorization_code,
                     'email' => $email,
-                    'amount' => (int) round(core()->convertPrice($cart->base_grand_total, 'USD') * 100),
-                    'currency' => 'USD',
+                    'amount' => $this->chargeAmount($cart, $currency),
+                    'currency' => $currency,
                     'reference' => $reference,
                 ]);
 
@@ -631,5 +637,40 @@ class PaystackController extends Controller
         session()->flash('success', trans('paystack::app.response.payment-success'));
 
         return redirect()->route('shop.checkout.onepage.success');
+    }
+
+    /**
+     * The currency to charge a given cart in.
+     *
+     * Paystack prices a Nigerian card in naira at 1.5% capped at NGN 2,000,
+     * but treats a dollar charge as international at 3.9% uncapped - so on
+     * a NGN 28,000 order the same sale costs about NGN 420 in fees rather
+     * than NGN 1,090. Nigerian customers are therefore charged naira and
+     * everyone else dollars.
+     *
+     * The decision follows the shipping country, not the browsing
+     * currency: where the goods are going is a fact about the order, while
+     * the currency someone is viewing in is a display preference they may
+     * have changed on a whim.
+     */
+    protected function chargeCurrency($cart): string
+    {
+        $country = strtoupper((string) (
+            $cart->shipping_address?->country
+            ?: $cart->billing_address?->country
+        ));
+
+        return $country === 'NG' ? 'NGN' : 'USD';
+    }
+
+    /**
+     * The order total in the charge currency, in minor units.
+     *
+     * Naira has no subunit in practice - Paystack still expects kobo, so
+     * the same x100 applies to both.
+     */
+    protected function chargeAmount($cart, string $currency): int
+    {
+        return (int) round(core()->convertPrice($cart->base_grand_total, $currency) * 100);
     }
 }
