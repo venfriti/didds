@@ -51,13 +51,31 @@ class DhlShipmentService
         $payload = $this->buildPayload($shipment, $order, $shippingAddress);
 
         try {
-            $response = Http::withBasicAuth(
-                core()->getConfigData('sales.carriers.dhl.api_key'),
-                core()->getConfigData('sales.carriers.dhl.api_secret')
-            )
-                ->withHeaders(['x-version' => $this->apiVersion])
-                ->timeout(20)
-                ->post($this->getBaseUrl().'/shipments', $payload);
+            $pickupDate = $this->nextPickupDate();
+
+            /**
+             * A pickup date DHL doesn't serve - a public holiday, which the
+             * weekday check can't know about - is refused with 996 and
+             * books nothing, so it is safe to move to the next working day
+             * and send again. Any other failure is not retried.
+             */
+            for ($attempt = 0; $attempt < 5; $attempt++) {
+                $payload['plannedShippingDateAndTime'] = $pickupDate->format('Y-m-d\TH:i:s \G\M\TP');
+
+                $response = Http::withBasicAuth(
+                    core()->getConfigData('sales.carriers.dhl.api_key'),
+                    core()->getConfigData('sales.carriers.dhl.api_secret')
+                )
+                    ->withHeaders(['x-version' => $this->apiVersion])
+                    ->timeout(20)
+                    ->post($this->getBaseUrl().'/shipments', $payload);
+
+                if ($response->successful() || ! str_contains((string) $response->json('detail'), '996')) {
+                    break;
+                }
+
+                $pickupDate = $this->followingWorkingDay($pickupDate);
+            }
 
             if (! $response->successful()) {
                 Log::error('DHL shipment creation failed', [
@@ -922,7 +940,15 @@ class DhlShipmentService
      */
     protected function nextPickupDate(): \Carbon\Carbon
     {
-        $date = now()->addDay();
+        return $this->followingWorkingDay(now());
+    }
+
+    /**
+     * The first weekday after the given date.
+     */
+    protected function followingWorkingDay(\Carbon\Carbon $date): \Carbon\Carbon
+    {
+        $date = $date->copy()->addDay();
 
         while ($date->isWeekend()) {
             $date->addDay();

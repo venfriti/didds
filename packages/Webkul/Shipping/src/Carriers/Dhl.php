@@ -33,6 +33,17 @@ class Dhl extends AbstractShipping
     protected $apiVersion = '3.3.1';
 
     /**
+     * Working days to try when DHL refuses a pickup date - enough to clear
+     * the longest run of Nigerian holidays (Christmas into the weekend).
+     */
+    protected const PICKUP_DATE_ATTEMPTS = 5;
+
+    /**
+     * Whether the last rates call was refused for its date (996).
+     */
+    protected bool $dateUnavailable = false;
+
+    /**
      * Calculate rate for DHL.
      *
      * @return CartShippingRate|false
@@ -181,14 +192,39 @@ class Dhl extends AbstractShipping
          * knows ("Lagos"), so the lookup is retried against progressively
          * broader place names before giving up.
          */
-        foreach ($this->destinationCityCandidates($shippingAddress) as $cityName) {
-            $query['destinationCityName'] = $cityName;
+        $pickupDate = $this->nextPickupDate();
 
-            $price = $this->requestRate($query);
+        /**
+         * Public holidays fail the same way weekends do - DHL answers 996
+         * for 1 October or Christmas Day - and no fixed calendar keeps up
+         * with Nigeria's moveable ones. So a 996 moves the pickup to the
+         * next working day and asks again, a few times at most.
+         */
+        for ($attempt = 0; $attempt < self::PICKUP_DATE_ATTEMPTS; $attempt++) {
+            $query['plannedShippingDate'] = $pickupDate->format('Y-m-d');
 
-            if ($price !== null) {
-                return $price;
+            $this->dateUnavailable = false;
+
+            foreach ($this->destinationCityCandidates($shippingAddress) as $cityName) {
+                $query['destinationCityName'] = $cityName;
+
+                $price = $this->requestRate($query);
+
+                if ($price !== null) {
+                    return $price;
+                }
+
+                // The date, not the city, was refused - another city won't help.
+                if ($this->dateUnavailable) {
+                    break;
+                }
             }
+
+            if (! $this->dateUnavailable) {
+                return null;
+            }
+
+            $pickupDate = $this->followingWorkingDay($pickupDate);
         }
 
         return null;
@@ -242,6 +278,9 @@ class Dhl extends AbstractShipping
                 ->get($this->getBaseUrl().'/rates', $query);
 
             if (! $response->successful()) {
+                // 996: no product on the requested pickup date (weekend or holiday).
+                $this->dateUnavailable = str_contains((string) $response->json('detail'), '996');
+
                 /**
                  * A rejected destination name is an expected outcome here -
                  * the caller retries with a broader one - so it's logged at
@@ -437,7 +476,15 @@ class Dhl extends AbstractShipping
      */
     protected function nextPickupDate(): \Carbon\Carbon
     {
-        $date = now()->addDay();
+        return $this->followingWorkingDay(now());
+    }
+
+    /**
+     * The first weekday after the given date.
+     */
+    protected function followingWorkingDay(\Carbon\Carbon $date): \Carbon\Carbon
+    {
+        $date = $date->copy()->addDay();
 
         while ($date->isWeekend()) {
             $date->addDay();
