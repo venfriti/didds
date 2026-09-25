@@ -271,9 +271,9 @@
 
                         this.$axios.post('{{ route('paystack.init-inline') }}')
                             .then(response => {
-                                let { reference, access_code, public_key, email, amount } = response.data;
+                                let { reference, access_code, public_key, email, amount, currency } = response.data;
 
-                                this.launchPaystackPopup({ reference, access_code, public_key, email, amount });
+                                this.launchPaystackPopup({ reference, access_code, public_key, email, amount, currency });
                             })
                             .catch(error => {
                                 this.isPlacingOrder = false;
@@ -282,13 +282,23 @@
                             });
                     },
 
-                    launchPaystackPopup({ reference, access_code, public_key, email, amount }) {
+                    launchPaystackPopup({ reference, access_code, public_key, email, amount, currency }) {
                         let openPopup = () => {
                             let handler = PaystackPop.setup({
                                 key: public_key,
                                 email: email,
                                 amount: amount,
-                                currency: 'USD',
+                                /*
+                                 * Whatever the server initialised the
+                                 * transaction in. Nigerian orders are
+                                 * charged in naira and the rest in
+                                 * dollars, and a popup that disagrees with
+                                 * the initialise call makes Paystack
+                                 * reject the reference it already holds -
+                                 * surfacing as "Duplicate Transaction
+                                 * Reference".
+                                 */
+                                currency: currency,
                                 ref: reference,
                                 access_code: access_code,
                                 callback: (response) => {

@@ -159,6 +159,14 @@ class PaystackController extends Controller
                 'public_key' => $this->paystack->getPublicKey(),
                 'email' => $email,
                 'amount' => $amountInSubunit,
+                /**
+                 * The popup has to open in the same currency the
+                 * transaction was initialised in. A mismatch makes
+                 * Paystack refuse the reference it already holds, which
+                 * surfaces to the customer as "Duplicate Transaction
+                 * Reference".
+                 */
+                'currency' => $currency,
             ]);
         } catch (\Exception $e) {
             report($e);
