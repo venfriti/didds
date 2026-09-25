@@ -22,13 +22,16 @@ class UpdateFloatingExchangeRates extends Command
     /**
      * Currencies whose rate is set deliberately and must not float.
      *
-     * USD is pinned because the shop prices against a chosen rate rather
-     * than the market: naira is the stored price, and the dollar figure
-     * Paystack charges should stay predictable rather than moving daily.
+     * Empty: every currency tracks the market. USD was pinned at 1380
+     * while that sat above the real rate and acted as a buffer, but the
+     * market moved below it and the pin became a ~4% discount on every
+     * dollar sale instead.
+     *
+     * Add a code here to fix a rate again.
      *
      * @var array<int, string>
      */
-    protected array $pinned = ['USD'];
+    protected array $pinned = [];
 
     /**
      * The free tier of exchangerate-api. No key required, updated daily.

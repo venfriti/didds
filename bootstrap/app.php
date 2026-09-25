@@ -63,9 +63,9 @@ return Application::configure(basePath: dirname(__DIR__))
          * next minute's run, and withoutOverlapping is belt and braces.
          */
         /**
-         * Refresh GBP and EUR from live FX once a day. USD is pinned in
-         * the command itself - naira is the stored price and the dollar
-         * figure Paystack charges should not move daily.
+         * Refresh every non-base currency from live FX once a day.
+         * Naira is the stored price; USD, GBP and EUR all follow the
+         * market so none of them drifts away from it.
          */
         $schedule->command('currency:rates:refresh')->dailyAt('03:30');
 
