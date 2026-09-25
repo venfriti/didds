@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Die Abbuchung erfolgt in :currency.',
                 'payment-method' => 'Zahlungsmethode',
             ],
 

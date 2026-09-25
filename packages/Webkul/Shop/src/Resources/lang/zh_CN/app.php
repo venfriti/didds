@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => '将以 :currency 收取费用。',
                 'payment-method' => '付款方法',
             ],
 

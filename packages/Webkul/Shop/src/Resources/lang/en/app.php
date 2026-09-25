@@ -1205,6 +1205,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'You will be charged in :currency.',
                 'payment-method' => 'Payment Method',
                 'saved-cards' => 'Saved Cards',
                 'save-card' => 'Save this card for future purchases',

@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'مبلغ به :currency کسر خواهد شد.',
                 'payment-method' => 'روش پرداخت',
             ],
 

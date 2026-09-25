@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Veți fi taxat în :currency.',
                 'payment-method' => 'Metodă de plată',
             ],
 

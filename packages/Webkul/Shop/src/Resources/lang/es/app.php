@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Se le cobrará en :currency.',
                 'payment-method' => 'Método de Pago',
             ],
 

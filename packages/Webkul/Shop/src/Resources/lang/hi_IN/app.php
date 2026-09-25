@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'आपसे :currency में शुल्क लिया जाएगा।',
                 'payment-method' => 'भुगतान विधि',
             ],
 

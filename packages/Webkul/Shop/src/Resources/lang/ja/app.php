@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => ':currency で請求されます。',
                 'payment-method' => '支払方法',
             ],
 

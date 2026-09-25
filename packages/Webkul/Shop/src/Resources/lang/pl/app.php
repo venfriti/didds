@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Obciążenie nastąpi w :currency.',
                 'payment-method' => 'Metoda płatności',
             ],
 

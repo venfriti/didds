@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Оплата буде стягнута в :currency.',
                 'payment-method' => 'Спосіб оплати',
             ],
 

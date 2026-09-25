@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => ':currency cinsinden tahsil edilecektir.',
                 'payment-method' => 'Ödeme Yöntemi',
             ],
 

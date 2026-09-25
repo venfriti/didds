@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Anda akan ditagih dalam :currency.',
                 'payment-method' => 'Metode Pembayaran',
             ],
 

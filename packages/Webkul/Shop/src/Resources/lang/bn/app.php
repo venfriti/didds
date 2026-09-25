@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'আপনার কাছ থেকে :currency-তে চার্জ করা হবে।',
                 'payment-method' => 'পেমেন্ট মেথড',
             ],
 

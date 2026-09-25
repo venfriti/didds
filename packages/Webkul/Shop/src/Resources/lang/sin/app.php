@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'ඔබෙන් :currency වලින් අය කෙරේ.',
                 'payment-method' => 'ගෙවීම් ක්රමය',
             ],
 

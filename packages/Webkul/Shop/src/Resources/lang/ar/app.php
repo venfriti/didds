@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'سيتم خصم المبلغ بعملة :currency.',
                 'payment-method' => 'طريقة الدفع',
             ],
 

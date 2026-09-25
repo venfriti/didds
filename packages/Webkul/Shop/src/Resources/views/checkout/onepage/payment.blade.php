@@ -100,7 +100,33 @@
                                         </p> 
 
                                         {!! view_render_event('bagisto.shop.checkout.onepage.payment-method.description.after') !!}
-    
+
+                                        {{--
+                                            Nigerian orders are charged in
+                                            naira and everyone else in
+                                            dollars, which can differ from
+                                            the currency being browsed in -
+                                            so the charge currency is named
+                                            rather than left as a surprise
+                                            on the payment page.
+                                        --}}
+                                        @php
+                                            $chargeCart = \Webkul\Checkout\Facades\Cart::getCart();
+
+                                            $chargeCurrency = strtoupper((string) (
+                                                $chargeCart?->shipping_address?->country
+                                                ?: $chargeCart?->billing_address?->country
+                                            )) === 'NG' ? 'NGN' : 'USD';
+                                        @endphp
+
+                                        <p
+                                            class="mt-1.5 text-xs font-medium text-diidsInk/60"
+                                            v-if="payment.method == 'paystack'"
+                                            v-pre
+                                        >
+                                            @lang('shop::app.checkout.onepage.payment.charged-in', ['currency' => $chargeCurrency])
+                                        </p>
+
                                     </div>
                                 </label>
 

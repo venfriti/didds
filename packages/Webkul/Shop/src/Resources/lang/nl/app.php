@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'Er wordt afgeschreven in :currency.',
                 'payment-method' => 'Betalingsmethode',
             ],
 

@@ -1187,6 +1187,7 @@ return [
             ],
 
             'payment' => [
+                'charged-in' => 'החיוב יתבצע ב-:currency.',
                 'payment-method' => 'אמצעי תשלום',
             ],
 
