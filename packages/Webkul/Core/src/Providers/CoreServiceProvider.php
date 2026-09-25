@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Webkul\Core\Console\Commands\BagistoVersion;
 use Webkul\Core\Console\Commands\ExchangeRateUpdate;
+use Webkul\Core\Console\Commands\UpdateFloatingExchangeRates;
 use Webkul\Core\Console\Commands\InvoiceOverdueCron;
 use Webkul\Core\Console\Commands\TranslationsChecker;
 use Webkul\Core\Exceptions\Handler;
@@ -71,6 +72,7 @@ class CoreServiceProvider extends ServiceProvider
             $this->commands([
                 BagistoVersion::class,
                 ExchangeRateUpdate::class,
+                UpdateFloatingExchangeRates::class,
                 InvoiceOverdueCron::class,
                 TranslationsChecker::class,
             ]);
