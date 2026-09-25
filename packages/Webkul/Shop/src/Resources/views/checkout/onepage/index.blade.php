@@ -166,6 +166,38 @@
                     }
                 },
 
+                computed: {
+                    /*
+                     * Nigerian orders are charged in naira and everyone
+                     * else in dollars, keyed on where the parcel is going
+                     * rather than the currency being browsed in.
+                     *
+                     * Computed here so it follows the address as the
+                     * customer fills it in - the payment step renders
+                     * before any address exists, so a server-rendered
+                     * value would be stuck on the fallback.
+                     */
+                    chargeCurrency() {
+                        let country = this.cart?.shipping_address?.country
+                            || this.cart?.billing_address?.country;
+
+                        if (! country) {
+                            return null;
+                        }
+
+                        return country.toUpperCase() === 'NG' ? 'NGN' : 'USD';
+                    },
+
+                    chargeCurrencyNotice() {
+                        if (! this.chargeCurrency) {
+                            return '';
+                        }
+
+                        return "{{ trans('shop::app.checkout.onepage.payment.charged-in', ['currency' => ':currency']) }}"
+                            .replace(':currency', this.chargeCurrency);
+                    },
+                },
+
                 mounted() {
                     this.getCart();
                 },

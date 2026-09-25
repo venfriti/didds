@@ -7,6 +7,8 @@
 
 <v-payment-methods
     :methods="paymentMethods"
+    :charge-currency="chargeCurrency"
+    :charge-currency-notice="chargeCurrencyNotice"
     @payment-method-selected="setSelectedPaymentMethod"
     @saved-card-selected="setSelectedSavedCard"
     @processing="stepForward"
@@ -104,27 +106,22 @@
                                         {{--
                                             Nigerian orders are charged in
                                             naira and everyone else in
-                                            dollars, which can differ from
-                                            the currency being browsed in -
-                                            so the charge currency is named
-                                            rather than left as a surprise
-                                            on the payment page.
+                                            dollars, keyed on the shipping
+                                            country - which can differ from
+                                            the currency being browsed in.
+
+                                            Computed in Vue rather than
+                                            Blade: this page renders once,
+                                            before the customer has entered
+                                            an address, so a server-rendered
+                                            value would always read USD and
+                                            never update.
                                         --}}
-                                        @php
-                                            $chargeCart = \Webkul\Checkout\Facades\Cart::getCart();
-
-                                            $chargeCurrency = strtoupper((string) (
-                                                $chargeCart?->shipping_address?->country
-                                                ?: $chargeCart?->billing_address?->country
-                                            )) === 'NG' ? 'NGN' : 'USD';
-                                        @endphp
-
                                         <p
                                             class="mt-1.5 text-xs font-medium text-diidsInk/60"
-                                            v-if="payment.method == 'paystack'"
-                                            v-pre
+                                            v-if="payment.method == 'paystack' && chargeCurrency"
                                         >
-                                            @lang('shop::app.checkout.onepage.payment.charged-in', ['currency' => $chargeCurrency])
+                                            @{{ chargeCurrencyNotice }}
                                         </p>
 
                                     </div>
@@ -211,6 +208,20 @@
             template: '#v-payment-methods-template',
 
             props: {
+                /*
+                 * Supplied by the checkout parent, which holds the cart -
+                 * the payment component itself has no address to read.
+                 */
+                chargeCurrency: {
+                    type: String,
+                    default: null,
+                },
+
+                chargeCurrencyNotice: {
+                    type: String,
+                    default: '',
+                },
+
                 methods: {
                     type: Object,
                     required: true,
