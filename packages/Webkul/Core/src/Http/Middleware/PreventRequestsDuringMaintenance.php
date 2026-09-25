@@ -64,6 +64,15 @@ class PreventRequestsDuringMaintenance extends BasePreventRequestsDuringMaintena
                 return $next($request);
             }
 
+            /**
+             * Anyone signed in to the admin sees the real shop, so the
+             * store can be checked before it is reopened. The admin and
+             * shop share a session on the same domain.
+             */
+            if (auth()->guard('admin')->check()) {
+                return $next($request);
+            }
+
             $this->setAllowedIps();
 
             if (
