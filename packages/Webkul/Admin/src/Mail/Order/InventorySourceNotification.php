@@ -22,6 +22,16 @@ class InventorySourceNotification extends Mailable
     {
         $inventory = $this->shipment->inventory_source;
 
+        /**
+         * The store's contact address is copied in as well, so whoever
+         * handles customer queries sees dispatches too.
+         */
+        $contactEmail = core()->getConfigData('emails.configure.email_settings.contact_email');
+
+        $cc = $contactEmail && strcasecmp($contactEmail, (string) $inventory->contact_email) !== 0
+            ? [new Address($contactEmail, (string) core()->getConfigData('emails.configure.email_settings.contact_name'))]
+            : [];
+
         return new Envelope(
             to: [
                 new Address(
@@ -29,6 +39,7 @@ class InventorySourceNotification extends Mailable
                     $inventory->contact_name
                 ),
             ],
+            cc: $cc,
             subject: trans('admin::app.emails.orders.inventory-source.subject'),
         );
     }

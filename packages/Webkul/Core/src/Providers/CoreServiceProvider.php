@@ -15,6 +15,7 @@ use Webkul\Core\Console\Commands\ExchangeRateUpdate;
 use Webkul\Core\Console\Commands\UpdateFloatingExchangeRates;
 use Webkul\Core\Console\Commands\InvoiceOverdueCron;
 use Webkul\Core\Console\Commands\TranslationsChecker;
+use Webkul\Core\Console\Scheduling\InProcessSchedule;
 use Webkul\Core\Exceptions\Handler;
 use Webkul\Core\Facades\ElasticSearch;
 use Webkul\Core\View\Compilers\BladeCompiler;
@@ -32,6 +33,24 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerCommands();
 
         $this->registerOverrides();
+
+        $this->registerInProcessSchedule();
+    }
+
+    /**
+     * Replace the framework's schedule with one that runs artisan commands
+     * in-process, since this host has no proc_open. Mirrors the framework's
+     * own binding in Console\Kernel::resolveConsoleSchedule().
+     */
+    protected function registerInProcessSchedule(): void
+    {
+        $this->app->singleton(Schedule::class, function ($app) {
+            $config = $app['config'];
+
+            $schedule = new InProcessSchedule($config->get('app.schedule_timezone', $config->get('app.timezone')));
+
+            return $schedule->useCache($config->get('cache.schedule_store', env('SCHEDULE_CACHE_DRIVER', env('SCHEDULE_CACHE_STORE'))));
+        });
     }
 
     /**
