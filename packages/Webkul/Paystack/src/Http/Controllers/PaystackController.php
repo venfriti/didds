@@ -212,9 +212,7 @@ class PaystackController extends Controller
                 return response()->json(['message' => trans('paystack::app.response.cart-processed')], 422);
             }
 
-            $expectedAmount = $this->chargeAmount($cart, $this->chargeCurrency($cart));
-
-            if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
+            if (! $this->paymentMatchesCart($cart, $data)) {
                 return response()->json(['message' => trans('paystack::app.response.amount-mismatch')], 422);
             }
 
@@ -278,9 +276,7 @@ class PaystackController extends Controller
                 return redirect()->route('shop.checkout.cart.index');
             }
 
-            $expectedAmount = $this->chargeAmount($cart, $this->chargeCurrency($cart));
-
-            if (abs(($data['amount'] ?? 0) - $expectedAmount) > 1) {
+            if (! $this->paymentMatchesCart($cart, $data)) {
                 session()->flash('error', trans('paystack::app.response.amount-mismatch'));
 
                 return redirect()->route('shop.checkout.cart.index');
@@ -336,6 +332,22 @@ class PaystackController extends Controller
         $cart = $this->cartRepository->find($cartId);
 
         if (! $cart || ! $cart->is_active) {
+            return response('', 200);
+        }
+
+        /**
+         * A signed webhook proves Paystack sent it, not that it paid for
+         * this cart - the cart may have changed since the popup opened.
+         * Logged for follow-up rather than turned into an order.
+         */
+        if (! $this->paymentMatchesCart($cart, $data)) {
+            \Illuminate\Support\Facades\Log::warning('Paystack webhook amount/currency does not match cart', [
+                'reference' => $reference,
+                'cart_id' => $cartId,
+                'paid' => ($data['amount'] ?? null).' '.($data['currency'] ?? ''),
+                'expected' => $this->chargeAmount($cart, $this->chargeCurrency($cart)).' '.$this->chargeCurrency($cart),
+            ]);
+
             return response('', 200);
         }
 
@@ -680,5 +692,23 @@ class PaystackController extends Controller
     protected function chargeAmount($cart, string $currency): int
     {
         return (int) round(core()->convertPrice($cart->base_grand_total, $currency) * 100);
+    }
+
+    /**
+     * Whether a verified Paystack transaction paid for this cart: the
+     * right currency and, within a kobo/cent of rounding, the right amount.
+     *
+     * The currency matters as much as the figure - a transaction in the
+     * wrong one would otherwise pass on a coincidental number.
+     */
+    protected function paymentMatchesCart($cart, array $data): bool
+    {
+        $currency = $this->chargeCurrency($cart);
+
+        if (strtoupper((string) ($data['currency'] ?? '')) !== $currency) {
+            return false;
+        }
+
+        return abs(($data['amount'] ?? 0) - $this->chargeAmount($cart, $currency)) <= 1;
     }
 }

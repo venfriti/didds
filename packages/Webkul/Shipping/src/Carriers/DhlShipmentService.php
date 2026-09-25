@@ -758,7 +758,12 @@ class DhlShipmentService
 
         $line = [[
             'item' => $shipmentItem,
-            'price' => (float) ($shipmentItem->price ?: 0),
+            /**
+             * Base price, not price: price is in whatever currency the
+             * customer browsed in, while toAccountCurrency() expects the
+             * base - the same source the bundle children below use.
+             */
+            'price' => (float) ($shipmentItem->base_price ?: $shipmentItem->price ?: 0),
             'quantity' => 1,
             'weight' => (float) ($shipmentItem->weight ?: 0),
         ]];
