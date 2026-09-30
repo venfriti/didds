@@ -920,9 +920,21 @@ class Cart
             return $this;
         }
 
+        /**
+         * A request outside the shop - a payment callback or webhook - has
+         * no browsing currency and would otherwise re-total the cart in the
+         * channel base, so a dollar checkout was saved as a naira order.
+         * The cart's own currency is what the customer was shown.
+         */
+        if (! core()->isCurrentCurrencyChosen() && $this->cart->cart_currency_code) {
+            core()->setCurrentCurrency($this->cart->cart_currency_code);
+        }
+
         Event::dispatch('checkout.cart.collect.totals.before', $this->cart);
 
         $this->calculateItemsTax();
+
+        $this->repriceShippingRate();
 
         $this->calculateShippingTax();
 
@@ -1201,6 +1213,36 @@ class Cart
         }
 
         Event::dispatch('checkout.cart.calculate.items.tax.after', $this->cart);
+    }
+
+    /**
+     * Keep the selected shipping rate in the cart's current currency.
+     *
+     * Item prices are re-derived from their base amounts on every
+     * collectTotals(), but the shipping rate kept whatever currency it was
+     * quoted in - so a cart totalled in another currency mixed the two: a
+     * dollar order was saved as NGN 15,000 of goods plus "73" of shipping.
+     * The base price is the fixed point, so the display price follows it.
+     */
+    protected function repriceShippingRate(): void
+    {
+        $shippingRate = $this->cart?->selected_shipping_rate;
+
+        if (! $shippingRate) {
+            return;
+        }
+
+        $price = (float) core()->convertPrice((float) $shippingRate->base_price);
+
+        if (abs($price - (float) $shippingRate->price) < 0.0001) {
+            return;
+        }
+
+        $shippingRate->price = $price;
+        $shippingRate->price_incl_tax = (float) core()->convertPrice((float) ($shippingRate->base_price_incl_tax ?: $shippingRate->base_price));
+        $shippingRate->discount_amount = (float) core()->convertPrice((float) $shippingRate->base_discount_amount);
+
+        $shippingRate->save();
     }
 
     /**

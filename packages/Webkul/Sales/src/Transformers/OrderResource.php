@@ -105,24 +105,7 @@ class OrderResource extends JsonResource
             return;
         }
 
-        $stale = $this->amountIsStale($this->base_grand_total, $this->grand_total, $currency);
-
-        /**
-         * The cart total can agree with its base while individual line
-         * items still hold the old currency - collectTotals() recomputes
-         * the totals from base values, so it repairs the header and leaves
-         * the items behind. Those item prices are copied onto the order and
-         * every invoice built from it, so they are checked too.
-         */
-        if (! $stale) {
-            foreach ($this->items as $item) {
-                if ($this->amountIsStale($item->base_price, $item->price, $currency)) {
-                    $stale = true;
-
-                    break;
-                }
-            }
-        }
+        $stale = $this->staleAmounts($currency);
 
         if (! $stale) {
             return;
@@ -130,14 +113,107 @@ class OrderResource extends JsonResource
 
         Log::warning('Cart '.$this->id.' had stale display amounts at order time', [
             'currency' => $currency,
-            'stored_grand_total' => $this->grand_total,
-            'base_grand_total' => $this->base_grand_total,
-            'expected_grand_total' => core()->convertPrice((float) $this->base_grand_total, $currency),
+            'stale' => $stale,
         ]);
+
+        /**
+         * Re-total in the cart's own currency - not whatever this request
+         * happens to be using, which outside the shop is the channel base.
+         * Re-totalling in the wrong currency is exactly what produced a
+         * "NGN 15,073" order from a $84.54 checkout.
+         */
+        core()->setCurrentCurrency($currency);
+
+        Cart::setCart($this->resource);
 
         Cart::collectTotals();
 
         $this->resource->refresh();
+
+        $this->resource->load('items', 'shipping_rates');
+
+        if (! $stale = $this->staleAmounts($currency)) {
+            return;
+        }
+
+        /**
+         * Still inconsistent after a re-total: build the display side from
+         * the base amounts directly. By this point the customer has paid,
+         * so refusing the order is not an option - but a mixed-currency
+         * order must never be written either.
+         */
+        Log::error('Cart '.$this->id.' still inconsistent after re-total; deriving display amounts from base', [
+            'currency' => $currency,
+            'stale' => $stale,
+        ]);
+
+        $this->deriveDisplayAmountsFromBase($currency);
+    }
+
+    /**
+     * Every display amount copied onto the order - header, shipping and
+     * each line - that has drifted from its base in the given currency.
+     *
+     * @return array<int, string>
+     */
+    protected function staleAmounts(string $currency): array
+    {
+        $stale = [];
+
+        foreach (['grand_total', 'sub_total', 'shipping_amount', 'discount_amount', 'tax_total'] as $column) {
+            if ($this->amountIsStale($this->{'base_'.$column}, $this->$column, $currency)) {
+                $stale[] = $column;
+            }
+        }
+
+        if ($rate = $this->selected_shipping_rate) {
+            if ($this->amountIsStale($rate->base_price, $rate->price, $currency)) {
+                $stale[] = 'shipping_rate.price';
+            }
+        }
+
+        /**
+         * Line items are checked on their own: the header can agree with
+         * its base while a line still holds the old currency, and line
+         * prices are copied onto the order and every invoice built from it.
+         */
+        foreach ($this->items as $item) {
+            foreach (['price', 'total'] as $column) {
+                if ($this->amountIsStale($item->{'base_'.$column}, $item->$column, $currency)) {
+                    $stale[] = 'item '.$item->id.' '.$column;
+                }
+            }
+        }
+
+        return $stale;
+    }
+
+    /**
+     * Last resort: set every display amount to its base converted into
+     * the order currency, in memory, so the order is written consistently.
+     */
+    protected function deriveDisplayAmountsFromBase(string $currency): void
+    {
+        $convert = fn ($base) => round((float) core()->convertPrice((float) $base, $currency), 4);
+
+        foreach ([
+            'grand_total', 'sub_total', 'sub_total_incl_tax', 'tax_total',
+            'discount_amount', 'shipping_amount', 'shipping_amount_incl_tax',
+        ] as $column) {
+            $this->resource->$column = $convert($this->resource->{'base_'.$column});
+        }
+
+        if ($rate = $this->selected_shipping_rate) {
+            foreach (['price', 'price_incl_tax', 'tax_amount', 'discount_amount'] as $column) {
+                $rate->$column = $convert($rate->{'base_'.$column});
+            }
+        }
+
+        foreach ($this->items as $item) {
+            foreach (['price', 'price_incl_tax', 'total', 'total_incl_tax', 'tax_amount', 'discount_amount'] as $column) {
+                $item->$column = $convert($item->{'base_'.$column});
+            }
+        }
     }
 
     /**

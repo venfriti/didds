@@ -52,6 +52,11 @@ class Core
     protected $currentCurrency;
 
     /**
+     * Whether setCurrentCurrency() has been called this request.
+     */
+    protected bool $currencyChosen = false;
+
+    /**
      * Base Currency.
      *
      * @var Currency
@@ -410,6 +415,8 @@ class Core
      */
     public function setCurrentCurrency($currencyCode)
     {
+        $this->currencyChosen = true;
+
         $this->currentCurrency = $this->currencyRepository->findOneByField('code', $currencyCode);
 
         if ($this->currentCurrency) {
@@ -426,6 +433,20 @@ class Core
      *
      * @return Contracts\Currency
      */
+    /**
+     * Whether this request has chosen a currency, as opposed to falling
+     * back to the channel base.
+     *
+     * Only the shop's Currency middleware makes that choice, so payment
+     * callbacks, webhooks and admin requests never do - and anything that
+     * reprices a customer's cart there must use the cart's own currency,
+     * not the base it would otherwise fall back to.
+     */
+    public function isCurrentCurrencyChosen(): bool
+    {
+        return $this->currencyChosen;
+    }
+
     public function getCurrentCurrency()
     {
         if ($this->currentCurrency) {

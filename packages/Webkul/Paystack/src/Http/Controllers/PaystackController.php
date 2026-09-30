@@ -512,6 +512,16 @@ class PaystackController extends Controller
             return $existing;
         }
 
+        /**
+         * Total the order in the currency the customer checked out in.
+         * Paystack's routes run outside the shop middleware that restores
+         * the browsing currency, and the webhook has no session at all, so
+         * without this the cart was re-totalled in the base currency.
+         */
+        if ($cart->cart_currency_code) {
+            core()->setCurrentCurrency($cart->cart_currency_code);
+        }
+
         Cart::setCart($cart);
 
         Cart::collectTotals();
