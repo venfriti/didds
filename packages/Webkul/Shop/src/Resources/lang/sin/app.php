@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'භාණ්ඩ ප්රවාහන ක්රමය',
+                'pickup-address' => 'ලබා ගන්නා ලිපිනය',
             ],
 
             'summary' => [

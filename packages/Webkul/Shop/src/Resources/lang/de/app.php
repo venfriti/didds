@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Versandart',
+                'pickup-address' => 'Abholadresse',
             ],
 
             'summary' => [

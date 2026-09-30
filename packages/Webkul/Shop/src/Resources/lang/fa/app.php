@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'روش ارسال',
+                'pickup-address' => 'آدرس تحویل حضوری',
             ],
 
             'summary' => [

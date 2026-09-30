@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Livraison gratuite" fait référence à une méthode d\'expédition où les frais de livraison sont annulés et le vendeur prend en charge les frais d\'expédition pour livrer les marchandises à l\'acheteur.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Adresse de retrait',
+                        'domestic-only' => 'Proposer le retrait uniquement pour les adresses du pays de la boutique',
+                        'instructions' => 'Instructions de retrait',
+                        'page-title' => 'Retrait en magasin',
+                        'title-info' => 'Permettre aux clients de retirer leur commande en personne, sans frais.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Description',
                         'page-title' => 'Livraison à tarif fixe',

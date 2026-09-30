@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Metodo di spedizione',
+                'pickup-address' => 'Indirizzo di ritiro',
             ],
 
             'summary' => [

@@ -29,4 +29,13 @@ return [
         'default_item_weight' => '0.5',
         'class' => 'Webkul\Shipping\Carriers\Dhl',
     ],
+
+    'pickup' => [
+        'code' => 'pickup',
+        'title' => 'Store Pickup',
+        'active' => false,
+        'domestic_only' => true,
+        'default_rate' => '0',
+        'class' => 'Webkul\Shipping\Carriers\Pickup',
+    ],
 ];

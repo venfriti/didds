@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Darmowa wysyłka" odnosi się do metody wysyłki, w której koszt wysyłki jest zwolniony, a sprzedawca pokrywa koszty wysyłki dla dostarczenia towarów do kupującego.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Adres odbioru',
+                        'domestic-only' => 'Oferuj odbiór tylko dla adresów w kraju sklepu',
+                        'instructions' => 'Instrukcje odbioru',
+                        'page-title' => 'Odbiór osobisty',
+                        'title-info' => 'Pozwól klientom bezpłatnie odebrać zamówienie osobiście.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Opis',
                         'page-title' => 'Wysyłka z stałą stawką',

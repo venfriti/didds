@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => '送货方式',
+                'pickup-address' => '自提地址',
             ],
 
             'summary' => [

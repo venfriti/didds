@@ -4886,6 +4886,14 @@ return [
                         'title-info' => '“免费配送”是指免收运费，由卖家承担将商品配送给买家的费用。',
                     ],
 
+                    'store-pickup' => [
+                        'address' => '自提地址',
+                        'domestic-only' => '仅对商店所在国家的地址提供自提',
+                        'instructions' => '自提说明',
+                        'page-title' => '到店自提',
+                        'title-info' => '允许顾客免费到店自取订单。',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => '描述',
                         'page-title' => '固定运费',

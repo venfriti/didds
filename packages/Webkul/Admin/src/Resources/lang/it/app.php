@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Spedizione gratuita" si riferisce a un metodo di spedizione in cui il costo della spedizione è annullato e il venditore copre le spese di spedizione per la consegna dei beni all\'acquirente.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Indirizzo di ritiro',
+                        'domestic-only' => 'Offri il ritiro solo per indirizzi nel paese del negozio',
+                        'instructions' => 'Istruzioni per il ritiro',
+                        'page-title' => 'Ritiro in negozio',
+                        'title-info' => 'Consenti ai clienti di ritirare gli ordini di persona, gratuitamente.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Descrizione',
                         'page-title' => 'Spedizione a Tariffa Fissa',

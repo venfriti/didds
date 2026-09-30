@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Enviament gratuït" fa referència a un mètode d\'enviament on s\'abandona el cost d\'enviament i el venedor cobreix les despeses per lliurar els béns al comprador.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Adreça de recollida',
+                        'domestic-only' => 'Oferir la recollida només per a adreces del país de la botiga',
+                        'instructions' => 'Instruccions de recollida',
+                        'page-title' => 'Recollida a la botiga',
+                        'title-info' => 'Permet als clients recollir la comanda en persona, sense cost.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Descripció',
                         'page-title' => 'Enviament amb tarifa plana',

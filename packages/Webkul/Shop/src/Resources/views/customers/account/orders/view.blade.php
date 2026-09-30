@@ -2260,6 +2260,9 @@
 
                             <div class="mt-1 grid gap-2.5 text-xs text-gray-800">
                                 {{ $order->shipping_title }}
+                                @if ($order->shipping_method === 'pickup_pickup' && $order->shipping_description)
+                                    <span class="block">@lang('shop::app.checkout.onepage.shipping.pickup-address'): {{ $order->shipping_description }}</span>
+                                @endif
 
                                 {!! view_render_event('bagisto.shop.customers.account.orders.view.shipping_method_details.after', ['order' => $order]) !!}
                             </div>
@@ -2342,6 +2345,9 @@
 
                         <p class="text-sm">
                             {{ $order->shipping_title }}
+                            @if ($order->shipping_method === 'pickup_pickup' && $order->shipping_description)
+                                <span class="block">@lang('shop::app.checkout.onepage.shipping.pickup-address'): {{ $order->shipping_description }}</span>
+                            @endif
                         </p>
 
                         {!! view_render_event('bagisto.shop.customers.account.orders.view.shipping_method_details.after', ['order' => $order]) !!}

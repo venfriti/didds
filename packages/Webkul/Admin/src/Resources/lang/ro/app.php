@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Free shipping" refers to a shipping method where the cost of shipping is waived, and the seller covers the shipping expenses for delivering goods to the buyer.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Adresa de ridicare',
+                        'domestic-only' => 'Oferă ridicarea doar pentru adresele din țara magazinului',
+                        'instructions' => 'Instrucțiuni de ridicare',
+                        'page-title' => 'Ridicare din magazin',
+                        'title-info' => 'Permite clienților să ridice comanda personal, gratuit.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Description',
                         'page-title' => 'Flat Rate Shipping',

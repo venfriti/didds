@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Gratis verzending" verwijst naar een verzendmethode waarbij de verzendkosten worden kwijtgescholden en de verkoper de verzendkosten voor het leveren van goederen aan de koper betaalt.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Afhaaladres',
+                        'domestic-only' => 'Afhalen alleen aanbieden voor adressen in het land van de winkel',
+                        'instructions' => 'Afhaalinstructies',
+                        'page-title' => 'Afhalen in de winkel',
+                        'title-info' => 'Laat klanten hun bestelling gratis persoonlijk ophalen.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Beschrijving',
                         'page-title' => 'Verzending tegen vast tarief',

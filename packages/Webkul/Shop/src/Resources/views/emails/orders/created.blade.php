@@ -50,6 +50,9 @@
 
                 <div style="font-size: 16px;font-weight: 400;color: #4B5563;">
                     {{ $order->shipping_title }}
+                    @if ($order->shipping_method === 'pickup_pickup' && $order->shipping_description)
+                        <br/>@lang('shop::app.checkout.onepage.shipping.pickup-address'): {{ $order->shipping_description }}
+                    @endif
                 </div>
             </div>
         @endif

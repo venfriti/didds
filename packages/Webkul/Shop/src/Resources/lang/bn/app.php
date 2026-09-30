@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'শিপিং মেথড',
+                'pickup-address' => 'পিকআপ ঠিকানা',
             ],
 
             'summary' => [

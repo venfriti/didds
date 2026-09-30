@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Método de Entrega',
+                'pickup-address' => 'Endereço de retirada',
             ],
 
             'summary' => [

@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Pengiriman gratis" merujuk pada metode pengiriman di mana biaya pengiriman diabaikan, dan penjual menanggung biaya pengiriman untuk mengantarkan barang kepada pembeli.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Alamat Pengambilan',
+                        'domestic-only' => 'Tawarkan pengambilan hanya untuk alamat di negara toko',
+                        'instructions' => 'Petunjuk Pengambilan',
+                        'page-title' => 'Ambil di Toko',
+                        'title-info' => 'Izinkan pelanggan mengambil pesanan secara langsung tanpa biaya.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Deskripsi',
                         'page-title' => 'Pengiriman Tarif Tetap',

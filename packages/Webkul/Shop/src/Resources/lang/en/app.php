@@ -1214,6 +1214,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Shipping Method',
+                'pickup-address' => 'Pickup address',
             ],
 
             'summary' => [

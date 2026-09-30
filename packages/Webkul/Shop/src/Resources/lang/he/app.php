@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'אמצעי משלוח',
+                'pickup-address' => 'כתובת איסוף',
             ],
 
             'summary' => [

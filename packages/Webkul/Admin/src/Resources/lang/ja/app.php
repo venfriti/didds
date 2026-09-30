@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '「無料配送」とは、送料が免除され、販売者が買い手に商品を配送するための送料を負担する配送方法を指します。',
                     ],
 
+                    'store-pickup' => [
+                        'address' => '受け取り住所',
+                        'domestic-only' => '店舗の国内の住所にのみ店舗受け取りを表示',
+                        'instructions' => '受け取り方法',
+                        'page-title' => '店舗受け取り',
+                        'title-info' => 'お客様が無料で注文品を直接受け取れるようにします。',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => '説明',
                         'page-title' => '一律料金配送',

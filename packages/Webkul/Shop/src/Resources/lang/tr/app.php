@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Kargo Yöntemi',
+                'pickup-address' => 'Teslim alma adresi',
             ],
 
             'summary' => [

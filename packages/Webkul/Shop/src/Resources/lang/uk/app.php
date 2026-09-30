@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Спосіб доставки',
+                'pickup-address' => 'Адреса самовивозу',
             ],
 
             'summary' => [

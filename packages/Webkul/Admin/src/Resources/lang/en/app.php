@@ -4928,6 +4928,14 @@ return [
                         'title-info' => '"Free shipping" refers to a shipping method where the cost of shipping is waived, and the seller covers the shipping expenses for delivering goods to the buyer.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Pickup Address',
+                        'domestic-only' => 'Only offer pickup for delivery addresses in the store\'s country',
+                        'instructions' => 'Collection Instructions',
+                        'page-title' => 'Store Pickup',
+                        'title-info' => 'Let customers collect their order in person, free of charge.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Description',
                         'page-title' => 'Flat Rate Shipping',

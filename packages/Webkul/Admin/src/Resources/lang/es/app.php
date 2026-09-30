@@ -4887,6 +4887,14 @@ return [
                         'title-info' => '"Envío gratuito" se refiere a un método de envío en el que se renuncia al costo de envío y el vendedor cubre los gastos de envío para entregar los bienes al comprador.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Dirección de recogida',
+                        'domestic-only' => 'Ofrecer la recogida solo para direcciones del país de la tienda',
+                        'instructions' => 'Instrucciones de recogida',
+                        'page-title' => 'Recogida en tienda',
+                        'title-info' => 'Permite a los clientes recoger su pedido en persona, sin coste.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Descripción',
                         'page-title' => 'Envío con tarifa plana',

@@ -460,6 +460,9 @@
                             @if ($invoice->order->shipping_address)
                                 <td style="width: 50%">
                                     {{ $invoice->order->shipping_title }}
+                                    @if ($invoice->order->shipping_method === 'pickup_pickup' && $invoice->order->shipping_description)
+                                        <br/>@lang('shop::app.checkout.onepage.shipping.pickup-address'): {{ $invoice->order->shipping_description }}
+                                    @endif
                                 </td>
                             @endif
                         </tr>

@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Metodă de expediere',
+                'pickup-address' => 'Adresa de ridicare',
             ],
 
             'summary' => [

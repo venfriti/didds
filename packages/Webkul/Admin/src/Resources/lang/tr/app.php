@@ -4886,6 +4886,14 @@ return [
                         'title-info' => '"Ücretsiz kargo", kargo ücretinin feragat edildiği ve satıcının alıcıya mal teslim etmek için kargo masraflarını karşıladığı bir nakliye yöntemini ifade eder.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Teslim Alma Adresi',
+                        'domestic-only' => 'Teslim almayı yalnızca mağazanın bulunduğu ülkedeki adresler için sun',
+                        'instructions' => 'Teslim Alma Talimatları',
+                        'page-title' => 'Mağazadan Teslim Alma',
+                        'title-info' => 'Müşterilerin siparişlerini ücretsiz olarak bizzat teslim almasına izin verin.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Açıklama',
                         'page-title' => 'Sabit Fiyatlı Kargo',

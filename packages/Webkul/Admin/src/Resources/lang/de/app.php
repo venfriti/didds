@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Kostenloser Versand" bezieht sich auf eine Versandmethode, bei der die Versandkosten erlassen werden und der Verkäufer die Versandkosten für die Lieferung der Ware an den Käufer übernimmt.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Abholadresse',
+                        'domestic-only' => 'Abholung nur für Lieferadressen im Land des Shops anbieten',
+                        'instructions' => 'Hinweise zur Abholung',
+                        'page-title' => 'Abholung im Geschäft',
+                        'title-info' => 'Kunden können ihre Bestellung kostenlos persönlich abholen.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Beschreibung',
                         'page-title' => 'Pauschalpreis-Versand',

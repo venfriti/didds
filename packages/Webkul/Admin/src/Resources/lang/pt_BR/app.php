@@ -4888,6 +4888,14 @@ return [
                         'title-info' => '"Frete grátis" refere-se a um método de envio em que o custo do frete é isento, e o vendedor cobre as despesas de envio para entregar os produtos ao comprador.',
                     ],
 
+                    'store-pickup' => [
+                        'address' => 'Endereço de retirada',
+                        'domestic-only' => 'Oferecer retirada apenas para endereços no país da loja',
+                        'instructions' => 'Instruções de retirada',
+                        'page-title' => 'Retirada na loja',
+                        'title-info' => 'Permita que os clientes retirem o pedido pessoalmente, sem custo.',
+                    ],
+
                     'flat-rate-shipping' => [
                         'description' => 'Descrição',
                         'page-title' => 'Frete Fixo',
