@@ -105,6 +105,10 @@ class DhlShipmentService
             return [
                 'tracking_number' => $trackingNumber,
                 'label_base64' => $labelUrl,
+                'planned_date' => $pickupDate->toDateString(),
+                'product_code' => $payload['productCode'],
+                'is_customs_declarable' => (bool) ($payload['content']['isCustomsDeclarable'] ?? false),
+                'packages' => $payload['content']['packages'] ?? [],
             ];
         } catch (\Throwable $e) {
             Log::error('DHL shipment creation exception: '.$e->getMessage(), [
@@ -113,6 +117,90 @@ class DhlShipmentService
 
             return null;
         }
+    }
+
+    /**
+     * Ask DHL to send a courier to collect from the store.
+     *
+     * Booking a waybill does not bring a courier - DHL's integration guide
+     * keeps collections on their own Pickup endpoint - so without this a
+     * labelled parcel waits until someone drops it off, and the delivery
+     * date shown at checkout slips.
+     *
+     * A refused date (a public holiday) books nothing, so the next working
+     * day is tried, a few times at most. Returns the confirmation number
+     * and the date DHL accepted, or null when no collection was booked.
+     *
+     * @return array{confirmation: string, date: string, from: string, until: string}|null
+     */
+    public function requestPickup(string $plannedDate, array $shipmentDetails, ?string $remark = null): ?array
+    {
+        if (! $this->isConfigured()) {
+            return null;
+        }
+
+        $date = \Carbon\Carbon::parse($plannedDate, config('app.timezone'));
+
+        $readyFrom = '10:00';
+        $closeTime = '17:00';
+
+        for ($attempt = 0; $attempt < 3; $attempt++) {
+            $payload = [
+                'plannedPickupDateAndTime' => $date->copy()->setTimeFromTimeString($readyFrom)->format('Y-m-d\TH:i:s \G\M\TP'),
+                'closeTime' => $closeTime,
+                'location' => 'reception',
+                'locationType' => 'business',
+                'accounts' => [
+                    [
+                        'typeCode' => 'shipper',
+                        'number' => core()->getConfigData('sales.carriers.dhl.account_number'),
+                    ],
+                ],
+                'customerDetails' => [
+                    'shipperDetails' => $this->shipperDetails(),
+                ],
+                'shipmentDetails' => [$shipmentDetails],
+            ];
+
+            if ($remark) {
+                $payload['remark'] = mb_substr($remark, 0, 200);
+            }
+
+            try {
+                $response = Http::withBasicAuth(
+                    core()->getConfigData('sales.carriers.dhl.api_key'),
+                    core()->getConfigData('sales.carriers.dhl.api_secret')
+                )
+                    ->withHeaders(['x-version' => $this->apiVersion])
+                    ->timeout(20)
+                    ->post($this->getBaseUrl().'/pickups', $payload);
+            } catch (\Throwable $e) {
+                Log::error('DHL pickup request exception: '.$e->getMessage());
+
+                return null;
+            }
+
+            $confirmation = $response->json('dispatchConfirmationNumbers.0');
+
+            if ($response->successful() && $confirmation) {
+                return [
+                    'confirmation' => $confirmation,
+                    'date' => $date->toDateString(),
+                    'from' => $response->json('readyByTime') ?: $readyFrom,
+                    'until' => $closeTime,
+                ];
+            }
+
+            Log::warning('DHL pickup request refused', [
+                'date' => $date->toDateString(),
+                'status' => $response->status(),
+                'body' => mb_substr($response->body(), 0, 1000),
+            ]);
+
+            $date = $this->followingWorkingDay($date);
+        }
+
+        return null;
     }
 
     /**
@@ -314,6 +402,31 @@ class DhlShipmentService
     }
 
     /**
+     * The store as DHL's shipper: who and where parcels are collected
+     * from. Shared by waybill bookings and collection requests so the two
+     * can never describe different places.
+     */
+    protected function shipperDetails(): array
+    {
+        return [
+            'postalAddress' => [
+                'postalCode' => core()->getConfigData('sales.carriers.dhl.origin_postal_code'),
+                'cityName' => core()->getConfigData('sales.carriers.dhl.origin_city'),
+                'countryCode' => core()->getConfigData('sales.carriers.dhl.origin_country_code'),
+                'addressLine1' => $this->truncateAddressLine(
+                    core()->getConfigData('sales.carriers.dhl.origin_address') ?: core()->getConfigData('sales.carriers.dhl.origin_city')
+                ),
+            ],
+            'contactInformation' => [
+                'companyName' => config('app.name'),
+                'fullName' => core()->getConfigData('sales.carriers.dhl.origin_contact_name'),
+                'phone' => core()->getConfigData('sales.carriers.dhl.origin_phone'),
+                'email' => core()->getConfigData('sales.carriers.dhl.origin_email'),
+            ],
+        ];
+    }
+
+    /**
      * The city name DHL will accept for delivery. Shipment creation is a
      * single non-repeatable call that mints a real waybill, so unlike the
      * rates lookup it can't retry through candidates - the destination has
@@ -471,23 +584,7 @@ class DhlShipmentService
                 ],
             ],
             'customerDetails' => [
-                'shipperDetails' => [
-                    'postalAddress' => [
-                        'postalCode' => core()->getConfigData('sales.carriers.dhl.origin_postal_code'),
-                        'cityName' => core()->getConfigData('sales.carriers.dhl.origin_city'),
-                        'countryCode' => core()->getConfigData('sales.carriers.dhl.origin_country_code'),
-                        'addressLine1' => $this->truncateAddressLine(
-                            core()->getConfigData('sales.carriers.dhl.origin_address') ?: core()->getConfigData('sales.carriers.dhl.origin_city')
-                        ),
-                    ],
-                    'contactInformation' => [
-                        'companyName' => config('app.name'),
-                        'fullName' => core()->getConfigData('sales.carriers.dhl.origin_contact_name'),
-                        'phone' => core()->getConfigData('sales.carriers.dhl.origin_phone'),
-                        'email' => core()->getConfigData('sales.carriers.dhl.origin_email'),
-                    ],
-                    'typeCode' => 'business',
-                ],
+                'shipperDetails' => $this->shipperDetails() + ['typeCode' => 'business'],
                 'receiverDetails' => [
                     'postalAddress' => array_filter([
                         'postalCode' => $shippingAddress->postcode,

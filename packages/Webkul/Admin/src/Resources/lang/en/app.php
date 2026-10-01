@@ -4969,7 +4969,7 @@ return [
                         'package-length' => 'Default Package Length (cm)',
                         'package-width' => 'Default Package Width (cm)',
                         'page-title' => 'DHL Express',
-                        'request-pickup' => 'Automatically Request Courier Pickup (may incur DHL pickup fees)',
+                        'request-pickup' => 'Automatically book a DHL courier collection for paid orders',
                         'sandbox-mode' => 'Sandbox Mode (use DHL test environment, no real shipments/charges)',
                         'auto-create-shipment' => 'Book DHL shipment automatically when an order is paid',
                         'auto-create-shipment-info' => 'When on, a DHL waybill is created as soon as payment succeeds. When off, create the shipment yourself from the order page - the DHL call still happens then.',

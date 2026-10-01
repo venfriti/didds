@@ -2,13 +2,21 @@
 
 namespace Webkul\Shipping\Listeners;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Sales\Contracts\Shipment as ShipmentContract;
+use Webkul\Sales\Models\OrderComment;
 use Webkul\Shipping\Carriers\DhlShipmentService;
 
 class DhlShipmentListener
 {
+    /**
+     * core_config row holding the DHL collections already booked.
+     */
+    protected const PICKUP_LOG = 'sales.carriers.dhl.pickup_bookings';
+
     public function __construct(protected DhlShipmentService $dhlShipmentService) {}
 
     /**
@@ -42,6 +50,122 @@ class DhlShipmentListener
         $shipment->save();
 
         $this->storeLabel($shipment, $result['label_base64'] ?? null);
+
+        if (core()->getConfigData('sales.carriers.dhl.request_pickup') && ! empty($result['planned_date'])) {
+            $this->arrangeCollection($order, $result);
+        }
+    }
+
+    /**
+     * Make sure a DHL courier is coming for this parcel.
+     *
+     * One collection serves every parcel waiting at the store that day, so
+     * a collection is booked once per date and later parcels that day ride
+     * on it. Booked dates are kept in core_config, which survives cache
+     * clears, separately for DHL's test and live systems so a test booking
+     * can never stand in for a real one. Either way the outcome is written
+     * on the order, where the person packing it will see it.
+     */
+    protected function arrangeCollection($order, array $result): void
+    {
+        $mode = core()->getConfigData('sales.carriers.dhl.sandbox_mode') ? 'test' : 'live';
+
+        $key = $mode.':'.$result['planned_date'];
+
+        $lock = Cache::lock('dhl-pickup-'.$key, 60);
+
+        if (! $lock->block(20)) {
+            Log::warning('Could not obtain DHL pickup lock for '.$key.'; order '.$order->increment_id);
+
+            return;
+        }
+
+        try {
+            $booked = $this->bookedCollections();
+
+            if (isset($booked[$key])) {
+                $this->note($order, 'Parcel joins the DHL collection already booked for '
+                    .$this->describe($booked[$key]).'.');
+
+                return;
+            }
+
+            $pickup = $this->dhlShipmentService->requestPickup($result['planned_date'], [
+                'productCode' => $result['product_code'],
+                'isCustomsDeclarable' => $result['is_customs_declarable'],
+                'unitOfMeasurement' => 'metric',
+                'packages' => $result['packages'],
+            ], 'DIIDS order #'.$order->increment_id);
+
+            if (! $pickup) {
+                $this->note($order, 'DHL collection could not be booked automatically for this parcel. '
+                    .'Book a collection in MyDHL+ or call DHL, or drop the parcel at a DHL service point.');
+
+                return;
+            }
+
+            /**
+             * Filed under the date asked for as well as the one DHL took,
+             * so the next parcel planned for a holiday finds this booking
+             * rather than making a second one for the same day.
+             */
+            $booked[$key] = $pickup;
+            $booked[$mode.':'.$pickup['date']] = $pickup;
+
+            $this->saveBookedCollections($booked);
+
+            $this->note($order, 'DHL collection booked for '.$this->describe($pickup).'.');
+        } finally {
+            $lock->release();
+        }
+    }
+
+    /**
+     * @return array<string, array{confirmation: string, date: string, from: string, until: string}>
+     */
+    protected function bookedCollections(): array
+    {
+        $value = DB::table('core_config')->where('code', self::PICKUP_LOG)->value('value');
+
+        return json_decode((string) $value, true) ?: [];
+    }
+
+    /**
+     * Stored pruned to recent dates - only today and later matter.
+     */
+    protected function saveBookedCollections(array $booked): void
+    {
+        $cutoff = now()->subDays(14)->toDateString();
+
+        $booked = array_filter($booked, fn ($pickup) => ($pickup['date'] ?? '') >= $cutoff);
+
+        DB::table('core_config')->updateOrInsert(
+            ['code' => self::PICKUP_LOG, 'channel_code' => null, 'locale_code' => null],
+            ['value' => json_encode($booked), 'updated_at' => now(), 'created_at' => now()]
+        );
+    }
+
+    protected function describe(array $pickup): string
+    {
+        return \Carbon\Carbon::parse($pickup['date'])->format('l j F')
+            .', '.$pickup['from'].' to '.$pickup['until']
+            .' (DHL confirmation '.$pickup['confirmation'].')';
+    }
+
+    /**
+     * An internal note on the order - not mailed to the customer.
+     */
+    protected function note($order, string $message): void
+    {
+        try {
+            OrderComment::create([
+                'order_id' => $order->id,
+                'comment' => $message,
+                'customer_notified' => 0,
+            ]);
+        } catch (\Throwable $e) {
+            Log::warning('Could not add DHL collection note to order '.$order->increment_id.': '.$e->getMessage());
+        }
     }
 
     /**
