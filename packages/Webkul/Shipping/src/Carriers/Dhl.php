@@ -44,6 +44,11 @@ class Dhl extends AbstractShipping
     protected bool $dateUnavailable = false;
 
     /**
+     * DHL's estimated delivery date and time for the quoted service.
+     */
+    protected ?string $estimatedDelivery = null;
+
+    /**
      * Calculate rate for DHL.
      *
      * @return CartShippingRate|false
@@ -83,6 +88,8 @@ class Dhl extends AbstractShipping
     {
         $cart = Cart::getCart();
 
+        $this->estimatedDelivery = null;
+
         $price = $this->getLiveRate($cart);
 
         if ($price === null) {
@@ -99,7 +106,7 @@ class Dhl extends AbstractShipping
         $cartShippingRate->carrier_title = $this->getConfigData('title');
         $cartShippingRate->method = $this->getMethod();
         $cartShippingRate->method_title = $this->getConfigData('title');
-        $cartShippingRate->method_description = $this->getConfigData('description');
+        $cartShippingRate->method_description = $this->rateDescription();
         $cartShippingRate->price = core()->convertPrice($price);
         $cartShippingRate->base_price = $price;
 
@@ -304,6 +311,8 @@ class Dhl extends AbstractShipping
 
             $cheapest = null;
 
+            $cheapestEta = null;
+
             foreach ($products as $product) {
                 $price = $this->extractPriceInBaseCurrency($product);
 
@@ -312,7 +321,13 @@ class Dhl extends AbstractShipping
                     && ($cheapest === null || $price < $cheapest)
                 ) {
                     $cheapest = $price;
+
+                    $cheapestEta = $product['deliveryCapabilities']['estimatedDeliveryDateAndTime'] ?? null;
                 }
+            }
+
+            if ($cheapest !== null) {
+                $this->estimatedDelivery = $this->bookedProductEta($products, $query) ?? $cheapestEta;
             }
 
             return $cheapest;
@@ -321,6 +336,54 @@ class Dhl extends AbstractShipping
 
             return null;
         }
+    }
+
+    /**
+     * DHL's delivery estimate for the service that will actually be booked:
+     * Express Domestic (N) within the country, Express Worldwide (P, quoted
+     * as D for non-customs rate requests) abroad. Null when DHL did not
+     * offer that service, so the caller falls back to the cheapest one's.
+     */
+    protected function bookedProductEta(array $products, array $query): ?string
+    {
+        $domestic = strtoupper((string) ($query['originCountryCode'] ?? ''))
+            === strtoupper((string) ($query['destinationCountryCode'] ?? ''));
+
+        $codes = $domestic ? ['N'] : ['P', 'D'];
+
+        foreach ($codes as $code) {
+            foreach ($products as $product) {
+                if (
+                    ($product['productCode'] ?? null) === $code
+                    && ! empty($product['deliveryCapabilities']['estimatedDeliveryDateAndTime'])
+                ) {
+                    return $product['deliveryCapabilities']['estimatedDeliveryDateAndTime'];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * The checkout line under DHL: the estimated delivery date when DHL
+     * gave one, otherwise the configured description.
+     */
+    protected function rateDescription(): ?string
+    {
+        if (! $this->estimatedDelivery) {
+            return $this->getConfigData('description');
+        }
+
+        try {
+            $date = \Carbon\Carbon::parse($this->estimatedDelivery)
+                ->locale(app()->getLocale())
+                ->translatedFormat('l, j F');
+        } catch (\Throwable) {
+            return $this->getConfigData('description');
+        }
+
+        return trans('shop::app.checkout.onepage.shipping.estimated-delivery', ['date' => $date]);
     }
 
     /**

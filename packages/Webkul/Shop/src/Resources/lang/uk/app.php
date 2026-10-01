@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Спосіб доставки',
+                'estimated-delivery' => 'Очікувана доставка: :date',
                 'pickup-address' => 'Адреса самовивозу',
             ],
 

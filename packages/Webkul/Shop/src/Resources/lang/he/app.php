@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'אמצעי משלוח',
+                'estimated-delivery' => 'משלוח משוער: :date',
                 'pickup-address' => 'כתובת איסוף',
             ],
 

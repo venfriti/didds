@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Verzendmethode',
+                'estimated-delivery' => 'Verwachte levering: :date',
                 'pickup-address' => 'Afhaaladres',
             ],
 

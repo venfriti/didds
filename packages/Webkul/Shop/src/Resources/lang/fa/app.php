@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'روش ارسال',
+                'estimated-delivery' => 'تحویل تخمینی: :date',
                 'pickup-address' => 'آدرس تحویل حضوری',
             ],
 

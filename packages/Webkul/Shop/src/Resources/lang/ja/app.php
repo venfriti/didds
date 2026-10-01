@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => '配送方法',
+                'estimated-delivery' => 'お届け予定日：:date',
                 'pickup-address' => '受け取り住所',
             ],
 

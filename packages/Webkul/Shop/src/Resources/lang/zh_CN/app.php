@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => '送货方式',
+                'estimated-delivery' => '预计送达：:date',
                 'pickup-address' => '自提地址',
             ],
 

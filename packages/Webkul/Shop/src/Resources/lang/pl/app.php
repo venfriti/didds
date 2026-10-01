@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Metoda dostawy',
+                'estimated-delivery' => 'Szacowana dostawa: :date',
                 'pickup-address' => 'Adres odbioru',
             ],
 

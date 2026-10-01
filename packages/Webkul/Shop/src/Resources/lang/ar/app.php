@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'طريقة الشحن',
+                'estimated-delivery' => 'التسليم المتوقع: :date',
                 'pickup-address' => 'عنوان الاستلام',
             ],
 

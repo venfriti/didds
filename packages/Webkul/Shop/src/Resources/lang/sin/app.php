@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'භාණ්ඩ ප්රවාහන ක්රමය',
+                'estimated-delivery' => 'ඇස්තමේන්තුගත බෙදාහැරීම: :date',
                 'pickup-address' => 'ලබා ගන්නා ලිපිනය',
             ],
 

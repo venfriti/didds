@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'শিপিং মেথড',
+                'estimated-delivery' => 'আনুমানিক ডেলিভারি: :date',
                 'pickup-address' => 'পিকআপ ঠিকানা',
             ],
 

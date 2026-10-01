@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Kargo Yöntemi',
+                'estimated-delivery' => 'Tahmini teslimat: :date',
                 'pickup-address' => 'Teslim alma adresi',
             ],
 

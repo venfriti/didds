@@ -1214,6 +1214,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Shipping Method',
+                'estimated-delivery' => 'Estimated delivery: :date',
                 'pickup-address' => 'Pickup address',
             ],
 

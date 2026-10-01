@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Metodo di spedizione',
+                'estimated-delivery' => 'Consegna stimata: :date',
                 'pickup-address' => 'Indirizzo di ritiro',
             ],
 

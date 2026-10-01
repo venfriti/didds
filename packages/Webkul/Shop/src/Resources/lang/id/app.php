@@ -1193,6 +1193,7 @@ return [
 
             'shipping' => [
                 'shipping-method' => 'Metode Pengiriman',
+                'estimated-delivery' => 'Perkiraan pengiriman: :date',
                 'pickup-address' => 'Alamat pengambilan',
             ],
 
