@@ -82,7 +82,13 @@ return Application::configure(basePath: dirname(__DIR__))
              * Artisan::call keeps it inside the same PHP process, which the
              * host does allow.
              */
+            /**
+             * "broadcastable" carries the admin's live order notifications.
+             * Left out, they were never processed and piled up three per
+             * order; with no broadcaster configured they finish instantly.
+             */
             Artisan::call('queue:work', [
+                '--queue' => 'default,broadcastable',
                 '--stop-when-empty' => true,
                 '--tries' => 3,
                 '--max-time' => 50,
