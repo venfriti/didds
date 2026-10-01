@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Development notes
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Commands and architecture notes for working on this codebase.
 
 ## Project Overview
 

@@ -36,7 +36,7 @@ All application code lives in `packages/Webkul/` (~40 packages, Bagisto's modula
 | `CMS` | Static pages (About Us, policies) — data lives in `cms_page_translations`; the baseline version is seeded from `database/seeders/diids/cms-pages.json` |
 | `Paypal`, `Razorpay`, `Stripe`, `PayU`, `PhonePe` | Other payment gateways bundled with Bagisto; Paystack is the one actually wired up for this store, via the separate `wontonee/paystack` package |
 
-See `CLAUDE.md` for the fuller architecture notes (repository pattern, proxy models, event-driven extensibility) if you're working on core package code rather than just theme/content.
+See `docs/DEVELOPMENT.md` for the fuller architecture notes (repository pattern, proxy models, event-driven extensibility) if you're working on core package code rather than just theme/content.
 
 ## Common commands
 
@@ -47,7 +47,7 @@ vendor/bin/pest                   # Run the test suite
 vendor/bin/pint                   # Fix PHP code style
 ```
 
-Full test/lint/build commands are in `CLAUDE.md`.
+Full test/lint/build commands are in `docs/DEVELOPMENT.md`.
 
 ## Content vs. code
 
